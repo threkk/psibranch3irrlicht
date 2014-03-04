@@ -103,6 +103,12 @@
     <Filter Include="Irrlicht\gui">
       <UniqueIdentifier>{da421793-4674-481c-be46-f7a44e78aee5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\non-realtime-networking">
+      <UniqueIdentifier>{78750382-dc3f-483f-93c7-10197dcae6bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Irrlicht\non-realtime-networking">
+      <UniqueIdentifier>{fb227611-0efb-4102-b1f6-187e213bc8dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\IEventReceiver.h">
@@ -1306,6 +1312,12 @@
     <ClInclude Include="CCgMaterialRenderer.h">
       <Filter>Irrlicht\video</Filter>
     </ClInclude>
+    <ClInclude Include="NonRealtimeNetworkingUtilities.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="NonRealtimeNetworkingException.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2239,6 +2251,9 @@
     </ClCompile>
     <ClCompile Include="CCgMaterialRenderer.cpp">
       <Filter>Irrlicht\video</Filter>
+    </ClCompile>
+    <ClCompile Include="NonRealtimeNetworkingUtilities.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
