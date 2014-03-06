@@ -2,28 +2,40 @@
 #include "NonRealtimeNetworkingException.h"
 #include "winsock.h"
 
-// Destructor
+/// Destructor
+/** 
+	Release the memory which was allocated for class attributes.
+*/
 NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
 
-	delete[] buffer;
+	delete[] buffer; 
 
 }
 
-// Buffer setter
+/**
+	Set the buffer so that it can be used later.
+*/
 void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
 	
-	this->buffer = new char[sizeof(buffer)/sizeof(char)]; // Calculate the length of the string and allocate memory for it
+	this->buffer = new char[sizeof(buffer)/sizeof(char)]; /** Calculate the length of the string and allocate memory for it */
 	this->buffer = buffer;
 
 }
 
-// Setting port number
+/**
+	Set the port number to which the socket will be bound.
+	The default value for the port number is defined by the PORT_NUMBER constant.
+	@param portNumber port number to be set
+*/
 void NonRealtimeNetworkingUtilities::setPortNumber(int portNumber) {
 	if (portNumber < 0) // What really is the smallest we can assign here? 1024?
 		throw NonRealtimeNetworkingException("Negative port number.");
 	this->portNumber = portNumber;
 }
 
+/**
+	Check the version of WinSock installed.
+*/
 bool NonRealtimeNetworkingUtilities::checkVersion() {
 
 	WORD wVersionRequested;
@@ -41,13 +53,16 @@ bool NonRealtimeNetworkingUtilities::checkVersion() {
 	// Check how to make string concatenation later so that the version looks nicer
 	if (LOBYTE(wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion) != 2 )
 	{
-		/* Tell the user that we could not find a usable WinSock DLL.*/
+		// Tell the user that we could not find a usable WinSock DLL.
 		WSACleanup();
 		throw NonRealtimeNetworkingException("WinSock version not supported: " + LOBYTE(wsaData.wVersion) + HIBYTE(wsaData.wVersion));
 	}
 
 }
 
+/**
+	Open a server socket and start listening on a given port number.
+*/
 void NonRealtimeNetworkingUtilities::openServerSocket() {
 
 	checkVersion();		
@@ -66,9 +81,9 @@ void NonRealtimeNetworkingUtilities::openServerSocket() {
 
 	// AF_INET is the Internet address family.
 	service.sin_family = AF_INET;
-	// "127.0.0.1" is the local IP address to which the socket will be bound.
+	// Listen for a connection from any IP address
 	service.sin_addr.s_addr = inet_addr("0.0.0.0");
-	// 55555 is the port number to which the socket will be bound.
+	// The socket will be bound to the port number set by setPortNumber() method
 	service.sin_port = htons(portNumber);
 
 	// Call the bind function, passing the created socket and the sockaddr_in structure as parameters.
@@ -86,6 +101,9 @@ void NonRealtimeNetworkingUtilities::openServerSocket() {
 
 }
 
+/**
+	Accept the TCP connection request from the client.
+*/
 void NonRealtimeNetworkingUtilities::acceptClient() {
 	SOCKET AcceptSocket;
 
@@ -104,6 +122,10 @@ void NonRealtimeNetworkingUtilities::acceptClient() {
 	}
 }
 
+/**
+	Open a client socket and connect to the server.
+	@param ipAddress IP address of the server
+*/
 void NonRealtimeNetworkingUtilities::openClientSocket(char* ipAddress) {
 
 	if (!checkVersion())
@@ -131,6 +153,10 @@ void NonRealtimeNetworkingUtilities::openClientSocket(char* ipAddress) {
 
 }
 
+/**
+	Send the content of the buffer to the other side of the pipe.
+	The buffer must be set beforehand.
+*/
 void NonRealtimeNetworkingUtilities::sendData() {
 
 	if (buffer == NULL || buffer == "")
@@ -148,6 +174,9 @@ void NonRealtimeNetworkingUtilities::sendData() {
 
 }
 
+/**
+	Receive the data into the buffer.
+*/
 void NonRealtimeNetworkingUtilities::receiveData() {
 
 	int bytesRecv = SOCKET_ERROR;
@@ -158,6 +187,9 @@ void NonRealtimeNetworkingUtilities::receiveData() {
 
 }
 
+/**
+	Close the connection and clean up.
+*/
 void NonRealtimeNetworkingUtilities::closeConnection ()
 {
     //Close the socket if it exists
