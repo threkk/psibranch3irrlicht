@@ -28,7 +28,7 @@ public:
 	void closeConnection();
 	void setBuffer(char* buffer);
 	char* getBuffer() { return buffer; }
-	void setPortNumber(int portNumber) { this->portNumber = portNumber; }
+	void setPortNumber(int portNumber);
 	int getPortNumber() { return portNumber; }
 
 };

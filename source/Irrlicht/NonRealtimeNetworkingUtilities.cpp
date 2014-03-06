@@ -17,6 +17,13 @@ void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
 
 }
 
+// Setting port number
+void NonRealtimeNetworkingUtilities::setPortNumber(int portNumber) {
+	if (portNumber < 0) // What really is the smallest we can assign here? 1024?
+		throw NonRealtimeNetworkingException("Negative port number.");
+	this->portNumber = portNumber;
+}
+
 bool NonRealtimeNetworkingUtilities::checkVersion() {
 
 	WORD wVersionRequested;
