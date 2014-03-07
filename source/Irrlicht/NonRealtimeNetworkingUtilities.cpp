@@ -2,6 +2,8 @@
 #include "NonRealtimeNetworkingException.h"
 #include "winsock.h"
 
+using namespace irrlicht_nonrealtimenetworking;
+
 /// Destructor
 /** 
 	Release the memory which was allocated for class attributes.
