@@ -39,6 +39,8 @@ TEST(OPEN_CLIENT_CONN, NO_EXCEPTIONS) // Try to open a client socket
 	NonRealtimeNetworkingUtilities* utilities = new NonRealtimeNetworkingUtilities();
 	ASSERT_NO_THROW(utilities->openClientSocket("127.0.0.1"));
 	ASSERT_NO_THROW(utilitiesSrv->acceptClient());
+	utilities->closeConnection();
+	utilitiesSrv->closeConnection();
 }
 
 TEST(SEND_RCV_COMPLEX)
