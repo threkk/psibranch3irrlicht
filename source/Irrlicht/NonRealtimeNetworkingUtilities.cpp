@@ -16,7 +16,7 @@ NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
 	Set the buffer so that it can be used later.
 */
 void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
-	
+	delete[] buffer; 
 	this->buffer = new char[sizeof(buffer)/sizeof(char)]; /** Calculate the length of the string and allocate memory for it */
 	this->buffer = buffer;
 
