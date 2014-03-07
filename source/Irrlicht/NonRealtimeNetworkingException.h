@@ -1,13 +1,15 @@
 #include <iostream>
 
-class NonRealtimeNetworkingException : public std::exception {
+namespace irrlicht_nonrealtimenetworking {
+	class NonRealtimeNetworkingException : public std::exception {
 
-  private:
-    const char* errorMessage;
+	  private:
+		const char* errorMessage;
 
-  public:
-    NonRealtimeNetworkingException(const char *message) : errorMessage(message) {};
-    ~NonRealtimeNetworkingException() throw() {};
-    const char *what() const throw() { return this->errorMessage; };
+	  public:
+		NonRealtimeNetworkingException(const char *message) : errorMessage(message) {};
+		~NonRealtimeNetworkingException() throw() {};
+		const char *what() const throw() { return this->errorMessage; };
 
+	};
 };
