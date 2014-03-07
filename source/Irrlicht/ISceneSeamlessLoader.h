@@ -30,7 +30,7 @@ namespace scene
 
 		virtual int preloadScene(irr::io::path uriToNewScene);
 		virtual bool dropPreloadedScene(int sceneIndex);
-		virtual void switchScene(int sceneIndex);
+		virtual void setScene(int sceneIndex);
 	};
 }
 }

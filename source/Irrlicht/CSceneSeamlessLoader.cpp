@@ -7,6 +7,7 @@
 ISceneSeamlessLoader::ISceneSeamlessLoader(scene::ISceneManager* smgr) 
 {
 	this->actual = smgr;
+	this->scenes = new std::vector<NScene>();
 }
 
 ISceneSeamlessLoader::~ISceneSeamlessLoader()
@@ -27,7 +28,7 @@ int ISceneSeamlessLoader::preloadScene(io::path uriToNewScene)
 	NScene scene;
 	scene.uri = uriToNewScene;
 	scene.smngr = actual->createNewSceneManager();
-	scene.position = this->scenes->size();
+	scene.position = (int)scenes->size();
 
 	scene.smngr->loadScene(scene.uri);
 	try
@@ -36,7 +37,7 @@ int ISceneSeamlessLoader::preloadScene(io::path uriToNewScene)
 	} 
 	catch(std::bad_alloc)
 	{
-		std::cout << "Allocation failed. The scene was not added.";
+		std::cout << "Allocation failed. The scene was not added.\n";
 		return -1;
 	}
 	return scene.position;
@@ -57,12 +58,21 @@ bool ISceneSeamlessLoader::dropPreloadedScene(int sceneIndex)
 		return false;
 	}
 }
-/*
-void ISceneSeamlessLoader::switchScene()
-{	
-	actual->loadScene(newScene);
-}
 
+void ISceneSeamlessLoader::setScene(int sceneIndex)
+{	
+	try 
+	{
+		NScene scene = this->scenes->at(sceneIndex);
+		actual->loadScene(scene.uri);
+	} 
+	catch(std::out_of_range)
+	{
+		std::cout << "Index out of bounds. The scene was not loaded\n";
+		return ;
+	}
+}
+/*
 void loadthingies(){
 	IMetaTriangleSelector * meta = this->next->createMetaTriangleSelector();
 	core::array<scene::ISceneNode *> nodes;
