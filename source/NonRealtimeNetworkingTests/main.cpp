@@ -1,7 +1,12 @@
 #include <iostream>
+#include <stdio.h>
+#include <fstream>
 #include <gtest/gtest.h>
 #include <NonRealtimeNetworkingUtilities.h>
 #include <NonRealtimeNetworkingException.h>
+#include "Vector.h"
+#include "../boost/text_iarchive.hpp"
+#include "../boost/text_oarchive.hpp"
 
 using namespace std;
 using namespace irrlicht_nonrealtimenetworking;
@@ -34,6 +39,23 @@ TEST(OPEN_CLIENT_CONN, NO_EXCEPTIONS) // Try to open a client socket
 	NonRealtimeNetworkingUtilities* utilities = new NonRealtimeNetworkingUtilities();
 	ASSERT_NO_THROW(utilities->openClientSocket("127.0.0.1"));
 	ASSERT_NO_THROW(utilitiesSrv->acceptClient());
+}
+
+TEST(SEND_RCV_COMPLEX)
+{
+	Vector* vector = new Vector(3, 4);
+	int len = vector->getLength();
+
+	// create and open a character archive for output
+    ofstream ofs("serialization_file");
+
+	// save data to archive
+    {
+        boost::archive::text_oarchive oa(ofs);
+        // write class instance to archive
+        oa << *vector;
+    	// archive and stream closed when destructors are called
+    }
 }
 
 int main(int argc, char** argv) {
