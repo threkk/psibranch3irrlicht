@@ -10,7 +10,7 @@ namespace irrlicht_nonrealtimenetworking {
 	*/
 	NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
 
-		delete[] buffer; 
+		delete buffer; 
 
 	}
 
@@ -18,10 +18,10 @@ namespace irrlicht_nonrealtimenetworking {
 		Set the buffer so that it can be used later.
 	*/
 	void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
-		delete[] buffer; 
-		this->buffer = new char[sizeof(buffer)/sizeof(char)]; /** Calculate the length of the string and allocate memory for it */
-		this->buffer = buffer;
-
+		// delete this->buffer;
+		// this->buffer = NULL;
+		this->buffer = new char[strlen(buffer) + 1]; /** Calculate the length of the string and allocate memory for it */
+		strcpy(this->buffer, buffer);
 	}
 
 	/**
@@ -161,7 +161,7 @@ namespace irrlicht_nonrealtimenetworking {
 	*/
 	void NonRealtimeNetworkingUtilities::sendData() {
 
-		if (buffer == NULL || buffer == "")
+		if (buffer == NULL || strcmp(buffer, "") == 0)
 			throw NonRealtimeNetworkingException("Buffer empty. Set buffer before sending!");
 
 		int iResult;
@@ -182,10 +182,13 @@ namespace irrlicht_nonrealtimenetworking {
 	void NonRealtimeNetworkingUtilities::receiveData() {
 
 		int bytesRecv = SOCKET_ERROR;
-		bytesRecv = recv(s, buffer, 200, 0);
+		buffer = new char[400];
+		bytesRecv = recv(s, buffer, 400, 0);
 
 		if (bytesRecv == SOCKET_ERROR)
 			throw NonRealtimeNetworkingException("Receive failed: " + WSAGetLastError());
+		else
+			buffer = new char[strlen(buffer) + 1];
 
 	}
 
