@@ -31,6 +31,7 @@ namespace irrlicht_nonrealtimenetworking {
 		char* getBuffer() { return buffer; }
 		void setPortNumber(int portNumber);
 		int getPortNumber() { return portNumber; }
+		int getWSALastError() { return WSAGetLastError(); }
 
 	};
 
