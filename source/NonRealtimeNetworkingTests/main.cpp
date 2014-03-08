@@ -43,7 +43,7 @@ TEST(OPEN_CLIENT_CONN, NO_EXCEPTIONS) // Try to open a client socket
 	utilitiesSrv->closeConnection();
 }
 
-TEST(SEND_RCV_COMPLEX)
+TEST(SEND_RCV_COMPLEX) // open a connection between two sockets + send 
 {
 	Vector* vector = new Vector(3, 4);
 	int len = vector->getLength();
@@ -58,6 +58,19 @@ TEST(SEND_RCV_COMPLEX)
         oa << *vector;
     	// archive and stream closed when destructors are called
     }
+
+	// establish connection between server and client socket
+	NonRealtimeNetworkingUtilities* utilitiesSrv = new NonRealtimeNetworkingUtilities();
+	ASSERT_NO_THROW(utilitiesSrv->openServerSocket());
+	NonRealtimeNetworkingUtilities* utilitiesCl = new NonRealtimeNetworkingUtilities();
+	ASSERT_NO_THROW(utilitiesCl->openClientSocket("127.0.0.1"));
+	ASSERT_NO_THROW(utilitiesSrv->acceptClient());
+
+	
+
+	// close connection after work is done
+	utilitiesCl->closeConnection();
+	utilitiesSrv->closeConnection();
 }
 
 int main(int argc, char** argv) {
