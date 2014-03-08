@@ -15,7 +15,7 @@ namespace irrlicht_nonrealtimenetworking {
 		int portNumber;
 		WSADATA wsaData;
 
-		bool checkVersion(); 
+		void checkVersion(); 
 
 	public:
 		NonRealtimeNetworkingUtilities() { portNumber = PORT_NUMBER; };

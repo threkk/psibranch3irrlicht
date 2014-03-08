@@ -38,7 +38,7 @@ namespace irrlicht_nonrealtimenetworking {
 	/**
 		Check the version of WinSock installed.
 	*/
-	bool NonRealtimeNetworkingUtilities::checkVersion() {
+	void NonRealtimeNetworkingUtilities::checkVersion() {
 
 		WORD wVersionRequested;
 		int wsaerr;
@@ -130,8 +130,8 @@ namespace irrlicht_nonrealtimenetworking {
 	*/
 	void NonRealtimeNetworkingUtilities::openClientSocket(char* ipAddress) {
 
-		if (!checkVersion())
-			throw NonRealtimeNetworkingException("Socket version check failed.");
+		checkVersion();
+		// throw NonRealtimeNetworkingException("Socket version check failed.");
 
 		// Fill out the information needed to initialize a socket…
 		SOCKADDR_IN target; //Socket address information
