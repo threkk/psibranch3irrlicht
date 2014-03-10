@@ -417,7 +417,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>..\..\lib\Win32-visualstudio\Irrlicht.lib</ImportLibrary>
+      <ImportLibrary>C:\Users\Alberto Mtnez\Desktop\Workspace\psibranch3irrlicht\lib\Win32-visualstudio\Irrlicht.lib</ImportLibrary>
       <Version>1.8</Version>
     </Link>
   </ItemDefinitionGroup>
@@ -842,6 +842,7 @@
     <ClInclude Include="..\..\include\irrlicht.h" />
     <ClInclude Include="..\..\include\IrrlichtDevice.h" />
     <ClInclude Include="..\..\include\irrTypes.h" />
+    <ClInclude Include="..\..\include\ISceneSeamlessLoader.h" />
     <ClInclude Include="..\..\include\ITimer.h" />
     <ClInclude Include="..\..\include\Keycodes.h" />
     <ClInclude Include="..\..\include\SIrrCreationParameters.h" />
@@ -996,7 +997,6 @@
     <ClInclude Include="CMeshManipulator.h" />
     <ClInclude Include="COpenGLCgMaterialRenderer.h" />
     <ClInclude Include="CSceneManager.h" />
-    <ClInclude Include="ISceneSeamlessLoader.h" />
     <ClInclude Include="Octree.h" />
     <ClInclude Include="CSMFMeshFileLoader.h" />
     <ClInclude Include="C3DSMeshFileLoader.h" />

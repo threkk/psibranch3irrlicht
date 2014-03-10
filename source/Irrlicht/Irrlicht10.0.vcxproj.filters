@@ -1306,7 +1306,7 @@
     <ClInclude Include="CCgMaterialRenderer.h">
       <Filter>Irrlicht\video</Filter>
     </ClInclude>
-    <ClInclude Include="ISceneSeamlessLoader.h">
+    <ClInclude Include="..\..\include\ISceneSeamlessLoader.h">
       <Filter>include\scene</Filter>
     </ClInclude>
   </ItemGroup>

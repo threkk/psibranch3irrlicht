@@ -1,9 +1,5 @@
 #include "ISceneSeamlessLoader.h"
 
-#ifdef _MSC_VER
-#pragma comment(lib, "Irrlicht.lib")
-#endif
-
 ISceneSeamlessLoader::ISceneSeamlessLoader(scene::ISceneManager* smgr) 
 {
 	this->actual = smgr;
