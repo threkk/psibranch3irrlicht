@@ -41,10 +41,12 @@ TEST(OPEN_CLIENT_CONN, NO_EXCEPTIONS) // Try to open a client socket
 	utilitiesSrv->closeConnection();
 }
 
-//TEST(SEND_STRING, BUFFER_NOT_SET) { // Try to send something without setting the buffer first
-//	NonRealtimeNetworkingUtilities* utilities = new NonRealtimeNetworkingUtilities();
-//	ASSERT_THROW(utilities->sendData(), NonRealtimeNetworkingException);
-//}
+TEST(SEND_STRING, BUFFER_NOT_SET) { // Try to send something without setting the buffer first
+	NonRealtimeNetworkingUtilities* utilities = new NonRealtimeNetworkingUtilities();
+	// std::cout << "Buffer: " << ((utilities->getBuffer() == NULL) ? "NULL" : "Nie NULL") << std::endl;
+	std::cout << "Buffer length: " << strlen(utilities->getBuffer()) << std::endl;
+	// ASSERT_THROW(utilities->sendData(), NonRealtimeNetworkingException);
+}
 
 TEST(SEND_STRING, RECEIVED_PROPERLY) // Try sending/receiving of an example string
 {
