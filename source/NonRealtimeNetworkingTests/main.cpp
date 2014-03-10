@@ -5,8 +5,8 @@
 #include <NonRealtimeNetworkingUtilities.h>
 #include <NonRealtimeNetworkingException.h>
 #include "Vector.h"
-#include "../boost_lib/boost/archive/text_iarchive.hpp"
-#include "../boost_lib/boost/archive/text_oarchive.hpp"
+#include "boost/archive/text_iarchive.hpp"
+#include "boost/archive/text_oarchive.hpp"
 
 using namespace irrlicht_nonrealtimenetworking;
 
@@ -53,13 +53,6 @@ TEST(OPEN_CLIENT_CONN, NO_EXCEPTIONS) // Try to open a client socket
 	ASSERT_NO_THROW(utilitiesSrv->acceptClient());
 	utilities->closeConnection();
 	utilitiesSrv->closeConnection();
-}
-
-TEST(SEND_STRING, BUFFER_NOT_SET) { // Try to send something without setting the buffer first
-	NonRealtimeNetworkingUtilities* utilities = new NonRealtimeNetworkingUtilities();
-	// std::cout << "Buffer: " << ((utilities->getBuffer() == NULL) ? "NULL" : "Nie NULL") << std::endl;
-	std::cout << "Buffer length: " << strlen(utilities->getBuffer()) << std::endl;
-	// ASSERT_THROW(utilities->sendData(), NonRealtimeNetworkingException);
 }
 
 TEST(SEND_STRING, RECEIVED_PROPERLY) // Try sending/receiving of an example string
@@ -126,6 +119,7 @@ TEST(SEND_RCV_COMPLEX) // serialize a complex object, send via sockets, deserial
 
 	// get file data
 	pbuf->sgetn(buffer, size);
+	// std::cout << "Buffer to be send: " << buffer << std::endl;
 	ifs.close();
 
 	// Set the buffer on the server side:
@@ -136,29 +130,35 @@ TEST(SEND_RCV_COMPLEX) // serialize a complex object, send via sockets, deserial
 	// Receive the buffer from the server:
 	ASSERT_NO_THROW(utilitiesSrv->receiveData());
 
-	delete[] buffer;
-	buffer = new char[size];
-	buffer = utilitiesSrv->getBuffer();
+	//delete buffer;
+	//buffer = new char[size];
+	//buffer = utilitiesSrv->getBuffer();
 
 	char* filenameCl = "serialization_file_client";
 
-	std::ofstream outfile (filenameCl, std::ofstream::binary);
-	outfile.write(buffer,size);
+	//std::ofstream outfile ("serialization_file_client", std::ofstream::binary);
+	//outfile.write(utilitiesSrv->getBuffer(), size);
+	// std::cout << "Client's buffer after receiving the string: " << utilitiesClient->getBuffer() << std::endl;
+
+	std::ofstream ofs2(filenameCl);
+	ofs2 << utilitiesClient->getBuffer();
+	ofs2.close();
 
 	Vector newVector;
 	{
         // create and open an archive for input
         std::ifstream ifs(filenameCl);
-		printf("hello1");
+		// printf("hello1");
 		// HEEERE is where the shit happens
         boost::archive::text_iarchive ia(ifs);
-		printf("hello!");
+		// printf("hello!");
         // read class state from archive
         ia >> newVector;
         // archive and stream closed when destructors are called
     }
 
 	ASSERT_TRUE(newVector.getLength() == len);
+
 	// Close connections once we're done:
 	utilitiesClient->closeConnection();
 	utilitiesSrv->closeConnection();
