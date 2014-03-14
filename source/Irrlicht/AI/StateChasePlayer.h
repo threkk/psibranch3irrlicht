@@ -14,14 +14,22 @@ public:
 	/** Inherited Methods **/
 	bool executeable(void);
 protected:
+	// The owner of the state
 	Detectable* owner;
+
+	// The target object (mostly the player)
 	Detectable* target;
+
+	// The irrlicht scene manager (needed for ray collision detection)
 	irr::scene::ISceneManager* sceneMgr;
+
+	// The pathfinding utility
 	IPathfinding* pathUtil;
+
+	// The callback function
+	std::function<void(irr::core::vector3df)> callbackFunction;
 
 	/** Inherited Methods **/
 	void action();
-private:
-	std::function<void(irr::core::vector3df)> callbackFunction;
 };
 

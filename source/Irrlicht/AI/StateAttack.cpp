@@ -19,10 +19,12 @@ StateAttack::~StateAttack(void)
 
 bool StateAttack::executeable(void)
 {
+	// Only attack if target is directly in front of the object
 	return owner->isObjectInfront(target, sceneMgr);
 }
 
 void StateAttack::action()
 {
+	// Execute callback function
 	callbackFunction(callbackParameter);
 }

@@ -1,7 +1,5 @@
 #include <vector>
 
-//TODO Move to Engine
-
 #pragma once
 
 class State
@@ -49,6 +47,8 @@ private:
 
 	/**
 	* State-Priority-Comparator Method
+	* Returns true if the priority of state 1 is heigher than the priority
+	* of state 2
 	*/
 	bool static State::compare(State* state1, State* state2);
 
