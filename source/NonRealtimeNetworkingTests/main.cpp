@@ -77,6 +77,8 @@ TEST(SEND_STRING, RECEIVED_PROPERLY) // Try sending/receiving of an example stri
 	// Receive the buffer from the server:
 	ASSERT_NO_THROW(utilitiesSrv->receiveData());
 
+	printf(utilitiesSrv->getBuffer());
+
 	// Close connections once we're done:
 	utilitiesClient->closeConnection();
 	utilitiesSrv->closeConnection();

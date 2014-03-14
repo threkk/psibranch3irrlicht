@@ -182,14 +182,24 @@ namespace irrlicht_nonrealtimenetworking {
 	void NonRealtimeNetworkingUtilities::receiveData() {
 
 		int bytesRecv = SOCKET_ERROR;
-		buffer = new char[400];
-		bytesRecv = recv(s, buffer, 400, 0);
+		buffer = new char[150];
+		bytesRecv = recv(s, buffer, 150, 0);
 
 		if (bytesRecv == SOCKET_ERROR)
 			throw NonRealtimeNetworkingException("Receive failed: " + WSAGetLastError());
-		else
+		else;
+			// TODO: fix string that is received
+			char* tmp = buffer; 
 			buffer = new char[strlen(buffer) + 1];
+			for (int i = 0; i < strlen(buffer) + 1; i++) {
 
+				if (buffer[i] == '\0') {
+					buffer[i] = tmp [i];
+					break;
+				}
+
+				buffer[i] = tmp [i];
+			}
 	}
 
 	/**
