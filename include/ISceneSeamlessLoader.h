@@ -2,6 +2,7 @@
 #define __I_SEAMLESS_SCENE_LOADER_H_INCLUDED_
 
 #include "irrlicht.h"
+#include "ISceneManager.h"
 #include <cstdlib>
 #include <iostream>
 #include <vector>
