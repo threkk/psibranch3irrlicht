@@ -989,7 +989,6 @@
     <ClInclude Include="..\..\include\IGUIWindow.h" />
     <ClInclude Include="AI\Detectable.h" />
     <ClInclude Include="AI\IPathfinding.h" />
-    <ClInclude Include="AI\RecastUtil.h" />
     <ClInclude Include="AI\State.h" />
     <ClInclude Include="AI\StateAttack.h" />
     <ClInclude Include="AI\StateChasePlayer.h" />
@@ -1245,7 +1244,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI\Detectable.cpp" />
-    <ClCompile Include="AI\RecastUtil.cpp" />
     <ClCompile Include="AI\State.cpp" />
     <ClCompile Include="AI\StateAttack.cpp" />
     <ClCompile Include="AI\StateChasePlayer.cpp" />
