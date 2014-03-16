@@ -42,4 +42,6 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 *.opensdf
+*.sdf
 ipch/*
+!lib/AI/*.lib

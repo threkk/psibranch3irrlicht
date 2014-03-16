@@ -103,6 +103,15 @@
     <Filter Include="Irrlicht\gui">
       <UniqueIdentifier>{da421793-4674-481c-be46-f7a44e78aee5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Irrlicht\AI">
+      <UniqueIdentifier>{f5c63ae8-057d-4ce1-b17c-bdbb8ca7c165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Irrlicht\AI\States">
+      <UniqueIdentifier>{85fa4d82-e14c-4ed1-bb7c-3d56e5e88175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Irrlicht\AI\Pathfinding">
+      <UniqueIdentifier>{cfd0f9ac-b5fd-4b9a-9b1f-ee2ec11e895a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\IEventReceiver.h">
@@ -1309,6 +1318,24 @@
     <ClInclude Include="..\..\include\ISceneSeamlessLoader.h">
       <Filter>include\scene</Filter>
     </ClInclude>
+    <ClInclude Include="AI\Detectable.h">
+      <Filter>Irrlicht\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\StateIdle.h">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\State.h">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\StateAttack.h">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\StateChasePlayer.h">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClInclude>
+    <ClInclude Include="AI\IPathfinding.h">
+      <Filter>Irrlicht\AI\Pathfinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2245,6 +2272,21 @@
     </ClCompile>
     <ClCompile Include="CSceneSeamlessLoader.cpp">
       <Filter>Irrlicht\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\Detectable.cpp">
+      <Filter>Irrlicht\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\State.cpp">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\StateAttack.cpp">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\StateChasePlayer.cpp">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\StateIdle.cpp">
+      <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
