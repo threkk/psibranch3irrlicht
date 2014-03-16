@@ -417,7 +417,7 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>C:\Users\Alberto Mtnez\Desktop\Workspace\psibranch3irrlicht\lib\Win32-visualstudio\Irrlicht.lib</ImportLibrary>
+      <ImportLibrary>..\..\lib\Win32-visualstudio\Irrlicht.lib</ImportLibrary>
       <Version>1.8</Version>
     </Link>
   </ItemDefinitionGroup>
