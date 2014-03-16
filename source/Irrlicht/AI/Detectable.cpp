@@ -15,7 +15,7 @@ bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* 
 	mat.transformVect(direction);
 
 	// Get difference vector between object and me
-	irr::core::vector3df difference = irr::core::vector3df(object->getPosition().X, 0, object->getPosition().Z) - this->getPosition();
+	irr::core::vector3df difference = object->getPosition() - this->getPosition();
 
 	// If the object is not in the field of view return false
 	if (direction.dotProduct(difference.normalize()) < cos(FOVRadian))
@@ -35,10 +35,10 @@ bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* 
 	// TODO Improve ray cast for objects with meshes, so that it won't collide with it's own mesh
 	// TODO Improve ray cast so that it cannot go through walls
 
-	// get distance between object and me
+	// Get distance between object and me
 	irr::core::vector3df difference = object->getPosition() - this->getPosition();
 
-	// if point is too far away to see
+	// If point is too far away to see
 	if (this->getPosition().getDistanceFrom(object->getPosition()) > visionLength)
 		return false;
 
