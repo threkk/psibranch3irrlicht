@@ -4,9 +4,8 @@
 
 namespace irrlicht_nonrealtimenetworking {
 
-	/// Destructor
-	/** 
-		Release the memory which was allocated for class attributes.
+	/**
+	Destructor
 	*/
 	NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
 
@@ -15,19 +14,17 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Set the buffer so that it can be used later.
+	set buffer to be sent later
 	*/
 	void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
-		// delete this->buffer;
-		// this->buffer = NULL;
-		this->buffer = new char[strlen(buffer) + 1]; /** Calculate the length of the string and allocate memory for it */
+		// calc buffer's lenth and allocate memory
+		this->buffer = new char[strlen(buffer) + 1];
 		strcpy(this->buffer, buffer);
 	}
 
 	/**
-		Set the port number to which the socket will be bound.
-		The default value for the port number is defined by the PORT_NUMBER constant.
-		@param portNumber port number to be set
+	set portnum to which socket will be bound
+	default value defined by PORT_NUMBER constant
 	*/
 	void NonRealtimeNetworkingUtilities::setPortNumber(int portNumber) {
 		if (portNumber < 0) // What really is the smallest we can assign here? 1024?
@@ -36,7 +33,7 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Check the version of WinSock installed.
+	Check installed winsock2 version
 	*/
 	void NonRealtimeNetworkingUtilities::checkVersion() {
 
@@ -52,7 +49,7 @@ namespace irrlicht_nonrealtimenetworking {
 			throw NonRealtimeNetworkingException("Server: The Winsock dll not found!\n");
 		}
 
-		// Check how to make string concatenation later so that the version looks nicer
+		// TO DO how to concatenate char* ?
 		if (LOBYTE(wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion) != 2 )
 		{
 			// Tell the user that we could not find a usable WinSock DLL.
@@ -63,7 +60,7 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Open a server socket and start listening on a given port number.
+	Open a server socket, listen to port number that's currently set
 	*/
 	void NonRealtimeNetworkingUtilities::openServerSocket() {
 
@@ -104,7 +101,7 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Accept the TCP connection request from the client.
+	Accept the TCP connection request from client.
 	*/
 	void NonRealtimeNetworkingUtilities::acceptClient() {
 		SOCKET AcceptSocket;
@@ -125,15 +122,13 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Open a client socket and connect to the server.
-		@param ipAddress IP address of the server
+	Open a client socket and connect to the server.
+	@param ipAddress IP address of the server
 	*/
 	void NonRealtimeNetworkingUtilities::openClientSocket(char* ipAddress) {
 
 		checkVersion();
-		// throw NonRealtimeNetworkingException("Socket version check failed.");
 
-		// Fill out the information needed to initialize a socket…
 		SOCKADDR_IN target; //Socket address information
 
 		target.sin_family = AF_INET; // address family Internet
@@ -146,8 +141,7 @@ namespace irrlicht_nonrealtimenetworking {
 			throw NonRealtimeNetworkingException("Socket creation failed.");
 		}  
 
-		//Try connecting...
-
+		// connect, throw exception if fails
 		if (connect(s, (SOCKADDR *)&target, sizeof(target)) == SOCKET_ERROR)
 		{
 			throw NonRealtimeNetworkingException("Connection failed.");
@@ -156,8 +150,8 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Send the content of the buffer to the other side of the pipe.
-		The buffer must be set beforehand.
+	Send the content of the buffer to the other side of the pipe.
+	The buffer must be set beforehand.
 	*/
 	void NonRealtimeNetworkingUtilities::sendData() {
 
@@ -177,7 +171,7 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Receive the data into the buffer.
+	Receive the data, will be written to buffer
 	*/
 	void NonRealtimeNetworkingUtilities::receiveData() {
 
@@ -203,7 +197,7 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		Close the connection and clean up.
+	Close the connection and clean up.
 	*/
 	void NonRealtimeNetworkingUtilities::closeConnection ()
 	{
