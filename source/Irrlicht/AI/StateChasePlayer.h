@@ -19,6 +19,15 @@ protected:
 
 	// The target object (mostly the player)
 	Detectable* target;
+	
+	// The vector position of the location where the target is seen the last
+	irr::core::vector3df lastPointSeen;
+
+	// Bool if there is a lastPointSeen location
+	bool hasLastPointSeen;
+
+	// Bool to know if the target is seen that frame
+	bool hasSeen;
 
 	// The irrlicht scene manager (needed for ray collision detection)
 	irr::scene::ISceneManager* sceneMgr;
