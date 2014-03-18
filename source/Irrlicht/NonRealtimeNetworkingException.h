@@ -1,7 +1,7 @@
 #include <iostream>
 
 namespace irrlicht_nonrealtimenetworking {
-	class NonRealtimeNetworkingException : public std::exception {
+	class __declspec(dllexport)NonRealtimeNetworkingException : public std::exception {
 
 	  private:
 		const char* errorMessage;

@@ -7,7 +7,7 @@
 #define PORT_NUMBER 27015
 
 namespace irrlicht_nonrealtimenetworking {
-	class NonRealtimeNetworkingUtilities {
+	class __declspec(dllexport)NonRealtimeNetworkingUtilities {
 
 	private:
 		SOCKET s;
