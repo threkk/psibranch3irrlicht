@@ -1333,6 +1333,9 @@
     <ClInclude Include="AI\IPathfinding.h">
       <Filter>Irrlicht\AI\Pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="AI\StateFollowRoute.h">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2280,6 +2283,9 @@
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
     <ClCompile Include="AI\StateIdle.cpp">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\StateFollowRoute.cpp">
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
   </ItemGroup>

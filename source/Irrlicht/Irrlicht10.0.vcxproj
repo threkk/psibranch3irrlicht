@@ -992,6 +992,7 @@
     <ClInclude Include="AI\State.h" />
     <ClInclude Include="AI\StateAttack.h" />
     <ClInclude Include="AI\StateChasePlayer.h" />
+    <ClInclude Include="AI\StateFollowRoute.h" />
     <ClInclude Include="AI\StateIdle.h" />
     <ClInclude Include="CCgMaterialRenderer.h" />
     <ClInclude Include="CD3D9CgMaterialRenderer.h" />
@@ -1247,6 +1248,7 @@
     <ClCompile Include="AI\State.cpp" />
     <ClCompile Include="AI\StateAttack.cpp" />
     <ClCompile Include="AI\StateChasePlayer.cpp" />
+    <ClCompile Include="AI\StateFollowRoute.cpp" />
     <ClCompile Include="AI\StateIdle.cpp" />
     <ClCompile Include="CCgMaterialRenderer.cpp" />
     <ClCompile Include="CD3D9CgMaterialRenderer.cpp" />
