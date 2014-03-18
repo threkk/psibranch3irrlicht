@@ -21,17 +21,31 @@ namespace irrlicht_nonrealtimenetworking {
 		NonRealtimeNetworkingUtilities() { portNumber = PORT_NUMBER; };
 		NonRealtimeNetworkingUtilities(int portNumber) { this->portNumber = portNumber; };
 		~NonRealtimeNetworkingUtilities();
+		
+		// server 
 		void openServerSocket();
 		void acceptClient();
+		void hostGame(int portNo);
+
+		// client
 		void openClientSocket(char* ipAddress);
+		void joinGame(char* ipAddress, int portNo);
+
+		// send/receive
 		void sendData();
 		void receiveData();
+
+		// terminate
 		void closeConnection();
+
+		// getters/setters
 		void setBuffer(char* buffer);
-		char* getBuffer() { return buffer; }
+		char* getBuffer() { return buffer; };
 		void setPortNumber(int portNumber);
-		int getPortNumber() { return portNumber; }
-		int getWSALastError() { return WSAGetLastError(); }
+		int getPortNumber() { return portNumber; };
+
+		// WinSock Errors
+		int getWSALastError() { return WSAGetLastError(); };
 
 	};
 

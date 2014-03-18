@@ -1,6 +1,5 @@
 #include "NonRealtimeNetworkingUtilities.h"
 #include "NonRealtimeNetworkingException.h"
-#include "winsock.h"
 
 namespace irrlicht_nonrealtimenetworking {
 
@@ -122,6 +121,15 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
+	host a game by opening a server socket and waiting for clients
+	*/
+	void NonRealtimeNetworkingUtilities::hostGame(int portNo) {
+		setPortNumber(portNo);
+		openServerSocket();
+		acceptClient();
+	}
+
+	/**
 	Open a client socket and connect to the server.
 	@param ipAddress IP address of the server
 	*/
@@ -147,6 +155,15 @@ namespace irrlicht_nonrealtimenetworking {
 			throw NonRealtimeNetworkingException("Connection failed.");
 		}
 
+	}
+
+	/**
+	Open a client socket and connect to the server.
+	@param ipAddress IP address of the server
+	*/
+	void NonRealtimeNetworkingUtilities::joinGame(char* ipAddress, int portNo) {
+		setPortNumber(portNo);
+		openClientSocket(ipAddress);
 	}
 
 	/**
