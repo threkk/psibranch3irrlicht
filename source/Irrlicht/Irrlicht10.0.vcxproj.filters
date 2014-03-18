@@ -1315,6 +1315,9 @@
     <ClInclude Include="CCgMaterialRenderer.h">
       <Filter>Irrlicht\video</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ISceneSeamlessLoader.h">
+      <Filter>include\scene</Filter>
+    </ClInclude>
     <ClInclude Include="AI\Detectable.h">
       <Filter>Irrlicht\AI</Filter>
     </ClInclude>
@@ -2269,6 +2272,9 @@
     </ClCompile>
     <ClCompile Include="CCgMaterialRenderer.cpp">
       <Filter>Irrlicht\video</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneSeamlessLoader.cpp">
+      <Filter>Irrlicht\scene</Filter>
     </ClCompile>
     <ClCompile Include="AI\Detectable.cpp">
       <Filter>Irrlicht\AI</Filter>
