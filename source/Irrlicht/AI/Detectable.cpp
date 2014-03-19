@@ -55,12 +55,17 @@ bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* 
 	ray.end = object->getPosition() + (this->getPosition() - ray.start).normalize() * visionLength ;
 
 	// Get the scene node that will be hit from the ray
-	irr::scene::ISceneNode* selectedSceneNode = sceneMgr->getSceneCollisionManager()->getSceneNodeFromRayBB(ray);
+	irr::core::vector3df intersection;
+	irr::core::triangle3df hitTriangle;
+	irr::scene::ISceneNode * selectedSceneNode = sceneMgr->getSceneCollisionManager()->getSceneNodeAndCollisionPointFromRay(ray, intersection, hitTriangle);
 	
 	// If the found node has the same ID as the searched node, the object can be seen
-	if (selectedSceneNode != NULL && selectedSceneNode->getID() == this->getNodeID())
+	if (selectedSceneNode && selectedSceneNode->getID() == this->getNodeID())
 	{
+		float f1 = this->getNodeID();
+		float f2 = selectedSceneNode->getID();
 		// Object can be seen
+		printf("This id: %f     Selected id: %f\n",f1 ,f2);
 		return true;
 	}
 	// No object or another object is seen
