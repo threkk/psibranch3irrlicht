@@ -7,10 +7,11 @@ class Detectable
 public:
 	virtual ~Detectable(void);
 
+
 	/**
 	 * Checks if the target is infront of this class. Uses the passed vision length.
 	 */
-	bool isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr, float visionLength);
+	bool isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::f32 visionLength);
 
 	/**
 	 * Checks if the target is infront of this class. Uses the vision length of this object.
@@ -18,9 +19,14 @@ public:
 	bool isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr);
 
 	/**
+	 * Checks if the target is behind of this class. Uses the passed vision length.
+	 */
+	bool isObjectBehind(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::f32 visionLength);
+
+	/**
 	 * Checks if the target is within the field of view and can be seen
 	 */
-	bool isObjectVisible(Detectable* object, irr::scene::ISceneManager* sceneMgr);
+	bool isObjectVisible(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::core::vector3df direction, irr::f32 visionLength);
 
 	/** Virtual Methods that needs to be implemented **/
 

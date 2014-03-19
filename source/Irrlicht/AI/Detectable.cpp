@@ -6,40 +6,47 @@ Detectable::~Detectable(void)
 {
 }
 
-bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* sceneMgr)
+
+bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::f32 visionLength)
 {
-	// Get forward vector
+
 	irr::core::vector3df direction = irr::core::vector3df(0, 0, 1);
-	irr::core::matrix4 mat;
-	mat.setRotationDegrees(this->getRotation());
-	mat.transformVect(direction);
+	return isObjectVisible(object, sceneMgr, direction, visionLength);
 
-	// Get difference vector between object and me
-	irr::core::vector3df difference = object->getPosition() - this->getPosition();
-
-	// If the object is not in the field of view return false
-	if (direction.dotProduct(difference.normalize()) < cos(FOVRadian))
-		return false;
-
-	// Check for the raycast
-	return isObjectInfront(object, sceneMgr, visionLength);
 }
 
 bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr)
 {
-	return isObjectInfront(object, sceneMgr, 130);
+
+	irr::core::vector3df direction = irr::core::vector3df(0, 0, 1);
+	return isObjectVisible(object, sceneMgr, direction, visionLength);
+
 }
 
-bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::f32 visionLength)
-{
-	// TODO Improve ray cast for objects with meshes, so that it won't collide with it's own mesh
-	// TODO Improve ray cast so that it cannot go through walls
 
-	// Get distance between object and me
-	irr::core::vector3df difference = object->getPosition() - this->getPosition();
+bool Detectable::isObjectBehind(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::f32 visionLength)
+{
+
+	irr::core::vector3df direction = irr::core::vector3df(0, 0, -1);
+	return isObjectVisible(object, sceneMgr, direction, visionLength);
+}
+
+bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::core::vector3df direction, irr::f32 visionLength){
+
+	// get forward vector
+	irr::core::matrix4 mat;
+	mat.setRotationDegrees(this->getRotation());
+	mat.transformVect(direction);
 
 	// If point is too far away to see
 	if (this->getPosition().getDistanceFrom(object->getPosition()) > visionLength)
+		return false;
+
+	// get difference vector between object and me
+	irr::core::vector3df difference = object->getPosition() - this->getPosition();
+
+	// if point is not in FoV
+	if (direction.dotProduct(difference.normalize()) < cos(FOVRadian))
 		return false;
 
 	// Shoot an ray from the target to this object to check if the player can be seen
@@ -58,4 +65,5 @@ bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* 
 	}
 	// No object or another object is seen
 	return false;
+
 }
