@@ -1,4 +1,3 @@
-#include <irrlicht.h>
 #include "ParticleManager.h"
 
 ParticleManager::ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* smgr)
