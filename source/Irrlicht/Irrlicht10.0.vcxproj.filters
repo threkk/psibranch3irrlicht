@@ -1312,10 +1312,10 @@
     <ClInclude Include="CCgMaterialRenderer.h">
       <Filter>Irrlicht\video</Filter>
     </ClInclude>
-    <ClInclude Include="NonRealtimeNetworkingUtilities.h">
+    <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
-    <ClInclude Include="NonRealtimeNetworkingException.h">
+    <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingUtilities.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2252,7 +2252,7 @@
     <ClCompile Include="CCgMaterialRenderer.cpp">
       <Filter>Irrlicht\video</Filter>
     </ClCompile>
-    <ClCompile Include="NonRealtimeNetworkingUtilities.cpp">
+    <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
   </ItemGroup>

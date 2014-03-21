@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Irrlicht", "Irrlicht10.0.vcxproj", "{E08E042A-6C45-411B-92BE-3CC31331019F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NonRealtimeNetworkingTests", "..\NonRealtimeNetworkingTests\NonRealtimeNetworkingTests.vcxproj", "{18BB330E-F224-457D-BDEB-8E23C442E6DB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -45,24 +43,6 @@ Global
 		{E08E042A-6C45-411B-92BE-3CC31331019F}.Static lib - Release|Win32.Build.0 = Static lib - Release|Win32
 		{E08E042A-6C45-411B-92BE-3CC31331019F}.Static lib - Release|x64.ActiveCfg = Static lib - Release|x64
 		{E08E042A-6C45-411B-92BE-3CC31331019F}.Static lib - Release|x64.Build.0 = Static lib - Release|x64
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Debug|Win32.ActiveCfg = Debug|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Debug|Win32.Build.0 = Debug|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Debug|x64.ActiveCfg = Debug|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Release - Fast FPU|Win32.ActiveCfg = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Release - Fast FPU|Win32.Build.0 = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Release - Fast FPU|x64.ActiveCfg = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Release|Win32.ActiveCfg = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Release|Win32.Build.0 = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Release|x64.ActiveCfg = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Debug|Win32.ActiveCfg = Debug|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Debug|Win32.Build.0 = Debug|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Debug|x64.ActiveCfg = Debug|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Release - Fast FPU|Win32.ActiveCfg = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Release - Fast FPU|Win32.Build.0 = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Release - Fast FPU|x64.ActiveCfg = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Release|Win32.ActiveCfg = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Release|Win32.Build.0 = Release|Win32
-		{18BB330E-F224-457D-BDEB-8E23C442E6DB}.Static lib - Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
