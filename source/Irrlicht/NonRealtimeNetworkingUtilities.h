@@ -4,6 +4,9 @@
 #include <windows.h>
 #include <winsock.h>
 
+#ifndef nonrealtimenetworking
+#define nonrealtimenetworking
+
 #define PORT_NUMBER 27015
 
 namespace irrlicht_nonrealtimenetworking {
@@ -50,3 +53,4 @@ namespace irrlicht_nonrealtimenetworking {
 	};
 
 };
+#endif
