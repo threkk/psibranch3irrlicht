@@ -845,6 +845,8 @@
     <ClInclude Include="..\..\include\ISceneSeamlessLoader.h" />
     <ClInclude Include="..\..\include\ITimer.h" />
     <ClInclude Include="..\..\include\Keycodes.h" />
+    <ClInclude Include="..\..\include\ParticleManager.h" />
+    <ClInclude Include="..\..\include\ParticleModel.h" />
     <ClInclude Include="..\..\include\SIrrCreationParameters.h" />
     <ClInclude Include="..\..\include\SKeyMap.h" />
     <ClInclude Include="..\..\include\EDriverTypes.h" />
@@ -1420,6 +1422,8 @@
     <ClCompile Include="Irrlicht.cpp" />
     <ClCompile Include="os.cpp" />
     <ClCompile Include="lzma\LzmaDec.c" />
+    <ClCompile Include="ParticleManager.cpp" />
+    <ClCompile Include="ParticleModel.cpp" />
     <ClCompile Include="zlib\adler32.c" />
     <ClCompile Include="zlib\compress.c" />
     <ClCompile Include="zlib\crc32.c" />

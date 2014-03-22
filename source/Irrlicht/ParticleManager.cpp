@@ -1,10 +1,10 @@
 #include "ParticleManager.h"
 
-ParticleManager::ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* smgr)
+ParticleManager::ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* smgr): driver(driver), device(device), smgr(smgr)
 {
-	this->driver = driver;
-	this->device = device;
-	this->smgr = smgr;
+	/*driver = driver;
+	device = device;
+	smgr = smgr;*/
 }
 
 IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, vector3df position)

@@ -1,6 +1,7 @@
 #ifndef PARTICLEMANAGER_H_
 #define PARTICLEMANAGER_H_
 
+
 #include <irrlicht.h>
 #include "ParticleModel.h"
 
@@ -19,8 +20,8 @@ public:
 	IParticleSystemSceneNode* spawnXMLParticle(stringc xmlname, vector3df position);
 	~ParticleManager(void);
 
-	ISceneManager* smgr;
-	IVideoDriver* driver;
+	scene::ISceneManager* smgr;
+	video::IVideoDriver* driver;
 	IrrlichtDevice* device;
 
 private:
