@@ -2,11 +2,12 @@
 #define PARTICLEMODEL_H_
 
 #include <irrlicht.h>
+#include "IrrCompileConfig.h"
 
 using namespace irr;
 using namespace video;
 
-class ParticleModel
+class IRRLICHT_API ParticleModel
 {
 public:
 	ParticleModel(void);
