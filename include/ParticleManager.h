@@ -2,6 +2,7 @@
 #define PARTICLEMANAGER_H_
 
 #include <irrlicht.h>
+#include "IrrCompileConfig.h"
 #include "ParticleModel.h"
 
 using namespace irr;
@@ -11,7 +12,7 @@ using namespace video;
 
 class ParticleModel;
 
-class ParticleManager
+class IRRLICHT_API ParticleManager
 {
 public:
 	ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* smgr);
