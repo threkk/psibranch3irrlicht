@@ -9,7 +9,8 @@ using namespace video;
 class ParticleModel
 {
 public:
-	ParticleModel();
+	ParticleModel(void);
+	void switchEmitterType();
 	~ParticleModel(void);
 
 	enum EmitterTypes
@@ -30,8 +31,8 @@ public:
 	s32 maxAngleDegrees;
 	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS;
 	core::stringc pathNameTexture;
-	video::SColor minStartColor, maxStartColor;
-	core::dimension2df minStartSize, maxStartSize;
+	const video::SColor &minStartColor, &maxStartColor;
+	const core::dimension2df &minStartSize, &maxStartSize;
 
 private:
 

@@ -15,12 +15,12 @@ class ParticleManager
 {
 public:
 	ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* smgr);
-	virtual IParticleSystemSceneNode* spawnDataModelParticle(ParticleModel* model, vector3df position);
-	virtual IParticleSystemSceneNode* spawnXMLParticle(stringc xmlname, vector3df position);
+	IParticleSystemSceneNode* spawnDataModelParticle(ParticleModel* model, vector3df position);
+	IParticleSystemSceneNode* spawnXMLParticle(stringc xmlname, vector3df position);
 	~ParticleManager(void);
 
-	scene::ISceneManager* smgr;
-	video::IVideoDriver* driver;
+	ISceneManager* smgr;
+	IVideoDriver* driver;
 	IrrlichtDevice* device;
 
 private:
