@@ -36,6 +36,11 @@ public:
 	virtual irr::core::vector3df getPosition() = 0;
 
 	/**
+	 * Get the ground position of the object (node)
+	 */
+	virtual irr::core::vector3df getGroundPosition() = 0;
+
+	/**
 	 * Get the rotation of the object (node)
 	 */
 	virtual irr::core::vector3df getRotation() = 0;

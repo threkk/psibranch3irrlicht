@@ -1,12 +1,14 @@
 #include "ai/StateChasePlayer.h"
 #include <vector>
+#include "ai/StateMachine.h"
 
 StateChasePlayer::StateChasePlayer(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
-	std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil)
+	std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine)
 {
 	this->owner = stateOwner;
 	this->target = target;
 	this->sceneMgr = sceneMgr;
+	this->stateMachine = stateMachine;
 
 	this->callbackFunction = callbackFunction;
 	this->pathUtil = pathUtil;
@@ -47,10 +49,12 @@ bool StateChasePlayer::executeable(void)
 
 void StateChasePlayer::enter()
 {
+	printf("enter");
 }
 
 void StateChasePlayer::exit()
 {
+	printf("exit");
 }
 
 void StateChasePlayer::action()
@@ -58,7 +62,7 @@ void StateChasePlayer::action()
 	irr::core::vector3df toPos;
 	if(hasSeen)
 	{
-		toPos = this->target->getPosition();
+		toPos = this->target->getGroundPosition();
 	}
 	else if(hasLastPointSeen)
 	{
@@ -83,6 +87,8 @@ void StateChasePlayer::action()
 		else
 		{
 			hasLastPointSeen = false;
+			hasSeen = false;
+			stateMachine->returnToPreviousState();
 		}
 	}
 }

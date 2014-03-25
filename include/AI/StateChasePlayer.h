@@ -1,6 +1,7 @@
 #include "ai/State.h"
 #include "ai/Detectable.h"
 #include "ai/IPathfinding.h"
+#include "ai/StateMachine.h"
 #include <functional>
 
 #pragma once
@@ -8,7 +9,7 @@ class __declspec(dllexport) StateChasePlayer: public State
 {
 public:
 	StateChasePlayer(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
-		std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil);
+		std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine);
 	~StateChasePlayer(void);
 
 	/** Inherited Methods **/
@@ -21,6 +22,8 @@ protected:
 
 	// The target object (mostly the player)
 	Detectable* target;
+	
+	StateMachine* stateMachine;
 	
 	// The vector position of the location where the target is seen the last
 	irr::core::vector3df lastPointSeen;
@@ -43,4 +46,3 @@ protected:
 	/** Inherited Methods **/
 	void action();
 };
-
