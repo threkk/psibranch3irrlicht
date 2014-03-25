@@ -18,7 +18,7 @@ namespace MasterGameServer
     [System.ComponentModel.ToolboxItem(false)]
     public class GameWS : System.Web.Services.WebService
     {
-        /*
+        /**
             Dictionary is an equivalent of Map that we see in C++ and Java.
             For each game it's ID (a string) is kept together with 
             ID's and IP addreses of players playing it.
@@ -31,13 +31,14 @@ namespace MasterGameServer
         /// Object used for locking the critical section
         readonly object syncLock = new object();
 
+        /// Returns a list of strings representing games played
         [WebMethod]
         public List<string> getGamesPlayed()
         {
             return games.Keys.ToList();
         }
 
-        /*
+        /**
             Registers player on the WS for a given game.
             There is a lock on the critical section to prevent
             two players from accessing and modifying the same
