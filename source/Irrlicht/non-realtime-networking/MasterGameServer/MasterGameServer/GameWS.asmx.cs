@@ -28,36 +28,54 @@ namespace MasterGameServer
         /// sessionCounter counts players that play a certain game and is used to generate player's IDs.
         static Dictionary<string, int> sessionCounters = new Dictionary<string,int>();
 
+        /// Object used for locking the critical section
+        readonly object syncLock = new object();
+
         [WebMethod]
         public List<string> getGamesPlayed()
         {
             return games.Keys.ToList();
         }
 
+        /*
+            Registers player on the WS for a given game.
+            There is a lock on the critical section to prevent
+            two players from accessing and modifying the same
+            attributes at the same time - that may lead to severe
+            inconsistency on the server.
+        */
         [WebMethod]
-        /// Register player on the WS
         public int register(string gameName)
         {
-            if (!games.Keys.ToList().Contains(gameName))
+            lock (syncLock) // beginning of critical section
             {
-                games.Add(gameName, new Dictionary<int, string>());
-                sessionCounters.Add(gameName, 1);
-            }
+                if (!games.Keys.ToList().Contains(gameName))
+                {
+                    games.Add(gameName, new Dictionary<int, string>()); // Initialize game's dictionary
+                    sessionCounters.Add(gameName, 1); // Initialize session counter for that game
+                }
 
-            /// Put player's ID and his IP address into the dictionary
-            // sessions.Add(sessionCounter++, HttpContext.Current.Request.UserHostAddress);
-            games[gameName].Add(sessionCounters[gameName]++, Context.Request.ServerVariables["REMOTE_ADDR"]);            
+                /// Put player's ID and his IP address into the dictionary
+                // sessions.Add(sessionCounter++, HttpContext.Current.Request.UserHostAddress);
+                games[gameName].Add(sessionCounters[gameName]++, Context.Request.ServerVariables["REMOTE_ADDR"]);
+            } // end of critical section
             
             // Return player's ID
             return sessionCounters[gameName] - 1;
         }
 
-        // Returns IP address of the opponent
+        /// Returns IP address of the opponent for a specific game
         [WebMethod]
         public string getOpponentsIpAddress(string gameName, int sessionId)
         {
+            /// Check if the ID is potentially correct
             if (sessionId < 1)
                 throw new Exception("sessionId has to be a positive integer number.");
+
+            /// Check if a player with such ID was registered for that game with his IP address
+            if (!(games[gameName][sessionId] == Context.Request.ServerVariables["REMOTE_ADDR"]))
+                throw new Exception("You have to register for that game first if you want to play it.");
+
             return games[gameName][sessionId];
         }
 
