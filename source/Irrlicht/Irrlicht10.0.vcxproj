@@ -560,7 +560,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\include;zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_IRR_STATIC_LIB_;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions); _ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_IRR_STATIC_LIB_;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>
       </ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -830,6 +830,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\AI\Detectable.h" />
+    <ClInclude Include="..\..\include\AI\IPathfinding.h" />
+    <ClInclude Include="..\..\include\AI\State.h" />
+    <ClInclude Include="..\..\include\AI\StateAttack.h" />
+    <ClInclude Include="..\..\include\AI\StateChasePlayer.h" />
+    <ClInclude Include="..\..\include\AI\StateFollowRoute.h" />
+    <ClInclude Include="..\..\include\AI\StateIdle.h" />
+    <ClInclude Include="..\..\include\AI\StateMachine.h" />
     <ClInclude Include="..\..\include\EDriverFeatures.h" />
     <ClInclude Include="..\..\include\EMaterialFlags.h" />
     <ClInclude Include="..\..\include\IAnimatedMeshMD3.h" />
@@ -988,13 +996,6 @@
     <ClInclude Include="..\..\include\IGUIToolbar.h" />
     <ClInclude Include="..\..\include\IGUITreeView.h" />
     <ClInclude Include="..\..\include\IGUIWindow.h" />
-    <ClInclude Include="AI\Detectable.h" />
-    <ClInclude Include="AI\IPathfinding.h" />
-    <ClInclude Include="AI\State.h" />
-    <ClInclude Include="AI\StateAttack.h" />
-    <ClInclude Include="AI\StateChasePlayer.h" />
-    <ClInclude Include="AI\StateFollowRoute.h" />
-    <ClInclude Include="AI\StateIdle.h" />
     <ClInclude Include="CCgMaterialRenderer.h" />
     <ClInclude Include="CD3D9CgMaterialRenderer.h" />
     <ClInclude Include="CDefaultSceneNodeAnimatorFactory.h" />

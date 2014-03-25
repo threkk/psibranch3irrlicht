@@ -1,4 +1,4 @@
-#include "Detectable.h"
+#include "ai/Detectable.h"
 #include <cmath>
 #include <iostream>
 
@@ -9,18 +9,14 @@ Detectable::~Detectable(void)
 
 bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::f32 visionLength)
 {
-
 	irr::core::vector3df direction = irr::core::vector3df(0, 0, 1);
 	return isObjectVisible(object, sceneMgr, direction, visionLength);
-
 }
 
 bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr)
 {
-
 	irr::core::vector3df direction = irr::core::vector3df(0, 0, 1);
 	return isObjectVisible(object, sceneMgr, direction, visionLength);
-
 }
 
 
@@ -62,10 +58,9 @@ bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* 
 	// If the found node has the same ID as the searched node, the object can be seen
 	if (selectedSceneNode && selectedSceneNode->getID() == this->getNodeID())
 	{
-		float f1 = this->getNodeID();
-		float f2 = selectedSceneNode->getID();
+		irr::s32 f1 = this->getNodeID();
+		irr::s32 f2 = selectedSceneNode->getID();
 		// Object can be seen
-		printf("This id: %f     Selected id: %f\n",f1 ,f2);
 		return true;
 	}
 	// No object or another object is seen

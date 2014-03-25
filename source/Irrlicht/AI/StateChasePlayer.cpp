@@ -1,8 +1,8 @@
-#include "StateChasePlayer.h"
+#include "ai/StateChasePlayer.h"
 #include <vector>
 
 StateChasePlayer::StateChasePlayer(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
-	std::function<void(irr::core::vector3df)> callbackFunction, IPathfinding* pathUtil)
+	std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil)
 {
 	this->owner = stateOwner;
 	this->target = target;
@@ -23,7 +23,7 @@ StateChasePlayer::~StateChasePlayer(void)
 bool StateChasePlayer::executeable(void)
 {
 	// The state will execute as soon as the player is seen
-	if(owner->isObjectVisible(target, sceneMgr))
+	if(owner->isObjectInfront(target, sceneMgr))
 	{
 		hasSeen = true;
 		lastPointSeen = this->target->getPosition();
@@ -43,6 +43,14 @@ bool StateChasePlayer::executeable(void)
 		hasLastPointSeen = false;
 		return false;
 	}
+}
+
+void StateChasePlayer::enter()
+{
+}
+
+void StateChasePlayer::exit()
+{
 }
 
 void StateChasePlayer::action()
@@ -70,7 +78,7 @@ void StateChasePlayer::action()
 		if (this->owner->getPosition().getDistanceFrom(irr::core::vector3df(toPos.X, toPos.Y, toPos.Z)) > 100)
 		{
 			// Call callback method
-			callbackFunction(path.at(1));
+			callbackFunction(&path.at(1));
 		}
 		else
 		{

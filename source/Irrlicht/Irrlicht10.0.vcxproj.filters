@@ -112,6 +112,9 @@
     <Filter Include="Irrlicht\AI\Pathfinding">
       <UniqueIdentifier>{cfd0f9ac-b5fd-4b9a-9b1f-ee2ec11e895a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ai">
+      <UniqueIdentifier>{6c9bd905-03fe-415e-b3af-f5de8ee7245d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\IEventReceiver.h">
@@ -1318,26 +1321,29 @@
     <ClInclude Include="..\..\include\ISceneSeamlessLoader.h">
       <Filter>include\scene</Filter>
     </ClInclude>
-    <ClInclude Include="AI\Detectable.h">
-      <Filter>Irrlicht\AI</Filter>
+    <ClInclude Include="..\..\include\AI\Detectable.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
-    <ClInclude Include="AI\StateIdle.h">
-      <Filter>Irrlicht\AI\States</Filter>
+    <ClInclude Include="..\..\include\AI\IPathfinding.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
-    <ClInclude Include="AI\State.h">
-      <Filter>Irrlicht\AI\States</Filter>
+    <ClInclude Include="..\..\include\AI\State.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
-    <ClInclude Include="AI\StateAttack.h">
-      <Filter>Irrlicht\AI\States</Filter>
+    <ClInclude Include="..\..\include\AI\StateAttack.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
-    <ClInclude Include="AI\StateChasePlayer.h">
-      <Filter>Irrlicht\AI\States</Filter>
+    <ClInclude Include="..\..\include\AI\StateChasePlayer.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
-    <ClInclude Include="AI\IPathfinding.h">
-      <Filter>Irrlicht\AI\Pathfinding</Filter>
+    <ClInclude Include="..\..\include\AI\StateFollowRoute.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
-    <ClInclude Include="AI\StateFollowRoute.h">
-      <Filter>Irrlicht\AI\States</Filter>
+    <ClInclude Include="..\..\include\AI\StateIdle.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AI\StateMachine.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2288,10 +2294,10 @@
     <ClCompile Include="AI\StateChasePlayer.cpp">
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
-    <ClCompile Include="AI\StateIdle.cpp">
+    <ClCompile Include="AI\StateFollowRoute.cpp">
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
-    <ClCompile Include="AI\StateFollowRoute.cpp">
+    <ClCompile Include="AI\StateIdle.cpp">
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
   </ItemGroup>

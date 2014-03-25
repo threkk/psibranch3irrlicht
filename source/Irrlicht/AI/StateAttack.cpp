@@ -1,4 +1,4 @@
-#include "StateAttack.h"
+#include "ai/StateAttack.h"
 
 
 
@@ -19,12 +19,18 @@ StateAttack::~StateAttack(void)
 
 bool StateAttack::executeable(void)
 {
-	// Only attack if target is directly in front of the object
-	return owner->isObjectInfront(target, sceneMgr);
+	return owner->isObjectInfront(target, sceneMgr, 100);
+}
+
+void StateAttack::enter()
+{
+}
+
+void StateAttack::exit()
+{
 }
 
 void StateAttack::action()
 {
-	// Execute callback function
 	callbackFunction(callbackParameter);
 }
