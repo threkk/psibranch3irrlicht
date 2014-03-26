@@ -1318,6 +1318,15 @@
     <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingUtilities.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
+    <ClInclude Include="non-realtime-networking\SOAP\soapH.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="non-realtime-networking\SOAP\soapStub.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="non-realtime-networking\SOAP\stdsoap2.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -1325,6 +1334,9 @@
     </None>
     <None Include="..\..\readme.txt">
       <Filter>doc</Filter>
+    </None>
+    <None Include="non-realtime-networking\SOAP\GameWSSoap.nsmap">
+      <Filter>include\non-realtime-networking</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -2253,6 +2265,15 @@
       <Filter>Irrlicht\video</Filter>
     </ClCompile>
     <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="non-realtime-networking\SOAP\soapC.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="non-realtime-networking\SOAP\soapClient.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="non-realtime-networking\SOAP\stdsoap2.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
   </ItemGroup>

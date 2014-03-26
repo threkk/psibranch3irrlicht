@@ -1,7 +1,23 @@
 #include "NonRealtimeNetworkingUtilities.h"
 #include "NonRealtimeNetworkingException.h"
+#include "SOAP/GameWSSOap.nsmap"
 
 namespace irrlicht_nonrealtimenetworking {
+
+	// Constructor for the web service
+	// TO DO: Add a regular expression for the IP!!!
+	NonRealtimeNetworkingUtilities::NonRealtimeNetworkingUtilities(char* masterServerHostAddress) {
+
+		webServiceAddress = new char[70]; // TO DO: Count it precisely in the future or substitute with std::string?
+		strcpy(webServiceAddress, "http://");
+		strcat(webServiceAddress, masterServerHostAddress);
+		strcat(webServiceAddress, ":8/MasterGameServer/GameWS.asmx?wsdl");
+
+		soap = soap_new(); // Initialize SOAP
+
+		std::cout << "The address is: " << webServiceAddress << std::endl;
+
+	}
 
 	/**
 	Destructor
@@ -9,7 +25,7 @@ namespace irrlicht_nonrealtimenetworking {
 	NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
 
 		delete buffer; 
-
+		delete webServiceAddress;
 	}
 
 	/**
@@ -223,6 +239,84 @@ namespace irrlicht_nonrealtimenetworking {
 			closesocket(s);
 
 		WSACleanup(); //Clean up Winsock
+	}
+
+	// Web Service functions
+
+	void NonRealtimeNetworkingUtilities::checkSOAP() {
+
+		if (webServiceAddress == NULL)
+			throw new NonRealtimeNetworkingException("The address of the web service was not specified.");
+		if (soap == NULL)
+			throw new NonRealtimeNetworkingException("SOAP was not initialized. Create an object using the appropriate constructor!");
+
+	}
+
+	std::vector<std::string> NonRealtimeNetworkingUtilities::getGamesList() {
+
+		checkSOAP();
+
+		_GameWS__getGamesPlayed* getGamesListCall;
+		_GameWS__getGamesPlayedResponse* getGamesListResult;
+
+		if (!(soap_call___GameWS__getGamesPlayed(soap, webServiceAddress, NULL, getGamesListCall, getGamesListResult) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		return getGamesListResult->getGamesPlayedResult->string;
+
+	}
+
+	void NonRealtimeNetworkingUtilities::registerOnTheServer() {
+
+		_GameWS__register* registerCall; 
+		_GameWS__registerResponse* registerResult;
+
+		registerCall->gameName = new std::string(this->gameName);
+
+		if (!(soap_call___GameWS__register(soap, webServiceAddress, NULL, registerCall, registerResult) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		int sessionId = registerResult->registerResult;
+
+		// if (sessionId < 0) --> ERROR ?
+
+		this->sessionId = sessionId;
+
+	}
+
+	char* NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
+
+		_GameWS__getOpponentsIpAddress* getOpponentsIpAddressCall;
+		_GameWS__getOpponentsIpAddressResponse* getOpponentsIpAddressResult;
+
+		getOpponentsIpAddressCall->gameName = new std::string(this->gameName);
+		getOpponentsIpAddressCall->sessionId = sessionId;
+
+		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress, NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		// Need to return char*, converting from std::string:
+		char* ipAddress = new char[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size() + 1];
+		std::copy(getOpponentsIpAddressResult->getOpponentsIpAddressResult->begin(), getOpponentsIpAddressResult->getOpponentsIpAddressResult->end(), ipAddress);
+		ipAddress[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size()] = '\0';
+
+		return ipAddress;
+
+	}
+
+	void NonRealtimeNetworkingUtilities::establishConnection(char* gameName, int portNo = 0) {
+
+		if (portNo != 0) // Port number specified
+			setPortNumber(portNo);
+		this->gameName = gameName;
+
+		registerOnTheServer();
+
+		if ((sessionId % 2) == 1) // Odd ID - hosting the game
+			hostGame(this->portNumber);
+		else // Even ID - joining the game
+			joinGame(getOpponentsIpAddress(), this->portNumber);
+
 	}
 
 };

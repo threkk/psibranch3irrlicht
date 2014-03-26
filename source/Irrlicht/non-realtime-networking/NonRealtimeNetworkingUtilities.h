@@ -1,11 +1,13 @@
+#ifndef nonrealtimenetworking
+#define nonrealtimenetworking
+
+#include "SOAP/soapH.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <windows.h>
 #include <winsock.h>
-
-#ifndef nonrealtimenetworking
-#define nonrealtimenetworking
 
 #define PORT_NUMBER 27015
 
@@ -18,11 +20,24 @@ namespace irrlicht_nonrealtimenetworking {
 		int portNumber;
 		WSADATA wsaData;
 
-		void checkVersion(); 
+		// Web Service
+		char* webServiceAddress; // Address of the master server
+		struct soap* soap; // Struct needed for SOAP
+		char* gameName; // Name of the game being played
+		int sessionId; // Player's ID
+
+		void checkVersion();
+
+		// Web Service
+		void checkSOAP();
+		std::vector<std::string> getGamesList();
+		void registerOnTheServer();
+		char* getOpponentsIpAddress();
 
 	public:
 		NonRealtimeNetworkingUtilities() { portNumber = PORT_NUMBER; };
 		NonRealtimeNetworkingUtilities(int portNumber) { this->portNumber = portNumber; };
+		NonRealtimeNetworkingUtilities(char* masterServerHostAddress);
 		~NonRealtimeNetworkingUtilities();
 		
 		// server 
@@ -50,6 +65,8 @@ namespace irrlicht_nonrealtimenetworking {
 		// WinSock Errors
 		int getWSALastError() { return WSAGetLastError(); };
 
+		// Web Service
+		void establishConnection(char* gameName, int portNo);
 	};
 
 };
