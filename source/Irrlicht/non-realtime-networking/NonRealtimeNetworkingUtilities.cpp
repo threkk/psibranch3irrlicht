@@ -15,8 +15,6 @@ namespace irrlicht_nonrealtimenetworking {
 
 		soap = soap_new(); // Initialize SOAP
 
-		std::cout << "The address is: " << webServiceAddress << std::endl;
-
 	}
 
 	/**
@@ -256,8 +254,8 @@ namespace irrlicht_nonrealtimenetworking {
 
 		checkSOAP();
 
-		_GameWS__getGamesPlayed* getGamesListCall;
-		_GameWS__getGamesPlayedResponse* getGamesListResult;
+		_GameWS__getGamesPlayed* getGamesListCall = new _GameWS__getGamesPlayed();
+		_GameWS__getGamesPlayedResponse* getGamesListResult = new _GameWS__getGamesPlayedResponse();
 
 		if (!(soap_call___GameWS__getGamesPlayed(soap, webServiceAddress, NULL, getGamesListCall, getGamesListResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
@@ -268,8 +266,11 @@ namespace irrlicht_nonrealtimenetworking {
 
 	void NonRealtimeNetworkingUtilities::registerOnTheServer() {
 
-		_GameWS__register* registerCall; 
-		_GameWS__registerResponse* registerResult;
+		_GameWS__register* registerCall = new _GameWS__register(); 
+		_GameWS__registerResponse* registerResult = new _GameWS__registerResponse();
+
+		if (this->gameName == NULL)
+			throw new NonRealtimeNetworkingException("gameName not specified!");
 
 		registerCall->gameName = new std::string(this->gameName);
 
@@ -286,10 +287,12 @@ namespace irrlicht_nonrealtimenetworking {
 
 	char* NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
 
-		_GameWS__getOpponentsIpAddress* getOpponentsIpAddressCall;
-		_GameWS__getOpponentsIpAddressResponse* getOpponentsIpAddressResult;
+		_GameWS__getOpponentsIpAddress* getOpponentsIpAddressCall = new _GameWS__getOpponentsIpAddress();
+		_GameWS__getOpponentsIpAddressResponse* getOpponentsIpAddressResult = new _GameWS__getOpponentsIpAddressResponse();
 
-		getOpponentsIpAddressCall->gameName = new std::string(this->gameName);
+		if (gameName == NULL || sessionId == 0)
+			throw new NonRealtimeNetworkingException("gameName or sessionId not specified.");
+		getOpponentsIpAddressCall->gameName = new std::string(gameName);
 		getOpponentsIpAddressCall->sessionId = sessionId;
 
 		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress, NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
@@ -304,19 +307,27 @@ namespace irrlicht_nonrealtimenetworking {
 
 	}
 
-	void NonRealtimeNetworkingUtilities::establishConnection(char* gameName, int portNo = 0) {
+	int NonRealtimeNetworkingUtilities::establishConnection(char* gameName, int portNo = 0) {
 
 		if (portNo != 0) // Port number specified
 			setPortNumber(portNo);
-		this->gameName = gameName;
+
+		setGameName(gameName);
 
 		registerOnTheServer();
 
 		if ((sessionId % 2) == 1) // Odd ID - hosting the game
-			hostGame(this->portNumber);
+			hostGame(portNumber);
 		else // Even ID - joining the game
-			joinGame(getOpponentsIpAddress(), this->portNumber);
+			joinGame(getOpponentsIpAddress(), portNumber);
 
+		return sessionId;
+
+	}
+
+	void NonRealtimeNetworkingUtilities::setGameName(char* gameName) {
+		this->gameName = new char[strlen(gameName) + 1];
+		strcpy(this->gameName, gameName);
 	}
 
 };

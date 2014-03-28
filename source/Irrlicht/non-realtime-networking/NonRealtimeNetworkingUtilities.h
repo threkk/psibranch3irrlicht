@@ -30,8 +30,6 @@ namespace irrlicht_nonrealtimenetworking {
 
 		// Web Service
 		void checkSOAP();
-		std::vector<std::string> getGamesList();
-		void registerOnTheServer();
 		char* getOpponentsIpAddress();
 
 	public:
@@ -66,7 +64,10 @@ namespace irrlicht_nonrealtimenetworking {
 		int getWSALastError() { return WSAGetLastError(); };
 
 		// Web Service
-		void establishConnection(char* gameName, int portNo);
+		int establishConnection(char* gameName, int portNo);
+		void registerOnTheServer();
+		std::vector<std::string> getGamesList();
+		void setGameName(char* gameName);
 	};
 
 };
