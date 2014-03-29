@@ -31,11 +31,12 @@ namespace irrlicht_nonrealtimenetworking {
 		// Web Service
 		void checkSOAP();
 		char* getOpponentsIpAddress();
+		void validateIpAddress(const char* ipAddress);
 
 	public:
 		NonRealtimeNetworkingUtilities() { portNumber = PORT_NUMBER; };
 		NonRealtimeNetworkingUtilities(int portNumber) { this->portNumber = portNumber; };
-		NonRealtimeNetworkingUtilities(char* masterServerHostAddress);
+		NonRealtimeNetworkingUtilities(const char* masterServerHostAddress);
 		~NonRealtimeNetworkingUtilities();
 		
 		// server 
@@ -68,6 +69,7 @@ namespace irrlicht_nonrealtimenetworking {
 		void registerOnTheServer();
 		std::vector<std::string> getGamesList();
 		void setGameName(char* gameName);
+		void initializeWS(const char* masterServerHostAddress);
 	};
 
 };
