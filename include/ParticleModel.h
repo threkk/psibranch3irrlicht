@@ -11,6 +11,8 @@ class IRRLICHT_API ParticleModel
 {
 public:
 	ParticleModel();
+	void setMinColor(video::SColor color);
+	video::SColor getminStartColor();
 	~ParticleModel(void);
 
 	enum EmitterTypes
