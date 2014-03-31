@@ -9,34 +9,35 @@
 #include <windows.h>
 #include <winsock.h>
 
+#define BUFFER_LIMIT "!@#$%"
 #define PORT_NUMBER 27015
 
 namespace irrlicht_nonrealtimenetworking {
 	class __declspec(dllexport)NonRealtimeNetworkingUtilities {
-
+	
 	private:
 		SOCKET s;
-		char* buffer;
+		std::string buffer;
 		int portNumber;
 		WSADATA wsaData;
 
 		// Web Service
-		char* webServiceAddress; // Address of the master server
+		std::string webServiceAddress; // Address of the master server
 		struct soap* soap; // Struct needed for SOAP
-		char* gameName; // Name of the game being played
+		std::string gameName; // Name of the game being played
 		int sessionId; // Player's ID
 
 		void checkVersion();
 
 		// Web Service
 		void checkSOAP();
-		char* getOpponentsIpAddress();
-		void validateIpAddress(const char* ipAddress);
+		std::string getOpponentsIpAddress();
+		void validateIpAddress(std::string ipAddress);
 
 	public:
 		NonRealtimeNetworkingUtilities() { portNumber = PORT_NUMBER; };
 		NonRealtimeNetworkingUtilities(int portNumber) { this->portNumber = portNumber; };
-		NonRealtimeNetworkingUtilities(const char* masterServerHostAddress);
+		NonRealtimeNetworkingUtilities(std::string masterServerHostAddress);
 		~NonRealtimeNetworkingUtilities();
 		
 		// server 
@@ -45,8 +46,8 @@ namespace irrlicht_nonrealtimenetworking {
 		void hostGame(int portNo);
 
 		// client
-		void openClientSocket(char* ipAddress);
-		void joinGame(char* ipAddress, int portNo);
+		void openClientSocket(std::string ipAddress);
+		void joinGame(std::string ipAddress, int portNo);
 
 		// send/receive
 		void sendData();
@@ -56,8 +57,8 @@ namespace irrlicht_nonrealtimenetworking {
 		void closeConnection();
 
 		// getters/setters
-		void setBuffer(char* buffer);
-		char* getBuffer() { return buffer; };
+		void setBuffer(std::string buffer);
+		std::string getBuffer() { return buffer; };
 		void setPortNumber(int portNumber);
 		int getPortNumber() { return portNumber; };
 
@@ -65,11 +66,11 @@ namespace irrlicht_nonrealtimenetworking {
 		int getWSALastError() { return WSAGetLastError(); };
 
 		// Web Service
-		int establishConnection(char* gameName, int portNo);
+		int establishConnection(std::string gameName, int portNo);
 		void registerOnTheServer();
 		std::vector<std::string> getGamesList();
-		void setGameName(char* gameName);
-		void initializeWS(const char* masterServerHostAddress);
+		void setGameName(std::string gameName);
+		void initializeWS(std::string masterServerHostAddress);
 	};
 
 };

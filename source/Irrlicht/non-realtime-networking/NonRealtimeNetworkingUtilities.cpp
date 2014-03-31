@@ -5,7 +5,7 @@
 namespace irrlicht_nonrealtimenetworking {
 
 	// Constructor for the web service
-	NonRealtimeNetworkingUtilities::NonRealtimeNetworkingUtilities(const char* masterServerHostAddress) {
+	NonRealtimeNetworkingUtilities::NonRealtimeNetworkingUtilities(std::string masterServerHostAddress) {
 		initializeWS(masterServerHostAddress);
 	}
 
@@ -13,26 +13,22 @@ namespace irrlicht_nonrealtimenetworking {
 		Initialize the library to use the web service. Set the address of the WSDL
 		file and initialize SOAP structure.
 	*/
-	void NonRealtimeNetworkingUtilities::initializeWS(const char* masterServerHostAddress) {
+	void NonRealtimeNetworkingUtilities::initializeWS(std::string masterServerHostAddress) {
 
 		validateIpAddress(masterServerHostAddress);
-
-		webServiceAddress = new char[59];
-		strcpy(webServiceAddress, "http://");
-		strcat(webServiceAddress, masterServerHostAddress);
-		strcat(webServiceAddress, ":8/MasterGameServer/GameWS.asmx?wsdl");
-
+		webServiceAddress = "http://" + masterServerHostAddress + ":8/MasterGameServer/GameWS.asmx?wsdl";
 		soap = soap_new(); // Initialize SOAP
 
 	}
 
 	/**
-		Check if given string represents a valid IP address.
+		Check if given string represents a valid IP address. Instead
+		of localhost use 127.0.0.1 to pass validation.
 	*/
-	void NonRealtimeNetworkingUtilities::validateIpAddress(const char* ipAddress) {
+	void NonRealtimeNetworkingUtilities::validateIpAddress(std::string ipAddress) {
 
 		struct sockaddr_in sa;
-		int result = inet_pton(AF_INET, ipAddress, &(sa.sin_addr));
+		int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
 		if (result == 0)
 			throw new NonRealtimeNetworkingException("Provided string is not a valid IP address.");
 
@@ -42,18 +38,14 @@ namespace irrlicht_nonrealtimenetworking {
 	Destructor
 	*/
 	NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
-
-		delete buffer; 
-		delete webServiceAddress;
+		delete soap;
 	}
 
 	/**
 	set buffer to be sent later
 	*/
-	void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
-		// calc buffer's lenth and allocate memory
-		this->buffer = new char[strlen(buffer) + 1];
-		strcpy(this->buffer, buffer);
+	void NonRealtimeNetworkingUtilities::setBuffer(std::string buffer) {
+		this->buffer = buffer;
 	}
 
 	/**
@@ -61,7 +53,7 @@ namespace irrlicht_nonrealtimenetworking {
 	default value defined by PORT_NUMBER constant
 	*/
 	void NonRealtimeNetworkingUtilities::setPortNumber(int portNumber) {
-		if (portNumber < 0) // What really is the smallest we can assign here? 1024?
+		if (portNumber < 0)
 			throw NonRealtimeNetworkingException("Negative port number.");
 		this->portNumber = portNumber;
 	}
@@ -168,17 +160,17 @@ namespace irrlicht_nonrealtimenetworking {
 	Open a client socket and connect to the server.
 	@param ipAddress IP address of the server
 	*/
-	void NonRealtimeNetworkingUtilities::openClientSocket(char* ipAddress) {
+	void NonRealtimeNetworkingUtilities::openClientSocket(std::string ipAddress) {
 
 		checkVersion();
 
-		SOCKADDR_IN target; //Socket address information
+		SOCKADDR_IN target; // Socket address information
 
 		target.sin_family = AF_INET; // address family Internet
 		target.sin_port = htons (portNumber); // Port to connect on
-		target.sin_addr.s_addr = inet_addr (ipAddress); // Target IP
+		target.sin_addr.s_addr = inet_addr (ipAddress.c_str()); // Target IP
 
-		s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP); //Create socket
+		s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP); // Create socket
 		if (s == INVALID_SOCKET)
 		{
 			throw NonRealtimeNetworkingException("Socket creation failed.");
@@ -196,7 +188,7 @@ namespace irrlicht_nonrealtimenetworking {
 	Open a client socket and connect to the server.
 	@param ipAddress IP address of the server
 	*/
-	void NonRealtimeNetworkingUtilities::joinGame(char* ipAddress, int portNo) {
+	void NonRealtimeNetworkingUtilities::joinGame(std::string ipAddress, int portNo) {
 		setPortNumber(portNo);
 		openClientSocket(ipAddress);
 	}
@@ -207,13 +199,17 @@ namespace irrlicht_nonrealtimenetworking {
 	*/
 	void NonRealtimeNetworkingUtilities::sendData() {
 
-		if (buffer == NULL || strcmp(buffer, "") == 0)
+		if (buffer == "" || buffer.length() == 0)
 			throw NonRealtimeNetworkingException("Buffer empty. Set buffer before sending!");
 
 		int iResult;
 
+		char* sendBuffer = new char[buffer.length() + strlen(BUFFER_LIMIT) + 1];
+		strcpy(sendBuffer, buffer.c_str());
+		strcat(sendBuffer, BUFFER_LIMIT);
+
 		// Send an initial buffer
-		iResult = send(s, buffer, (int) strlen(buffer), 0);
+		iResult = send(s, sendBuffer, (int) strlen(sendBuffer), 0);
 		if (iResult == SOCKET_ERROR) {
 			closesocket(s);
 			WSACleanup();
@@ -228,24 +224,17 @@ namespace irrlicht_nonrealtimenetworking {
 	void NonRealtimeNetworkingUtilities::receiveData() {
 
 		int bytesRecv = SOCKET_ERROR;
-		buffer = new char[150];
-		bytesRecv = recv(s, buffer, 150, 0);
+		char* tmpBuffer = new char[256];
+		bytesRecv = recv(s, tmpBuffer, 256, 0);
 
 		if (bytesRecv == SOCKET_ERROR)
 			throw NonRealtimeNetworkingException("Receive failed: " + WSAGetLastError());
-		else;
-			// TODO: fix string that is received
-			char* tmp = buffer; 
-			buffer = new char[strlen(buffer) + 1];
-			for (int i = 0; i < strlen(buffer) + 1; i++) {
+		
+		// remove random characters from the end of received string:
+		buffer = std::string(tmpBuffer);
+		size_t length = buffer.find(BUFFER_LIMIT);
+		buffer = buffer.substr(0, length);
 
-				if (buffer[i] == '\0') {
-					buffer[i] = tmp [i];
-					break;
-				}
-
-				buffer[i] = tmp [i];
-			}
 	}
 
 	/**
@@ -268,7 +257,7 @@ namespace irrlicht_nonrealtimenetworking {
 	void NonRealtimeNetworkingUtilities::checkSOAP() {
 
 		/// Check if the address of WS's WSDL file was specified.
-		if (webServiceAddress == NULL)
+		if (webServiceAddress.length() == 0 || webServiceAddress == "")
 			throw new NonRealtimeNetworkingException("The address of the web service was not specified.");
 		/// Check if SOAP structure was initialized
 		if (soap == NULL)
@@ -286,7 +275,7 @@ namespace irrlicht_nonrealtimenetworking {
 		_GameWS__getGamesPlayed* getGamesListCall = new _GameWS__getGamesPlayed();
 		_GameWS__getGamesPlayedResponse* getGamesListResult = new _GameWS__getGamesPlayedResponse();
 
-		if (!(soap_call___GameWS__getGamesPlayed(soap, webServiceAddress, NULL, getGamesListCall, getGamesListResult) == SOAP_OK))
+		if (!(soap_call___GameWS__getGamesPlayed(soap, webServiceAddress.c_str(), NULL, getGamesListCall, getGamesListResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
 		return getGamesListResult->getGamesPlayedResult->string;
@@ -306,12 +295,12 @@ namespace irrlicht_nonrealtimenetworking {
 		_GameWS__register* registerCall = new _GameWS__register(); 
 		_GameWS__registerResponse* registerResult = new _GameWS__registerResponse();
 
-		if (this->gameName == NULL)
+		if (gameName.length() == 0 || gameName == "")
 			throw new NonRealtimeNetworkingException("gameName not specified!");
 
 		registerCall->gameName = new std::string(this->gameName);
 
-		if (!(soap_call___GameWS__register(soap, webServiceAddress, NULL, registerCall, registerResult) == SOAP_OK))
+		if (!(soap_call___GameWS__register(soap, webServiceAddress.c_str(), NULL, registerCall, registerResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
 		int sessionId = registerResult->registerResult;
@@ -326,7 +315,7 @@ namespace irrlicht_nonrealtimenetworking {
 		Get IP address of your opponent from the server 
 		to be able to open a client socket and play.
 	*/
-	char* NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
+	std::string NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
 
 		checkSOAP(); // Check if SOAP was initialized
 
@@ -336,7 +325,7 @@ namespace irrlicht_nonrealtimenetworking {
 		_GameWS__getOpponentsIpAddressResponse* getOpponentsIpAddressResult = new _GameWS__getOpponentsIpAddressResponse();
 
 		/// Make sure that we registered on the WS
-		if (gameName == NULL || sessionId == 0)
+		if (gameName.length() == 0 || gameName == "" || sessionId == 0)
 			throw new NonRealtimeNetworkingException("gameName or sessionId not specified.");
 
 		/// Set request parameters
@@ -344,16 +333,10 @@ namespace irrlicht_nonrealtimenetworking {
 		getOpponentsIpAddressCall->sessionId = sessionId;
 
 		/// Call the WS
-		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress, NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
+		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress.c_str(), NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
-		/// Need to return char*, converting from std::string:
-		char* ipAddress = new char[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size() + 1];
-		std::copy(getOpponentsIpAddressResult->getOpponentsIpAddressResult->begin(), getOpponentsIpAddressResult->getOpponentsIpAddressResult->end(), ipAddress);
-		ipAddress[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size()] = '\0';
-
-		/// Return opponent's IP address
-		return ipAddress;
+		return *getOpponentsIpAddressResult->getOpponentsIpAddressResult;
 
 	}
 
@@ -362,7 +345,7 @@ namespace irrlicht_nonrealtimenetworking {
 		for a given game. Depending on that ID a player either hosts a game
 		or joins an already hosted game to start playing.
 	*/
-	int NonRealtimeNetworkingUtilities::establishConnection(char* gameName, int portNo = 0) {
+	int NonRealtimeNetworkingUtilities::establishConnection(std::string gameName, int portNo = 0) {
 
 		checkSOAP(); // Check if SOAP was initialized
 
@@ -388,9 +371,8 @@ namespace irrlicht_nonrealtimenetworking {
 		Allocate memory and set gameName for further
 		use by other web service related functions.
 	*/
-	void NonRealtimeNetworkingUtilities::setGameName(char* gameName) {
-		this->gameName = new char[strlen(gameName) + 1];
-		strcpy(this->gameName, gameName);
+	void NonRealtimeNetworkingUtilities::setGameName(std::string gameName) {
+		this->gameName = gameName;
 	}
 
 };
