@@ -31,6 +31,10 @@ void State::execute(void)
 		// No executable substate? Execute this state
 		action();
 	}
+	else
+	{
+		noActionFallback();
+	}
 }
 
 void State::addSubState(State* state)
@@ -52,4 +56,9 @@ void State::sort()
 bool State::compare(State* state1, State* state2)
 {
 	return state1->priority > state2->priority;
+}
+
+void State::noActionFallback()
+{
+	
 }

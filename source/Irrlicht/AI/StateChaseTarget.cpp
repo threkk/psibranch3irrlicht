@@ -90,3 +90,8 @@ void StateChaseTarget::action()
 		}
 	}
 }
+
+void StateChasePlayer::noActionFallback()
+{
+	stateMachine->returnToPreviousState();
+}
