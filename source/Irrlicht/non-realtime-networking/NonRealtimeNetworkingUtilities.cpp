@@ -16,7 +16,7 @@ namespace irrlicht_nonrealtimenetworking {
 	void NonRealtimeNetworkingUtilities::initializeWS(std::string masterServerHostAddress) {
 
 		validateIpAddress(masterServerHostAddress);
-		webServiceAddress = "http://" + masterServerHostAddress + ":8/MasterGameServer/GameWS.asmx?wsdl";
+		webServiceAddress = std::string("http://") + masterServerHostAddress + std::string(":8/MasterGameServer/GameWS.asmx?wsdl");
 		soap = soap_new(); // Initialize SOAP
 
 	}
@@ -39,13 +39,6 @@ namespace irrlicht_nonrealtimenetworking {
 	*/
 	NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
 		delete soap;
-	}
-
-	/**
-	set buffer to be sent later
-	*/
-	void NonRealtimeNetworkingUtilities::setBuffer(std::string buffer) {
-		this->buffer = buffer;
 	}
 
 	/**
@@ -365,14 +358,6 @@ namespace irrlicht_nonrealtimenetworking {
 
 		return sessionId;
 
-	}
-
-	/**
-		Allocate memory and set gameName for further
-		use by other web service related functions.
-	*/
-	void NonRealtimeNetworkingUtilities::setGameName(std::string gameName) {
-		this->gameName = gameName;
 	}
 
 };

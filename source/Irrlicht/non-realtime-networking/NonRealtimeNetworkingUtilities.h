@@ -9,11 +9,21 @@
 #include <windows.h>
 #include <winsock.h>
 
+#ifndef _IRR_STATIC_LIB_
+#ifdef IRRLICHT_EXPORTS
+#define IRRLICHT_API __declspec(dllexport)
+#else
+#define IRRLICHT_API __declspec(dllimport)
+#endif // IRRLICHT_EXPORT
+#else
+#define IRRLICHT_API
+#endif // _IRR_STATIC_LIB_
+
 #define BUFFER_LIMIT "!@#$%"
 #define PORT_NUMBER 27015
 
 namespace irrlicht_nonrealtimenetworking {
-	class __declspec(dllexport)NonRealtimeNetworkingUtilities {
+	class IRRLICHT_API NonRealtimeNetworkingUtilities {
 	
 	private:
 		SOCKET s;
@@ -34,7 +44,7 @@ namespace irrlicht_nonrealtimenetworking {
 		void validateIpAddress(std::string ipAddress);
 
 	public:
-		NonRealtimeNetworkingUtilities() { portNumber = PORT_NUMBER; };
+		NonRealtimeNetworkingUtilities() { this->portNumber = PORT_NUMBER; };
 		NonRealtimeNetworkingUtilities(int portNumber) { this->portNumber = portNumber; };
 		NonRealtimeNetworkingUtilities(std::string masterServerHostAddress);
 		~NonRealtimeNetworkingUtilities();
@@ -56,7 +66,7 @@ namespace irrlicht_nonrealtimenetworking {
 		void closeConnection();
 
 		// getters/setters
-		void setBuffer(std::string buffer);
+		void setBuffer(std::string buffer) { this->buffer = buffer; };
 		std::string getBuffer() { return buffer; };
 		void setPortNumber(int portNumber);
 		int getPortNumber() { return portNumber; };
@@ -69,7 +79,7 @@ namespace irrlicht_nonrealtimenetworking {
 		void registerOnTheServer();
 		std::string getOpponentsIpAddress();
 		std::vector<std::string> getGamesList();
-		void setGameName(std::string gameName);
+		void setGameName(std::string gameName) { this->gameName = gameName; };
 		int getSessionId() { return sessionId; };
 		void initializeWS(std::string masterServerHostAddress);
 	};
