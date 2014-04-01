@@ -1,3 +1,6 @@
+#ifndef NON_REALTIME_NETWORKING_EXCEPTION_H
+#define NON_REALTIME_NETWORKING_EXCEPTION_H
+
 #include <iostream>
 
 /**
@@ -6,7 +9,7 @@
 */
 namespace irrlicht_nonrealtimenetworking {
 	/// Inherit from standard library's exception class
-	class __declspec(dllexport)NonRealtimeNetworkingException : public std::exception {
+	class IRRLICHT_API NonRealtimeNetworkingException : public std::exception {
 
 	  private:
 		const char* errorMessage;
@@ -19,3 +22,4 @@ namespace irrlicht_nonrealtimenetworking {
 
 	};
 };
+#endif

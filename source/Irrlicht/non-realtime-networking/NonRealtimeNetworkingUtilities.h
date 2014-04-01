@@ -1,7 +1,9 @@
-#ifndef nonrealtimenetworking
-#define nonrealtimenetworking
+#ifndef NON_REALTIME_NETWORKING_UTILITIES_H
+#define NON_REALTIME_NETWORKING_UTILITIES_H
 
+#include "../../../include/IrrCompileConfig.h" // DLL export/import definition
 #include "SOAP/soapH.h"
+
 
 #include <iostream>
 #include <fstream>
@@ -9,44 +11,34 @@
 #include <windows.h>
 #include <winsock.h>
 
-#ifndef _IRR_STATIC_LIB_
-#ifdef IRRLICHT_EXPORTS
-#define IRRLICHT_API __declspec(dllexport)
-#else
-#define IRRLICHT_API __declspec(dllimport)
-#endif // IRRLICHT_EXPORT
-#else
-#define IRRLICHT_API
-#endif // _IRR_STATIC_LIB_
-
 #define BUFFER_LIMIT "!@#$%"
-#define PORT_NUMBER 27015
+#define PORT_NUMBER 6
 
 namespace irrlicht_nonrealtimenetworking {
 	class IRRLICHT_API NonRealtimeNetworkingUtilities {
 	
 	private:
 		SOCKET s;
-		std::string buffer;
+		char* buffer;
 		int portNumber;
 		WSADATA wsaData;
 
 		// Web Service
-		std::string webServiceAddress; // Address of the master server
+		char* webServiceAddress; // Address of the master server
 		struct soap* soap; // Struct needed for SOAP
-		std::string gameName; // Name of the game being played
+		char* gameName; // Name of the game being played
 		int sessionId; // Player's ID
 
 		void checkVersion();
 
 		// Web Service
 		void checkSOAP();
-		void validateIpAddress(std::string ipAddress);
+		void validateIpAddress(char* ipAddress);
 
 	public:
 		NonRealtimeNetworkingUtilities() { this->portNumber = PORT_NUMBER; };
 		NonRealtimeNetworkingUtilities(int portNumber) { this->portNumber = portNumber; };
-		NonRealtimeNetworkingUtilities(std::string masterServerHostAddress);
+		NonRealtimeNetworkingUtilities(char* masterServerHostAddress);
 		~NonRealtimeNetworkingUtilities();
 		
 		// server 
@@ -55,8 +47,8 @@ namespace irrlicht_nonrealtimenetworking {
 		void hostGame(int portNo);
 
 		// client
-		void openClientSocket(std::string ipAddress);
-		void joinGame(std::string ipAddress, int portNo);
+		void openClientSocket(char* ipAddress);
+		void joinGame(char* ipAddress, int portNo);
 
 		// send/receive
 		void sendData();
@@ -66,8 +58,8 @@ namespace irrlicht_nonrealtimenetworking {
 		void closeConnection();
 
 		// getters/setters
-		void setBuffer(std::string buffer) { this->buffer = buffer; };
-		std::string getBuffer() { return buffer; };
+		void setBuffer(char* buffer);
+		char* getBuffer() { return buffer; };
 		void setPortNumber(int portNumber);
 		int getPortNumber() { return portNumber; };
 
@@ -75,13 +67,13 @@ namespace irrlicht_nonrealtimenetworking {
 		int getWSALastError() { return WSAGetLastError(); };
 
 		// Web Service
-		int establishConnection(std::string gameName, int portNo);
+		int establishConnection(char* gameName, int portNo);
 		void registerOnTheServer();
-		std::string getOpponentsIpAddress();
+		char* getOpponentsIpAddress();
 		std::vector<std::string> getGamesList();
-		void setGameName(std::string gameName) { this->gameName = gameName; };
+		void setGameName(char* gameName);
 		int getSessionId() { return sessionId; };
-		void initializeWS(std::string masterServerHostAddress);
+		void initializeWS(char* masterServerHostAddress);
 	};
 
 };

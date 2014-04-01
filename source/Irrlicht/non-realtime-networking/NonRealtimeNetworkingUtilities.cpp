@@ -5,40 +5,28 @@
 namespace irrlicht_nonrealtimenetworking {
 
 	// Constructor for the web service
-	NonRealtimeNetworkingUtilities::NonRealtimeNetworkingUtilities(std::string masterServerHostAddress) {
+	NonRealtimeNetworkingUtilities::NonRealtimeNetworkingUtilities(char* masterServerHostAddress) {
 		initializeWS(masterServerHostAddress);
 	}
 
-	/**
-		Initialize the library to use the web service. Set the address of the WSDL
-		file and initialize SOAP structure.
-	*/
-	void NonRealtimeNetworkingUtilities::initializeWS(std::string masterServerHostAddress) {
-
-		validateIpAddress(masterServerHostAddress);
-		webServiceAddress = std::string("http://") + masterServerHostAddress + std::string(":8/MasterGameServer/GameWS.asmx?wsdl");
-		soap = soap_new(); // Initialize SOAP
-
+	// Destructor, releasing memory
+	NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
+		delete webServiceAddress;
+		delete soap;
+		delete gameName;
 	}
 
 	/**
 		Check if given string represents a valid IP address. Instead
-		of localhost use 127.0.0.1 to pass validation.
+		of localhost use 127.0.0.1 to pass validation test.
 	*/
-	void NonRealtimeNetworkingUtilities::validateIpAddress(std::string ipAddress) {
+	void NonRealtimeNetworkingUtilities::validateIpAddress(char* ipAddress) {
 
 		struct sockaddr_in sa;
-		int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
+		int result = inet_pton(AF_INET, ipAddress, &(sa.sin_addr));
 		if (result == 0)
 			throw new NonRealtimeNetworkingException("Provided string is not a valid IP address.");
 
-	}
-
-	/**
-	Destructor
-	*/
-	NonRealtimeNetworkingUtilities::~NonRealtimeNetworkingUtilities() {
-		delete soap;
 	}
 
 	/**
@@ -153,15 +141,15 @@ namespace irrlicht_nonrealtimenetworking {
 	Open a client socket and connect to the server.
 	@param ipAddress IP address of the server
 	*/
-	void NonRealtimeNetworkingUtilities::openClientSocket(std::string ipAddress) {
+	void NonRealtimeNetworkingUtilities::openClientSocket(char* ipAddress) {
 
 		checkVersion();
 
 		SOCKADDR_IN target; // Socket address information
 
 		target.sin_family = AF_INET; // address family Internet
-		target.sin_port = htons (portNumber); // Port to connect on
-		target.sin_addr.s_addr = inet_addr (ipAddress.c_str()); // Target IP
+		target.sin_port = htons(portNumber); // Port to connect on
+		target.sin_addr.s_addr = inet_addr(ipAddress); // Target IP
 
 		s = socket (AF_INET, SOCK_STREAM, IPPROTO_TCP); // Create socket
 		if (s == INVALID_SOCKET)
@@ -181,7 +169,7 @@ namespace irrlicht_nonrealtimenetworking {
 	Open a client socket and connect to the server.
 	@param ipAddress IP address of the server
 	*/
-	void NonRealtimeNetworkingUtilities::joinGame(std::string ipAddress, int portNo) {
+	void NonRealtimeNetworkingUtilities::joinGame(char* ipAddress, int portNo) {
 		setPortNumber(portNo);
 		openClientSocket(ipAddress);
 	}
@@ -192,17 +180,17 @@ namespace irrlicht_nonrealtimenetworking {
 	*/
 	void NonRealtimeNetworkingUtilities::sendData() {
 
-		if (buffer == "" || buffer.length() == 0)
+		if (strlen(buffer) == 0 || strcmp(buffer, "") == 0)
 			throw NonRealtimeNetworkingException("Buffer empty. Set buffer before sending!");
 
 		int iResult;
 
-		char* sendBuffer = new char[buffer.length() + strlen(BUFFER_LIMIT) + 1];
-		strcpy(sendBuffer, buffer.c_str());
+		char* sendBuffer = new char[strlen(buffer) + strlen(BUFFER_LIMIT) + 1];
+		strcpy(sendBuffer, buffer);
 		strcat(sendBuffer, BUFFER_LIMIT);
 
 		// Send an initial buffer
-		iResult = send(s, sendBuffer, (int) strlen(sendBuffer), 0);
+		iResult = send(s, sendBuffer, (int)strlen(sendBuffer), 0);
 		if (iResult == SOCKET_ERROR) {
 			closesocket(s);
 			WSACleanup();
@@ -224,9 +212,12 @@ namespace irrlicht_nonrealtimenetworking {
 			throw NonRealtimeNetworkingException("Receive failed: " + WSAGetLastError());
 		
 		// remove random characters from the end of received string:
-		buffer = std::string(tmpBuffer);
-		size_t length = buffer.find(BUFFER_LIMIT);
-		buffer = buffer.substr(0, length);
+		std::string tmp = std::string(tmpBuffer);
+		size_t length = tmp.find(BUFFER_LIMIT);
+		delete tmpBuffer;
+		// delete buffer;
+		buffer = new char[length + 1];
+		strcpy(buffer, tmp.substr(0, length).c_str());
 
 	}
 
@@ -245,12 +236,32 @@ namespace irrlicht_nonrealtimenetworking {
 	// Web Service functions
 
 	/**
+		Initialize the library to use the web service. Set the address of the WSDL
+		file and initialize SOAP structure.
+	*/
+	void NonRealtimeNetworkingUtilities::initializeWS(char* masterServerHostAddress) {
+
+		validateIpAddress(masterServerHostAddress);
+		webServiceAddress = new char[59];
+		strcpy(webServiceAddress, "http://");
+		strcat(webServiceAddress, masterServerHostAddress);
+		strcat(webServiceAddress, ":8/MasterGameServer/GameWS.asmx?wsdl");
+		soap = soap_new(); // Initialize SOAP
+
+	}
+
+	void NonRealtimeNetworkingUtilities::setGameName(char* gameName) {
+		this->gameName = new char[strlen(gameName) + 1];
+		strcpy(this->gameName, gameName);
+	}
+
+	/**
 		Check if the library was properly initialized to work with the web service.
 	*/
 	void NonRealtimeNetworkingUtilities::checkSOAP() {
 
 		/// Check if the address of WS's WSDL file was specified.
-		if (webServiceAddress.length() == 0 || webServiceAddress == "")
+		if (strlen(webServiceAddress) == 0 || strcmp(webServiceAddress, "") == 0)
 			throw new NonRealtimeNetworkingException("The address of the web service was not specified.");
 		/// Check if SOAP structure was initialized
 		if (soap == NULL)
@@ -268,7 +279,7 @@ namespace irrlicht_nonrealtimenetworking {
 		_GameWS__getGamesPlayed* getGamesListCall = new _GameWS__getGamesPlayed();
 		_GameWS__getGamesPlayedResponse* getGamesListResult = new _GameWS__getGamesPlayedResponse();
 
-		if (!(soap_call___GameWS__getGamesPlayed(soap, webServiceAddress.c_str(), NULL, getGamesListCall, getGamesListResult) == SOAP_OK))
+		if (!(soap_call___GameWS__getGamesPlayed(soap, webServiceAddress, NULL, getGamesListCall, getGamesListResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
 		return getGamesListResult->getGamesPlayedResult->string;
@@ -288,12 +299,12 @@ namespace irrlicht_nonrealtimenetworking {
 		_GameWS__register* registerCall = new _GameWS__register(); 
 		_GameWS__registerResponse* registerResult = new _GameWS__registerResponse();
 
-		if (gameName.length() == 0 || gameName == "")
+		if (strlen(gameName) == 0 || strcmp(gameName, "") == 0)
 			throw new NonRealtimeNetworkingException("gameName not specified!");
 
 		registerCall->gameName = new std::string(this->gameName);
 
-		if (!(soap_call___GameWS__register(soap, webServiceAddress.c_str(), NULL, registerCall, registerResult) == SOAP_OK))
+		if (!(soap_call___GameWS__register(soap, webServiceAddress, NULL, registerCall, registerResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
 		int sessionId = registerResult->registerResult;
@@ -308,7 +319,7 @@ namespace irrlicht_nonrealtimenetworking {
 		Get IP address of your opponent from the server 
 		to be able to open a client socket and play.
 	*/
-	std::string NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
+	char* NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
 
 		checkSOAP(); // Check if SOAP was initialized
 
@@ -318,7 +329,7 @@ namespace irrlicht_nonrealtimenetworking {
 		_GameWS__getOpponentsIpAddressResponse* getOpponentsIpAddressResult = new _GameWS__getOpponentsIpAddressResponse();
 
 		/// Make sure that we registered on the WS
-		if (gameName.length() == 0 || gameName == "" || sessionId == 0)
+		if (strlen(gameName) == 0 || strcmp(gameName, "") == 0 || sessionId == 0)
 			throw new NonRealtimeNetworkingException("gameName or sessionId not specified.");
 
 		/// Set request parameters
@@ -326,10 +337,15 @@ namespace irrlicht_nonrealtimenetworking {
 		getOpponentsIpAddressCall->sessionId = sessionId;
 
 		/// Call the WS
-		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress.c_str(), NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
+		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress, NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
-		return *getOpponentsIpAddressResult->getOpponentsIpAddressResult;
+		// Need to return char*, converting from std::string:
+		char* ipAddress = new char[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size() + 1];
+		std::copy(getOpponentsIpAddressResult->getOpponentsIpAddressResult->begin(), getOpponentsIpAddressResult->getOpponentsIpAddressResult->end(), ipAddress);
+		ipAddress[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size()] = '\0';
+
+		return ipAddress;
 
 	}
 
@@ -338,7 +354,7 @@ namespace irrlicht_nonrealtimenetworking {
 		for a given game. Depending on that ID a player either hosts a game
 		or joins an already hosted game to start playing.
 	*/
-	int NonRealtimeNetworkingUtilities::establishConnection(std::string gameName, int portNo = 0) {
+	int NonRealtimeNetworkingUtilities::establishConnection(char* gameName, int portNo = 0) {
 
 		checkSOAP(); // Check if SOAP was initialized
 
