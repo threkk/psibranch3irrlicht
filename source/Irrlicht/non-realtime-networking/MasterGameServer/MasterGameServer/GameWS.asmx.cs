@@ -70,14 +70,25 @@ namespace MasterGameServer
         public string getOpponentsIpAddress(string gameName, int sessionId)
         {
             /// Check if the ID is potentially correct
-            if (sessionId < 1)
-                throw new Exception("sessionId has to be a positive integer number.");
+            if (sessionId < 1) //  || (sessionId % 2) == 1
+                throw new Exception("sessionId has to be a positive even integer number.");
 
             /// Check if a player with such ID was registered for that game with his IP address
-            if (!(games[gameName][sessionId] == Context.Request.ServerVariables["REMOTE_ADDR"]))
+            if (!(games[gameName][sessionId - 1] == Context.Request.ServerVariables["REMOTE_ADDR"]))
                 throw new Exception("You have to register for that game first if you want to play it.");
 
-            return games[gameName][sessionId];
+            return games[gameName][sessionId - 1];
+        }
+
+        [WebMethod]
+        public List<string> getGamePlayers(string gameName)
+        {
+            if (games[gameName] == null)
+                return null;
+            List<string> players = new List<string>();
+            foreach(KeyValuePair<int, string> entry in games[gameName])
+                players.Add("Session ID: " + entry.Key + ", IP: " + entry.Value);
+            return players;
         }
 
     }
