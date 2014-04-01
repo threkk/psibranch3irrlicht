@@ -1,20 +1,20 @@
 #include "ParticleManager.h"
 
-ParticleManager::ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* manager)
+ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevice* irrDevice, ISceneManager* sManager)
 {
-	driver = driver;
-	device = device;
-	smgr = manager;
+	driver = videoDriver;
+	device = irrDevice;
+	smgr = sManager;
 }
 
 IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, vector3df position, core::stringc pathName)
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	particleNode->setScale(core::vector3df(0.5f, 0.5f,0.5f));
-	//particleNode->setMaterialTexture(0, driver->getTexture("../../Media/portal1.bmp"));
 	particleNode->setMaterialFlag(video::EMF_LIGHTING, false);
 	particleNode->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
 	particleNode->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
+	particleNode->setMaterialTexture(0, driver->getTexture(pathName));
 	particleNode->setPosition(position);
 	switch(model->emitterType)
 	{
