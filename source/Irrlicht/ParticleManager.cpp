@@ -1,26 +1,25 @@
 #include "ParticleManager.h"
 
-ParticleManager::ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* smgr): driver(driver), device(device), smgr(smgr)
+ParticleManager::ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* manager)
 {
-	/*driver = driver;
+	driver = driver;
 	device = device;
-	smgr = smgr;*/
+	smgr = manager;
 }
 
 IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, vector3df position, core::stringc pathName)
 {
-	std::cout << "hoi ik zit erin !" ;
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	particleNode->setScale(core::vector3df(0.5f, 0.5f,0.5f));
-	particleNode->setMaterialTexture(0, driver->getTexture(pathName));
+	//particleNode->setMaterialTexture(0, driver->getTexture("../../Media/portal1.bmp"));
 	particleNode->setMaterialFlag(video::EMF_LIGHTING, false);
 	particleNode->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
 	particleNode->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
 	particleNode->setPosition(position);
 	switch(model->emitterType)
 	{
-	case(model->BOX):
-		createBoxEmittingParticle(model,particleNode);
+	case(ParticleModel::EmitterTypes::BOX):
+		this->createBoxEmittingParticle(model,particleNode);
 		break;
 	case(model->POINT):
 		createPointEmittingParticle(model,particleNode);
@@ -43,7 +42,6 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	case(model->NONE):
 		break;
 	}
-
 	return particleNode;
 }
 

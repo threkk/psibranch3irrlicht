@@ -343,6 +343,9 @@
       <ImportLibrary>..\..\lib\Win32-visualstudio\Irrlicht.lib</ImportLibrary>
       <Version>1.8</Version>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(ProjectDir)$(OutDir)$(TargetFileName)" "$(SolutionDir)$(Configuration)\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>

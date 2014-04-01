@@ -16,8 +16,8 @@ class IRRLICHT_API ParticleManager
 {
 public:
 	ParticleManager(video::IVideoDriver* driver, IrrlichtDevice* device, ISceneManager* smgr);
-	virtual IParticleSystemSceneNode* spawnDataModelParticle(ParticleModel* model, vector3df position, core::stringc pathName);
-	virtual IParticleSystemSceneNode* spawnXMLParticle(stringc xmlname, vector3df position);
+	IParticleSystemSceneNode* spawnDataModelParticle(ParticleModel* model, vector3df position, core::stringc pathName);
+	IParticleSystemSceneNode* spawnXMLParticle(stringc xmlname, vector3df position);
 	~ParticleManager(void);
 
 	scene::ISceneManager* smgr;
