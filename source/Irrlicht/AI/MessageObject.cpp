@@ -1,18 +1,18 @@
 #include "AI\MessageObject.h"
 
-MessageObject::MessageObject(void)
+MessageObject::MessageObject(MessageClient* origin) : origin(origin)
 {
 }
 
-MessageObject::MessageObject(int message) : iMessage(message), sMessage(""), vMessage(NULL)
+MessageObject::MessageObject(int message, MessageClient* origin) : iMessage(message), sMessage(""), vMessage(NULL), origin(origin)
 {
 }
 
-MessageObject::MessageObject(std::string message): iMessage(-1), sMessage(message), vMessage(NULL)
+MessageObject::MessageObject(std::string message, MessageClient* origin): iMessage(-1), sMessage(message), vMessage(NULL), origin(origin)
 {
 }
 
-MessageObject::MessageObject(void* message): iMessage(-1), sMessage(""), vMessage(message)
+MessageObject::MessageObject(void* message, MessageClient* origin): iMessage(-1), sMessage(""), vMessage(message), origin(origin)
 {
 }
 

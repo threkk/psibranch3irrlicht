@@ -13,6 +13,7 @@
 #pragma once
 
 #include <string>
+class MessageClient; // Instead of including
 
 class __declspec(dllexport) MessageObject
 {
@@ -20,29 +21,39 @@ public:
 	/**
 	 * Create a new instance of MessageObject
 	 */
-	MessageObject(void);
+	MessageObject(MessageClient* origin);
 
 	/**
 	 * Create a new instance of MessageObject with an integer message
 	 */
-	MessageObject(int message);
+	MessageObject(int message, MessageClient* origin);
 
 
 	/**
 	 * Create a new instance of MessageObject with a string message
 	 */
-	MessageObject(std::string message);
+	MessageObject(std::string message, MessageClient* origin);
 
 	/**
 	 * Create a new instance of MessageObject with an void pointer as message
 	 * The void pointer can hold any type of object
 	 */
-	MessageObject(void* message);
+	MessageObject(void* message, MessageClient* origin);
 
 	virtual ~MessageObject(void);
 	
+	// Contains an integer message
 	int iMessage;
-	std::string sMessage;
-	void* vMessage;
-};
 
+	// Contains a string message
+	std::string sMessage;
+	
+	// Contains a void* message
+	void* vMessage;
+
+	// Contains the topic of the message. No need to set manually, because it will be set by the MessageHandler
+	std::string topic;
+
+	// Contains the origin of the message
+	MessageClient* origin;
+};

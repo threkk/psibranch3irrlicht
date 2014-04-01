@@ -30,17 +30,6 @@ protected:
 	int generateId();
 
 	/**
-	 * Registers this object to the Message Handler
-	 * The object will receive messages that are send to his id
-	 */
-	void registerObject();
-
-	/**
-	 * Deregisters the object
-	 */
-	void deregisterObject();
-
-	/**
 	 * Subscribe a topic
 	 * The object will receive messages that are send to this topic
 	 */
@@ -63,6 +52,11 @@ protected:
 	void sendMessageToObject(MessageObject message, int id);
 
 	/**
+	 * Sends a new message to an other object
+	 */
+	void MessageClient::sendMessageToObject(MessageObject message, MessageClient *client);
+
+	/**
 	 * Sends a new message to all receivers that subscibed the given topic
 	 */
 	void sendMessageToTopic(MessageObject message, std::string topic);
@@ -77,5 +71,5 @@ public:
 
 private:
 	static int count;
-	int id;
+	int message_id;
 };

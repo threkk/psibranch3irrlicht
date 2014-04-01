@@ -1,3 +1,9 @@
+/**
+ * MessageHandler
+ * Clients can subscribe topics from the message client
+ * All messages send to an topic will be delivered to all registered clients
+ */
+
 #pragma once
 
 #include <vector>
@@ -11,24 +17,9 @@ public:
 	virtual ~MessageHandler(void);
 
 	/**
-	 * Register a new client
-	 */
-	void addListener(MessageClient* object);
-
-	/**
 	 * Subscribes a topic for the client
 	 */
 	void addListener(std::string topic, MessageClient* client);
-
-	/**
-	 * Remove an Client with íts ID
-	 */
-	void removeListener(int id);
-
-	/**
-	 * Remove an Client
-	 */
-	void removeListener(MessageClient* client);
 
 	/**
 	 * Remove an Client from a topic
@@ -63,12 +54,23 @@ private:
 	// Singleton instance
 	static MessageHandler* instance;
 
+	struct clientTopic
+	{
+		MessageClient* client;
+		std::vector<std::string> subscribedTopics;
+
+		clientTopic(){}
+
+		clientTopic(MessageClient* client, std::vector<std::string> topics) 
+			: client(client), subscribedTopics(topics) {}
+	};
+
 	/**
-	 * Contains the clients
+	 * Contains all clients by their ID and Topics
 	 * Key: ID
 	 * Value: ClientPointer
 	 */
-	std::map<int, MessageClient*> clients;
+	std::map<int, clientTopic> clients;
 
 	/**
 	 * Contains the clients for the topics

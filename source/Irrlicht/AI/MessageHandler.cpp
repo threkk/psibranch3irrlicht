@@ -1,6 +1,8 @@
 #include "AI\MessageHandler.h"
 #include <algorithm>
 
+MessageHandler* MessageHandler::instance = NULL;
+
 MessageHandler::MessageHandler(void)
 {
 }
@@ -13,41 +15,83 @@ MessageHandler::~MessageHandler(void)
 {
 }
 
-void MessageHandler::addListener(MessageClient* object)
-{
-	clients[object->getID()] = object;
-}
-
 void MessageHandler::addListener(std::string topic, MessageClient* client)
 {
-	topicClients[topic].push_back(client);
-}
+	// Check if the topic is existing
+	if ( topicClients.find(topic) == topicClients.end() ) 
+	{
+		// Not existing -> Create new list
+		topicClients[topic] = std::vector<MessageClient*>();
+	}
 
-void MessageHandler::removeListener(int id)
-{
-	clients.erase(id);
-}
+	// Check if list contains the client
+	if ( std::find(topicClients[topic].begin(), topicClients[topic].end(), client) == topicClients[topic].end()) 
+	{
+		// Client is not contained
+		topicClients[topic].push_back(client);
+	}
 
-void MessageHandler::removeListener(MessageClient* client)
-{
-	clients.erase(client->getID());
+	// Check if client is already in the list
+	if ( clients.find(client->getID()) == clients.end() ) 
+	{
+		// Client doesn't exist -> Add it
+		clients[client->getID()] = clientTopic(client, std::vector<std::string>());
+	}
+
+	// Check if client already contains topic
+	if ( std::find(clients[client->getID()].subscribedTopics.begin(), 
+		clients[client->getID()].subscribedTopics.end(), topic) == clients[client->getID()].subscribedTopics.end()) 
+	{
+		// Topic is not contained
+		clients[client->getID()].subscribedTopics.push_back(topic);
+	}
 }
 
 void MessageHandler::removeListener(std::string topic, MessageClient* client)
 {
-	// Remove client from the topic list
-	topicClients[topic].erase(
-		std::remove(topicClients[topic].begin(),
-		topicClients[topic].end(), client),
-		topicClients[topic].end());
+	// Check if the topic is existing
+	if ( topicClients.find(topic) != topicClients.end() ) 
+	{
+		// Topic Existing
+		// Remove client from the topic list
+		topicClients[topic].erase(
+			std::remove(topicClients[topic].begin(),
+			topicClients[topic].end(), client),
+			topicClients[topic].end());
+
+		// No more clients?
+		if ( topicClients[topic].empty() )
+		{
+			// Remove client
+			topicClients.erase(topic);
+		}
+	}
+
+	// Check if client is registered
+	if ( clients.find(client->getID()) != clients.end() ) 
+	{
+		// Client existing
+		// Remove topic from client
+		clients[client->getID()].subscribedTopics.erase(
+			std::remove(clients[client->getID()].subscribedTopics.begin(),
+			clients[client->getID()].subscribedTopics.end(), topic),
+			clients[client->getID()].subscribedTopics.end());
+
+		// No more topics?
+		if ( clients[client->getID()].subscribedTopics.empty() )
+		{
+			// Remove client
+			clients.erase(client->getID());
+		}
+	}
 }
 
 void MessageHandler::notifyListeners(MessageObject message)
 {
-	for (std::map<int, MessageClient*>::iterator it = clients.begin(); it != clients.end(); ++it)
+	for (std::map<int, clientTopic>::iterator it = clients.begin(); it != clients.end(); ++it)
 	{
 		// First value of iterator is key, second is the client
-		it->second->receiveMessage(message);
+		it->second.client->receiveMessage(message);
 	}
 }
 
@@ -56,7 +100,13 @@ void MessageHandler::notifyListenersTopic(MessageObject message, std::string top
 	if ( topicClients.find(topic) != topicClients.end() ) {
 		// Topic exists
 		
-		for ( std::vector<MessageClient*>::iterator it = topicClients[topic].begin(); it != topicClients[topic].end(); ++it)
+		// Set topic to message
+		message.topic = topic;
+
+		// Send messages
+		// Copy list, because the origin will be changed
+		std::vector<MessageClient*> list = std::vector<MessageClient*>(topicClients[topic]);
+		for ( std::vector<MessageClient*>::iterator it = list.begin(); it != list.end(); ++it)
 		{
 			(*it)->receiveMessage(message);
 		}
@@ -67,7 +117,7 @@ bool MessageHandler::notifyListener(MessageObject message, int id)
 {
 	if (clients.find(id) != clients.end() ) {
 		// Topic exists
-		clients[id]->receiveMessage(message);
+		clients[id].client->receiveMessage(message);
 		return true;
 	}
 	return false;
