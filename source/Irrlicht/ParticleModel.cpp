@@ -2,6 +2,7 @@
 
 using namespace irr;
 
+
 ParticleModel::ParticleModel()
 {
 	emitterType = BOX;
@@ -11,17 +12,23 @@ ParticleModel::ParticleModel()
 	maxPPS = 200;
 	minStartColor = video::SColor(0,0,0,255);
 	maxStartColor = video::SColor(0,255,255,255);
-	lifeTimeMin = 500;
-	lifeTimeMax = 750;
+	lifeTimeMin = 50;
+	lifeTimeMax = 75;
 	maxAngleDegrees = 0;
 	minStartSize = core::dimension2df(4.0f, 4.0f);
 	maxStartSize = core ::dimension2df(8.0f, 8.0f);
+	position = core::vector3df(0,0,0);
 	pathNameTexture;
 }
 
 void ParticleModel::setMinColor(video::SColor color)
 {
 	this->minStartColor = color;
+}
+
+void ParticleModel::setPosition(core::vector3df pos)
+{
+	this->position = pos;
 }
 
 video::SColor ParticleModel::getminStartColor()

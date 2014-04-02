@@ -5,13 +5,13 @@
 #include "IrrCompileConfig.h"
 
 using namespace irr;
-using namespace video;
 
 class IRRLICHT_API ParticleModel
 {
 public:
 	ParticleModel();
 	void setMinColor(video::SColor color);
+	void setPosition(core::vector3df pos);
 	video::SColor getminStartColor();
 	~ParticleModel(void);
 
@@ -30,6 +30,7 @@ public:
 	EmitterTypes emitterType;
 	core::aabbox3df aabbox;
 	core::vector3df direction;
+	core::vector3df position;
 	s32 maxAngleDegrees;
 	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS;
 	core::stringc pathNameTexture;
