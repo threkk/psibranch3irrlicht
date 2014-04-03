@@ -832,6 +832,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\AI\Detectable.h" />
     <ClInclude Include="..\..\include\AI\IPathfinding.h" />
+    <ClInclude Include="..\..\include\AI\MessageClient.h" />
+    <ClInclude Include="..\..\include\AI\MessageHandler.h" />
+    <ClInclude Include="..\..\include\AI\MessageObject.h" />
     <ClInclude Include="..\..\include\AI\State.h" />
     <ClInclude Include="..\..\include\AI\StateAttack.h" />
     <ClInclude Include="..\..\include\AI\StateChasePlayer.h" />
@@ -1247,6 +1250,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI\Detectable.cpp" />
+    <ClCompile Include="AI\MessageClient.cpp" />
+    <ClCompile Include="AI\MessageHandler.cpp" />
+    <ClCompile Include="AI\MessageObject.cpp" />
     <ClCompile Include="AI\State.cpp" />
     <ClCompile Include="AI\StateAttack.cpp" />
     <ClCompile Include="AI\StateChasePlayer.cpp" />

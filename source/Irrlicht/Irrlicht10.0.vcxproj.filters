@@ -115,6 +115,9 @@
     <Filter Include="include\ai">
       <UniqueIdentifier>{6c9bd905-03fe-415e-b3af-f5de8ee7245d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Irrlicht\AI\Message">
+      <UniqueIdentifier>{79f4d08a-c1b5-4c20-b071-87edf7d29045}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\IEventReceiver.h">
@@ -1345,6 +1348,15 @@
     <ClInclude Include="..\..\include\AI\StateMachine.h">
       <Filter>include\ai</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\AI\MessageObject.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AI\MessageClient.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AI\MessageHandler.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2299,6 +2311,15 @@
     </ClCompile>
     <ClCompile Include="AI\StateIdle.cpp">
       <Filter>Irrlicht\AI\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\MessageClient.cpp">
+      <Filter>Irrlicht\AI\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\MessageObject.cpp">
+      <Filter>Irrlicht\AI\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\MessageHandler.cpp">
+      <Filter>Irrlicht\AI\Message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
