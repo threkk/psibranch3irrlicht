@@ -16,6 +16,11 @@ namespace irrlicht_nonrealtimenetworking {
 		delete gameName;
 	}
 
+	void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
+		this->buffer = new char[strlen(buffer) + 1];
+		strcpy(this->buffer, buffer);
+	}
+
 	/**
 		Check if given string represents a valid IP address. Instead
 		of localhost use 127.0.0.1 to pass validation test.
