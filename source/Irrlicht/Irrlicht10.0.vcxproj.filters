@@ -111,6 +111,11 @@
     </Filter>
     <Filter Include="Irrlicht\AI\Pathfinding">
       <UniqueIdentifier>{cfd0f9ac-b5fd-4b9a-9b1f-ee2ec11e895a}</UniqueIdentifier>
+    <Filter Include="include\non-realtime-networking">
+      <UniqueIdentifier>{78750382-dc3f-483f-93c7-10197dcae6bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Irrlicht\non-realtime-networking">
+      <UniqueIdentifier>{fb227611-0efb-4102-b1f6-187e213bc8dd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1335,6 +1340,20 @@
     </ClInclude>
     <ClInclude Include="AI\IPathfinding.h">
       <Filter>Irrlicht\AI\Pathfinding</Filter>
+    <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingUtilities.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="non-realtime-networking\SOAP\soapH.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="non-realtime-networking\SOAP\soapStub.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="non-realtime-networking\SOAP\stdsoap2.h">
+      <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1343,6 +1362,9 @@
     </None>
     <None Include="..\..\readme.txt">
       <Filter>doc</Filter>
+    </None>
+    <None Include="non-realtime-networking\SOAP\GameWSSoap.nsmap">
+      <Filter>include\non-realtime-networking</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -2287,6 +2309,17 @@
     </ClCompile>
     <ClCompile Include="AI\StateIdle.cpp">
       <Filter>Irrlicht\AI\States</Filter>
+    <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="non-realtime-networking\SOAP\soapC.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="non-realtime-networking\SOAP\soapClient.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="non-realtime-networking\SOAP\stdsoap2.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
