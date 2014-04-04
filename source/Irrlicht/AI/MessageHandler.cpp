@@ -116,11 +116,50 @@ void MessageHandler::notifyListenersTopic(MessageObject message, std::string top
 bool MessageHandler::notifyListener(MessageObject message, int id)
 {
 	if (clients.find(id) != clients.end() ) {
-		// Topic exists
+		// Client exists
 		clients[id].client->receiveMessage(message);
 		return true;
 	}
 	return false;
+}
+
+unsigned int MessageHandler::getNumberOfClients()
+{
+	return clients.size();
+}
+
+unsigned int MessageHandler::getNumberOfTopics()
+{
+	return topicClients.size();
+} 
+
+unsigned int MessageHandler::getNumberOfClients(std::string topic)
+{
+	if (topicClients.find(topic) != topicClients.end() ) {
+		// Topic exists
+		return topicClients[topic].size();
+	}
+	return 0;
+}
+
+unsigned int MessageHandler::getNumberOfTopics(MessageClient* client)
+{
+	return getNumberOfTopics(client->getID());
+}
+
+unsigned int MessageHandler::getNumberOfTopics(int id)
+{
+	if (clients.find(id) != clients.end() ) {
+		// Client exists
+		return clients[id].subscribedTopics.size();
+	}
+	return 0;
+}
+
+void MessageHandler::clear()
+{
+	clients.clear();
+	topicClients.clear();
 }
 
 MessageHandler* MessageHandler::getInstance()
