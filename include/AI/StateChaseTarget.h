@@ -5,17 +5,17 @@
 #include <functional>
 
 #pragma once
-class __declspec(dllexport) StateChasePlayer: public State
+class __declspec(dllexport) StateChaseTarget: public State
 {
 public:
-	StateChasePlayer(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
+	StateChaseTarget(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
 		std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine);
-	~StateChasePlayer(void);
+	~StateChaseTarget(void);
 
 	/** Inherited Methods **/
-	bool executeable(void);
-	void enter();
-	void exit();
+	virtual bool executeable(void);
+	virtual void enter();
+	virtual void exit();
 protected:
 	// The owner of the state
 	Detectable* owner;

@@ -1,8 +1,8 @@
-#include "ai/StateChasePlayer.h"
+#include "ai/StateChaseTarget.h"
 #include <vector>
 #include "ai/StateMachine.h"
 
-StateChasePlayer::StateChasePlayer(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
+StateChaseTarget::StateChaseTarget(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
 	std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine)
 {
 	this->owner = stateOwner;
@@ -18,11 +18,11 @@ StateChasePlayer::StateChasePlayer(Detectable* stateOwner, Detectable* target, i
 }
 
 
-StateChasePlayer::~StateChasePlayer(void)
+StateChaseTarget::~StateChaseTarget(void)
 {
 }
 
-bool StateChasePlayer::executeable(void)
+bool StateChaseTarget::executeable(void)
 {
 	// The state will execute as soon as the player is seen
 	if(owner->isObjectInfront(target, sceneMgr))
@@ -47,17 +47,15 @@ bool StateChasePlayer::executeable(void)
 	}
 }
 
-void StateChasePlayer::enter()
+void StateChaseTarget::enter()
 {
-	printf("enter");
 }
 
-void StateChasePlayer::exit()
+void StateChaseTarget::exit()
 {
-	printf("exit");
 }
 
-void StateChasePlayer::action()
+void StateChaseTarget::action()
 {
 	irr::core::vector3df toPos;
 	if(hasSeen)
