@@ -45,12 +45,6 @@ private:
 	std::vector<State*> substates;
 
 	/**
-	* This is the real method, that defines what the NPC is doing. <br/>
-	* This method will be called by execute.
-	*/
-	virtual void action() = 0;
-
-	/**
 	* Sort the vector
 	*/
 	void sort();
@@ -59,4 +53,18 @@ private:
 	* State-Priority-Comparator Method
 	*/
 	bool static State::compare(State* state1, State* state2);
+
+protected:
+	/**
+	* This is the real method, that defines what the NPC is doing. <br/>
+	* This method will be called by execute.
+	*/
+	virtual void action() = 0;
+
+	/**
+	* This function will run if the state is not executable <br/>
+	* This method will be called by execute.
+	* This function doesn't do anything and needs to be overriden by the other states.
+	*/
+	virtual void noActionFallback();
 };
