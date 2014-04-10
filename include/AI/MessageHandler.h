@@ -43,6 +43,36 @@ public:
 	bool notifyListener(MessageObject message, int id);
 
 	/**
+	 * Returns the number of all clients
+	 */
+	unsigned int getNumberOfClients();
+
+	/**
+	 * Returns the number of all topics
+	 */
+	unsigned int getNumberOfTopics();
+
+	/**
+	 * Returns the number of clients that are registered for a topic
+	 */
+	unsigned int getNumberOfClients(std::string topic);
+
+	/**
+	 * Returns the number of topics that a client has subscribed
+	 */
+	unsigned int getNumberOfTopics(MessageClient* client);
+
+	/**
+	 * Returns the number of topics that a client has subscribed
+	 */
+	unsigned int getNumberOfTopics(int id);
+
+	/**
+	 * Removes all clients
+	 */
+	void clear();
+
+	/**
 	 * Get an the instance of the MessageHandler
 	 */
 	static MessageHandler* getInstance();

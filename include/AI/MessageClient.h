@@ -14,11 +14,8 @@
 
 class __declspec(dllexport) MessageClient
 {
-protected:
 
-	virtual ~MessageClient(void)
-	{
-	}
+protected:
 
 	/**
 	 * Will generate an unique Identifier
@@ -62,6 +59,11 @@ protected:
 	void sendMessageToTopic(MessageObject message, std::string topic);
 
 public:
+
+	virtual ~MessageClient(void)
+	{
+	}
+
 	/**
 	 * This method will be called when a new message is received
 	 */
