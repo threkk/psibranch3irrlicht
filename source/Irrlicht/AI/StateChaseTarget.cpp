@@ -4,15 +4,8 @@
 
 StateChaseTarget::StateChaseTarget(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
 	std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine)
+	: StateFollowTarget(stateOwner, target, sceneMgr, callbackFunction, pathUtil, stateMachine)
 {
-	this->owner = stateOwner;
-	this->target = target;
-	this->sceneMgr = sceneMgr;
-	this->stateMachine = stateMachine;
-
-	this->callbackFunction = callbackFunction;
-	this->pathUtil = pathUtil;
-
 	hasSeen = false;
 	hasLastPointSeen = false;
 }
@@ -45,14 +38,6 @@ bool StateChaseTarget::executeable(void)
 		hasLastPointSeen = false;
 		return false;
 	}
-}
-
-void StateChaseTarget::enter()
-{
-}
-
-void StateChaseTarget::exit()
-{
 }
 
 void StateChaseTarget::action()
@@ -89,9 +74,4 @@ void StateChaseTarget::action()
 			stateMachine->returnToPreviousState();
 		}
 	}
-}
-
-void StateChaseTarget::noActionFallback()
-{
-	stateMachine->returnToPreviousState();
 }

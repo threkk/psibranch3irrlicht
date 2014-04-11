@@ -1360,6 +1360,9 @@
     <ClInclude Include="..\..\include\AI\StateInvestigatePoint.h">
       <Filter>include\ai</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\AI\StateFollowTarget.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\AI\StateGoToPointRotate.h">
       <Filter>include\ai</Filter>
     </ClInclude>
@@ -2325,6 +2328,9 @@
       <Filter>Irrlicht\AI\Message</Filter>
     </ClCompile>
     <ClCompile Include="AI\StateChaseTarget.cpp">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\StateFollowTarget.cpp">
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
     <ClCompile Include="AI\StateInvestigatePoint.cpp">

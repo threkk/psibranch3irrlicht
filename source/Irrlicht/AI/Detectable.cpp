@@ -67,3 +67,8 @@ bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* 
 	return false;
 
 }
+
+bool Detectable::isObjectClose(Detectable* object, irr::f32 visionLength)
+{
+	return (this->getPosition().getDistanceFrom(object->getPosition()) < visionLength);
+}

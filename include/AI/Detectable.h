@@ -28,6 +28,11 @@ public:
 	 */
 	bool isObjectVisible(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::core::vector3df direction, irr::f32 visionLength);
 
+	/**
+	 * Checks if the object is in range of the length
+	 */
+	bool Detectable::isObjectClose(Detectable* object, irr::f32 visionLength);
+
 	/** Virtual Methods that needs to be implemented **/
 
 	/**

@@ -840,6 +840,7 @@
     <ClInclude Include="..\..\include\AI\StateChaseTarget.h" />
     <ClInclude Include="..\..\include\AI\StateFollowRoute.h" />
     <ClInclude Include="..\..\include\AI\StateGoToPointRotate.h" />
+    <ClInclude Include="..\..\include\AI\StateFollowTarget.h" />
     <ClInclude Include="..\..\include\AI\StateIdle.h" />
     <ClInclude Include="..\..\include\AI\StateInvestigatePoint.h" />
     <ClInclude Include="..\..\include\AI\StateMachine.h" />
@@ -1260,6 +1261,7 @@
     <ClCompile Include="AI\StateChaseTarget.cpp" />
     <ClCompile Include="AI\StateFollowRoute.cpp" />
     <ClCompile Include="AI\StateGoToPointRotate.cpp" />
+    <ClCompile Include="AI\StateFollowTarget.cpp" />
     <ClCompile Include="AI\StateIdle.cpp" />
     <ClCompile Include="AI\StateInvestigatePoint.cpp" />
     <ClCompile Include="CCgMaterialRenderer.cpp" />
