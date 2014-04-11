@@ -7,7 +7,7 @@
 class __declspec(dllexport) StateFollowRoute : public State
 {
 public:
-	StateFollowRoute(Detectable* stateOwner, std::vector<std::pair<irr::core::vector3df, float>>* route, IrrlichtDevice* device, IPathfinding* pathUtil,
+	StateFollowRoute(Detectable* stateOwner, std::vector<std::pair<irr::core::vector3df*, float>>* route, IrrlichtDevice* device, IPathfinding* pathUtil,
 		std::function<void(irr::core::vector3df*)> callbackFunction);
 	~StateFollowRoute(void);
 
@@ -19,11 +19,15 @@ private:
 	Detectable* owner;
 
 	// The route to be followed
-	std::vector<std::pair<irr::core::vector3df, float>> route;
+	std::vector<std::pair<irr::core::vector3df*, float>>* route;
 
 	// Timer stuff
-	float timer;
-	u32 then;
+	irr::u32 now;
+	irr::u32 then;
+	irr::f32 frameDeltaTime;
+	irr::f32 timer;
+
+	void updateDeltaTime();
 
 	// Next point to be visited
 	unsigned int pointToVisit;
