@@ -15,7 +15,7 @@ public:
 	bool executeable(void);
 	void enter();
 	void exit();
-private:
+protected:
 	Detectable* owner;
 	Detectable* target;
 	irr::scene::ISceneManager* sceneMgr;
