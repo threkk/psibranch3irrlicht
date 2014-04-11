@@ -1,21 +1,28 @@
-#include "ai/StateChaseTarget.h"
+#include "ai/StateFollowTarget.h"
 #include <vector>
 #include "ai/StateMachine.h"
 
-StateChaseTarget::StateChaseTarget(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
+StateFollowTarget::StateFollowTarget(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr, 
 	std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine)
-	: StateFollowTarget(stateOwner, target, sceneMgr, callbackFunction, pathUtil, stateMachine)
 {
+	this->owner = stateOwner;
+	this->target = target;
+	this->sceneMgr = sceneMgr;
+	this->stateMachine = stateMachine;
+
+	this->callbackFunction = callbackFunction;
+	this->pathUtil = pathUtil;
+
 	hasSeen = false;
 	hasLastPointSeen = false;
 }
 
 
-StateChaseTarget::~StateChaseTarget(void)
+StateFollowTarget::~StateFollowTarget(void)
 {
 }
 
-bool StateChaseTarget::executeable(void)
+bool StateFollowTarget::executeable(void)
 {
 	// The state will execute as soon as the player is seen
 	if(owner->isObjectInfront(target, sceneMgr))
@@ -38,6 +45,14 @@ bool StateChaseTarget::executeable(void)
 		hasLastPointSeen = false;
 		return false;
 	}
+}
+
+void StateChaseTarget::enter()
+{
+}
+
+void StateChaseTarget::exit()
+{
 }
 
 void StateChaseTarget::action()
@@ -74,4 +89,9 @@ void StateChaseTarget::action()
 			stateMachine->returnToPreviousState();
 		}
 	}
+}
+
+void StateChaseTarget::noActionFallback()
+{
+	stateMachine->returnToPreviousState();
 }

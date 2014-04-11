@@ -1357,6 +1357,9 @@
     <ClInclude Include="..\..\include\AI\StateChaseTarget.h">
       <Filter>include\ai</Filter>
     </ClInclude>
+    <ClInclude Include="StateFollowTarget.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2319,6 +2322,9 @@
       <Filter>Irrlicht\AI\Message</Filter>
     </ClCompile>
     <ClCompile Include="AI\StateChaseTarget.cpp">
+      <Filter>Irrlicht\AI\States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateFollowTarget.cpp">
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
   </ItemGroup>

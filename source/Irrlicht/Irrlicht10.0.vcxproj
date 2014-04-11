@@ -1107,6 +1107,7 @@
     <ClInclude Include="COpenGLSLMaterialRenderer.h" />
     <ClInclude Include="COpenGLTexture.h" />
     <ClInclude Include="glext.h" />
+    <ClInclude Include="StateFollowTarget.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="CD3D8Driver.h" />
     <ClInclude Include="CD3D8MaterialRenderer.h" />
@@ -1429,6 +1430,7 @@
     <ClCompile Include="Irrlicht.cpp" />
     <ClCompile Include="os.cpp" />
     <ClCompile Include="lzma\LzmaDec.c" />
+    <ClCompile Include="StateFollowTarget.cpp" />
     <ClCompile Include="zlib\adler32.c" />
     <ClCompile Include="zlib\compress.c" />
     <ClCompile Include="zlib\crc32.c" />
