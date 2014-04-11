@@ -19,7 +19,7 @@ StateAttack::~StateAttack(void)
 
 bool StateAttack::executeable(void)
 {
-	return owner->isObjectInfront(target, sceneMgr, 100);
+	return owner->isObjectInfront(target, sceneMgr, 110);
 }
 
 void StateAttack::enter()
