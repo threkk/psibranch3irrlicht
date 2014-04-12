@@ -31,9 +31,14 @@ void ParticleModel::setPosition(core::vector3df pos)
 	this->position = pos;
 }
 
-video::SColor ParticleModel::getminStartColor()
+video::SColor ParticleModel::getMinStartColor()
 {
 	return minStartColor;
+}
+
+core::vector3df ParticleModel::getPosition()
+{
+	return position;
 }
 
 ParticleModel::~ParticleModel(void)

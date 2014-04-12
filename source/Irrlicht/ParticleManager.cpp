@@ -19,7 +19,7 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 
 	switch(model->emitterType)
 	{
-	case(ParticleModel::EmitterTypes::BOX):
+	case(model->BOX):
 		this->createBoxEmittingParticle(model,particleNode);
 		break;
 	case(model->POINT):
@@ -46,7 +46,7 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	return particleNode;
 }
 
-IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(stringc xmlname, vector3df position)
+IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(core::stringc xmlName, vector3df position)
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	//TODO: when the parser is there this is the function that needs to be used instead of the dataModel
