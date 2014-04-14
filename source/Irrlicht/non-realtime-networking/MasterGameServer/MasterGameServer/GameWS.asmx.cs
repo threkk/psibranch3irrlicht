@@ -20,8 +20,8 @@ namespace MasterGameServer
     {
         /**
             Dictionary is an equivalent of Map that we see in C++ and Java.
-            For each game it's ID (a string) is kept together with 
-            ID's and IP addreses of players playing it.
+            For each game its ID (a string) is kept together with 
+            IDs and IP addreses of players playing it.
         */
         static Dictionary<string, Dictionary<int, string>> games = new Dictionary<string,Dictionary<int,string>>();
 
@@ -48,6 +48,9 @@ namespace MasterGameServer
         [WebMethod]
         public int register(string gameName)
         {
+            if (String.IsNullOrEmpty(gameName))
+                throw new Exception("Register: gameName cannot be empty!");
+
             lock (syncLock) // beginning of critical section
             {
                 if (!games.Keys.ToList().Contains(gameName))
@@ -69,13 +72,15 @@ namespace MasterGameServer
         [WebMethod]
         public string getOpponentsIpAddress(string gameName, int sessionId)
         {
-            /// Check if the ID is potentially correct
-            if (sessionId < 1) //  || (sessionId % 2) == 1
-                throw new Exception("sessionId has to be a positive even integer number.");
+            if (String.IsNullOrEmpty(gameName))
+                throw new Exception("GetOpponentsIpAddress: gameName cannot be empty!");
 
-            /// Check if a player with such ID was registered for that game with his IP address
-            if (!(games[gameName][sessionId - 1] == Context.Request.ServerVariables["REMOTE_ADDR"]))
-                throw new Exception("You have to register for that game first if you want to play it.");
+            /// Check if the ID is potentially correct
+            if (sessionId < 1 || (sessionId % 2) == 1)
+                throw new Exception("GetOpponentsIpAddress: sessionId has to be a positive even integer number.");
+
+            if (!games.Keys.ToList().Contains(gameName))
+                throw new Exception("GetOpponentsIpAddress: game called " + gameName + " has not been registered on the server");
 
             return games[gameName][sessionId - 1];
         }
@@ -83,11 +88,16 @@ namespace MasterGameServer
         [WebMethod]
         public List<string> getGamePlayers(string gameName)
         {
-            if (games[gameName] == null)
+            if (String.IsNullOrEmpty(gameName))
+                throw new Exception("GetGamePlayers: gameName cannot be empty!");
+
+            if (!games.Keys.ToList().Contains(gameName))
                 return null;
+
             List<string> players = new List<string>();
             foreach(KeyValuePair<int, string> entry in games[gameName])
                 players.Add("Session ID: " + entry.Key + ", IP: " + entry.Value);
+
             return players;
         }
 
