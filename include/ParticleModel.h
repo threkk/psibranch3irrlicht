@@ -43,7 +43,7 @@ public:
 	void setLifeTimeMax(u32 lifeTimeMax);
 	void setLifeTimeMin(u32 lifeTimeMin);
 	void setMaxPPS(u32 maxPPS);
-	void setMinPPs(u32 minPPs);
+	void setMinPPS(u32 minPPs);
 	void setPathNameTexture(core::stringc pathNameTexture);
 	void setMinColor(video::SColor minColor);
 	void setMaxColor(video::SColor maxColor);
@@ -59,7 +59,7 @@ public:
 	core::vector3df getPosition();
 	s32 getMaxAngleDegrees();
 	u32 getLifeTimeMax();
-	u32 getlifeTimeMin();
+	u32 getLifeTimeMin();
 	u32 getMaxPPS();
 	u32 getMinPPS();
 	core::stringc getPathNameTexture();
@@ -73,10 +73,11 @@ public:
 	*/
 	~ParticleModel(void);
 
+private:
+
 	/**
 	*	the variables that are used for the particle
 	*/
-	//TO DO: set this to private and use setters in the mainscene.cpp
 	EmitterTypes emitterType;
 	core::aabbox3df aabbox;
 	core::vector3df direction;
@@ -86,9 +87,6 @@ public:
 	core::stringc pathNameTexture;
 	video::SColor minStartColor, maxStartColor;
 	core::dimension2df minStartSize, maxStartSize;
-
-private:
-
 };
 
 #endif

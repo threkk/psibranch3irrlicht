@@ -2,7 +2,9 @@
 
 using namespace irr;
 
-
+/**
+* Default constructor that creates a default particleModel
+*/
 ParticleModel::ParticleModel()
 {
 	emitterType = BOX;
@@ -20,10 +22,20 @@ ParticleModel::ParticleModel()
 	position = core::vector3df(0,0,0);
 	pathNameTexture;
 }
-
-void ParticleModel::setMinColor(video::SColor color)
+////////////////////////// SETTERS ///////////////////////////////////
+void ParticleModel::setEmitterType(EmitterTypes emitterType)
 {
-	this->minStartColor = color;
+	this->emitterType = emitterType;
+}
+
+void ParticleModel::setAabbox(core::aabbox3df aabbox)
+{
+	this->aabbox = aabbox;
+}
+
+void ParticleModel::setDirection(core::vector3df direction)
+{
+	this->direction = direction;
 }
 
 void ParticleModel::setPosition(core::vector3df pos)
@@ -31,15 +43,129 @@ void ParticleModel::setPosition(core::vector3df pos)
 	this->position = pos;
 }
 
-video::SColor ParticleModel::getMinStartColor()
+void ParticleModel::setMaxAngleDegrees(s32 maxAngleDegrees)
 {
-	return minStartColor;
+	this->maxAngleDegrees = maxAngleDegrees;
+}
+
+void ParticleModel::setLifeTimeMax(u32 lifeTimeMax)
+{
+	this->lifeTimeMax = lifeTimeMax;
+}
+
+void ParticleModel::setLifeTimeMin(u32 lifeTimeMin)
+{
+	this->lifeTimeMin = lifeTimeMin;
+}
+
+void ParticleModel::setMaxPPS(u32 maxPPS)
+{
+	this->maxPPS = maxPPS;
+}
+
+void ParticleModel::setMinPPS(u32 minPPs)
+{
+	this->minPPS = minPPS;
+}
+
+void ParticleModel::setPathNameTexture(core::stringc pathNameTexture)
+{
+	this->pathNameTexture = pathNameTexture;
+}
+
+void ParticleModel::setMinColor(video::SColor color)
+{
+	this->minStartColor = color;
+}
+
+void ParticleModel::setMaxColor(video::SColor maxColor)
+{
+	this->maxStartColor = maxColor;
+}
+
+void ParticleModel::setMinStartSize(core::dimension2df minStartSize)
+{
+	this->minStartSize = minStartSize;
+}
+
+void ParticleModel::setMaxStartSize(core::dimension2df maxStartSize)
+{
+	this->maxStartSize = maxStartSize;
+}
+
+
+
+////////////////////////// GETTERS ///////////////////////////////////
+ParticleModel::EmitterTypes ParticleModel::getEmitterType()
+{
+	return this->emitterType;
+}
+
+core::aabbox3df ParticleModel::getAabbox()
+{
+	return this->aabbox;
+}
+
+core::vector3df ParticleModel::getDirection()
+{
+	return this->direction;
 }
 
 core::vector3df ParticleModel::getPosition()
 {
-	return position;
+	return this->position;
 }
+
+s32 ParticleModel::getMaxAngleDegrees()
+{
+	return this->maxAngleDegrees;
+}
+
+u32 ParticleModel::getLifeTimeMax()
+{
+	return this->lifeTimeMax;
+}
+
+u32 ParticleModel::getLifeTimeMin()
+{
+	return this->lifeTimeMin;
+}
+
+u32 ParticleModel::getMaxPPS()
+{
+	return this->maxPPS;
+}
+
+u32 ParticleModel::getMinPPS()
+{
+	return this->minPPS;
+}
+
+core::stringc ParticleModel::getPathNameTexture()
+{
+	return this->pathNameTexture;
+}
+
+video::SColor ParticleModel::getMinStartColor()
+{
+	return this->minStartColor;
+}
+
+video::SColor ParticleModel::getMaxStartColor()
+{
+	return this->maxStartColor;
+}
+
+core::dimension2df ParticleModel::getMinStartSize()
+{
+	return this->minStartSize;
+}
+
+core::dimension2df ParticleModel::getMaxStartSize()
+{
+	return this->maxStartSize;
+}
+
 
 ParticleModel::~ParticleModel(void)
 {

@@ -17,7 +17,7 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	particleNode->setMaterialTexture(0, driver->getTexture(pathName));
 	particleNode->setPosition(position);
 
-	switch(model->emitterType)
+	switch(model->getEmitterType())
 	{
 	case(model->BOX):
 		this->createBoxEmittingParticle(model,particleNode);
@@ -55,9 +55,9 @@ IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(core::stringc xmlNam
 
 void ParticleManager::createBoxEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
 {
-	IParticleBoxEmitter* boxEmitter = particleNode->createBoxEmitter(particleModel->aabbox,particleModel->direction,particleModel->minPPS,
-		particleModel->maxPPS,particleModel->minStartColor,particleModel->maxStartColor,particleModel->lifeTimeMin,particleModel->lifeTimeMax,particleModel->maxAngleDegrees,
-		particleModel->minStartSize,particleModel->maxStartSize);
+	IParticleBoxEmitter* boxEmitter = particleNode->createBoxEmitter(particleModel->getAabbox(),particleModel->getDirection(),particleModel->getMinPPS(),
+		particleModel->getMaxPPS(),particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),particleModel->getMaxAngleDegrees(),
+		particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(boxEmitter);
 	boxEmitter->drop();
 }
