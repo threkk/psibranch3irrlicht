@@ -16,7 +16,7 @@ class IRRLICHT_API ParticleManager
 {
 	/**
 	*	This class is used to control every particle that you would want to create. It contains two spawn functions: one that contains a particlemodel
-	*	and one that contains the use of XML but this isn't implemented yet.
+	*	and one that contains the use of XML but that isn't implemented yet.
 	*/
 public:
 	/**
@@ -34,7 +34,7 @@ public:
 
 	/**
 	*	This function returns a pointer to IParticleSystemSceneNode
-	*	core::stringc xmlName is an URL that contains every attribute that is needed to create a particle
+	*	core::stringc xmlName is an URL to the path where the XML is put into that contains every attribute that is needed to create a particle
 	*	Vector3df position is used for that position in the game world
 	*	core::stringc pathName is used for the URL to the image that you want to use for the particle
 	*/
@@ -45,6 +45,9 @@ public:
 	*/
 	~ParticleManager(void);
 
+	/**
+	*	Irrlicht stuff that is needed to create certain parts that are used for the particles
+	*/
 	scene::ISceneManager* smgr;
 	video::IVideoDriver* driver;
 	IrrlichtDevice* device;
@@ -52,13 +55,13 @@ public:
 private:
 	/**
 	*	These functions are internally used inside the particleManager.cpp file to create the right emitter based on which particleModel
-	*	is given as parameter during the spawnParticle functions.
+	*	is given as parameter during the spawnParticle functions. Without these functions there will be no particle visual visible
 	*/
 	void createBoxEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
 	void createPointEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
-	void createAnimatedMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
+	void createAnimatedMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode,IAnimatedMesh* mesh);
 	void createCylinderEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
-	void createMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
+	void createMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode,IMesh* mesh);
 	void createRingEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
 	void createSphereEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
 };

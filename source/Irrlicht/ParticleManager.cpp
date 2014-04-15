@@ -56,46 +56,68 @@ IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(core::stringc xmlNam
 void ParticleManager::createBoxEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
 {
 	IParticleBoxEmitter* boxEmitter = particleNode->createBoxEmitter(particleModel->getAabbox(),particleModel->getDirection(),particleModel->getMinPPS(),
-		particleModel->getMaxPPS(),particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),particleModel->getMaxAngleDegrees(),
-		particleModel->getMinStartSize(),particleModel->getMaxStartSize());
+		particleModel->getMaxPPS(),particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),
+		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(boxEmitter);
 	boxEmitter->drop();
 }
 
 void ParticleManager::createPointEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
 {
-	/*IParticlePointEmitter* pointEmitter = particleNode->createPointEmitter();
+	IParticlePointEmitter* pointEmitter = particleNode->createPointEmitter(particleModel->getDirection(),particleModel->getMinPPS(),
+		particleModel->getMaxPPS(),particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),
+		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(pointEmitter);
-	pointEmitter->drop();*/
+	pointEmitter->drop();
 }
 
-void ParticleManager::createAnimatedMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
+void ParticleManager::createAnimatedMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode,IAnimatedMesh* mesh)
 {
-	/*scene::IParticleAnimatedMeshSceneNodeEmitter* animatedMeshEmitter = particleNode->createAnimatedMeshSceneNodeEmitter();
+	scene::IAnimatedMeshSceneNode* animatedMeshNode = smgr->addAnimatedMeshSceneNode(mesh,particleNode->getParent(),particleNode->getID(),particleNode->getPosition(),
+		particleNode->getRotation(),particleNode->getScale(),false);
+	scene::IParticleAnimatedMeshSceneNodeEmitter* animatedMeshEmitter = particleNode->createAnimatedMeshSceneNodeEmitter(animatedMeshNode,particleModel->getUseNormalDirection(),
+		particleModel->getDirection(),particleModel->getNormalDirectionModifier(),particleModel->getMbNumber(),particleModel->getEveryMeshVertex(),particleModel->getMinPPS(),particleModel->getMaxPPS(),
+		particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),particleModel->getMaxAngleDegrees(),
+		particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(animatedMeshEmitter);
-	animatedMeshEmitter->drop();*/
+	animatedMeshEmitter->drop();
 }
 
 void ParticleManager::createCylinderEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
 {
-	/*scene::IParticleCylinderEmitter* cylinderEmitter = particleNode->createCylinderEmitter();
+	scene::IParticleCylinderEmitter* cylinderEmitter = particleNode->createCylinderEmitter(particleModel->getCenter(),particleModel->getRadius(),particleModel->getNormal(),
+		particleModel->getLengthCylinder(),particleModel->getOutLineOnly(),particleModel->getDirection(),particleModel->getMinPPS(),particleModel->getMaxPPS(),
+		particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),particleModel->getMaxAngleDegrees(),
+		particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(cylinderEmitter);
-	cylinderEmitter->drop();*/
+	cylinderEmitter->drop();
 }
 
-void ParticleManager::createMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
+void ParticleManager::createMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode, IMesh* mesh)
 {
-
+	scene::IParticleMeshEmitter* meshEmitter = particleNode->createMeshEmitter(mesh,particleModel->getUseNormalDirection(),particleModel->getDirection(),particleModel->getNormalDirectionModifier(),
+		particleModel->getMbNumber(),particleModel->getEveryMeshVertex(),particleModel->getMinPPS(),particleModel->getMaxPPS(),particleModel->getMinStartColor(),particleModel->getMaxStartColor(),
+		particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
+	particleNode->setEmitter(meshEmitter);
+	meshEmitter->drop();
 }
 
 void ParticleManager::createRingEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
 {
-
+	scene::IParticleRingEmitter* ringEmitter = particleNode->createRingEmitter(particleModel->getCenter(),particleModel->getRadius(),particleModel->getRingThickness(),particleModel->getDirection(),
+		particleModel->getMinPPS(),particleModel->getMaxPPS(),particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),
+		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
+	particleNode->setEmitter(ringEmitter);
+	ringEmitter->drop();
 }
 
 void ParticleManager::createSphereEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
 {
-
+	scene::IParticleSphereEmitter* sphereEmitter = particleNode->createSphereEmitter(particleModel->getCenter(),particleModel->getRadius(),particleModel->getDirection(),
+		particleModel->getMinPPS(),particleModel->getMaxPPS(),particleModel->getMinStartColor(),particleModel->getMaxStartColor(),particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),
+		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
+	particleNode->setEmitter(sphereEmitter);
+	sphereEmitter->drop();
 }
 
 ParticleManager::~ParticleManager(void)

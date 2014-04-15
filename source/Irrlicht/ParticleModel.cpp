@@ -38,14 +38,29 @@ void ParticleModel::setDirection(core::vector3df direction)
 	this->direction = direction;
 }
 
-void ParticleModel::setPosition(core::vector3df pos)
+void ParticleModel::setPosition(core::vector3df position)
 {
-	this->position = pos;
+	this->position = position;
+}
+
+void ParticleModel::setCenter(core::vector3df center)
+{
+	this->center = center;
+}
+
+void ParticleModel::setNormal(core::vector3df normal)
+{
+	this->normal = normal;
 }
 
 void ParticleModel::setMaxAngleDegrees(s32 maxAngleDegrees)
 {
 	this->maxAngleDegrees = maxAngleDegrees;
+}
+
+void ParticleModel::setMbNumber(s32 mbNumber)
+{
+	this->mbNumber = mbNumber;
 }
 
 void ParticleModel::setLifeTimeMax(u32 lifeTimeMax)
@@ -66,6 +81,26 @@ void ParticleModel::setMaxPPS(u32 maxPPS)
 void ParticleModel::setMinPPS(u32 minPPs)
 {
 	this->minPPS = minPPS;
+}
+
+void ParticleModel::setNormalDirectionModifier(f32 normalDirectionModifier)
+{
+	this->normalDirectionModifier = normalDirectionModifier;
+}
+
+void ParticleModel::setRadius(f32 radius)
+{
+	this->radius = radius;
+}
+
+void ParticleModel::setLengthCylinder(f32 lengthCylinder)
+{
+	this->lengthCylinder = lengthCylinder;
+}
+
+void ParticleModel::setRingThickness(f32 ringThickness)
+{
+	this->ringThickness = ringThickness;
 }
 
 void ParticleModel::setPathNameTexture(core::stringc pathNameTexture)
@@ -93,7 +128,20 @@ void ParticleModel::setMaxStartSize(core::dimension2df maxStartSize)
 	this->maxStartSize = maxStartSize;
 }
 
+void ParticleModel::setUseNormalDirection(bool useNormalDirection)
+{
+	this->useNormalDirection = useNormalDirection;
+}
 
+void ParticleModel::setEveryMeshVertex(bool everyMeshVertex)
+{
+	this->everyMeshVertex = everyMeshVertex;
+}
+
+void ParticleModel::setOutLineOnly(bool outlineOnly)
+{
+	this->outlineOnly = outlineOnly;
+}
 
 ////////////////////////// GETTERS ///////////////////////////////////
 ParticleModel::EmitterTypes ParticleModel::getEmitterType()
@@ -116,9 +164,24 @@ core::vector3df ParticleModel::getPosition()
 	return this->position;
 }
 
+core::vector3df ParticleModel::getCenter()
+{
+	return this->center;
+}
+
+core::vector3df ParticleModel::getNormal()
+{
+	return this->normal;
+}
+
 s32 ParticleModel::getMaxAngleDegrees()
 {
 	return this->maxAngleDegrees;
+}
+
+s32 ParticleModel::getMbNumber()
+{
+	return this->mbNumber;
 }
 
 u32 ParticleModel::getLifeTimeMax()
@@ -139,6 +202,26 @@ u32 ParticleModel::getMaxPPS()
 u32 ParticleModel::getMinPPS()
 {
 	return this->minPPS;
+}
+
+f32 ParticleModel::getNormalDirectionModifier()
+{
+	return this->normalDirectionModifier;
+}
+
+f32 ParticleModel::getRadius()
+{
+	return this->radius;
+}
+
+f32 ParticleModel::getLengthCylinder()
+{
+	return this->lengthCylinder;
+}
+
+f32 ParticleModel::getRingThickness()
+{
+	return this->ringThickness;
 }
 
 core::stringc ParticleModel::getPathNameTexture()
@@ -166,6 +249,20 @@ core::dimension2df ParticleModel::getMaxStartSize()
 	return this->maxStartSize;
 }
 
+bool ParticleModel::getUseNormalDirection()
+{
+	return this->useNormalDirection;
+}
+
+bool ParticleModel::getEveryMeshVertex()
+{
+	return this->everyMeshVertex;
+}
+
+bool ParticleModel::getOutLineOnly()
+{
+	return this->outlineOnly;
+}
 
 ParticleModel::~ParticleModel(void)
 {
