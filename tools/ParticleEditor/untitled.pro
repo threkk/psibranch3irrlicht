@@ -13,8 +13,13 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp\
+        ..\..\source\Irrlicht\ParticleModel.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h\
+        ..\..\include\ParticleModel.h
 
 FORMS    += mainwindow.ui
+
+INCLUDEPATH += ..\..\include
+LIBS += -L..\..\bin\Win32-VisualStudio -lIrrlicht

@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "ParticleModel.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -6,6 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+}
+
+void MainWindow::setParticleModel(ParticleModel* model)
+{
+    this->model = model;
 }
 
 MainWindow::~MainWindow()
