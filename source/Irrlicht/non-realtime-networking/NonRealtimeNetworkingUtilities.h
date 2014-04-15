@@ -70,7 +70,7 @@ namespace irrlicht_nonrealtimenetworking {
 		int establishConnection(char* gameName, int portNo);
 		void registerOnTheServer();
 		char* getOpponentsIpAddress();
-		std::vector<std::string> getGamesList();
+		char** getGamesList();
 		void setGameName(char* gameName);
 		int getSessionId() { return sessionId; };
 		void initializeWS(char* masterServerHostAddress);
