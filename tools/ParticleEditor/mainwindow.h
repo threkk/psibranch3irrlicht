@@ -21,6 +21,14 @@ public:
 private slots:
     void on_lineEdit_name_textChanged(const QString &arg1);
 
+    void on_actionSave_XML_triggered();
+
+    void on_lineEdit_Direction_X_textChanged(const QString &arg1);
+
+    void on_lineEdit_Direction_Y_textChanged(const QString &arg1);
+
+    void on_lineEdit_Direction_Z_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     ParticleModel* model;

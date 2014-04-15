@@ -24,32 +24,12 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_Scale">
-    <property name="geometry">
-     <rect>
-      <x>692</x>
-      <y>135</y>
-      <width>91</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>692</x>
-      <y>180</y>
-      <width>91</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_3">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>205</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -57,43 +37,11 @@
    <widget class="QLineEdit" name="lineEdit_4">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>230</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Scale">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>135</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Scale</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>180</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Direction</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -131,9 +79,9 @@
    <widget class="QLineEdit" name="lineEdit_5">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>255</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -141,9 +89,9 @@
    <widget class="QLineEdit" name="lineEdit_6">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>280</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -249,9 +197,9 @@
    <widget class="QLineEdit" name="lineEdit_7">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>305</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -259,9 +207,9 @@
    <widget class="QLineEdit" name="lineEdit_8">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>330</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -269,9 +217,9 @@
    <widget class="QLineEdit" name="lineEdit_9">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>355</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -279,9 +227,9 @@
    <widget class="QLineEdit" name="lineEdit_10">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>380</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -289,9 +237,9 @@
    <widget class="QLineEdit" name="lineEdit_name">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>60</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -312,27 +260,20 @@
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_Position">
+   <widget class="QLineEdit" name="lineEdit_Direction_X">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>85</y>
-      <width>91</width>
+      <width>30</width>
       <height>20</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Rotation">
-    <property name="geometry">
-     <rect>
-      <x>692</x>
-      <y>110</y>
-      <width>91</width>
-      <height>20</height>
-     </rect>
+    <property name="placeholderText">
+     <string>X</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_Position">
+   <widget class="QLabel" name="label_Direction">
     <property name="geometry">
      <rect>
       <x>565</x>
@@ -342,23 +283,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Position</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Rotation">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>110</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Rotation</string>
+     <string>Direction</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -431,9 +356,9 @@
    <widget class="QLineEdit" name="lineEdit_14">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>405</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -441,9 +366,9 @@
    <widget class="QLineEdit" name="lineEdit_15">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>430</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -451,9 +376,9 @@
    <widget class="QLineEdit" name="lineEdit_16">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>455</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -461,9 +386,9 @@
    <widget class="QLineEdit" name="lineEdit_17">
     <property name="geometry">
      <rect>
-      <x>692</x>
+      <x>682</x>
       <y>480</y>
-      <width>91</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
@@ -530,6 +455,35 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Direction_Y">
+    <property name="geometry">
+     <rect>
+      <x>717</x>
+      <y>85</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Direction_Z">
+    <property name="geometry">
+     <rect>
+      <x>753</x>
+      <y>85</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
+    <property name="placeholderText">
+     <string>Z</string>
     </property>
    </widget>
   </widget>

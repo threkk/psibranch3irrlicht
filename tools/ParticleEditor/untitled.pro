@@ -11,13 +11,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = untitled
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    ParticleModel.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    ParticleModel.h
 
 FORMS    += mainwindow.ui
 
 INCLUDEPATH += ..\..\include
-LIBS += -L..\..\bin\Win32-VisualStudio -lIrrlicht
+LIBS += -L..\..\lib\Win32-visualstudio -lIrrlicht
+
