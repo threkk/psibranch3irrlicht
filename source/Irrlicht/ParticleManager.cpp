@@ -7,7 +7,7 @@ ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevic
 	smgr = sManager;
 }
 
-IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName)
+IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName,IAnimatedMesh* animatedMesh, IMesh* mesh)
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	particleNode->setScale(core::vector3df(0.5f, 0.5f,0.5f));
@@ -26,13 +26,13 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 		createPointEmittingParticle(model,particleNode);
 		break;
 	case(model->ANIMATED_MESH):
-		createAnimatedMeshEmittingParticle(model,particleNode);
+		createAnimatedMeshEmittingParticle(model,particleNode,animatedMesh);
 		break;
 	case(model->CYLINDER):
 		createCylinderEmittingParticle(model,particleNode);
 		break;
 	case(model->MESH):
-		createMeshEmittingParticle(model,particleNode);
+		createMeshEmittingParticle(model,particleNode,mesh);
 		break;
 	case(model->RING):
 		createRingEmittingParticle(model,particleNode);
@@ -46,7 +46,7 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	return particleNode;
 }
 
-IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(core::stringc xmlName, vector3df position)
+IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(core::stringc xmlName, vector3df position,IAnimatedMesh* animatedMesh, IMesh* mesh)
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	//TODO: when the parser is there this is the function that needs to be used instead of the dataModel
