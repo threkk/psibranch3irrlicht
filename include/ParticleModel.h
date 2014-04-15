@@ -9,18 +9,21 @@ using namespace irr;
 class IRRLICHT_API ParticleModel
 {
 	/**
-	*	This class is used to store every attribute that is needed to create a particle. You can store them manually by setting every property
-	*	Or you can use the xml that is created from the editor to get all the attributes that are stored into that xml and put it into
-	*	this particlemodel.(this latter isn't implemented yet, that will be implemented next sprint)
+	*This class is used to store every attribute that is needed to create a particle.
+	*You can store them manually by setting every property
+	*Or you can use the xml that is created from the editor
+	*to get all the attributes that are stored into that xml and put it into
+	*this particlemodel.(this latter isn't implemented yet, that will be implemented next sprint)
 	*/
 public:
 	/**
-	*	The default constructor
+	*The default constructor
 	*/
 	ParticleModel();
 
 	/**
-	*	EmitterTypes are used to identify which emitter is needed to create in the ParticleManager class
+	*EmitterTypes are used to identify which emitter
+	*is needed to create in the ParticleManager class
 	*/
 	enum EmitterTypes
 	{
@@ -35,7 +38,7 @@ public:
 	};
 
 	/**
-	*	Setters for setting all the properties that are used for the particle
+	*Setters for setting all the properties that are used for the particle
 	*/
 	void setEmitterType(EmitterTypes emitterType);
 	void setAabbox(core::aabbox3df aabbox);
@@ -63,7 +66,7 @@ public:
 	void setOutLineOnly(bool outlineOnly);
 
 	/**
-	*	Getters from all the properties
+	*Getters from all the properties
 	*/
 	EmitterTypes getEmitterType();
 	core::aabbox3df getAabbox();
@@ -91,14 +94,14 @@ public:
 	bool getOutLineOnly();
 	
 	/**
-	*	Deconstructor
+	*Deconstructor
 	*/
 	~ParticleModel(void);
 
 private:
 
 	/**
-	*	the variables that are used for the particle
+	*the variables that are used for the particle
 	*/
 	EmitterTypes emitterType;
 	core::aabbox3df aabbox;
