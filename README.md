@@ -48,8 +48,8 @@ Code must be documented. For additional documentation, use the wiki. After each 
 * Andreas Savva - @savvaa001
 
 #### Team 12
-* **Sandro Miccoli** - @sandromiccoli
+* **Philip HeimbÃ¶ck** - @philipheimboeck
 * Rob van Diepen - @rmvandiepen
-* Philip Heimböck - @philipheimboeck
-* José Manuel Carmona Roldán - 
+* JosÃ© Manuel Carmona RoldÃ¡n - 
 * Merlijn Blekemolen - @merlijnblekemolen
+* ~~Sandro Miccoli - @sandromiccoli~~

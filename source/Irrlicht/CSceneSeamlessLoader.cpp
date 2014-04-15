@@ -1,5 +1,4 @@
 #include "ISceneSeamlessLoader.h"
-#ifdef _IRR_CSCENE_SEAMLESS_LOADER
 
 //! Constructor
 ISceneSeamlessLoader::ISceneSeamlessLoader(scene::ISceneManager* smgr) 
@@ -83,4 +82,3 @@ void ISceneSeamlessLoader::setScene(int sceneIndex)
 		return ;
 	}
 }
-#endif
