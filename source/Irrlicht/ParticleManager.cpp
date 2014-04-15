@@ -7,7 +7,7 @@ ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevic
 	smgr = sManager;
 }
 
-IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName,IAnimatedMesh* animatedMesh = NULL, IMesh* mesh = NULL)
+IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName,IAnimatedMesh* animatedMesh, IMesh* mesh)
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	particleNode->setScale(core::vector3df(0.5f, 0.5f,0.5f));
