@@ -333,7 +333,7 @@
     </ProjectReference>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\bin\Win32-visualstudio\Irrlicht.dll</OutputFile>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libci.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -1008,6 +1008,11 @@
     <ClInclude Include="CMeshManipulator.h" />
     <ClInclude Include="COpenGLCgMaterialRenderer.h" />
     <ClInclude Include="CSceneManager.h" />
+    <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h" />
+    <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingUtilities.h" />
+    <ClInclude Include="non-realtime-networking\SOAP\soapH.h" />
+    <ClInclude Include="non-realtime-networking\SOAP\soapStub.h" />
+    <ClInclude Include="non-realtime-networking\SOAP\stdsoap2.h" />
     <ClInclude Include="Octree.h" />
     <ClInclude Include="CSMFMeshFileLoader.h" />
     <ClInclude Include="C3DSMeshFileLoader.h" />
@@ -1247,6 +1252,7 @@
   <ItemGroup>
     <None Include="..\..\changes.txt" />
     <None Include="..\..\readme.txt" />
+    <None Include="non-realtime-networking\SOAP\GameWSSoap.nsmap" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI\Detectable.cpp" />
@@ -1423,6 +1429,10 @@
     <ClCompile Include="CLogger.cpp" />
     <ClCompile Include="COSOperator.cpp" />
     <ClCompile Include="Irrlicht.cpp" />
+    <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp" />
+    <ClCompile Include="non-realtime-networking\SOAP\soapC.cpp" />
+    <ClCompile Include="non-realtime-networking\SOAP\soapClient.cpp" />
+    <ClCompile Include="non-realtime-networking\SOAP\stdsoap2.cpp" />
     <ClCompile Include="os.cpp" />
     <ClCompile Include="lzma\LzmaDec.c" />
     <ClCompile Include="ParticleManager.cpp" />
