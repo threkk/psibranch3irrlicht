@@ -18,46 +18,53 @@ namespace irrlicht_nonrealtimenetworking {
 	class IRRLICHT_API NonRealtimeNetworkingUtilities {
 	
 	private:
+		// WinSock attributes
 		SOCKET s;
-		char* buffer;
-		int portNumber;
 		WSADATA wsaData;
 
-		// Web Service
+		// Web Service attributes
 		char* webServiceAddress; // Address of the master server
 		struct soap* soap; // Struct needed for SOAP
 		char* gameName; // Name of the game being played
 		int sessionId; // Player's ID
 
+		// Common attributes
+		char* buffer;
+		int portNumber;
+
+		// WinSock methods
 		void checkVersion();
 
-		// Web Service
-		void checkSOAP();
+		// Web Service methods
+		void checkSOAP();		
+
+		// Common methods
 		void validateIpAddress(char* ipAddress);
 
 	public:
+		// Constructors
 		NonRealtimeNetworkingUtilities() { this->portNumber = PORT_NUMBER; };
 		NonRealtimeNetworkingUtilities(int portNumber) { this->portNumber = portNumber; };
 		NonRealtimeNetworkingUtilities(char* masterServerHostAddress);
 		~NonRealtimeNetworkingUtilities();
 		
-		// server 
+		// WinSock server 
 		void openServerSocket();
 		void acceptClient();
 		void hostGame(int portNo);
 
-		// client
+		// WinSock client
 		void openClientSocket(char* ipAddress);
 		void joinGame(char* ipAddress, int portNo);
 
-		// send/receive
+		// WinSock send/receive
 		void sendData();
 		void receiveData();
 
-		// terminate
+		// WinSock terminate
 		void closeConnection();
 
-		// getters/setters
+		// Common getters/setters
 		void setBuffer(char* buffer);
 		char* getBuffer() { return buffer; };
 		void setPortNumber(int portNumber);
@@ -66,7 +73,7 @@ namespace irrlicht_nonrealtimenetworking {
 		// WinSock Errors
 		int getWSALastError() { return WSAGetLastError(); };
 
-		// Web Service
+		// Web Service methods
 		int establishConnection(char* gameName, int portNo);
 		void registerOnTheServer();
 		char* getOpponentsIpAddress();
