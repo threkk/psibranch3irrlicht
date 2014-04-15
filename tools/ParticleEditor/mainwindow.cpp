@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "ParticleModel.h"
+#include <ParticleModel.h>
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :

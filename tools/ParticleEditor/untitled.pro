@@ -13,11 +13,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp\
-        ..\..\source\Irrlicht\ParticleModel.cpp
+        mainwindow.cpp
 
-HEADERS  += mainwindow.h\
-        ..\..\include\ParticleModel.h
+HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 

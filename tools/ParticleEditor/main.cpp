@@ -1,16 +1,18 @@
 #include "mainwindow.h"
-#include "ParticleModel.h"
+#include <irrlicht.h>
+#include <ParticleModel.h>
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    ParticleModel* m = new ParticleModel();
+    irr::core::vector3df test;
+    ParticleModel m;
 
     MainWindow w;
     w.show();
-    w.setParticleModel (m);
+   // w.setParticleModel (m);
 
     return a.exec();
 }
