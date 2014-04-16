@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>110</y>
+      <y>125</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -40,21 +40,11 @@
      <string>Degrees</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>230</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_Angle">
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>110</y>
+      <y>125</y>
       <width>120</width>
       <height>16</height>
      </rect>
@@ -66,27 +56,11 @@
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>230</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>EmmitArea</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_Lifetime_Min">
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>135</y>
+      <y>150</y>
       <width>47</width>
       <height>20</height>
      </rect>
@@ -102,7 +76,7 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>135</y>
+      <y>150</y>
       <width>120</width>
       <height>16</height>
      </rect>
@@ -114,12 +88,12 @@
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="comboBox_EmitterType">
     <property name="geometry">
      <rect>
-      <x>692</x>
-      <y>20</y>
-      <width>91</width>
+      <x>680</x>
+      <y>60</y>
+      <width>100</width>
       <height>22</height>
      </rect>
     </property>
@@ -140,7 +114,7 @@
     </item>
     <item>
      <property name="text">
-      <string>Animated_Mesh</string>
+      <string>Animated Mesh</string>
      </property>
     </item>
     <item>
@@ -167,9 +141,9 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>565</x>
-      <y>20</y>
-      <width>111</width>
+      <x>560</x>
+      <y>60</y>
+      <width>110</width>
       <height>20</height>
      </rect>
     </property>
@@ -180,51 +154,11 @@
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_7">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>305</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_8">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>330</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_9">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>355</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_10">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>380</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_name">
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>60</y>
+      <y>20</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -234,7 +168,7 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>60</y>
+      <y>20</y>
       <width>120</width>
       <height>16</height>
      </rect>
@@ -250,7 +184,7 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>85</y>
+      <y>100</y>
       <width>30</width>
       <height>20</height>
      </rect>
@@ -263,7 +197,7 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>85</y>
+      <y>100</y>
       <width>120</width>
       <height>16</height>
      </rect>
@@ -275,27 +209,11 @@
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>305</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MaxParticles</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_PPS">
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>160</y>
+      <y>175</y>
       <width>120</width>
       <height>16</height>
      </rect>
@@ -307,137 +225,17 @@
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>355</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MaxParticlesPerSecond</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_14">
+   <widget class="QLabel" name="label_Min_Color">
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>185</y>
+      <y>200</y>
       <width>120</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>MinStartColor</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_14">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>405</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_15">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>430</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_16">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>455</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_17">
-    <property name="geometry">
-     <rect>
-      <x>682</x>
-      <y>480</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_15">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>405</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MinStartSize.X</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_16">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>430</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MinStartSize.Y</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>455</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MaxStartSize.X</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_18">
-    <property name="geometry">
-     <rect>
-      <x>565</x>
-      <y>480</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>MaxStartSize.Y</string>
+     <string>Start color</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -447,7 +245,7 @@
     <property name="geometry">
      <rect>
       <x>715</x>
-      <y>85</y>
+      <y>100</y>
       <width>30</width>
       <height>20</height>
      </rect>
@@ -460,7 +258,7 @@
     <property name="geometry">
      <rect>
       <x>750</x>
-      <y>85</y>
+      <y>100</y>
       <width>30</width>
       <height>20</height>
      </rect>
@@ -476,7 +274,7 @@
     <property name="geometry">
      <rect>
       <x>733</x>
-      <y>135</y>
+      <y>150</y>
       <width>47</width>
       <height>20</height>
      </rect>
@@ -489,7 +287,7 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>160</y>
+      <y>175</y>
       <width>47</width>
       <height>20</height>
      </rect>
@@ -505,7 +303,7 @@
     <property name="geometry">
      <rect>
       <x>733</x>
-      <y>160</y>
+      <y>175</y>
       <width>47</width>
       <height>20</height>
      </rect>
@@ -518,21 +316,20 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>190</y>
+      <y>200</y>
       <width>47</width>
       <height>20</height>
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">* { background-color: rgb(0, 206, 216);
-alternate-background-color: rgb(134, 255, 172);
-}</string>
+     <string notr="true">background-color: rgb(0, 206, 216);
+border: 0;text-align:left;padding-left:5px;</string>
     </property>
     <property name="text">
-     <string/>
+     <string>Min</string>
     </property>
     <property name="default">
      <bool>false</bool>
@@ -541,11 +338,11 @@ alternate-background-color: rgb(134, 255, 172);
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="pushButton_Color_Max">
     <property name="geometry">
      <rect>
       <x>733</x>
-      <y>190</y>
+      <y>200</y>
       <width>47</width>
       <height>20</height>
      </rect>
@@ -554,21 +351,110 @@ alternate-background-color: rgb(134, 255, 172);
      <enum>Qt::StrongFocus</enum>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">* { background-color: rgb(0, 206, 216);
-alternate-background-color: rgb(134, 255, 172);
-}</string>
+     <string notr="true">background-color: rgb(0, 206, 216);
+border: 0;text-align:left;padding-left:5px;</string>
     </property>
     <property name="text">
-     <string/>
+     <string>Max</string>
     </property>
     <property name="default">
      <bool>false</bool>
     </property>
     <property name="flat">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_MinStartSize">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>225</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Min start size</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MinStartSize_Y">
+    <property name="geometry">
+     <rect>
+      <x>733</x>
+      <y>225</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MinStartSize_X">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>225</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_MaxStartSize">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>250</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Max start size</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MaxStartSize_X">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>250</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MaxStartSize_Y">
+    <property name="geometry">
+     <rect>
+      <x>733</x>
+      <y>250</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Y</string>
     </property>
    </widget>
   </widget>

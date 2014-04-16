@@ -21,21 +21,21 @@ public:
 	*/
 	ParticleModel();
 
-	/**
-	*EmitterTypes are used to identify which emitter
-	*is needed to create in the ParticleManager class
-	*/
-	enum EmitterTypes
-	{
-		NONE = 0,
-		BOX,
-		POINT,
-		ANIMATED_MESH,
-		CYLINDER,
-		MESH,
-		RING,
-		SPHERE
-	};
+    /**
+    *EmitterTypes are used to identify which emitter
+    *is needed to create in the ParticleManager class
+    */
+    enum EmitterTypes
+    {
+        NONE = 0,
+        BOX = 1,
+        POINT = 2,
+        ANIMATED_MESH = 3,
+        CYLINDER = 4,
+        MESH = 5,
+        RING = 6,
+        SPHERE = 7
+    };
 
 	/**
 	*Setters for setting all the properties that are used for the particle

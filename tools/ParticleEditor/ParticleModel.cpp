@@ -79,7 +79,7 @@ void ParticleModel::setMaxPPS(u32 maxPPS)
 	this->maxPPS = maxPPS;
 }
 
-void ParticleModel::setMinPPS(u32 minPPs)
+void ParticleModel::setMinPPS(u32 minPPS)
 {
 	this->minPPS = minPPS;
 }
