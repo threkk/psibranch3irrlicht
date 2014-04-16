@@ -1011,6 +1011,7 @@
     <ClInclude Include="CMeshManipulator.h" />
     <ClInclude Include="COpenGLCgMaterialRenderer.h" />
     <ClInclude Include="CSceneManager.h" />
+    <ClInclude Include="ILiving.h" />
     <ClInclude Include="Octree.h" />
     <ClInclude Include="CSMFMeshFileLoader.h" />
     <ClInclude Include="C3DSMeshFileLoader.h" />

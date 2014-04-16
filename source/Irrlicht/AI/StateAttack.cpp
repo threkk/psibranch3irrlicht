@@ -2,7 +2,7 @@
 
 
 
-StateAttack::StateAttack(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr,
+StateAttack::StateAttack(Detectable* stateOwner, ILiving* target, irr::scene::ISceneManager* sceneMgr,
 	std::function<void(void*)> callbackFunction, void* callbackParameter)
 {
 	this->owner = stateOwner;
