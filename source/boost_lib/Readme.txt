@@ -1,0 +1,1 @@
+Here you should put the content of the root folder of boost. If you don't want to put the whole library here you can extract just the parts that you need using the bcp utility provided by boost.

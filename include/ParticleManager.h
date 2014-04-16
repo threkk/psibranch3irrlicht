@@ -37,7 +37,7 @@ public:
 	*IMesh* mesh is used if you want to create a mesh particle, but it isnt
 	*necessary.
 	*/
-	IParticleSystemSceneNode* spawnDataModelParticle(ParticleModel* model, vector3df position, core::stringc pathName, IAnimatedMesh* animatedMesh, IMesh* mesh);
+	IParticleSystemSceneNode* spawnDataModelParticle(ParticleModel* model, vector3df position, core::stringc pathName, IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
 
 	/**
 	*This function returns a pointer to IParticleSystemSceneNode
@@ -51,7 +51,7 @@ public:
 	*IMesh* mesh is used if you want to create a mesh particle, but it isnt
 	*necessary.
 	*/
-	IParticleSystemSceneNode* spawnXMLParticle(core::stringc xmlName, vector3df position,IAnimatedMesh* animatedMesh, IMesh* mesh);
+	IParticleSystemSceneNode* spawnXMLParticle(core::stringc xmlName, vector3df position,IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
 
 	/**
 	*The deconstructor

@@ -28,7 +28,7 @@ namespace scene
      *
      * For more information about the .irr files, read tutorial number 15.
      */
-	class ISceneSeamlessLoader 
+	class IRRLICHT_API ISceneSeamlessLoader 
 	{
 	private:
         /**
@@ -69,21 +69,21 @@ namespace scene
          * \return The index in the vector. Needed to switch to the scene. -1 if
          * error.
          */
-		virtual int preloadScene(irr::io::path uriToNewScene);
+		int preloadScene(irr::io::path uriToNewScene);
         /**
          * This method unloads a scene from the cache. All the resources will be
          * dropped if they are not used by other scene.
          * \param sceneIndex Position in the vector to the scene to be unload.
          * \return true if dropped.
          */
-		virtual bool dropPreloadedScene(int sceneIndex);
+		bool dropPreloadedScene(int sceneIndex);
         /**
          * This method switches from the current scene to a scene that is
          * already preloaded. The scene manager will not change but the scene
          * will be the new one.
          * \param sceneIndex Position in the vector of the scene.
          */
-		virtual void setScene(int sceneIndex);
+		void setScene(int sceneIndex);
 	};
 } //! end namespace scene
 } //! end namespace irr 

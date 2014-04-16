@@ -51,7 +51,7 @@ public:
 	void setLifeTimeMax(u32 lifeTimeMax);
 	void setLifeTimeMin(u32 lifeTimeMin);
 	void setMaxPPS(u32 maxPPS);
-	void setMinPPS(u32 minPPs);
+	void setMinPPS(u32 minPPS);
 	void setNormalDirectionModifier(f32 normalDirectionModifier);
 	void setRadius(f32 radius);
 	void setLengthCylinder(f32 lengthCylinder);
