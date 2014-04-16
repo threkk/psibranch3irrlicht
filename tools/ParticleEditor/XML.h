@@ -2,13 +2,14 @@
 #define XML_H
 #include <QVariant>
 #include <QString>
+#include <ParticleModel.h>
 #include<QXmlStreamReader>
 
 class XML
 {
 public:
     XML();
-    void SaveXML();
+    void SaveXML(ParticleModel* model);
     ~XML();
 private:
     QString filename;
