@@ -19,9 +19,14 @@ public:
     ~MainWindow();
 
 private slots:
+
+    // TODO: save the name of the model when this changes
     void on_lineEdit_name_textChanged(const QString &arg1);
 
+    // On click of the save xml menu item
     void on_actionSave_XML_triggered();
+
+    /** Events for changes of values in the gui **/
 
     void on_lineEdit_Direction_X_textChanged(const QString &arg1);
 
@@ -53,8 +58,14 @@ private slots:
 
     void on_comboBox_EmitterType_currentIndexChanged(int index);
 
+    /** End events of changes in the gui **/
+
 private:
+
+    // The window
     Ui::MainWindow *ui;
+
+    // The particle model
     ParticleModel* model;
 };
 

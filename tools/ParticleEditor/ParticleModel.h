@@ -1,3 +1,9 @@
+/**
+ * This is a copy of the particle model in the original irrlicht folder
+ * this is because we didnt manage to include the files correctly
+ * TODO: fix this
+ */
+
 #ifndef PARTICLEMODEL_H_
 #define PARTICLEMODEL_H_
 
