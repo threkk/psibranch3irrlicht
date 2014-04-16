@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 
     ParticleModel* m = new ParticleModel();
 
+
     MainWindow w;
     w.show();
     w.setParticleModel (m);

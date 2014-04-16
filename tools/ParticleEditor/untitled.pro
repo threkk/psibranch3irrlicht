@@ -13,10 +13,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    ParticleModel.cpp
+    ParticleModel.cpp \
+    XML.cpp
 
 HEADERS  += mainwindow.h \
-    ParticleModel.h
+    ParticleModel.h \
+    XML.h
 
 FORMS    += mainwindow.ui
 

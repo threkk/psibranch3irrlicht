@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <ParticleModel.h>
 #include "ui_mainwindow.h"
+#include "XML.h"
 #include <iostream>
 #include <QColorDialog>
 
@@ -31,6 +32,8 @@ void MainWindow::on_actionSave_XML_triggered()
 {
     std::cout << "Save to xml: " << std::endl;
     std::cout << " " << model->toString() << " " << std::endl;
+    XML xml;
+    xml.SaveXML();
 }
 
 void MainWindow::on_lineEdit_Direction_X_textChanged(const QString &arg1)
