@@ -4,34 +4,36 @@
 #include "ui_mainwindow.h"
 #include <iostream>
 #include <QFile>
-#include <QXmlStreamWriter>
-#include <QDataStream>
-#include <QTextStream>
-#include <QPushButton>
-#include <QIcon>
-#include<QString>
-#include<QComboBox>
-#include<QFileDialog>
-#include<iostream>
-#include<QMessageBox>
+#include <QString>
+#include <QFileDialog>
+#include <iostream>
 
-XML::XML(){
 
+XML::XML()
+{
 }
-
 
 void XML::SaveXML(ParticleModel* model)
 {
-    //std::cout << "type: "<< model->getPathNameTexture() << std::endl;
+    //Set location and the name of the XML file
     filename = QFileDialog::getSaveFileName(0,"Save Xml", ".",
                                             "Xml files (*.xml)");
+    //Check of the file is made
     if ( filename.isEmpty() )
         return;
+
+    //Create the file
     QFile file(filename);
+    std::cout << "File: "<< filename.toUtf8().constData() << std::endl;
+
+    //Open the file
     file.open(QIODevice::WriteOnly);
 
+    //Start Write the file
     QXmlStreamWriter xmlWriter(&file);
+    //Set format in XML
     xmlWriter.setAutoFormatting(true);
+    //Set data in XML from ParticleModel
     xmlWriter.writeStartDocument();
 
     xmlWriter.writeStartElement("Particle");
@@ -75,11 +77,7 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeStartElement("AngleDegrees");
     xmlWriter.writeTextElement("Max",QString::number(model->getMaxAngleDegrees()));
     xmlWriter.writeEndElement();
-/**
-    xmlWriter.writeStartElement("MbNumber");
-    xmlWriter.writeTextElement("MbNumber",QString::number(model->getgetMbNumber()));
-    xmlWriter.writeEndElement();
-*/
+
     xmlWriter.writeStartElement("LifeTime");
     xmlWriter.writeTextElement("Max",QString::number(model->getLifeTimeMax()));
     xmlWriter.writeTextElement("Min",QString::number(model->getLifeTimeMin()));
@@ -120,6 +118,7 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeTextElement("PathName","TODO: Set PathNameTexture");
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeTextElement("MbNumber",QString::number(model->getMbNumber()));
     xmlWriter.writeTextElement("NormalDirectionModifier",QString::number(model->getNormalDirectionModifier()));
     xmlWriter.writeTextElement("Radius",QString::number(model->getRadius()));
     xmlWriter.writeTextElement("LengthCylinder",QString::number(model->getLengthCylinder()));
@@ -130,8 +129,9 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
 
+    //Close the file
     file.close();
 }
-XML::~XML(){
-
+XML::~XML()
+{
 }

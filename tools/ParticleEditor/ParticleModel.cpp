@@ -25,6 +25,7 @@ ParticleModel::ParticleModel()
     outlineOnly = false;
     everyMeshVertex = false;
     useNormalDirection = false;
+    mbNumber = 0;
 }
 ////////////////////////// SETTERS ///////////////////////////////////
 void ParticleModel::setEmitterType(EmitterTypes emitterType)

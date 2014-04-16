@@ -1,19 +1,28 @@
 #ifndef XML_H
 #define XML_H
-#include <QVariant>
 #include <QString>
 #include <ParticleModel.h>
-#include<QXmlStreamReader>
+#include <QXmlStreamReader>
 
 class XML
 {
 public:
+    /**
+     * Create a constructor XML
+     */
     XML();
+
+    /**
+     * Save the model in XML function
+     */
     void SaveXML(ParticleModel* model);
+
     ~XML();
 private:
+    /**
+     * URL/Link to the file
+     */
     QString filename;
-    QXmlStreamReader Rxml;
 };
 
 #endif // XML_H
