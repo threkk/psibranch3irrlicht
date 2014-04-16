@@ -5,7 +5,7 @@ StateInvestigatePoint::StateInvestigatePoint(Detectable* stateOwner, irr::core::
 	IPathfinding* pathUtil, StateMachine* stateMachine)
 {
 	this->stateOwner = stateOwner;
-	this->point = point;
+	//this->point = point;
 	this->attentionSpan = attentionSpan;
 	this->visionLength = visionLength;
 	this->sceneManager = sceneManager;
@@ -30,14 +30,15 @@ bool StateInvestigatePoint::executeable(void)
 
 void StateInvestigatePoint::enter()
 {
+	printf("StateInvestigatePoint::enter(): point at %f, %f, %f\n", point.X, point.Y, point.Z);
+
 	now = then = device->getTimer()->getTime();
 	timer = 0;
-	//printf("StateInvestigatePoint::enter()\n");
 }
 
 void StateInvestigatePoint::exit()
 {
-	//printf("StateInvestigatePoint::exit()\n");
+	printf("StateInvestigatePoint::exit()\n");
 }
 
 void StateInvestigatePoint::action()
@@ -57,9 +58,10 @@ void StateInvestigatePoint::action()
 	//printf("stateOwner -> collision point distance: %f\n", stateOwner->getPosition().getDistanceFrom(collisionPoint));
 
 	//if (collisionPoint.getDistanceFrom(*point) <= 50)
-	if (stateOwner->getPosition().getDistanceFrom(*point) <= visionLength / 2)
+
+	if (stateOwner->getPosition().getDistanceFrom(point) <= visionLength / 2)
 	{
-		callbackFunction(&std::make_pair(true, point));
+		callbackFunction(&std::make_pair(true, &point));
 
 		timer += frameDeltaTime;
 
@@ -72,11 +74,11 @@ void StateInvestigatePoint::action()
 	}
 	else
 	{
-		std::vector<irr::core::vector3df> path = pathUtil->returnPath(&this->stateOwner->getPosition(), point);
+		std::vector<irr::core::vector3df> path = pathUtil->returnPath(&this->stateOwner->getPosition(), &point);
 
 		if (!path.empty())
 		{
-			if (this->stateOwner->getPosition().getDistanceFrom(*point) > 100)
+			if (this->stateOwner->getPosition().getDistanceFrom(point) > 100)
 			{
 				callbackFunction(&std::make_pair(false, &path.at(1)));
 			}

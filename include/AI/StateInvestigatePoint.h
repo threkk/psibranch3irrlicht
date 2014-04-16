@@ -14,15 +14,15 @@ public:
 	~StateInvestigatePoint(void);
 
 	/** Inherited methods **/
-	virtual bool executeable(void);
-	virtual void enter();
-	virtual void exit();
+	bool executeable(void);
+	void enter();
+	void exit();
 protected:
 	// The owner of the state
 	Detectable* stateOwner;
 
 	// The point to visit
-	irr::core::vector3df* point;
+	irr::core::vector3df point;
 
 	// The state machine
 	StateMachine* stateMachine;

@@ -1,11 +1,11 @@
 #include "ai/StateFollowRoute.h"
 
 
-StateFollowRoute::StateFollowRoute(Detectable* stateOwner, std::vector<std::pair<irr::core::vector3df*, float>>* route, IrrlichtDevice* device,
-	IPathfinding* pathUtil, std::function<void(irr::core::vector3df*)> callbackFunction)
+StateFollowRoute::StateFollowRoute(Detectable* stateOwner, std::vector<std::pair<irr::core::vector3df, float>>* route, IrrlichtDevice* device,
+	IPathfinding* pathUtil, std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction)
 {
-	this->owner = stateOwner;
-	this->route = route;
+	this->stateOwner = stateOwner;
+	this->route = *route;
 	this->device = device;
 	this->pathUtil = pathUtil;
 
@@ -27,19 +27,22 @@ bool StateFollowRoute::executeable(void)
 
 void StateFollowRoute::enter()
 {
+	printf("StateFollowRoute::enter()\n");
+
 	now = then = device->getTimer()->getTime();
 	timer = 0;
 
 	// Determine closest point in route
 	float nearestPointDistance = FLT_MAX;
 
-	for (unsigned int i = 1; i < route->size(); i++)
+	for (unsigned int i = 0; i < route.size(); i++)
 	{
 		float pathDistance = 0;
 
-		std::vector<irr::core::vector3df> path = pathUtil->returnPath(&owner->getPosition(), route->begin()->first);
+		std::vector<irr::core::vector3df> path = pathUtil->returnPath(&stateOwner->getPosition(), &route.at(i).first);
 		for (unsigned int j = 1; j < path.size(); j++)
 		{
+			//printf("dist path[%i]->path[%i]: %f\n", j-1, j, path.at(j-1).getDistanceFrom(path.at(j)));
 			pathDistance += path.at(j-1).getDistanceFrom(path.at(j));
 		}
 
@@ -55,6 +58,7 @@ void StateFollowRoute::enter()
 
 void StateFollowRoute::exit()
 {
+	printf("StateFollowRoute::exit()\n");
 }
 
 void StateFollowRoute::action()
@@ -62,30 +66,36 @@ void StateFollowRoute::action()
 	updateDeltaTime();
 
 	// Get a path from the state owner's position to the first point in the route
-	std::vector<irr::core::vector3df> path = pathUtil->returnPath(&owner->getPosition(), route->at(pointToVisit).first);
+	std::vector<irr::core::vector3df> path = pathUtil->returnPath(&stateOwner->getPosition(), &(route.at(pointToVisit).first));
 
 	// If there is a path to the next point
 	if (!path.empty() && path.size() > 1)
 	{
 		// Move to it
-		if (owner->getPosition().getDistanceFrom(path.at(1)) > 150)
+		if (stateOwner->getPosition().getDistanceFrom(path.at(1)) > 150)
 		{
 			// Call callback method
-			callbackFunction(&path.at(1));
+			callbackFunction(&std::make_pair(false, &path.at(1)));
 		}
 		// If the point is reached
 		else
 		{
+			callbackFunction(&std::make_pair(true, &path.at(1)));
+
 			//printf("%f, %f\n", timer, route.at(pointToVisit).second);
 			timer += frameDeltaTime;
 
-			if (timer >= route->at(pointToVisit).second)
+			if (timer >= route.at(pointToVisit).second)
 			{
-				++pointToVisit >= route->size() ? pointToVisit = 0 : NULL;
+				++pointToVisit >= route.size() ? pointToVisit = 0 : NULL;
 				timer = 0;
 			}
 		}
 	}
+	/*else
+	{
+		++pointToVisit >= route.size() ? pointToVisit = 0 : NULL;
+	}*/
 }
 
 void StateFollowRoute::updateDeltaTime()
