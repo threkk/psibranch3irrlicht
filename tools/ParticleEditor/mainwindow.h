@@ -29,6 +29,8 @@ private slots:
 
     void on_lineEdit_Direction_Z_textChanged(const QString &arg1);
 
+    void on_pushButton_Color_Min_clicked();
+
 private:
     Ui::MainWindow *ui;
     ParticleModel* model;
