@@ -2,6 +2,7 @@
 #include <ParticleModel.h>
 #include "ui_mainwindow.h"
 #include "XML.h"
+#include "Util.h"
 #include <iostream>
 #include <QColorDialog>
 
@@ -15,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::setParticleModel(ParticleModel* model)
 {
     this->model = model;
+    fillFields(model);
 }
 
 MainWindow::~MainWindow()
@@ -27,6 +29,57 @@ void MainWindow::on_lineEdit_name_textChanged(const QString &arg1)
     // TODO
 }
 
+/**
+ * @brief MainWindow::fillFields, fill fields of the gui with the values from the Particle Model
+ * @param model, Particle Model
+ */
+void MainWindow::fillFields (ParticleModel* model)
+{
+    QLineEdit* lineEdit_Direction_X = this->findChild<QLineEdit*>("lineEdit_Direction_X");
+    lineEdit_Direction_X->setText(QString::number((double) model->getDirection().X));
+
+    QLineEdit* lineEdit_Direction_Y = this->findChild<QLineEdit*>("lineEdit_Direction_Y");
+    lineEdit_Direction_Y->setText(QString::number((double) model->getDirection().Y));
+
+    QLineEdit* lineEdit_Direction_Z = this->findChild<QLineEdit*>("lineEdit_Direction_Z");
+    lineEdit_Direction_Z->setText(QString::number((double) model->getDirection().Z));
+
+    QPushButton* pushButton_Color_Min = this->findChild<QPushButton*>("pushButton_Color_Min");
+    setButtonColor (pushButton_Color_Min, Util::SColorToQColor(model->getMinStartColor()));
+
+    QPushButton* pushButton_Color_Max = this->findChild<QPushButton*>("pushButton_Color_Max");
+    setButtonColor (pushButton_Color_Max, Util::SColorToQColor(model->getMaxStartColor()));
+
+    QLineEdit* lineEdit_Angle = this->findChild<QLineEdit*>("lineEdit_Angle");
+    lineEdit_Angle->setText(QString::number((double) model->getMaxAngleDegrees()));
+
+    QLineEdit* lineEdit_Lifetime_Min = this->findChild<QLineEdit*>("lineEdit_Lifetime_Min");
+    lineEdit_Lifetime_Min->setText(QString::number((double) model->getLifeTimeMin()));
+
+    QLineEdit* lineEdit_Lifetime_Max = this->findChild<QLineEdit*>("lineEdit_Lifetime_Max");
+    lineEdit_Lifetime_Max->setText(QString::number((double) model->getLifeTimeMax()));
+
+    QLineEdit* lineEdit_PPS_Min = this->findChild<QLineEdit*>("lineEdit_PPS_Min");
+    lineEdit_PPS_Min->setText(QString::number((double) model->getMinPPS()));
+
+    QLineEdit* lineEdit_PPS_Max = this->findChild<QLineEdit*>("lineEdit_PPS_Max");
+    lineEdit_PPS_Max->setText(QString::number((double) model->getMaxPPS()));
+
+    QLineEdit* lineEdit_MinStartSize_X = this->findChild<QLineEdit*>("lineEdit_MinStartSize_X");
+    lineEdit_MinStartSize_X->setText(QString::number((double) model->getMinStartSize().Width));
+
+    QLineEdit* lineEdit_MinStartSize_Y = this->findChild<QLineEdit*>("lineEdit_MinStartSize_Y");
+    lineEdit_MinStartSize_Y->setText(QString::number((double) model->getMinStartSize().Height));
+
+    QLineEdit* lineEdit_MaxStartSize_X = this->findChild<QLineEdit*>("lineEdit_MaxStartSize_X");
+    lineEdit_MaxStartSize_X->setText(QString::number((double) model->getMaxStartSize().Width));
+
+    QLineEdit* lineEdit_MaxStartSize_Y = this->findChild<QLineEdit*>("lineEdit_MaxStartSize_Y");
+    lineEdit_MaxStartSize_Y->setText(QString::number((double) model->getMaxStartSize().Height));
+
+    QComboBox* comboBox_EmitterType = this->findChild<QComboBox*>("comboBox_EmitterType");
+    comboBox_EmitterType->setCurrentIndex((int) model->getEmitterType());
+}
 
 void MainWindow::on_actionSave_XML_triggered()
 {
@@ -34,6 +87,12 @@ void MainWindow::on_actionSave_XML_triggered()
     std::cout << " " << model->toString() << " " << std::endl;
     XML xml;
     xml.SaveXML(model);
+}
+
+void MainWindow::setButtonColor (QPushButton* button, QColor color)
+{
+    QString style = "background-color: rgb(%1, %2, %3);border: 0;text-align:left;padding-left:5px;";
+    button->setStyleSheet(style.arg(color.red()).arg(color.green()).arg(color.blue()));
 }
 
 void MainWindow::on_lineEdit_Direction_X_textChanged(const QString &arg1)
@@ -56,13 +115,12 @@ void MainWindow::on_lineEdit_Direction_Z_textChanged(const QString &arg1)
 
 void MainWindow::on_pushButton_Color_Min_clicked()
 {
-    QColor color = QColorDialog::getColor(Qt::green);
+    QColor color = QColorDialog::getColor(QColor( model->getMinStartColor().getRed(), model->getMinStartColor().getGreen(), model->getMinStartColor().getBlue(), model->getMinStartColor().getAlpha()));
 
     QPushButton* button = this->findChild<QPushButton*>("pushButton_Color_Min");
-    QString style = "background-color: rgb(%1, %2, %3);border: 0;text-align:left;padding-left:5px;";
-    button->setStyleSheet(style.arg(color.red()).arg(color.green()).arg(color.blue()));
+    setButtonColor (button, color);
 
-    model->setMinColor(video::SColor(color.alpha(), color.red(), color.green(), color.blue()));
+    model->setMinColor(Util::QColorToSColor(color));
 
     std::cout << "Change of min color: " << model->getMinStartColor().getAlpha() << ", " << model->getMinStartColor().getRed() << ", " << model->getMinStartColor().getBlue() << ", " << model->getMinStartColor().getGreen() << std::endl;
 }
@@ -72,10 +130,9 @@ void MainWindow::on_pushButton_Color_Max_clicked()
     QColor color = QColorDialog::getColor(Qt::green);
 
     QPushButton* button = this->findChild<QPushButton*>("pushButton_Color_Max");
-    QString style = "background-color: rgb(%1, %2, %3);border: 0;text-align:left;padding-left:5px;";
-    button->setStyleSheet(style.arg(color.red()).arg(color.green()).arg(color.blue()));
+    setButtonColor (button, color);
 
-    model->setMaxColor(video::SColor(color.alpha(), color.red(), color.green(), color.blue()));
+    model->setMaxColor(Util::QColorToSColor(color));
 
     std::cout << "Change of max color: " << model->getMaxStartColor().getAlpha() << ", " << model->getMaxStartColor().getRed() << ", " << model->getMaxStartColor().getBlue() << ", " << model->getMaxStartColor().getGreen() << std::endl;
 }

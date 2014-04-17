@@ -9,6 +9,8 @@ namespace Ui {
 class MainWindow;
 }
 
+class QPushButton;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -20,11 +22,15 @@ public:
 
 private slots:
 
+    void fillFields (ParticleModel* model);
+
     // TODO: save the name of the model when this changes
     void on_lineEdit_name_textChanged(const QString &arg1);
 
     // On click of the save xml menu item
     void on_actionSave_XML_triggered();
+
+    void setButtonColor (QPushButton* button, QColor color);
 
     /** Events for changes of values in the gui **/
 
