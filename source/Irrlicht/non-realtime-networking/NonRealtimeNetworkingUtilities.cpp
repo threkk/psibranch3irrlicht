@@ -16,6 +16,11 @@ namespace irrlicht_nonrealtimenetworking {
 		delete gameName;
 	}
 
+	void NonRealtimeNetworkingUtilities::setBuffer(char* buffer) {
+		this->buffer = new char[strlen(buffer) + 1];
+		strcpy(this->buffer, buffer);
+	}
+
 	/**
 		Check if given string represents a valid IP address. Instead
 		of localhost use 127.0.0.1 to pass validation test.
@@ -233,30 +238,39 @@ namespace irrlicht_nonrealtimenetworking {
 		WSACleanup(); //Clean up Winsock
 	}
 
-	// Web Service functions
-
 	/**
 		Initialize the library to use the web service. Set the address of the WSDL
 		file and initialize SOAP structure.
+		@param masterServerHostAddress IP address of the web service
 	*/
 	void NonRealtimeNetworkingUtilities::initializeWS(char* masterServerHostAddress) {
 
+		/// Check if given string is a potentially correct IP address
 		validateIpAddress(masterServerHostAddress);
+		/// Allocate memory for the string
 		webServiceAddress = new char[59];
+		/// Create the string
 		strcpy(webServiceAddress, "http://");
 		strcat(webServiceAddress, masterServerHostAddress);
 		strcat(webServiceAddress, ":8/MasterGameServer/GameWS.asmx?wsdl");
-		soap = soap_new(); // Initialize SOAP
+		/// Initialize SOAP structure
+		soap = soap_new();
 
 	}
 
+	/// Set gameName to register for on the server
 	void NonRealtimeNetworkingUtilities::setGameName(char* gameName) {
+		/// Allocate memory
 		this->gameName = new char[strlen(gameName) + 1];
+		/// Copy the string
 		strcpy(this->gameName, gameName);
 	}
 
 	/**
 		Check if the library was properly initialized to work with the web service.
+		There are two conditions that need to hold here: the address of the web service
+		has to be specified and SOAP structure has to be initialized before
+		calling any WebMethod.
 	*/
 	void NonRealtimeNetworkingUtilities::checkSOAP() {
 
@@ -272,17 +286,35 @@ namespace irrlicht_nonrealtimenetworking {
 	/**
 		Get the list of games registered on the server. 
 	*/
-	std::vector<std::string> NonRealtimeNetworkingUtilities::getGamesList() {
+	char** NonRealtimeNetworkingUtilities::getGamesList() {
 
+		/// Check if SOAP structure was initialized
 		checkSOAP();
 
+		/// Create structures needed for request and response
 		_GameWS__getGamesPlayed* getGamesListCall = new _GameWS__getGamesPlayed();
 		_GameWS__getGamesPlayedResponse* getGamesListResult = new _GameWS__getGamesPlayedResponse();
 
+		/// Call the web service to retrieve the list of games registered
 		if (!(soap_call___GameWS__getGamesPlayed(soap, webServiceAddress, NULL, getGamesListCall, getGamesListResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
-		return getGamesListResult->getGamesPlayedResult->string;
+		/// Convert std::vector<std::string> to char**
+
+		/// Create a temporary copy for code clarity
+		std::vector<std::string> gamesList = getGamesListResult->getGamesPlayedResult->string;
+		/// Allocate memory for char*
+		char** games = new char*[gamesList.size()];
+
+		for (int i=0; i<gamesList.size(); i++) {
+			/// Allocate memory for each string separately
+			games[i] = new char[gamesList[i].size() + 1];
+			/// Copy the string
+			strcpy(games[i], gamesList[i].c_str());
+		}
+
+		/// Return the list of games
+		return games;
 
 	}
 
@@ -290,27 +322,40 @@ namespace irrlicht_nonrealtimenetworking {
 		When a player registers on the server his IP address is saved
 		and a unique ID for a given game is generated for him. That way
 		when another player registers to play the same game he can easily
-		obtain opponent's IP address and establish connection with him.
+		obtain opponent's IP address and establish a connection with him.
 	*/
 	void NonRealtimeNetworkingUtilities::registerOnTheServer() {
 
-		checkSOAP(); // Check if SOAP was initialized
+		/// Check if SOAP was initialized
+		checkSOAP();
 
+		/// Create structures needed for request and response
 		_GameWS__register* registerCall = new _GameWS__register(); 
 		_GameWS__registerResponse* registerResult = new _GameWS__registerResponse();
 
+		/// Check if the name of the game to register for was set
 		if (strlen(gameName) == 0 || strcmp(gameName, "") == 0)
 			throw new NonRealtimeNetworkingException("gameName not specified!");
 
+		/// Set gameName in the request structure
 		registerCall->gameName = new std::string(this->gameName);
 
+		/**
+			Call the web service. Pointers to request and response structures
+			are passed here. That way, if the call succeeds, response structure 
+			will contain data of interest. If something goes wrong, we throw
+			an exception together with an error message. 
+		*/
 		if (!(soap_call___GameWS__register(soap, webServiceAddress, NULL, registerCall, registerResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
 		int sessionId = registerResult->registerResult;
 
-		// if (sessionId < 0) --> ERROR ?
+		/// If returned sessionID is <= 0 then something went wrong!
+		if (sessionId < 1)
+			throw new NonRealtimeNetworkingException("Could not obtain session's ID from the server!");
 
+		/// Set sessionId
 		this->sessionId = sessionId;
 
 	}
@@ -320,8 +365,9 @@ namespace irrlicht_nonrealtimenetworking {
 		to be able to open a client socket and play.
 	*/
 	char* NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
-
-		checkSOAP(); // Check if SOAP was initialized
+		
+		/// Check if SOAP was initialized
+		checkSOAP();
 
 		/// This structure is needed to set request's parameters (name of the game and session ID)
 		_GameWS__getOpponentsIpAddress* getOpponentsIpAddressCall = new _GameWS__getOpponentsIpAddress();
@@ -340,11 +386,12 @@ namespace irrlicht_nonrealtimenetworking {
 		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress, NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
 			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
 
-		// Need to return char*, converting from std::string:
+		/// Need to return char*, converting from std::string:
 		char* ipAddress = new char[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size() + 1];
 		std::copy(getOpponentsIpAddressResult->getOpponentsIpAddressResult->begin(), getOpponentsIpAddressResult->getOpponentsIpAddressResult->end(), ipAddress);
 		ipAddress[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size()] = '\0';
 
+		// return the IP address
 		return ipAddress;
 
 	}
@@ -353,25 +400,38 @@ namespace irrlicht_nonrealtimenetworking {
 		Register on the web service to obtain unique session ID
 		for a given game. Depending on that ID a player either hosts a game
 		or joins an already hosted game to start playing.
+		@param gameName name of the game to be played
+		@param portNo port number to open a server/client socket on
 	*/
 	int NonRealtimeNetworkingUtilities::establishConnection(char* gameName, int portNo = 0) {
+		
+		// Check if gameName is not empty
+		if (strlen(gameName) == 0 || strcmp(gameName, "") == 0)
+			throw new NonRealtimeNetworkingException("Establish connection: gameName cannot be empty!");
 
-		checkSOAP(); // Check if SOAP was initialized
+		/// Check if SOAP was initialized
+		checkSOAP();
 
-		if (portNo != 0) // Port number specified as an actual parameter
+		/// Set port number if it was specified
+		if (portNo != 0)
 			setPortNumber(portNo);
 
+		// Set gameName 
 		setGameName(gameName);
 
 		/// Register player on the server to obtain session's ID
 		registerOnTheServer();
 
-		/// Open socket
+		/**
+			Open server/client socket depending on
+			session's ID which was generated by the web service.
+		*/
 		if ((sessionId % 2) == 1) // Odd ID - hosting the game (server socket)
 			hostGame(portNumber);
 		else // Even ID - joining the game (client socket)
 			joinGame(getOpponentsIpAddress(), portNumber);
 
+		/// Return session's ID
 		return sessionId;
 
 	}
