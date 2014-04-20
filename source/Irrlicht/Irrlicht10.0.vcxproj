@@ -996,6 +996,7 @@
     <ClInclude Include="CMeshManipulator.h" />
     <ClInclude Include="COpenGLCgMaterialRenderer.h" />
     <ClInclude Include="CSceneManager.h" />
+    <ClInclude Include="menuReceiver.h" />
     <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h" />
     <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingUtilities.h" />
     <ClInclude Include="non-realtime-networking\SOAP\soapH.h" />
@@ -1411,6 +1412,7 @@
     <ClCompile Include="CLogger.cpp" />
     <ClCompile Include="COSOperator.cpp" />
     <ClCompile Include="Irrlicht.cpp" />
+    <ClCompile Include="menuReceiver.cpp" />
     <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp" />
     <ClCompile Include="non-realtime-networking\SOAP\soapC.cpp" />
     <ClCompile Include="non-realtime-networking\SOAP\soapClient.cpp" />

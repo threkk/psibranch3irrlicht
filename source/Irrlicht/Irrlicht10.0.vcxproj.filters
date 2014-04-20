@@ -1327,6 +1327,9 @@
     <ClInclude Include="non-realtime-networking\SOAP\stdsoap2.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
+    <ClInclude Include="menuReceiver.h">
+      <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2274,6 +2277,9 @@
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
     <ClCompile Include="non-realtime-networking\SOAP\stdsoap2.cpp">
+      <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="menuReceiver.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
   </ItemGroup>
