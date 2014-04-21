@@ -111,11 +111,18 @@
     </Filter>
     <Filter Include="Irrlicht\AI\Pathfinding">
       <UniqueIdentifier>{cfd0f9ac-b5fd-4b9a-9b1f-ee2ec11e895a}</UniqueIdentifier>
+	  </Filter>
     <Filter Include="include\non-realtime-networking">
       <UniqueIdentifier>{78750382-dc3f-483f-93c7-10197dcae6bf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Irrlicht\non-realtime-networking">
       <UniqueIdentifier>{fb227611-0efb-4102-b1f6-187e213bc8dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\ParticleEditor">
+      <UniqueIdentifier>{7d442504-dd27-434d-b941-cfb544ccaac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Irrlicht\ParticleEditor">
+      <UniqueIdentifier>{2ee02c6c-5aca-44ac-adc9-d36c7ebe96fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1340,6 +1347,7 @@
     </ClInclude>
     <ClInclude Include="AI\IPathfinding.h">
       <Filter>Irrlicht\AI\Pathfinding</Filter>
+	</ClInclude>
     <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
@@ -1354,6 +1362,12 @@
     </ClInclude>
     <ClInclude Include="non-realtime-networking\SOAP\stdsoap2.h">
       <Filter>include\non-realtime-networking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ParticleManager.h">
+      <Filter>include\ParticleEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ParticleModel.h">
+      <Filter>include\ParticleEditor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2309,6 +2323,7 @@
     </ClCompile>
     <ClCompile Include="AI\StateIdle.cpp">
       <Filter>Irrlicht\AI\States</Filter>
+	 </ClCompile>
     <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
@@ -2320,6 +2335,12 @@
     </ClCompile>
     <ClCompile Include="non-realtime-networking\SOAP\stdsoap2.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleManager.cpp">
+      <Filter>Irrlicht\ParticleEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleModel.cpp">
+      <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
