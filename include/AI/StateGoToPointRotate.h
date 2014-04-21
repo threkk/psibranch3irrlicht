@@ -13,7 +13,7 @@
 class __declspec(dllexport) StateGoToPointRotate: public State
 {
 public:
-	StateGoToPointRotate(Detectable* stateOwner, irr::core::vector3df* point, irr::core::vector3df* rotation,
+	StateGoToPointRotate(Detectable* stateOwner, irr::core::vector3df* point, irr::core::vector3df* rotation, float offset,
 		std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine);
 	~StateGoToPointRotate(void);
 
@@ -31,13 +31,17 @@ protected:
 	// Orientation after getting to point
 	irr::core::vector3df* rotation;
 
+	// Distance value to stop NPC from walking right into the goal
+	float offset;
+
 	// The state machine
 	StateMachine* stateMachine;
 
 	// The pathfinding utility
 	IPathfinding* pathUtil;
 
-	// The callback function - boolean indicates if point is reached
+	// The callback function returns a pair of a boolean and vector
+	// Boolean indicates if a NPC has reached the point
 	std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction;
 
 	/** Inherited methods **/

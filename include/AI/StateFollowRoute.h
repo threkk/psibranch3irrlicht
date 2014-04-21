@@ -12,7 +12,7 @@
 class __declspec(dllexport) StateFollowRoute : public State
 {
 public:
-	StateFollowRoute(Detectable* stateOwner, std::vector<std::pair<irr::core::vector3df, float>>* route, IrrlichtDevice* device,
+	StateFollowRoute(Detectable* stateOwner, std::vector<std::pair<irr::core::vector3df, float>>* route, float offset, IrrlichtDevice* device,
 		IPathfinding* pathUtil, std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction);
 	~StateFollowRoute(void);
 
@@ -26,13 +26,14 @@ protected:
 	// The route to be followed
 	std::vector<std::pair<irr::core::vector3df, float>> route;
 
-	// Timer stuff
+	// Distance value to stop NPC from walking right into the goal
+	float offset;
+
+	// Timer variables
 	irr::u32 now;
 	irr::u32 then;
 	irr::f32 frameDeltaTime;
 	irr::f32 timer;
-
-	void updateDeltaTime();
 
 	// Next point to be visited
 	unsigned int pointToVisit;
@@ -43,8 +44,12 @@ protected:
 	// The pathfinding utility
 	IPathfinding* pathUtil;
 
-	// The callback function
+	// The callback function returns a pair of a boolean and vector
+	// Boolean indicates if a NPC has reached a point in route and is waiting
 	std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction;
+
+	// Updates the delta time variable
+	void updateDeltaTime();
 
 	/** Inherited Methods **/
 	void action();
