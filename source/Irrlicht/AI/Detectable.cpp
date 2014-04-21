@@ -29,19 +29,19 @@ bool Detectable::isObjectBehind(Detectable* object, irr::scene::ISceneManager* s
 
 bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::core::vector3df direction, irr::f32 visionLength){
 
-	// get forward vector
+	// Get forward vector
 	irr::core::matrix4 mat;
 	mat.setRotationDegrees(this->getRotation());
 	mat.transformVect(direction);
 
-	// If point is too far away to see
+	// Return false if point is too far away to see
 	if (this->getPosition().getDistanceFrom(object->getPosition()) > visionLength)
 		return false;
 
-	// get difference vector between object and me
+	// Get difference vector between object and me
 	irr::core::vector3df difference = object->getPosition() - this->getPosition();
 
-	// if point is not in FoV
+	// Return false if point is not in FoV (Field of view)
 	if (direction.dotProduct(difference.normalize()) < cos(FOVRadian))
 		return false;
 

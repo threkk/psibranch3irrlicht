@@ -60,5 +60,6 @@ bool State::compare(State* state1, State* state2)
 
 void State::noActionFallback()
 {
-	
+	// Nothing here
+	// Overwrite if needed
 }

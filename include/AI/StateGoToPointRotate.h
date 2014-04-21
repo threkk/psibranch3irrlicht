@@ -5,6 +5,11 @@
 #include <functional>
 
 #pragma once
+
+/**
+ * StateGoToPointRotate
+ * This state can be used for NPCs to go to an point and then turn around.
+ */
 class __declspec(dllexport) StateGoToPointRotate: public State
 {
 public:

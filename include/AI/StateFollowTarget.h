@@ -5,6 +5,11 @@
 #include <functional>
 
 #pragma once
+
+/**
+ * StateFollowTarget
+ * This state can be used for NPCs that will follow a target even when they can't see it anymore.
+ */
 class __declspec(dllexport) StateFollowTarget: public State
 {
 public:

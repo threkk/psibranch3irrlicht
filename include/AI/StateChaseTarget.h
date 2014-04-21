@@ -3,6 +3,11 @@
 #include <functional>
 
 #pragma once
+/**
+ * StateChaseTarget
+ * This state can be used to chase a target as long it is seen.
+ * If it doesn't see the target anymore, it will go to the point where the target has been seen last.
+ */
 class __declspec(dllexport) StateChaseTarget: public StateFollowTarget
 {
 public:

@@ -44,4 +44,5 @@ _ReSharper*/
 *.opensdf
 *.sdf
 ipch/*
+*.ipch
 !lib/AI/*.lib

@@ -22,17 +22,14 @@ bool StateGoToPointRotate::executeable(void)
 
 void StateGoToPointRotate::enter()
 {
-	//printf("StateGoToPointRotate::enter()\n");
 }
 
 void StateGoToPointRotate::exit()
 {
-	//printf("StateGoToPointRotate::exit()\n");
 }
 
 void StateGoToPointRotate::action()
 {
-	//printf("owner: %f, %f, %f\npoint: %f, %f, %f\n", this->stateOwner->getPosition().X, this->stateOwner->getPosition().Y, this->stateOwner->getPosition().Z, point->X, point->Y, point->Z);
 	std::vector<irr::core::vector3df> path = pathUtil->returnPath(&stateOwner->getPosition(), &irr::core::vector3df(point->X, stateOwner->getPosition().Y, point->Z));
 
 	if (!path.empty() && path.size() > 1)
@@ -49,7 +46,7 @@ void StateGoToPointRotate::action()
 	}
 	else
 	{
-		printf("StateGoToPointRotate - No path to point!\n");
+		// No path to point -> Return to previous state
 		stateMachine->returnToPreviousState();
 	}
 }

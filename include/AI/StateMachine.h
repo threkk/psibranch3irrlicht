@@ -1,6 +1,25 @@
 #include "ai/State.h"
 
 #pragma once
+/**
+ * StateMachine
+ * By using the finite state machine each NPC will have one state machine, that controlls the states for the NPC.
+ * By activating an different state it will automatically call the exit() method of the current state
+ * and the enter() method of the new state. After that each the execute() method will be called each update.
+ * To change a state add your transitions to the action() method.
+ * 
+ * The NPC should call the update() method each round.
+ * During the update() the global state and the current state will be executed.
+ * Changing the state will be part of the action() method of the current active state, as it will call the 
+ * changeState() method or the returnToPreviousState() method.
+ * Ensure that all your transitions are implemented (only) in the states.
+ *
+ * The state machine supports two different states:
+ *   - Global State
+ *     If set, this state will be executed before the normal state, independent from the current state.
+ *   - Current State
+ *     This is the state the NPC will be usually executed. By changing states, only the current state will be affected.
+ */
 class __declspec(dllexport) StateMachine
 {
 public: 
@@ -21,22 +40,39 @@ public:
 	{
 	}
 
-	// Use these methods to initialize the FSM
+	/** Use these methods to initialize the FSM **/
+
+	/**
+	 * Sets the current state
+	 */
 	void setCurrentState(State* s)
 	{
 		currentState = s;
 	}
 	
+	/**
+	 * Sets the global state
+	 */
 	void setGlobalState(State* s)
 	{
 		globalState = s;
 	}
 	
+	/**
+	 * Sets the previous state
+	 */
 	void setPreviousState(State* s)
 	{
 		previousState = s;
 	}
 
+	/** Use these methods to use the FSM **/
+
+	/**
+	 * Change the current state.
+	 * The exit() method of the current state will be called and
+	 * the enter() method of the new state will be called within this method.
+	 */
 	void changeState(State* state)
 	{
 		previousState = currentState;
@@ -49,7 +85,7 @@ public:
 	}
 
 	/**
-	 * Call this method to update the infinite state machine
+	 * Call this method to execute the global and current state.
 	 */
 	void update() 
 	{

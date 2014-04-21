@@ -42,6 +42,7 @@ bool StateChaseTarget::executeable(void)
 
 void StateChaseTarget::action()
 {
+	// Get the position of the target
 	irr::core::vector3df toPos;
 	if(hasSeen)
 	{
@@ -49,13 +50,14 @@ void StateChaseTarget::action()
 	}
 	else if(hasLastPointSeen)
 	{
+		// or at least the last of the target
 		toPos = lastPointSeen;
 	}
 	else
 	{
 		return;
 	}
-	// Get position of object by the pathfinding utility
+	// Get the path of object by the pathfinding utility
 	std::vector<irr::core::vector3df> path = pathUtil->returnPath(&this->owner->getPosition(), &toPos);
 	
 	// If there is a path to the object walk to it

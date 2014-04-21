@@ -4,6 +4,11 @@
 #include <functional>
 
 #pragma once
+
+/**
+ * State follow route
+ * This state can be used for NPCs that will follow a predefined route
+ */
 class __declspec(dllexport) StateFollowRoute : public State
 {
 public:

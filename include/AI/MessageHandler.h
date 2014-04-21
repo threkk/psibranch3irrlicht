@@ -1,15 +1,14 @@
-/**
- * MessageHandler
- * Clients can subscribe topics from the message client
- * All messages send to an topic will be delivered to all registered clients
- */
-
 #pragma once
 
 #include <vector>
 #include <map>
 #include "ai\MessageClient.h"
 
+/**
+ * MessageHandler
+ * Clients can subscribe topics from the message client
+ * All messages send to an topic will be delivered to all registered clients
+ */
 class __declspec(dllexport) MessageHandler
 {
 public:
@@ -84,6 +83,9 @@ private:
 	// Singleton instance
 	static MessageHandler* instance;
 
+	/**
+	 * This struct is used for the map and contains the client and it's topics
+	 */
 	struct clientTopic
 	{
 		MessageClient* client;

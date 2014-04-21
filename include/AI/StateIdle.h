@@ -2,6 +2,10 @@
 #include <functional>
 
 #pragma once
+/**
+ * StateIdle
+ * Classic idle state for NPCs
+ */
 class __declspec(dllexport) StateIdle : public State
 {
 public:

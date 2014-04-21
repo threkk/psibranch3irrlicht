@@ -1,17 +1,16 @@
-/**
- * MessageClient
- * A Message client can register to the Message System to receive and send new messages.
- * He is able to subscribe topics to get all messages that are send to that topic.
- *
- * To use the message system just use inheritance.
- * Every class that is a subclass of MessageClient will be able to communicate with other classes.
- */
-
 #pragma once
 
 #include <string>
 #include "ai\MessageObject.h"
 
+/**
+ * MessageClient
+ * A Message client can register to the Message System to receive and send new messages.
+ * A client is able to subscribe topics to receive all messages will be send to that topic.
+ *
+ * To use the message system inherit this abstract class.
+ * Every class that is a subclass of MessageClient will be able to communicate with other classes.
+ */
 class __declspec(dllexport) MessageClient
 {
 
@@ -69,6 +68,9 @@ public:
 	 */
 	virtual void receiveMessage(MessageObject message) = 0;
 
+	/**
+	 * Returns the ID of the message client
+	 */
 	int getID();
 
 private:

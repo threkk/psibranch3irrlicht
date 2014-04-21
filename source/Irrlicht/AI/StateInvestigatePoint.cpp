@@ -30,34 +30,17 @@ bool StateInvestigatePoint::executeable(void)
 
 void StateInvestigatePoint::enter()
 {
-	printf("StateInvestigatePoint::enter(): point at %f, %f, %f\n", point.X, point.Y, point.Z);
-
 	now = then = device->getTimer()->getTime();
 	timer = 0;
 }
 
 void StateInvestigatePoint::exit()
 {
-	printf("StateInvestigatePoint::exit()\n");
 }
 
 void StateInvestigatePoint::action()
 {
 	updateDeltaTime();
-	/*irr::core::line3d<irr::f32> ray;
-	ray.start = stateOwner->getPosition();
-	ray.end = stateOwner->getPosition() + (*point - ray.start).normalize() * visionLength;
-
-	irr::core::vector3df collisionPoint;
-	irr::core::triangle3df triangle;
-	irr::scene::ISceneNode* selectedSceneNode = sceneManager->getSceneCollisionManager()->getSceneNodeAndCollisionPointFromRay(ray, collisionPoint, triangle);*/
-
-	//printf("Collision point: %f, %f, %f\n", collisionPoint.X, collisionPoint.Y, collisionPoint.Z);
-	//printf("stateOwner pos: %f, %f, %f\n", stateOwner->getPosition().X, stateOwner->getPosition().Y, stateOwner->getPosition().Z);
-	//printf("Collision point -> noise distance: %f\n", collisionPoint.getDistanceFrom(*point));
-	//printf("stateOwner -> collision point distance: %f\n", stateOwner->getPosition().getDistanceFrom(collisionPoint));
-
-	//if (collisionPoint.getDistanceFrom(*point) <= 50)
 
 	if (stateOwner->getPosition().getDistanceFrom(point) <= visionLength / 2)
 	{

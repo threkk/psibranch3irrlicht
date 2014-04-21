@@ -27,8 +27,6 @@ bool StateFollowRoute::executeable(void)
 
 void StateFollowRoute::enter()
 {
-	printf("StateFollowRoute::enter()\n");
-
 	now = then = device->getTimer()->getTime();
 	timer = 0;
 
@@ -42,11 +40,8 @@ void StateFollowRoute::enter()
 		std::vector<irr::core::vector3df> path = pathUtil->returnPath(&stateOwner->getPosition(), &route.at(i).first);
 		for (unsigned int j = 1; j < path.size(); j++)
 		{
-			//printf("dist path[%i]->path[%i]: %f\n", j-1, j, path.at(j-1).getDistanceFrom(path.at(j)));
 			pathDistance += path.at(j-1).getDistanceFrom(path.at(j));
 		}
-
-		//printf("StateFollowRoute::enter(): %i, dist: %f\n", i, pathDistance);
 
 		if (pathDistance < nearestPointDistance)
 		{
@@ -58,7 +53,6 @@ void StateFollowRoute::enter()
 
 void StateFollowRoute::exit()
 {
-	printf("StateFollowRoute::exit()\n");
 }
 
 void StateFollowRoute::action()
@@ -82,7 +76,6 @@ void StateFollowRoute::action()
 		{
 			callbackFunction(&std::make_pair(true, &path.at(1)));
 
-			//printf("%f, %f\n", timer, route.at(pointToVisit).second);
 			timer += frameDeltaTime;
 
 			if (timer >= route.at(pointToVisit).second)
@@ -92,10 +85,6 @@ void StateFollowRoute::action()
 			}
 		}
 	}
-	/*else
-	{
-		++pointToVisit >= route.size() ? pointToVisit = 0 : NULL;
-	}*/
 }
 
 void StateFollowRoute::updateDeltaTime()

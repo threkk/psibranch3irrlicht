@@ -2,6 +2,10 @@
 
 #pragma once
 
+/**
+ * This abstract class should be inherited by objects that can be detected by other object.
+ * It will be used for the requirements of different states.
+ */
 class __declspec(dllexport) Detectable
 {
 public:
@@ -33,6 +37,7 @@ public:
 	 */
 	bool Detectable::isObjectClose(Detectable* object, irr::f32 visionLength);
 
+	
 	/** Virtual Methods that needs to be implemented **/
 
 	/**
