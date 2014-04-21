@@ -443,7 +443,11 @@ namespace scene
 			for (u32 i=0; i<getMaterialCount(); ++i)
 				getMaterial(i).setTexture(textureLayer, texture);
 		}
-
+        //! Sets the texture of the specified layer in all material using the
+        //! IQualityTexture wrapper.
+        /** \param  textureLayer Layer of texture to be set. Must be a
+		value smaller than MATERIAL_MAX_TEXTURES.
+		\param texture New IQualityTexture to be used. */
 		void setMaterialTexture(u32 textureLayer, video::IQualityTexture* texture)
 		{
 			this->setMaterialTexture(textureLayer, texture->getTexture(texture->getDefaultQuality()));
