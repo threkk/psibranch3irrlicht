@@ -5,6 +5,7 @@
 #ifndef __I_SCENE_NODE_H_INCLUDED__
 #define __I_SCENE_NODE_H_INCLUDED__
 
+#include "IQualityTexture.h"
 #include "IAttributeExchangingObject.h"
 #include "ESceneNodeTypes.h"
 #include "ECullingTypes.h"
@@ -17,6 +18,7 @@
 #include "matrix4.h"
 #include "irrList.h"
 #include "IAttributes.h"
+
 
 namespace irr
 {
@@ -442,6 +444,10 @@ namespace scene
 				getMaterial(i).setTexture(textureLayer, texture);
 		}
 
+		void setMaterialTexture(u32 textureLayer, video::IQualityTexture* texture)
+		{
+			this->setMaterialTexture(textureLayer, texture->getTexture(texture->getDefaultQuality()));
+		}
 
 		//! Sets the material type of all materials in this scene node to a new material type.
 		/** \param newType New type of material to be set. */

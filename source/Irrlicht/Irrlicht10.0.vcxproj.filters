@@ -1339,6 +1339,9 @@
     <ClInclude Include="..\..\include\ISceneSwitcher.h">
       <Filter>include\scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\IQualityTexture.h">
+      <Filter>include\video</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2292,6 +2295,9 @@
       <Filter>Irrlicht\AI\States</Filter>
     </ClCompile>
     <ClCompile Include="CSceneSwitcher.cpp">
+      <Filter>Irrlicht\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CQualityTexture.cpp">
       <Filter>Irrlicht\scene</Filter>
     </ClCompile>
   </ItemGroup>

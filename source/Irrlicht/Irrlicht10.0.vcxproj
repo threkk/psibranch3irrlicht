@@ -836,6 +836,7 @@
     <ClInclude Include="..\..\include\IEventReceiver.h" />
     <ClInclude Include="..\..\include\ILogger.h" />
     <ClInclude Include="..\..\include\IOSOperator.h" />
+    <ClInclude Include="..\..\include\IQualityTexture.h" />
     <ClInclude Include="..\..\include\IRandomizer.h" />
     <ClInclude Include="..\..\include\IReferenceCounted.h" />
     <ClInclude Include="..\..\include\IrrCompileConfig.h" />
@@ -1258,6 +1259,7 @@
     <ClCompile Include="CMeshCache.cpp" />
     <ClCompile Include="CMeshManipulator.cpp" />
     <ClCompile Include="COpenGLCgMaterialRenderer.cpp" />
+    <ClCompile Include="CQualityTexture.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="C3DSMeshFileLoader.cpp" />
     <ClCompile Include="CSceneSeamlessLoader.cpp" />

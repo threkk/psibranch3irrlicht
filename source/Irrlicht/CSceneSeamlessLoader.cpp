@@ -44,7 +44,6 @@ NScene ISceneSeamlessLoader::preloadScene(io::path uriToNewScene)
 	catch(std::bad_alloc)
 	{
 		std::cout << "Allocation failed. The scene was not added.\n";
-		return ;
 	}
     //! Important. The position to call the scene.
 	return scene;
