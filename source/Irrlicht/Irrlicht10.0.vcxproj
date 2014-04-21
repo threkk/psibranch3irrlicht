@@ -831,6 +831,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\AI\Detectable.h" />
+    <ClInclude Include="..\..\include\AI\ILiving.h" />
     <ClInclude Include="..\..\include\AI\IPathfinding.h" />
     <ClInclude Include="..\..\include\AI\MessageClient.h" />
     <ClInclude Include="..\..\include\AI\MessageHandler.h" />
@@ -1011,7 +1012,6 @@
     <ClInclude Include="CMeshManipulator.h" />
     <ClInclude Include="COpenGLCgMaterialRenderer.h" />
     <ClInclude Include="CSceneManager.h" />
-    <ClInclude Include="ILiving.h" />
     <ClInclude Include="Octree.h" />
     <ClInclude Include="CSMFMeshFileLoader.h" />
     <ClInclude Include="C3DSMeshFileLoader.h" />

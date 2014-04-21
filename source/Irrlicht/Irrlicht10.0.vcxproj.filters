@@ -109,9 +109,6 @@
     <Filter Include="Irrlicht\AI\States">
       <UniqueIdentifier>{85fa4d82-e14c-4ed1-bb7c-3d56e5e88175}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Irrlicht\AI\Pathfinding">
-      <UniqueIdentifier>{cfd0f9ac-b5fd-4b9a-9b1f-ee2ec11e895a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\ai">
       <UniqueIdentifier>{6c9bd905-03fe-415e-b3af-f5de8ee7245d}</UniqueIdentifier>
     </Filter>
@@ -1366,7 +1363,7 @@
     <ClInclude Include="..\..\include\AI\StateGoToPointRotate.h">
       <Filter>include\ai</Filter>
     </ClInclude>
-    <ClInclude Include="ILiving.h">
+    <ClInclude Include="..\..\include\AI\ILiving.h">
       <Filter>include\ai</Filter>
     </ClInclude>
   </ItemGroup>
