@@ -12,7 +12,7 @@ IQualityTexture::IQualityTexture(ITexture* texture)
 	}
 	//! Medium quality by default.
 	tdefault = video::TEXTURE_MQ;
-	textures[video::TEXTURE_MQ] = texture;
+	textures[video::TEXTURE_MQ].second = texture;
 }
 
 //! Destructor
