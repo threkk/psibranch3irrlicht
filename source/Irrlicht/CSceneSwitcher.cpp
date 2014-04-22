@@ -18,3 +18,15 @@ ISceneSwitcher::~ISceneSwitcher()
 	if(this->switches) delete this->switches;
 }
 
+bool ISceneSwitcher::dropSwitch(int index)
+{
+
+}
+
+int addSwitch(NScene* nextScene, 
+			core::vector3df switchPosition, 
+			core::vector3df newPosition);
+
+
+void update();
+

@@ -82,6 +82,7 @@ void ISceneSeamlessLoader::setScene(int sceneIndex)
 	}	
 }
 
+//! Returns the vector with the scenes.
 std::vector<NScene> ISceneSeamlessLoader::getScenes() 
 {
 	return *scenes;

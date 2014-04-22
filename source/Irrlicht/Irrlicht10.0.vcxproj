@@ -844,7 +844,6 @@
     <ClInclude Include="..\..\include\IrrlichtDevice.h" />
     <ClInclude Include="..\..\include\irrTypes.h" />
     <ClInclude Include="..\..\include\ISceneSeamlessLoader.h" />
-    <ClInclude Include="..\..\include\ISceneSwitcher.h" />
     <ClInclude Include="..\..\include\ITimer.h" />
     <ClInclude Include="..\..\include\Keycodes.h" />
     <ClInclude Include="..\..\include\SIrrCreationParameters.h" />
@@ -1263,7 +1262,6 @@
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="C3DSMeshFileLoader.cpp" />
     <ClCompile Include="CSceneSeamlessLoader.cpp" />
-    <ClCompile Include="CSceneSwitcher.cpp" />
     <ClCompile Include="CSMFMeshFileLoader.cpp" />
     <ClCompile Include="CAnimatedMeshHalfLife.cpp" />
     <ClCompile Include="CAnimatedMeshMD2.cpp" />

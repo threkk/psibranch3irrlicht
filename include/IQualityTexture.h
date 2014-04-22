@@ -42,9 +42,10 @@ private:
 
 public:
     /**
-     * Constructor.
+     * Constructor. 
+	 * \param texture The default medium quality texture.
      */
-	IQualityTexture();
+	IQualityTexture(ITexture* texture);
     /**
      * Destructor.
      */
@@ -62,7 +63,8 @@ public:
      */
 	void removeQuality(E_QUALITY_TEXTURE quality);
     /**
-     * Changes the default quality of the wrapper. Medium by default.
+     * Changes the default quality of the wrapper. Medium by default. Throws a
+	 * invalid argument exception in case the quality doesn't have a texture.
      * \param quality The new quality.
      */
 	void setDefaultQuality(E_QUALITY_TEXTURE quality);
@@ -72,16 +74,18 @@ public:
 	E_QUALITY_TEXTURE getDefaultQuality();
     /**
      * Increases by one the quality of the texture. Does nothing if it is
-     * actually the highest.
+     * actually the highest or the next quality has no texture.
      */
 	E_QUALITY_TEXTURE increaseQuality();
     /**
      * Decreases by one the quality of the texture. Does nothing if it is
-     * actually the lowest.
+     * actually the lowest or the next quality has no texture.
      */
 	E_QUALITY_TEXTURE decreaseQuality();
     /**
-     * Gets a concrete texture quality.
+     * Gets a concrete texture quality. Throws a
+	 * invalid argument exception in case the quality doesn't have a
+	 * texture. 
      */
 	ITexture* getTexture(E_QUALITY_TEXTURE quality);
 };
