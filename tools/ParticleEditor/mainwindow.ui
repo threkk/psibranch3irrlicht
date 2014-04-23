@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>540</width>
+      <height>481</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Angle">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>125</y>
+      <width>100</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Degrees</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Angle">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>125</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Angle</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Lifetime_Min">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>150</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Min</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Lifetime">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>150</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Life time</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_EmitterType">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>60</y>
+      <width>100</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>None</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Box</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Point</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Animated Mesh</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cylinder</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Mesh</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Ring</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Sphere</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>60</y>
+      <width>110</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Emitter type</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_name">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>20</y>
+      <width>100</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_name">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>20</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Direction_X">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>100</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Direction">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>100</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Direction</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_PPS">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>175</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Particles per second</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Min_Color">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>200</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start color</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Direction_Y">
+    <property name="geometry">
+     <rect>
+      <x>715</x>
+      <y>100</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Direction_Z">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>100</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
+    <property name="placeholderText">
+     <string>Z</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_Lifetime_Max">
+    <property name="geometry">
+     <rect>
+      <x>733</x>
+      <y>150</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Max</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_PPS_Min">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>175</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Min</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_PPS_Max">
+    <property name="geometry">
+     <rect>
+      <x>733</x>
+      <y>175</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Max</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Color_Min">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>200</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 206, 216);
+border: 0;text-align:left;padding-left:5px;</string>
+    </property>
+    <property name="text">
+     <string>Min</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_Color_Max">
+    <property name="geometry">
+     <rect>
+      <x>733</x>
+      <y>200</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 206, 216);
+border: 0;text-align:left;padding-left:5px;</string>
+    </property>
+    <property name="text">
+     <string>Max</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_MinStartSize">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>225</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Min start size</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MinStartSize_Y">
+    <property name="geometry">
+     <rect>
+      <x>733</x>
+      <y>225</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MinStartSize_X">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>225</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_MaxStartSize">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>250</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Max start size</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MaxStartSize_X">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>250</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_MaxStartSize_Y">
+    <property name="geometry">
+     <rect>
+      <x>733</x>
+      <y>250</y>
+      <width>47</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>Y</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen_XML"/>
+    <addaction name="actionSave_XML"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionOpen_XML">
+   <property name="text">
+    <string>Open particle</string>
+   </property>
+  </action>
+  <action name="actionSave_XML">
+   <property name="text">
+    <string>Save to XML</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
