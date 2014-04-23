@@ -1,7 +1,6 @@
 #ifndef XML_H
 #define XML_H
 #include <QString>
-#include <irrlicht.h>
 #include <ParticleModel.h>
 #include <QXmlStreamReader>
 

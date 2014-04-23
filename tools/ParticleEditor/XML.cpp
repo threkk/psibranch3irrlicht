@@ -7,8 +7,6 @@
 #include <QString>
 #include <QFileDialog>
 #include <iostream>
-#include <windows.h>
-#include "Shlwapi.h"
 
 
 XML::XML()
@@ -23,9 +21,9 @@ void XML::SaveXML(ParticleModel* model)
     //Check of the file is made
     if ( filename.isEmpty() )
         return;
+
     //Create the file
     QFile file(filename);
-
     std::cout << "File: "<< filename.toUtf8().constData() << std::endl;
 
     //Open the file
@@ -38,7 +36,7 @@ void XML::SaveXML(ParticleModel* model)
     //Set data in XML from ParticleModel
     xmlWriter.writeStartDocument();
 
-    xmlWriter.writeStartElement("Particle 1");
+    xmlWriter.writeStartElement("Particle");
     xmlWriter.writeStartElement("Emitter");
     xmlWriter.writeTextElement("Type",QString::number(model->getEmitterType()));
     xmlWriter.writeEndElement();
@@ -117,7 +115,7 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Texture");
-    xmlWriter.writeTextElement("PathName",model->getPathNameTexture().c_str());
+    xmlWriter.writeTextElement("PathName","TODO: Set PathNameTexture");
     xmlWriter.writeEndElement();
 
     xmlWriter.writeTextElement("MbNumber",QString::number(model->getMbNumber()));
@@ -134,9 +132,6 @@ void XML::SaveXML(ParticleModel* model)
     //Close the file
     file.close();
 }
-
-
-
 XML::~XML()
 {
 }
