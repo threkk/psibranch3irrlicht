@@ -3,6 +3,8 @@
 #include "ui_mainwindow.h"
 #include "XML.h"
 #include "Util.h"
+#include <QFileDialog>
+#include <QString>
 #include <iostream>
 #include <QColorDialog>
 
@@ -195,4 +197,17 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 {
     model->setEmitterType(static_cast<ParticleModel::EmitterTypes>(index));
     std::cout << "Change of emitter type: " << model->getEmitterType() << std::endl;
+}
+
+void MainWindow::on_pushButton_OpenTex_clicked()
+{
+    std::cout << QFileDialog::getOpenFileName(this, tr("Open Texture File"),tr("JPEG (*.JPG)")).toUtf8().constData()<< std::endl;
+    //QColor color = QColorDialog::getColor(Qt::green);
+
+    //QPushButton* button = this->findChild<QPushButton*>("pushButton_Color_Max");
+    //setButtonColor (button, color);
+
+    //model->setMaxColor(Util::QColorToSColor(color));
+
+    //std::cout << "Change of max color: " << model->getMaxStartColor().getAlpha() << ", " << model->getMaxStartColor().getRed() << ", " << model->getMaxStartColor().getBlue() << ", " << model->getMaxStartColor().getGreen() << std::endl;
 }

@@ -64,6 +64,8 @@ private slots:
 
     void on_comboBox_EmitterType_currentIndexChanged(int index);
 
+    void on_pushButton_OpenTex_clicked();
+
     /** End events of changes in the gui **/
 
 private:
