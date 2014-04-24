@@ -111,7 +111,7 @@
     </Filter>
     <Filter Include="Irrlicht\AI\Pathfinding">
       <UniqueIdentifier>{cfd0f9ac-b5fd-4b9a-9b1f-ee2ec11e895a}</UniqueIdentifier>
-	  </Filter>
+    </Filter>
     <Filter Include="include\non-realtime-networking">
       <UniqueIdentifier>{78750382-dc3f-483f-93c7-10197dcae6bf}</UniqueIdentifier>
     </Filter>
@@ -1347,7 +1347,7 @@
     </ClInclude>
     <ClInclude Include="AI\IPathfinding.h">
       <Filter>Irrlicht\AI\Pathfinding</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
@@ -1367,6 +1367,9 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ParticleModel.h">
+      <Filter>include\ParticleEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ParticleParser.h">
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2323,7 +2326,7 @@
     </ClCompile>
     <ClCompile Include="AI\StateIdle.cpp">
       <Filter>Irrlicht\AI\States</Filter>
-	 </ClCompile>
+    </ClCompile>
     <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
@@ -2340,6 +2343,9 @@
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
     <ClCompile Include="ParticleModel.cpp">
+      <Filter>Irrlicht\ParticleEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleParser.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
   </ItemGroup>

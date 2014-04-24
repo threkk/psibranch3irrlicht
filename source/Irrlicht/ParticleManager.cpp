@@ -50,6 +50,9 @@ IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(core::stringc xmlNam
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	//TODO: when the parser is there this is the function that needs to be used instead of the dataModel
+
+
+
 	return particleNode;
 }
 
