@@ -49,6 +49,20 @@ ParticleParser::ParticleParser()
 					model.setCenter(core::vector3df(xmlReader->getAttributeValueAsFloat("X"), xmlReader->getAttributeValueAsFloat("Y"),
 						xmlReader->getAttributeValueAsFloat("Z")));
 				}
+				else if (!strcmp("Normal", xmlReader->getNodeName()))
+				{
+					model.setNormal(core::vector3df(xmlReader->getAttributeValueAsFloat("X"), xmlReader->getAttributeValueAsFloat("Y"),
+						xmlReader->getAttributeValueAsFloat("Z")));
+				}
+				else if (!strcmp("AngleDegrees", xmlReader->getNodeName()))
+				{
+					model.setMaxAngleDegrees(s32(xmlReader->getAttributeValueAsInt("Max")));
+				}
+				else if (!strcmp("LifeTime", xmlReader->getNodeName()))
+				{
+					model.setLifeTimeMax(u32(xmlReader->getAttributeValueAsInt("Max")));
+					model.setLifeTimeMin(u32(xmlReader->getAttributeValueAsInt("Min")));
+				}
 			}
 			break;
 		}
