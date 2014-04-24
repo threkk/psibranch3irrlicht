@@ -143,6 +143,77 @@ void ParticleModel::setOutLineOnly(bool outlineOnly)
 	this->outlineOnly = outlineOnly;
 }
 
+////////////////////////// AFFECTOR SETTERS ///////////////////////////////////
+void ParticleModel::setAffectorType(AffectorTypes affectorType)
+{
+	this->affectorType = affectorType;
+}
+
+void ParticleModel::setAttractionAffectorPoint(core::vector3df point)
+{
+	this->point = point;
+}
+
+void ParticleModel::setAttractionAffectorSpeed(f32 speed)
+{
+	this->speed = speed;
+}
+
+void ParticleModel::setAttractionAffectorAttract(bool attract)
+{
+	this->attract = attract;
+}
+
+void ParticleModel::setAttractionAffectorAffectX(bool affectX)
+{
+	this->affectX = affectX;
+}
+
+void ParticleModel::setAttractionAffectorAffectY(bool affectY)
+{
+	this->affectY = affectY;
+}
+
+void ParticleModel::setAttractionAffectorAffectZ(bool affectZ)
+{
+	this->affectZ = affectZ;
+}
+
+void ParticleModel::setFadeOutAffectorTargetColor(video::SColor targetColor)
+{
+	this->targetColor = targetColor;
+}
+
+void ParticleModel::setFadeOutAffectorTimeNeededToFadeOut(u32 timeNeededToFadeOut)
+{
+	this->timeNeededToFadeOut = timeNeededToFadeOut;
+}
+
+void ParticleModel::setGravityAffectorGravity(core::vector3df gravity)
+{
+	this->gravity = gravity;
+}
+
+void ParticleModel::setGravityAffectorTimeForceLost(u32 timeForceLost)
+{
+	this->timeForceLost = timeForceLost;
+}
+
+void ParticleModel::setRotationAffectorSpeed(core::vector3df rotationSpeed)
+{
+	this->rotationSpeed = rotationSpeed;
+}
+
+void ParticleModel::setRotationAffectorPivotPoint(core::vector3df pivotPoint)
+{
+	this->pivotPoint = pivotPoint;
+}
+
+void ParticleModel::setScaleAffectorScaleTo(core::dimension2df scaleTo)
+{
+	this->scaleTo = scaleTo;
+}
+
 ////////////////////////// GETTERS ///////////////////////////////////
 ParticleModel::EmitterTypes ParticleModel::getEmitterType()
 {
@@ -262,6 +333,77 @@ bool ParticleModel::getEveryMeshVertex()
 bool ParticleModel::getOutLineOnly()
 {
 	return this->outlineOnly;
+}
+
+////////////////////////// AFFECTOR GETTERS ///////////////////////////////////
+ParticleModel::AffectorTypes ParticleModel::getAffectorType()
+{
+	return this->affectorType;
+}
+
+core::vector3df ParticleModel::getAttractionAffectorPoint()
+{
+	return this->point;
+}
+
+f32 ParticleModel::getAttractionAffectorSpeed()
+{
+	return this->speed;
+}
+
+bool ParticleModel::getAttractionAffectorAttract()
+{
+	return this->attract;
+}
+
+bool ParticleModel::getAttractionAffectorAffectX()
+{
+	return this->affectX;
+}
+
+bool ParticleModel::getAttractionAffectorAffectY()
+{
+	return this->affectY;
+}
+
+bool ParticleModel::getAttractionAffectorAffectZ()
+{
+	return this->affectZ;
+}
+
+video::SColor ParticleModel::getFadeOutAffectorTargetColor()
+{
+	return this->targetColor;
+}
+
+u32 ParticleModel::getFadeOutAffectorTimeNeededToFadeOut()
+{
+	return this->timeNeededToFadeOut;
+}
+
+core::vector3df ParticleModel::getGravityAffectorGravity()
+{
+	return this->gravity;
+}
+
+u32 ParticleModel::getGravityAffectorTimeForceLost()
+{
+	return this->timeForceLost;
+}
+
+core::vector3df ParticleModel::getRotationAffectorSpeed()
+{
+	return this->rotationSpeed;
+}
+
+core::vector3df ParticleModel::getRotationAffectorPivotPoint()
+{
+	return this->pivotPoint;
+}
+
+core::dimension2df ParticleModel::getScaleAffectorScaleTo()
+{
+	return this->scaleTo;
 }
 
 ParticleModel::~ParticleModel(void)
