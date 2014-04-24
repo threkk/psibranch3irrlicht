@@ -1,5 +1,6 @@
 #include "ai/State.h"
 #include <algorithm>
+#include <vector>
 
 #pragma once
 
@@ -11,9 +12,9 @@ public:
 		globalState(NULL)
 	{}
 
-	NewStateMachine(State* currentState, State* globalState):
-		globalState(globalState)
+	NewStateMachine(State* currentState, State* global)
 	{
+		globalState = global;
 		addState(currentState);
 		push(currentState);
 	}
@@ -28,9 +29,10 @@ public:
 	void update() 
 	{
 		// If a global state exists, call its execute method
-		if (globalState->executeable()) 
+		if (globalState != NULL && globalState->executeable())
+		{
 			push(globalState);
-		else{
+		}else{
 
 			//Checks if there is some executeable states and add them to the stack by priority.
 			if(states.size()){
@@ -41,11 +43,13 @@ public:
 			}
 
 			//Eliminates the current state if is not executeable anymore.
-			if(stack.size() && !stack[stack.size()-1]->executeable())
+			if(getCurrentState() && !getCurrentState()->executeable())
 				pop();
-			else
-				stack[stack.size()-1]->execute(); //Executes the current state
-		}	
+		}
+
+		//Executes the current state
+		if(getCurrentState())
+				getCurrentState()->execute();
 
 	}
 
@@ -53,8 +57,11 @@ public:
 	 * Goes back to the previous state
 	 */
 	void pop(){
-		State* aux = stack[stack.size()-1];
+		State* aux = getCurrentState();
+		aux->exit();
 		stack.erase(std::remove(stack.begin(), stack.end(), aux), stack.end());
+		if(stack.size())
+			getCurrentState()->enter();
 	}
 
 	/**
@@ -67,9 +74,11 @@ public:
 				if(stack[i] == s)
 					return;
 			}
+			getCurrentState()->exit();
 		}
 
 		stack.push_back(s);
+		getCurrentState()->enter();
 	}
 
 	/**
@@ -78,6 +87,17 @@ public:
 	void setGlobalState(State* s)
 	{
 		globalState = s;
+	}
+
+	/**
+	 * Gets the current state
+	 */
+	State* getCurrentState()
+	{
+		if(!stack.size())
+			return NULL;
+
+		return stack[stack.size()-1];
 	}
 
 	/**
@@ -108,13 +128,15 @@ public:
 	/**
 	* Comparator for the states
 	*/
-	bool compare(State* state1, State* state2)
+	bool static compare(State* state1, State* state2)
 	{
 		return state1->priority > state2->priority;
 	}
 
-protected:
 	State* globalState;
 	std::vector<State*> stack;
 	std::vector<State*> states;
+
+protected:
+	
 };
