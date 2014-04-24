@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    XML* xml = new XML();
 }
 
 void MainWindow::setParticleModel(ParticleModel* model)
@@ -81,6 +82,10 @@ void MainWindow::fillFields (ParticleModel* model)
 
     QComboBox* comboBox_EmitterType = this->findChild<QComboBox*>("comboBox_EmitterType");
     comboBox_EmitterType->setCurrentIndex((int) model->getEmitterType());
+
+    QFileInfo fileInfo(model->getPathNameTexture().c_str());
+    ui->pushButton_OpenTex->setText(fileInfo.fileName().toUtf8().constData());
+
 }
 
 void MainWindow::on_actionSave_XML_triggered()
@@ -201,13 +206,12 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 
 void MainWindow::on_pushButton_OpenTex_clicked()
 {
-    std::cout << QFileDialog::getOpenFileName(this, tr("Open Texture File"),tr("JPEG (*.JPG)")).toUtf8().constData()<< std::endl;
-    //QColor color = QColorDialog::getColor(Qt::green);
+    QString s = QFileDialog::getOpenFileName(this, tr("Open Texture File"),".",tr("Images (*.png *.xpm *.jpg *.bmp)"));
+    if ( s.isEmpty() )
+        return;
+        QFileInfo fileInfo(s);
+        std::cout << fileInfo.fileName().toUtf8().constData()<< std::endl;
 
-    //QPushButton* button = this->findChild<QPushButton*>("pushButton_Color_Max");
-    //setButtonColor (button, color);
-
-    //model->setMaxColor(Util::QColorToSColor(color));
-
-    //std::cout << "Change of max color: " << model->getMaxStartColor().getAlpha() << ", " << model->getMaxStartColor().getRed() << ", " << model->getMaxStartColor().getBlue() << ", " << model->getMaxStartColor().getGreen() << std::endl;
+        ui->pushButton_OpenTex->setText(fileInfo.fileName().toUtf8().constData());
+        model->setPathNameTexture(s.toUtf8().constData());
 }

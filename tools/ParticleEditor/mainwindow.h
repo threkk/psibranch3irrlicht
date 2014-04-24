@@ -75,6 +75,7 @@ private:
 
     // The particle model
     ParticleModel* model;
+
 };
 
 #endif // MAINWINDOW_H

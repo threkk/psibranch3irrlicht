@@ -21,7 +21,7 @@ ParticleModel::ParticleModel()
 	minStartSize = core::dimension2df(4.0f, 4.0f);
 	maxStartSize = core ::dimension2df(8.0f, 8.0f);
 	position = core::vector3df(0,0,0);
-    pathNameTexture = "null";
+    pathNameTexture = "particle.bmp";
     outlineOnly = false;
     everyMeshVertex = false;
     useNormalDirection = false;
