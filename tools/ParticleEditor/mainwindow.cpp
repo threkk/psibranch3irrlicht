@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    XML* xml = new XML();
 }
 
 void MainWindow::setParticleModel(ParticleModel* model)
@@ -92,7 +91,6 @@ void MainWindow::on_actionSave_XML_triggered()
 {
     std::cout << "Save to xml: " << std::endl;
     std::cout << " " << model->toString() << " " << std::endl;
-    XML xml;
     xml.SaveXML(model);
 }
 
@@ -206,12 +204,15 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 
 void MainWindow::on_pushButton_OpenTex_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Open Texture File"),".",tr("Images (*.png *.xpm *.jpg *.bmp)"));
-    if ( s.isEmpty() )
+    //Open Texture
+    QString texture = QFileDialog::getOpenFileName(this, tr("Open Texture File"),".",tr("Images (*.png *.xpm *.jpg *.bmp)"));
+    if ( texture.isEmpty() )
         return;
-        QFileInfo fileInfo(s);
-        std::cout << fileInfo.fileName().toUtf8().constData()<< std::endl;
 
-        ui->pushButton_OpenTex->setText(fileInfo.fileName().toUtf8().constData());
-        model->setPathNameTexture(s.toUtf8().constData());
+    //Set name of the texture in the button name
+    QFileInfo fileInfo(texture);
+    ui->pushButton_OpenTex->setText(fileInfo.fileName().toUtf8().constData());
+
+    //Set the full path in the Particle Model
+    model->setPathNameTexture(texture.toUtf8().constData());
 }

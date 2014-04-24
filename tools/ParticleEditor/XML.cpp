@@ -24,6 +24,22 @@ void XML::SaveXML(ParticleModel* model)
     if ( filename.isEmpty() )
         return;
 
+    // Set PathNameTexture in QFileInfo for name and dir
+    QFileInfo pathTex(model->getPathNameTexture().c_str());
+    //Check of the Texture file is exists
+    if (QFile::exists(model->getPathNameTexture().c_str()))
+    {
+        // Set filename in QFileInfo for name and dir
+        QFileInfo pathXML(filename);
+        // Copy texture file to path of the XML
+        QFile::copy(model->getPathNameTexture().c_str(), pathXML.path() + "/" + pathTex.fileName());
+
+    }else{
+        //make Masseger of the missing texture file
+        QString QstringPathNameTexture = model->getPathNameTexture().c_str();
+        QMessageBox::information(0,"Texture moved/not found",QstringPathNameTexture+" is moved/not found. \nPlace Texture in the same folder as this XML file!");
+    }
+
     //Create the file
     QFile file(filename);
 
@@ -117,18 +133,7 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Texture");
-    QFileInfo pathTex(model->getPathNameTexture().c_str());
     xmlWriter.writeAttribute("PathName",pathTex.fileName().toUtf8().constData());
-    if (QFile::exists(model->getPathNameTexture().c_str()))
-    {
-        QFileInfo pathXML(filename);
-        QFile::copy(model->getPathNameTexture().c_str(), pathXML.path() + "/" + pathTex.fileName());
-
-    }else{
-
-        QString QstringPathNameTexture = model->getPathNameTexture().c_str();
-        QMessageBox::information(0,"Texture moved/not found",QstringPathNameTexture+" is moved/not found. \nPlace Texture in the same folder as this XML file");
-    }
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Rest");

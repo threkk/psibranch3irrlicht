@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "XML.h"
 
 class ParticleModel;
 
@@ -75,6 +76,8 @@ private:
 
     // The particle model
     ParticleModel* model;
+
+    XML xml;
 
 };
 
