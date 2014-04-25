@@ -130,7 +130,7 @@ public:
 	*/
 	bool static compare(State* state1, State* state2)
 	{
-		return state1->priority > state2->priority;
+		return state1->priority < state2->priority;
 	}
 
 	State* globalState;
