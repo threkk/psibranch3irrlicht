@@ -11,9 +11,6 @@ ParticleParser::ParticleParser()
 
 	ParticleModel model;
 
-	float x, y, z; // floats for the direction of the particle
-	int type; // emitter type
-
 	while (xmlReader && xmlReader->read())
 	{
 		switch (xmlReader->getNodeType())
@@ -26,10 +23,13 @@ ParticleParser::ParticleParser()
 					model.setDirection(core::vector3df(xmlReader->getAttributeValueAsFloat("X"),
 						xmlReader->getAttributeValueAsFloat("Y"),
 						xmlReader->getAttributeValueAsFloat("Z")));
+
+					
 				}
 				else if (!strcmp("Emitter", xmlReader->getNodeName()))
 				{
-					//model.setEmitterType(xmlReader->getAttributeValueAsInt("type")));
+					//TODO: This emitterType is an Enum! cast it to a enum!
+					model.setEmitterType(ParticleModel::EmitterTypes(xmlReader->getAttributeValueAsInt("Type")));
 					
 				}
 				else if (!strcmp("Aabbox", xmlReader->getNodeName()))
@@ -62,6 +62,33 @@ ParticleParser::ParticleParser()
 				{
 					model.setLifeTimeMax(u32(xmlReader->getAttributeValueAsInt("Max")));
 					model.setLifeTimeMin(u32(xmlReader->getAttributeValueAsInt("Min")));
+				}
+				else if (!strcmp("PPS", xmlReader->getNodeName()))
+				{
+					model.setMaxPPS(u32(xmlReader->getAttributeValueAsInt("Max")));
+					model.setMinPPS(u32(xmlReader->getAttributeValueAsInt("Min")));
+				}
+				else if (!strcmp("MaxStartColor", xmlReader->getNodeName()))
+				{
+					model.setMaxColor(video::SColor(xmlReader->getAttributeValueAsInt("Alpha"), xmlReader->getAttributeValueAsInt("Red"),
+						xmlReader->getAttributeValueAsInt("Blue"), xmlReader->getAttributeValueAsInt("Green")));
+				}
+				else if (!strcmp("MinStartColor", xmlReader->getNodeName()))
+				{
+					model.setMinColor(video::SColor(xmlReader->getAttributeValueAsInt("Alpha"), xmlReader->getAttributeValueAsInt("Red"),
+						xmlReader->getAttributeValueAsInt("Blue"), xmlReader->getAttributeValueAsInt("Green")));
+				}
+				else if (!strcmp("MaxStartSize", xmlReader->getNodeName()))
+				{
+					model.setMaxStartSize(core::dimension2df(xmlReader->getAttributeValueAsFloat("Width"), xmlReader->getAttributeValueAsFloat("Height")));
+				}
+				else if (!strcmp("MinStartSize", xmlReader->getNodeName()))
+				{
+					model.setMinStartSize(core::dimension2df(xmlReader->getAttributeValueAsFloat("Width"), xmlReader->getAttributeValueAsFloat("Height")));
+				}
+				else if (!strcmp("Rest", xmlReader->getNodeName()))
+				{
+					//model.setOutLineOnly(bool outlineOnly(xmlReader->getAttributeValueAsFloat("")));
 				}
 			}
 			break;
