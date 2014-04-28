@@ -84,6 +84,7 @@ public:
 	*Setters for setting all the properties that are used for the particle affectors
 	*/
 	void setAffectorType(AffectorTypes affectorType);
+	void setAffectorTypes(AffectorTypes affectorTypes);
 	void setAttractionAffectorPoint(core::vector3df point);
 	void setAttractionAffectorSpeed(f32 speed);
 	void setAttractionAffectorAttract(bool attract);
@@ -130,6 +131,7 @@ public:
 	*Getters from all the properties for the affectors
 	*/
 	AffectorTypes getAffectorType();
+	core::list<AffectorTypes>::Iterator getAffectors();
 	core::vector3df getAttractionAffectorPoint();
 	f32 getAttractionAffectorSpeed();
 	bool getAttractionAffectorAttract();
@@ -169,6 +171,7 @@ private:
 	*the variables that are used for the particle affector
 	*/
 	AffectorTypes affectorType;
+	core::list<AffectorTypes>::Iterator affectorTypes;
 	core::vector3df point, gravity, rotationSpeed, pivotPoint;
 	f32 speed;
 	bool attract, affectX, affectY, affectZ;

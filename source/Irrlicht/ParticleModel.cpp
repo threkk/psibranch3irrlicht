@@ -149,6 +149,11 @@ void ParticleModel::setAffectorType(AffectorTypes affectorType)
 	this->affectorType = affectorType;
 }
 
+void ParticleModel::setAffectorTypes(AffectorTypes affectorTypes)
+{
+	this->affectorTypes.push_back(affectorTypes);
+}
+
 void ParticleModel::setAttractionAffectorPoint(core::vector3df point)
 {
 	this->point = point;
@@ -339,6 +344,11 @@ bool ParticleModel::getOutLineOnly()
 ParticleModel::AffectorTypes ParticleModel::getAffectorType()
 {
 	return this->affectorType;
+}
+
+core::list<ParticleModel::AffectorTypes>::Iterator ParticleModel::getAffectors()
+{
+	return this->affectorTypes;
 }
 
 core::vector3df ParticleModel::getAttractionAffectorPoint()
