@@ -103,7 +103,7 @@ void QIrrlichtWidget::resizeEvent( QResizeEvent* event )
 
 void QIrrlichtWidget::autoUpdateIrrlicht( irr::IrrlichtDevice* device )
 {
-    std::cout << "update" << std::endl;
+    // std::cout << "update" << std::endl;
 
     device->getTimer()->tick();
 
