@@ -87,15 +87,15 @@ void QIrrlichtWidget::resizeEvent( QResizeEvent* event )
 {
     if ( device != 0 )
     {
-        irr::core::dimension2d<int> size;
+        irr::core::dimension2d<u32> size;
         size.Width = event->size().width();
         size.Height = event->size().height();
-        // device->getVideoDriver()->OnResize( size );
+        device->getVideoDriver()->OnResize( size );
 
         irr::scene::ICameraSceneNode *cam = device->getSceneManager()->getActiveCamera();
         if ( cam != 0 )
         {
-            cam->setAspectRatio( size.Height / size.Width );
+            cam->setAspectRatio( (float) size.Height / size.Width );
         }
     }
     QWidget::resizeEvent(event);
@@ -103,7 +103,7 @@ void QIrrlichtWidget::resizeEvent( QResizeEvent* event )
 
 void QIrrlichtWidget::autoUpdateIrrlicht( irr::IrrlichtDevice* device )
 {
-    std::cout << "update" << std::endl;
+    // std::cout << "update" << std::endl;
 
     device->getTimer()->tick();
 
