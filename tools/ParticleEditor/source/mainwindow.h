@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "XML.h"
 
 class ParticleModel;
 
@@ -64,6 +65,8 @@ private slots:
 
     void on_comboBox_EmitterType_currentIndexChanged(int index);
 
+    void on_pushButton_OpenTex_clicked();
+
     /** End events of changes in the gui **/
 
 private:
@@ -73,6 +76,9 @@ private:
 
     // The particle model
     ParticleModel* model;
+
+    XML xml;
+
 };
 
 #endif // MAINWINDOW_H

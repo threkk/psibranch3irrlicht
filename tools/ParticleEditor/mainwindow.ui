@@ -427,6 +427,9 @@ border: 0;text-align:left;padding-left:5px;</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
     <property name="inputMask">
      <string/>
     </property>
@@ -443,6 +446,9 @@ border: 0;text-align:left;padding-left:5px;</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="placeholderText">
      <string>Y</string>
     </property>
@@ -455,6 +461,42 @@ border: 0;text-align:left;padding-left:5px;</string>
       <width>541</width>
       <height>481</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_OpenTex">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>280</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);
+border: 1;text-align:left;padding-left:5px;</string>
+    </property>
+    <property name="text">
+     <string>Load Image</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_MaxStartSize_2">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>280</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Texture</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
   </widget>
@@ -498,7 +540,16 @@ border: 0;text-align:left;padding-left:5px;</string>
   </action>
   <action name="actionSave_XML">
    <property name="text">
-    <string>Save to XML</string>
+    <string>Save particle</string>
+   </property>
+   <property name="iconText">
+    <string>Save particle</string>
+   </property>
+   <property name="toolTip">
+    <string>Save particle</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionClose">

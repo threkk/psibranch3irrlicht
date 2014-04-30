@@ -29,3 +29,5 @@ FORMS    += mainwindow.ui
 INCLUDEPATH += ..\..\include
 LIBS += -L..\..\lib\Win32-visualstudio -lIrrlicht
 
+OTHER_FILES +=
+
