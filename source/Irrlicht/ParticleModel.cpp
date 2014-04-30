@@ -144,11 +144,6 @@ void ParticleModel::setOutLineOnly(bool outlineOnly)
 }
 
 ////////////////////////// AFFECTOR SETTERS ///////////////////////////////////
-void ParticleModel::setAffectorType(AffectorTypes affectorType)
-{
-	this->affectorType = affectorType;
-}
-
 void ParticleModel::setAffectors(core::list<AffectorTypes> affectors)
 {
 	this->affectorTypes = affectors;
@@ -346,11 +341,6 @@ bool ParticleModel::getOutLineOnly()
 }
 
 ////////////////////////// AFFECTOR GETTERS ///////////////////////////////////
-ParticleModel::AffectorTypes ParticleModel::getAffectorType()
-{
-	return this->affectorType;
-}
-
 core::list<ParticleModel::AffectorTypes>* ParticleModel::getAffectors()
 {
 	return &this->affectorTypes;
