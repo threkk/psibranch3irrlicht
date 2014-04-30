@@ -36,8 +36,8 @@ ParticleModel ParticleParser::parse(const char* filename)
 				else if (!strcmp("Aabbox", xmlReader->getNodeName()))
 				{
 					model.setAabbox(core::aabbox3df(xmlReader->getAttributeValueAsFloat("MinX"), xmlReader->getAttributeValueAsFloat("MinY"),
-					xmlReader->getAttributeValueAsFloat("MinZ"), xmlReader->getAttributeValueAsFloat("MaxX"),
-					xmlReader->getAttributeValueAsFloat("MaxY"), xmlReader->getAttributeValueAsFloat("MaxZ")));
+						xmlReader->getAttributeValueAsFloat("MinZ"), xmlReader->getAttributeValueAsFloat("MaxX"),
+						xmlReader->getAttributeValueAsFloat("MaxY"), xmlReader->getAttributeValueAsFloat("MaxZ")));
 				}
 				else if (!strcmp("Position", xmlReader->getNodeName()))
 				{
@@ -105,6 +105,8 @@ ParticleModel ParticleParser::parse(const char* filename)
 			break;
 		}
 	}
+
+
 	
 	// Delete the xml parser after usage
 	delete xmlReader;
