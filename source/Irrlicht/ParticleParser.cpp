@@ -9,6 +9,8 @@ ParticleParser::ParticleParser()
 
 }
 
+
+
 ParticleModel ParticleParser::parse(const char* filename)
 {
 	// Creates a XML reader and set path to load the XML file from
@@ -88,7 +90,10 @@ ParticleModel ParticleParser::parse(const char* filename)
 				}
 				else if (!strcmp("Texture", xmlReader->getNodeName()))
 				{
-					model.setPathNameTexture(core::stringc(xmlReader->getAttributeValue("PathName")));
+					core::stringc filepath = core::stringc(filename);
+					filepath = filepath.subString(0, filepath.findLastChar("/"));
+					core::stringc text = core::stringc(xmlReader->getAttributeValue("PathName"));
+					model.setPathNameTexture(filepath + "/" + text);
 				}
 				else if (!strcmp("Rest", xmlReader->getNodeName()))
 				{
