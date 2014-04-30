@@ -90,7 +90,7 @@ void MainWindow::fillFields (ParticleModel* model)
 void MainWindow::on_actionSave_XML_triggered()
 {
     std::cout << "Save to xml: " << std::endl;
-    std::cout << " " << model->toString() << " " << std::endl;
+    XML xml;
     xml.SaveXML(model);
 }
 

@@ -15,12 +15,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     ParticleModel.cpp \
     XML.cpp \
-    Util.cpp
+    Util.cpp \
+    QIrrlichtWidget.cpp
 
 HEADERS  += mainwindow.h \
     ParticleModel.h \
     XML.h \
-    Util.h
+    Util.h \
+    QIrrlichtWidget.h
 
 FORMS    += mainwindow.ui
 
