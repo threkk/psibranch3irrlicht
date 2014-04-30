@@ -83,8 +83,9 @@ void MainWindow::fillFields (ParticleModel* model)
     comboBox_EmitterType->setCurrentIndex((int) model->getEmitterType());
 
     QFileInfo fileInfo(model->getPathNameTexture().c_str());
-    ui->pushButton_OpenTex->setText(fileInfo.fileName().toUtf8().constData());
-
+	QPushButton* pushButtonOpenText = this->findChild<QPushButton*>("pushButton_OpenTex");
+	if (pushButtonOpenText != nullptr)
+		pushButtonOpenText->setText(fileInfo.fileName());
 }
 
 void MainWindow::on_actionSave_XML_triggered()
@@ -211,7 +212,9 @@ void MainWindow::on_pushButton_OpenTex_clicked()
 
     //Set name of the texture in the button name
     QFileInfo fileInfo(texture);
-    ui->pushButton_OpenTex->setText(fileInfo.fileName().toUtf8().constData());
+    QPushButton* pushButtonOpenText = this->findChild<QPushButton*>("pushButton_OpenTex");
+	if (pushButtonOpenText != nullptr)
+		pushButtonOpenText->setText(fileInfo.fileName());
 
     //Set the full path in the Particle Model
     model->setPathNameTexture(texture.toUtf8().constData());

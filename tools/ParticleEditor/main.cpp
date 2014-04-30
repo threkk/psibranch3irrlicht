@@ -106,8 +106,8 @@ int main(int argc, char **argv)
 
     std::cout << "Setup Irrlicht" << std::endl;
 
-    setupIrrlicht( irrWidget.getIrrlichtDevice() );
-	layout->addWidget(&irrWidget);
+    //setupIrrlicht( irrWidget.getIrrlichtDevice() );
+	//layout->addWidget(&irrWidget);
 	//QWidget* q = layout->findChild<QWidget*>("graphicsView");
 	//layout->replaceWidget(q, &irrWidget);
 
