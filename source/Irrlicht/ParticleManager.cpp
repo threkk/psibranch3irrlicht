@@ -7,7 +7,7 @@ ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevic
 	smgr = sManager;
 }
 
-IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName,IAnimatedMesh* animatedMesh, IMesh* mesh)
+IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName, IAnimatedMesh* animatedMesh, IMesh* mesh)
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
 	particleNode->setScale(core::vector3df(0.5f, 0.5f,0.5f));
@@ -46,13 +46,18 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	return particleNode;
 }
 
-IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(core::stringc xmlName, vector3df position,IAnimatedMesh* animatedMesh, IMesh* mesh)
+IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(const char* filename, vector3df position,IAnimatedMesh* animatedMesh, IMesh* mesh)
 {
 	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
-	//TODO: when the parser is there this is the function that needs to be used instead of the dataModel
 
+	// Parse the xml file to a particle model
+	ParticleParser parser = ParticleParser();
+	ParticleModel model = parser.parse(filename);
 
+	// Spawn the particle model
+	this->spawnDataModelParticle(&model, position, model.getPathNameTexture().c_str());
 
+	// Return the particle node
 	return particleNode;
 }
 

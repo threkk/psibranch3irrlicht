@@ -93,6 +93,8 @@ public:
 	bool getEveryMeshVertex();
 	bool getOutLineOnly();
 	
+	void print(void);
+
 	/**
 	*Deconstructor
 	*/
