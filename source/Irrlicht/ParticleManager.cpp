@@ -129,37 +129,40 @@ void ParticleManager::createSphereEmittingParticle(ParticleModel* particleModel,
 
 void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
 {
-	if(particleModel->getAffectorType() == particleModel->ATTRACT)
+	for(auto affector = particleModel->getAffectors()->begin(); affector != particleModel->getAffectors()->end(); ++affector)
 	{
-		scene::IParticleAffector* affector = particleNode->createAttractionAffector(particleModel->getAttractionAffectorPoint(),particleModel->getAttractionAffectorSpeed(),
-			particleModel->getAttractionAffectorAttract(),particleModel->getAttractionAffectorAffectX(),particleModel->getAttractionAffectorAffectY(),particleModel->getAttractionAffectorAffectZ());
-		particleNode->addAffector(affector);
-		affector->drop();
-	}
-	else if(particleModel->getAffectorType() == particleModel->FADE_OUT)
-	{
-		scene::IParticleAffector* affector = particleNode->createFadeOutParticleAffector(particleModel->getFadeOutAffectorTargetColor(),
-			particleModel->getFadeOutAffectorTimeNeededToFadeOut());
-		particleNode->addAffector(affector);
-		affector->drop();
-	}
-	else if(particleModel->getAffectorType() == particleModel->GRAVITY)
-	{
-		scene::IParticleAffector* affector = particleNode->createGravityAffector(particleModel->getGravityAffectorGravity(),particleModel->getGravityAffectorTimeForceLost());
-		particleNode->addAffector(affector);
-		affector->drop();
-	}
-	else if(particleModel->getAffectorType() == particleModel->ROTATE)
-	{
-		scene::IParticleAffector* affector = particleNode->createRotationAffector(particleModel->getRotationAffectorSpeed(),particleModel->getRotationAffectorPivotPoint());
-		particleNode->addAffector(affector);
-		affector->drop();
-	}
-	else if(particleModel->getAffectorType() == particleModel->SCALE)
-	{
-		scene::IParticleAffector* affector = particleNode->createScaleParticleAffector(particleModel->getScaleAffectorScaleTo());
-		particleNode->addAffector(affector);
-		affector->drop();
+		if ((*affector) == particleModel->ATTRACT)
+		{
+			scene::IParticleAffector* affector = particleNode->createAttractionAffector(particleModel->getAttractionAffectorPoint(),particleModel->getAttractionAffectorSpeed(),
+				particleModel->getAttractionAffectorAttract(),particleModel->getAttractionAffectorAffectX(),particleModel->getAttractionAffectorAffectY(),particleModel->getAttractionAffectorAffectZ());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->FADE_OUT)
+		{
+			scene::IParticleAffector* affector = particleNode->createFadeOutParticleAffector(particleModel->getFadeOutAffectorTargetColor(),
+				particleModel->getFadeOutAffectorTimeNeededToFadeOut());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->GRAVITY)
+		{
+			scene::IParticleAffector* affector = particleNode->createGravityAffector(particleModel->getGravityAffectorGravity(),particleModel->getGravityAffectorTimeForceLost());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->ROTATE)
+		{
+			scene::IParticleAffector* affector = particleNode->createRotationAffector(particleModel->getRotationAffectorSpeed(),particleModel->getRotationAffectorPivotPoint());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->SCALE)
+		{
+			scene::IParticleAffector* affector = particleNode->createScaleParticleAffector(particleModel->getScaleAffectorScaleTo());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
 	}
 }
 
