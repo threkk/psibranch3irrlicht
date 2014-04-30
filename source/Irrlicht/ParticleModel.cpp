@@ -149,7 +149,7 @@ void ParticleModel::setAffectorType(AffectorTypes affectorType)
 	this->affectorType = affectorType;
 }
 
-void ParticleModel::setAffectorTypes(AffectorTypes affectorTypes)
+void ParticleModel::setAffectorTypes(AffectorTypes* affectorTypes)
 {
 	this->affectorTypes.push_back(affectorTypes);
 }
@@ -346,10 +346,14 @@ ParticleModel::AffectorTypes ParticleModel::getAffectorType()
 	return this->affectorType;
 }
 
-core::list<ParticleModel::AffectorTypes>::Iterator ParticleModel::getAffectors()
+/*core::list<ParticleModel::AffectorTypes>::Iterator ParticleModel::getAffectors()
 {
 	return this->affectorTypes;
-}
+	for(core::list<AffectorTypes*>::Iterator affectors = this->affectorTypes.begin(); affectors != this->affectorTypes.end(); affectors++)
+	{
+		(*affectors);
+	}
+}*/
 
 core::vector3df ParticleModel::getAttractionAffectorPoint()
 {
