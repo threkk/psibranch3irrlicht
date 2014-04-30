@@ -45,3 +45,8 @@ _ReSharper*/
 ipch/*
 *.ipch
 *.sdf
+
+#ignore irrlicht lib folder
+lib/Win32-visualstudio/*
+lib/Win64-visualstudio/*
+lib/Win32-gcc/*
