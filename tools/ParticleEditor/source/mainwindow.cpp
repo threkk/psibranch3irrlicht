@@ -1,12 +1,18 @@
-#include "mainwindow.h"
+#include <iostream>
+
+#include <QFileDialog>
+#include <QString>
+#include <QColorDialog>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QPushButton>
+
 #include <ParticleModel.h>
+
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "XML.h"
 #include "Util.h"
-#include <QFileDialog>
-#include <QString>
-#include <iostream>
-#include <QColorDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

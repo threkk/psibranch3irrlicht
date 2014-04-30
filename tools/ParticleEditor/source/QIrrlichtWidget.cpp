@@ -67,9 +67,7 @@ void QIrrlichtWidget::paintEvent( QPaintEvent* event )
     if ( device != 0 )
     {
         emit updateIrrlicht( device );
-
     }
-
 }
 
 void QIrrlichtWidget::timerEvent( QTimerEvent* event )
@@ -79,7 +77,6 @@ void QIrrlichtWidget::timerEvent( QTimerEvent* event )
         emit updateIrrlicht( device );
     }
     event->accept();
-
 }
 
 
@@ -103,8 +100,6 @@ void QIrrlichtWidget::resizeEvent( QResizeEvent* event )
 
 void QIrrlichtWidget::autoUpdateIrrlicht( irr::IrrlichtDevice* device )
 {
-    // std::cout << "update" << std::endl;
-
     device->getTimer()->tick();
 
     irr::video::SColor color (0,0,0,0);

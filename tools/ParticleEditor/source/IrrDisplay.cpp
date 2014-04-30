@@ -38,6 +38,7 @@ void IrrDisplay::setupIrrlicht( IrrlichtDevice* device )
 
 void IrrDisplay::displayParticle (ParticleModel* model)
 {
+	// Spawn a particle based on a particle model
 	pManager->spawnDataModelParticle(model, core::vector3df(0,0,0), model->getPathNameTexture());
 }
 
