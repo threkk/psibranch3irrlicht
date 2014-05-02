@@ -13,7 +13,7 @@ class IRRLICHT_API ParticleModel
 	*You can store them manually by setting every property
 	*Or you can use the xml that is created from the editor
 	*to get all the attributes that are stored into that xml and put it into
-	*this particlemodel.(this latter isn't implemented yet, that will be implemented next sprint)
+	*this particlemodel.
 	*/
 public:
 	/**

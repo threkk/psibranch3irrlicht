@@ -16,6 +16,7 @@ ParticleModel ParticleParser::parse(const char* filename)
 	// Creates a XML reader and set path to load the XML file from
 	io::IrrXMLReader* xmlReader = io::createIrrXMLReader(filename);
 
+	// The Particle model where all the values will be stored
 	ParticleModel model = ParticleModel();
 
 	while (xmlReader && xmlReader->read())
