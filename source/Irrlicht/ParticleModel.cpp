@@ -22,6 +22,7 @@ ParticleModel::ParticleModel()
 	position = core::vector3df(0,0,0);
 	pathNameTexture;
 }
+
 ////////////////////////// SETTERS ///////////////////////////////////
 void ParticleModel::setEmitterType(EmitterTypes emitterType)
 {
@@ -264,7 +265,55 @@ bool ParticleModel::getOutLineOnly()
 	return this->outlineOnly;
 }
 
+void printVector(core::vector3df v)
+{
+	std::cout << v.X << ", " << v.Y << ", " << v.Z << std::endl;
+}
+
+void printDimension(core::dimension2df d)
+{
+	std::cout << d.Width << " " << d.Height << std::endl;
+}
+
+void printColor(video::SColor c)
+{
+	std::cout << c.getAlpha() << " " << c.getRed() << " " << c.getGreen() << " " << c.getBlue() << std::endl;
+}
+
+void ParticleModel::print(void)
+{
+	std::cout << "Print particle model" << std::endl;
+	std::cout << "Emitter: " << this->getEmitterType() << std::endl;
+
+	std::cout << "Min Color: ";
+	printColor(this->getMinStartColor());
+
+	std::cout << "Max Color: ";
+	printColor(this->getMaxStartColor());
+
+	std::cout << "Min Particles Per Second: " << this->getMinPPS() << std::endl;
+	std::cout << "Max Particles Per Second: " << this->getMaxPPS() << std::endl;
+
+	std::cout << "Direction: ";
+	printVector(this->getDirection());
+
+	std::cout << "Min Lifetime: " << this->getLifeTimeMin() << std::endl;
+	std::cout << "Max Lifetime: " << this->getLifeTimeMax() << std::endl;
+
+	std::cout << "Max angle: " << this->getMaxAngleDegrees() << std::endl;
+
+	std::cout << "Min start size: ";
+	printDimension(this->getMinStartSize());
+
+	std::cout << "Max start size: ";
+	printDimension(this->getMaxStartSize());
+
+	// std::cout << "Texture " << this->getPathNameTexture().c_str() << std::endl;
+
+	std::cout << "Position: ";
+	printVector(this->getPosition());
+}
+
 ParticleModel::~ParticleModel(void)
 {
 }
-
