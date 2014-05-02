@@ -131,18 +131,21 @@ void MainWindow::on_lineEdit_Direction_X_textChanged(const QString &arg1)
 {
     model->setDirection(core::vector3df (arg1.toFloat(), model->getDirection().Y, model->getDirection().Z));
     std::cout << "Change of direction: " << model->getDirection().X << ", " << model->getDirection().Y << ", " << model->getDirection().Z << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_Direction_Y_textChanged(const QString &arg1)
 {
     model->setDirection(core::vector3df (model->getDirection().X, arg1.toFloat(), model->getDirection().Z));
     std::cout << "Change of direction: " << model->getDirection().X << ", " << model->getDirection().Y << ", " << model->getDirection().Z << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_Direction_Z_textChanged(const QString &arg1)
 {
     model->setDirection(core::vector3df (model->getDirection().X, model->getDirection().Y, arg1.toFloat()));
     std::cout << "Change of direction: " << model->getDirection().X << ", " << model->getDirection().Y << ", " << model->getDirection().Z << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_pushButton_Color_Min_clicked()
@@ -155,6 +158,7 @@ void MainWindow::on_pushButton_Color_Min_clicked()
     model->setMinColor(Util::QColorToSColor(color));
 
     std::cout << "Change of min color: " << model->getMinStartColor().getAlpha() << ", " << model->getMinStartColor().getRed() << ", " << model->getMinStartColor().getBlue() << ", " << model->getMinStartColor().getGreen() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_pushButton_Color_Max_clicked()
@@ -167,66 +171,77 @@ void MainWindow::on_pushButton_Color_Max_clicked()
     model->setMaxColor(Util::QColorToSColor(color));
 
     std::cout << "Change of max color: " << model->getMaxStartColor().getAlpha() << ", " << model->getMaxStartColor().getRed() << ", " << model->getMaxStartColor().getBlue() << ", " << model->getMaxStartColor().getGreen() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_Angle_textChanged(const QString &arg1)
 {
     model->setMaxAngleDegrees(arg1.toFloat());
     std::cout << "Change of angle: " << model->getMaxAngleDegrees() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_Lifetime_Min_textChanged(const QString &arg1)
 {
     model->setLifeTimeMin(arg1.toFloat());
     std::cout << "Change of min life time: " << model->getLifeTimeMin() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_Lifetime_Max_textChanged(const QString &arg1)
 {
     model->setLifeTimeMax(arg1.toFloat());
     std::cout << "Change of max life time: " << model->getLifeTimeMax() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_PPS_Min_textChanged(const QString &arg1)
 {
     model->setMinPPS(arg1.toFloat());
     std::cout << "Change of min pps: " << model->getMinPPS() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_PPS_Max_textChanged(const QString &arg1)
 {
     model->setMaxPPS(arg1.toFloat());
     std::cout << "Change of max pps: " << model->getMaxPPS() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_MinStartSize_X_textChanged(const QString &arg1)
 {
     model->setMinStartSize(core::dimension2df(arg1.toFloat(), model->getMinStartSize().Height));
     std::cout << "Change of min start size: " << model->getMinStartSize().Width << ", " << model->getMinStartSize().Height << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_MinStartSize_Y_textChanged(const QString &arg1)
 {
     model->setMinStartSize(core::dimension2df(model->getMinStartSize().Width, arg1.toFloat()));
     std::cout << "Change of min start size: " << model->getMinStartSize().Width << ", " << model->getMinStartSize().Height << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_MaxStartSize_X_textChanged(const QString &arg1)
 {
     model->setMaxStartSize(core::dimension2df(arg1.toFloat(), model->getMaxStartSize().Height));
     std::cout << "Change of max start size: " << model->getMaxStartSize().Width << ", " << model->getMaxStartSize().Height << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_lineEdit_MaxStartSize_Y_textChanged(const QString &arg1)
 {
     model->setMaxStartSize(core::dimension2df(model->getMaxStartSize().Width, arg1.toFloat()));
     std::cout << "Change of max start size: " << model->getMaxStartSize().Width << ", " << model->getMaxStartSize().Height << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 {
     model->setEmitterType(static_cast<ParticleModel::EmitterTypes>(index));
     std::cout << "Change of emitter type: " << model->getEmitterType() << std::endl;
+	irrDisplay->displayParticle(model);
 }
 
 void MainWindow::on_pushButton_OpenTex_clicked()
@@ -244,4 +259,6 @@ void MainWindow::on_pushButton_OpenTex_clicked()
 
     //Set the full path in the Particle Model
     model->setPathNameTexture(texture.toUtf8().constData());
+
+	irrDisplay->displayParticle(model);
 }

@@ -35,9 +35,6 @@ int main(int argc, char **argv)
     MainWindow w;
     w.show();
 
-    // Add the particle model to the window
-    w.setParticleModel (m);
-
 	// For now we work a 800x600 editor
 	w.resize(800, 600);
 
@@ -59,7 +56,9 @@ int main(int argc, char **argv)
 	irrWidget.move(10, 10);
 	irrWidget.resize(540, 480);
 
+    // Add the particle model to the window
     w.setIrrDisplay (&irrDisplay);
+    w.setParticleModel (m);
 
     return a.exec();
 }
