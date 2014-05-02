@@ -1,4 +1,4 @@
-#include "StateIdle.h"
+#include "ai/StateIdle.h"
 
 
 StateIdle::StateIdle(std::function<void(void*)> callbackFunction, void* callbackParameter)
@@ -9,16 +9,23 @@ StateIdle::StateIdle(std::function<void(void*)> callbackFunction, void* callback
 
 StateIdle::~StateIdle(void)
 {
+
 }
 
 bool StateIdle::executeable(void)
 {
-	// It's always possible to be idle
 	return true;
+}
+
+void StateIdle::enter()
+{
+}
+
+void StateIdle::exit()
+{
 }
 
 void StateIdle::action()
 {
-	// Call the callback function
 	callbackFunction(callbackParameter);
 }
