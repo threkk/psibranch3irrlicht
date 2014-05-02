@@ -59,5 +59,7 @@ int main(int argc, char **argv)
 	irrWidget.move(10, 10);
 	irrWidget.resize(540, 480);
 
+    w.setIrrDisplay (&irrDisplay);
+
     return a.exec();
 }

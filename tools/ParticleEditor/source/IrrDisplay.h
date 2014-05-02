@@ -34,6 +34,8 @@ private:
 
 	// Particle manager, takes care of spawning particles
 	ParticleManager* pManager;
+
+	scene::IParticleSystemSceneNode* activeParticle;
 };
 
 #endif

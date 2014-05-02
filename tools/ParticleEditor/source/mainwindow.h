@@ -5,6 +5,7 @@
 #include "XML.h"
 
 class ParticleModel;
+class IrrDisplay;
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +20,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     void setParticleModel (ParticleModel* model);
+	void setIrrDisplay (IrrDisplay* irrDisplay);
     ~MainWindow();
 
 private slots:
@@ -30,6 +32,8 @@ private slots:
 
     // On click of the save xml menu item
     void on_actionSave_XML_triggered();
+
+	void on_actionOpen_XML_triggered();
 
     void setButtonColor (QPushButton* button, QColor color);
 
@@ -78,6 +82,8 @@ private:
     ParticleModel* model;
 
     XML xml;
+
+	IrrDisplay* irrDisplay;
 
 };
 

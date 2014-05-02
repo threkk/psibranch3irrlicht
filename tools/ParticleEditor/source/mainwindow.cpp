@@ -8,16 +8,19 @@
 #include <QPushButton>
 
 #include <ParticleModel.h>
+#include <ParticleParser.h>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "XML.h"
 #include "Util.h"
+#include "IrrDisplay.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+	irrDisplay = nullptr;
     ui->setupUi(this);
 }
 
@@ -25,6 +28,14 @@ void MainWindow::setParticleModel(ParticleModel* model)
 {
     this->model = model;
     fillFields(model);
+	if (irrDisplay != nullptr) {
+		irrDisplay->displayParticle(model);
+	}
+}
+
+void MainWindow::setIrrDisplay (IrrDisplay* irrDisplay)
+{
+    this->irrDisplay = irrDisplay;
 }
 
 MainWindow::~MainWindow()
@@ -99,6 +110,15 @@ void MainWindow::on_actionSave_XML_triggered()
     std::cout << "Save to xml: " << std::endl;
     XML xml;
     xml.SaveXML(model);
+}
+
+void MainWindow::on_actionOpen_XML_triggered()
+{
+    std::cout << "Open xml: " << std::endl;
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",  tr("Files (*.*)"));
+	ParticleParser p = ParticleParser();
+	ParticleModel model = p.parse(fileName.toStdString().c_str());
+	this->setParticleModel(&model);
 }
 
 void MainWindow::setButtonColor (QPushButton* button, QColor color)
