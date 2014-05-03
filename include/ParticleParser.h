@@ -26,7 +26,10 @@ public:
 	// The default constructor
 	ParticleParser();
 
-	// XML file reader
+	/* This function loops through the XML file to read all the values
+	which are stored in the XML file. The values are stored to a model
+	by using setters which are defined in the ParticleModel class.
+	*/
 	ParticleModel parse(const char* filename);
 
 
