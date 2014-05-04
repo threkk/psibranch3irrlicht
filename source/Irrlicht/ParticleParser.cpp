@@ -3,13 +3,10 @@
 
 using namespace irr;
 
-
 ParticleParser::ParticleParser()
 {
 
 }
-
-
 
 ParticleModel ParticleParser::parse(const char* filename)
 {
@@ -111,8 +108,6 @@ ParticleModel ParticleParser::parse(const char* filename)
 			break;
 		}
 	}
-
-
 	
 	// Delete the xml parser after usage
 	delete xmlReader;
