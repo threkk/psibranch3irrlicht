@@ -81,6 +81,12 @@ private:
 	void createMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode,IMesh* mesh);
 	void createRingEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
 	void createSphereEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
+
+	/**
+	*This function checks if the particle uses an affector
+	*an Affector is an external force acting on the particle like fadeout
+	*/
+	void checkForAffectors(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
 };
 
 #endif
