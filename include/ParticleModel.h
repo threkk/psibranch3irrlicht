@@ -38,7 +38,22 @@ public:
 	};
 
 	/**
-	*Setters for setting all the properties that are used for the particle
+	*AffectorTypes are used to identify which affector
+	*is added to a particle this is used to
+	*create the affector in the ParticleManager class
+	*/
+	enum AffectorTypes
+	{
+		NOPE = 0,
+		ATTRACT,
+		FADE_OUT,
+		GRAVITY,
+		ROTATE,
+		SCALE
+	};
+
+	/**
+	*Setters for setting all the properties that are used for the particle emitters
 	*/
 	void setEmitterType(EmitterTypes emitterType);
 	void setAabbox(core::aabbox3df aabbox);
@@ -66,7 +81,26 @@ public:
 	void setOutLineOnly(bool outlineOnly);
 
 	/**
-	*Getters from all the properties
+	*Setters for setting all the properties that are used for the particle affectors
+	*/
+	void setAffectors(core::list<AffectorTypes> affectors);
+	void addAffectorType(AffectorTypes affectorType);
+	void setAttractionAffectorPoint(core::vector3df point);
+	void setAttractionAffectorSpeed(f32 speed);
+	void setAttractionAffectorAttract(bool attract);
+	void setAttractionAffectorAffectX(bool affectX);
+	void setAttractionAffectorAffectY(bool affectY);
+	void setAttractionAffectorAffectZ(bool affectZ);
+	void setFadeOutAffectorTargetColor(video::SColor targetColor);
+	void setFadeOutAffectorTimeNeededToFadeOut(u32 timeNeededToFadeOut);
+	void setGravityAffectorGravity(core::vector3df gravity);
+	void setGravityAffectorTimeForceLost(u32 timeForceLost);
+	void setRotationAffectorSpeed(core::vector3df rotationSpeed);
+	void setRotationAffectorPivotPoint(core::vector3df pivotPoint);
+	void setScaleAffectorScaleTo(core::dimension2df scaleTo);
+
+	/**
+	*Getters from all the properties for the emitters
 	*/
 	EmitterTypes getEmitterType();
 	core::aabbox3df getAabbox();
@@ -92,7 +126,25 @@ public:
 	bool getUseNormalDirection();
 	bool getEveryMeshVertex();
 	bool getOutLineOnly();
-	
+
+	/**
+	*Getters from all the properties for the affectors
+	*/
+	core::list<AffectorTypes>* getAffectors();
+	core::vector3df getAttractionAffectorPoint();
+	f32 getAttractionAffectorSpeed();
+	bool getAttractionAffectorAttract();
+	bool getAttractionAffectorAffectX();
+	bool getAttractionAffectorAffectY();
+	bool getAttractionAffectorAffectZ();
+	video::SColor getFadeOutAffectorTargetColor();
+	u32 getFadeOutAffectorTimeNeededToFadeOut();
+	core::vector3df getGravityAffectorGravity();
+	u32 getGravityAffectorTimeForceLost();
+	core::vector3df getRotationAffectorSpeed();
+	core::vector3df getRotationAffectorPivotPoint();
+	core::dimension2df getScaleAffectorScaleTo();
+
 	/**
 	*Deconstructor
 	*/
@@ -101,7 +153,7 @@ public:
 private:
 
 	/**
-	*the variables that are used for the particle
+	*the variables that are used for the particle emitter
 	*/
 	EmitterTypes emitterType;
 	core::aabbox3df aabbox;
@@ -113,6 +165,17 @@ private:
 	video::SColor minStartColor, maxStartColor;
 	core::dimension2df minStartSize, maxStartSize;
 	bool useNormalDirection, everyMeshVertex, outlineOnly;
+
+	/**
+	*the variables that are used for the particle affector
+	*/
+	core::list<AffectorTypes> affectorTypes;
+	core::vector3df point, gravity, rotationSpeed, pivotPoint;
+	f32 speed;
+	bool attract, affectX, affectY, affectZ;
+	video::SColor targetColor;
+	u32 timeNeededToFadeOut, timeForceLost;
+	core::dimension2df scaleTo;
 };
 
 #endif

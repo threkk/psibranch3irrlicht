@@ -1,10 +1,18 @@
-#include "mainwindow.h"
+#include <iostream>
+
+#include <QFileDialog>
+#include <QString>
+#include <QColorDialog>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QPushButton>
+
 #include <ParticleModel.h>
+
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "XML.h"
 #include "Util.h"
-#include <iostream>
-#include <QColorDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -79,12 +87,16 @@ void MainWindow::fillFields (ParticleModel* model)
 
     QComboBox* comboBox_EmitterType = this->findChild<QComboBox*>("comboBox_EmitterType");
     comboBox_EmitterType->setCurrentIndex((int) model->getEmitterType());
+
+    QFileInfo fileInfo(model->getPathNameTexture().c_str());
+	QPushButton* pushButtonOpenText = this->findChild<QPushButton*>("pushButton_OpenTex");
+	if (pushButtonOpenText != nullptr)
+		pushButtonOpenText->setText(fileInfo.fileName());
 }
 
 void MainWindow::on_actionSave_XML_triggered()
 {
     std::cout << "Save to xml: " << std::endl;
-    std::cout << " " << model->toString() << " " << std::endl;
     XML xml;
     xml.SaveXML(model);
 }
@@ -195,4 +207,21 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 {
     model->setEmitterType(static_cast<ParticleModel::EmitterTypes>(index));
     std::cout << "Change of emitter type: " << model->getEmitterType() << std::endl;
+}
+
+void MainWindow::on_pushButton_OpenTex_clicked()
+{
+    //Open Texture
+    QString texture = QFileDialog::getOpenFileName(this, tr("Open Texture File"),".",tr("Images (*.png *.xpm *.jpg *.bmp)"));
+    if ( texture.isEmpty() )
+        return;
+
+    //Set name of the texture in the button name
+    QFileInfo fileInfo(texture);
+    QPushButton* pushButtonOpenText = this->findChild<QPushButton*>("pushButton_OpenTex");
+	if (pushButtonOpenText != nullptr)
+		pushButtonOpenText->setText(fileInfo.fileName());
+
+    //Set the full path in the Particle Model
+    model->setPathNameTexture(texture.toUtf8().constData());
 }
