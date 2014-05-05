@@ -1,5 +1,4 @@
 #include "ParticleParser.h"
-#include "string"
 
 using namespace irr;
 
