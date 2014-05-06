@@ -9,22 +9,22 @@ using namespace irr;
 class IRRLICHT_API ParticleModel
 {
 	/**
-	*This class is used to store every attribute that is needed to create a particle.
-	*You can store them manually by setting every property
-	*Or you can use the xml that is created from the editor
-	*to get all the attributes that are stored into that xml and put it into
-	*this particlemodel.(this latter isn't implemented yet, that will be implemented next sprint)
-	*/
+	 * This class is used to store every attribute that is needed to create a particle.
+	 * You can store them manually by setting every property
+	 * Or you can use the xml that is created from the editor
+	 * to get all the attributes that are stored into that xml and put it into
+	 * this particlemodel.
+	 */
 public:
 	/**
-	*The default constructor
-	*/
+	 * The default constructor
+	 */
 	ParticleModel();
 
 	/**
-	*EmitterTypes are used to identify which emitter
-	*is needed to create in the ParticleManager class
-	*/
+	 * EmitterTypes are used to identify which emitter
+	 * is needed to create in the ParticleManager class
+	 */
 	enum EmitterTypes
 	{
 		NONE = 0,
@@ -38,10 +38,10 @@ public:
 	};
 
 	/**
-	*AffectorTypes are used to identify which affector
-	*is added to a particle this is used to
-	*create the affector in the ParticleManager class
-	*/
+	 * AffectorTypes are used to identify which affector
+	 * is added to a particle this is used to
+	 * create the affector in the ParticleManager class
+	 */
 	enum AffectorTypes
 	{
 		NOPE = 0,
@@ -53,8 +53,8 @@ public:
 	};
 
 	/**
-	*Setters for setting all the properties that are used for the particle emitters
-	*/
+	 * Setters for setting all the properties that are used for the particle emitters
+	 */
 	void setEmitterType(EmitterTypes emitterType);
 	void setAabbox(core::aabbox3df aabbox);
 	void setDirection(core::vector3df direction);
@@ -81,8 +81,8 @@ public:
 	void setOutLineOnly(bool outlineOnly);
 
 	/**
-	*Setters for setting all the properties that are used for the particle affectors
-	*/
+	 * Setters for setting all the properties that are used for the particle affectors
+	 */
 	void setAffectors(core::list<AffectorTypes> affectors);
 	void addAffectorType(AffectorTypes affectorType);
 	void setAttractionAffectorPoint(core::vector3df point);
@@ -100,8 +100,8 @@ public:
 	void setScaleAffectorScaleTo(core::dimension2df scaleTo);
 
 	/**
-	*Getters from all the properties for the emitters
-	*/
+	 * Getters from all the properties for the emitters
+	 */
 	EmitterTypes getEmitterType();
 	core::aabbox3df getAabbox();
 	core::vector3df getDirection();
@@ -128,8 +128,8 @@ public:
 	bool getOutLineOnly();
 
 	/**
-	*Getters from all the properties for the affectors
-	*/
+	 * Getters from all the properties for the affectors
+	 */
 	core::list<AffectorTypes>* getAffectors();
 	core::vector3df getAttractionAffectorPoint();
 	f32 getAttractionAffectorSpeed();
@@ -145,16 +145,18 @@ public:
 	core::vector3df getRotationAffectorPivotPoint();
 	core::dimension2df getScaleAffectorScaleTo();
 
+	void print(void);
+
 	/**
-	*Deconstructor
-	*/
+	 * Deconstructor
+	 */
 	~ParticleModel(void);
 
 private:
 
 	/**
-	*the variables that are used for the particle emitter
-	*/
+	 * The variables that are used for the particle emitter
+	 */
 	EmitterTypes emitterType;
 	core::aabbox3df aabbox;
 	core::vector3df position,direction,center,normal;
@@ -167,8 +169,8 @@ private:
 	bool useNormalDirection, everyMeshVertex, outlineOnly;
 
 	/**
-	*the variables that are used for the particle affector
-	*/
+	 * The variables that are used for the particle affector
+	 */
 	core::list<AffectorTypes> affectorTypes;
 	core::vector3df point, gravity, rotationSpeed, pivotPoint;
 	f32 speed;

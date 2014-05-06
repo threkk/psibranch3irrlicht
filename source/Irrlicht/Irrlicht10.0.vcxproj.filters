@@ -1302,7 +1302,6 @@
     <ClInclude Include="..\..\include\IAnimatedMeshMD3.h">
       <Filter>include\scene</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="CSceneLoaderIrr.h">
       <Filter>Irrlicht\scene\loaders</Filter>
     </ClInclude>
@@ -1397,6 +1396,9 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ParticleModel.h">
+      <Filter>include\ParticleEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ParticleParser.h">
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2391,6 +2393,9 @@
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
     <ClCompile Include="ParticleModel.cpp">
+      <Filter>Irrlicht\ParticleEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleParser.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
   </ItemGroup>

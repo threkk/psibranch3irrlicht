@@ -4,6 +4,7 @@
 #include <irrlicht.h>
 #include "IrrCompileConfig.h"
 #include "ParticleModel.h"
+#include "ParticleParser.h"
 
 using namespace irr;
 using namespace scene;
@@ -51,7 +52,7 @@ public:
 	*IMesh* mesh is used if you want to create a mesh particle, but it isnt
 	*necessary.
 	*/
-	IParticleSystemSceneNode* spawnXMLParticle(core::stringc xmlName, vector3df position,IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
+	IParticleSystemSceneNode* spawnXMLParticle(const char* filename, vector3df position, IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
 
 	/**
 	*The deconstructor
