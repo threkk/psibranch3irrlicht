@@ -62,7 +62,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;NDEBUG;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -95,7 +95,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\include;..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include;..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets;..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui;..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtANGLE;..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore;debug;.;..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010;.\GeneratedFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;.;$(QTDIR)\mkspecs\win32-msvc2010;.\GeneratedFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm200 -w34100 -w34189 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -103,7 +103,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_OPENGL_ES_2;QT_OPENGL_ES_2_ANGLE;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -114,7 +114,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>qtmaind.lib;..\..\lib\Win32-visualstudio\Irrlicht.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;libEGLd.lib;libGLESv2d.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\lib\Win32-visualstudio;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;..\..\lib\Win32-visualstudio;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -142,21 +142,21 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing QIrrlichtWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\..\..\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtANGLE" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore" "-I.\release" "-I." "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG -DQT_DLL  "-I.\..\..\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtANGLE" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore" "-I.\release" "-I." "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing QIrrlichtWidget.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\..\..\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtANGLE" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore" "-I.\debug" "-I." "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DQT_DLL  "-I.\..\..\include" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtCore" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
     <CustomBuild Include="source\mainwindow.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing mainwindow.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG "-I.\..\..\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtANGLE" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore" "-I.\release" "-I." "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DNDEBUG -DQT_DLL  "-I.\..\..\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtANGLE" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore" "-I.\release" "-I." "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing mainwindow.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE "-I.\..\..\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtWidgets" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtGui" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtANGLE" "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\include\QtCore" "-I.\debug" "-I." "-I.\..\..\..\..\..\..\..\..\Qt\Qt5.2.1\5.2.1\msvc2010\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -DQT_DLL  "-I.\..\..\include" "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtCore" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -196,7 +196,7 @@
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Qt5Version_x0020_Win32="msvc2010" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
+      <UserProperties Qt5Version_x0020_Win32="$(DefaultQtVersion)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
