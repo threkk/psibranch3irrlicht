@@ -1,4 +1,6 @@
 #include "ai/State.h"
+#include <algorithm>
+#include <vector>
 
 #pragma once
 /**
@@ -24,17 +26,19 @@ class __declspec(dllexport) StateMachine
 {
 public: 
 
+	std::vector<State*> stack;
+
 	StateMachine():
 		currentState(NULL),
-		previousState(NULL),
 		globalState(NULL)
 	{}
 
 	StateMachine(State* currentState, State* previousState, State* globalState):
 		currentState(currentState),
-		previousState(previousState),
 		globalState(globalState)
-	{}
+	{
+		setPreviousState(previousState);
+	}
 
 	virtual ~StateMachine(void)
 	{
@@ -43,11 +47,44 @@ public:
 	/** Use these methods to initialize the FSM **/
 
 	/**
+	 * Returns the previous state and eliminates it of the stack
+	 */
+	State* pop(){
+		State* res = NULL;
+
+		if(stack.size())
+		{
+			res = stack[stack.size()-1];
+			stack.erase(std::remove(stack.begin(), stack.end(), res), stack.end());
+		}
+
+		return res;
+	}
+
+	/**
+	 * Pushes a state to the stack
+	 */
+	void push(State* s){
+		stack.push_back(s);
+	}
+
+	/**
 	 * Sets the current state
 	 */
 	void setCurrentState(State* s)
 	{
 		currentState = s;
+	}
+
+	/**
+	 * Gets the previous state
+	 */
+	State* getPreviousState()
+	{
+		if(!stack.size())
+			return NULL;
+
+		return stack[stack.size()-1];
 	}
 	
 	/**
@@ -63,7 +100,7 @@ public:
 	 */
 	void setPreviousState(State* s)
 	{
-		previousState = s;
+		push(s);
 	}
 
 	/** Use these methods to use the FSM **/
@@ -75,13 +112,16 @@ public:
 	 */
 	void changeState(State* state)
 	{
-		previousState = currentState;
-		currentState = state;
 
-		// Exit previous state
-		if ( previousState ) previousState->exit();
-		// Enter current state
+		if ( currentState )
+		{
+			currentState->exit();
+			setPreviousState(currentState);
+		}
+
+		currentState = state;
 		if ( currentState ) currentState->enter();
+		
 	}
 
 	/**
@@ -105,16 +145,12 @@ public:
 	 */
 	void returnToPreviousState()
 	{
-		if ( currentState && previousState ) {
-			// Swap states
-			State* tmp = currentState;
-			currentState = previousState;
-			previousState = tmp;
+		if ( currentState && stack.size() ) {
 
-			// Exit previous state
-			previousState->exit();
-			// Enter current state
+			currentState->exit();
+			currentState = pop();
 			currentState->enter();
+
 		}
 	}
 
@@ -129,6 +165,5 @@ public:
 protected:
 	State* globalState;
 	State* currentState;
-	State* previousState;
 };
 
