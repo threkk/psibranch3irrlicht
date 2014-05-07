@@ -66,6 +66,7 @@ void ParticleManager::createBoxEmittingParticle(ParticleModel* particleModel,IPa
 		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(boxEmitter);
 	boxEmitter->drop();
+	checkForAffectors(particleModel,particleNode);
 }
 
 void ParticleManager::createPointEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
@@ -75,6 +76,7 @@ void ParticleManager::createPointEmittingParticle(ParticleModel* particleModel,I
 		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(pointEmitter);
 	pointEmitter->drop();
+	checkForAffectors(particleModel,particleNode);
 }
 
 void ParticleManager::createAnimatedMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode,IAnimatedMesh* mesh)
@@ -87,6 +89,7 @@ void ParticleManager::createAnimatedMeshEmittingParticle(ParticleModel* particle
 		particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(animatedMeshEmitter);
 	animatedMeshEmitter->drop();
+	checkForAffectors(particleModel,particleNode);
 }
 
 void ParticleManager::createCylinderEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
@@ -97,6 +100,7 @@ void ParticleManager::createCylinderEmittingParticle(ParticleModel* particleMode
 		particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(cylinderEmitter);
 	cylinderEmitter->drop();
+	checkForAffectors(particleModel,particleNode);
 }
 
 void ParticleManager::createMeshEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode, IMesh* mesh)
@@ -106,6 +110,7 @@ void ParticleManager::createMeshEmittingParticle(ParticleModel* particleModel,IP
 		particleModel->getLifeTimeMin(),particleModel->getLifeTimeMax(),particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(meshEmitter);
 	meshEmitter->drop();
+	checkForAffectors(particleModel,particleNode);
 }
 
 void ParticleManager::createRingEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
@@ -115,6 +120,7 @@ void ParticleManager::createRingEmittingParticle(ParticleModel* particleModel,IP
 		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(ringEmitter);
 	ringEmitter->drop();
+	checkForAffectors(particleModel,particleNode);
 }
 
 void ParticleManager::createSphereEmittingParticle(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
@@ -124,6 +130,46 @@ void ParticleManager::createSphereEmittingParticle(ParticleModel* particleModel,
 		particleModel->getMaxAngleDegrees(),particleModel->getMinStartSize(),particleModel->getMaxStartSize());
 	particleNode->setEmitter(sphereEmitter);
 	sphereEmitter->drop();
+	checkForAffectors(particleModel,particleNode);
+}
+
+void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode)
+{
+	for(auto affector = particleModel->getAffectors()->begin(); affector != particleModel->getAffectors()->end(); ++affector)
+	{
+		if ((*affector) == particleModel->ATTRACT)
+		{
+			scene::IParticleAffector* affector = particleNode->createAttractionAffector(particleModel->getAttractionAffectorPoint(),particleModel->getAttractionAffectorSpeed(),
+				particleModel->getAttractionAffectorAttract(),particleModel->getAttractionAffectorAffectX(),particleModel->getAttractionAffectorAffectY(),particleModel->getAttractionAffectorAffectZ());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->FADE_OUT)
+		{
+			scene::IParticleAffector* affector = particleNode->createFadeOutParticleAffector(particleModel->getFadeOutAffectorTargetColor(),
+				particleModel->getFadeOutAffectorTimeNeededToFadeOut());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->GRAVITY)
+		{
+			scene::IParticleAffector* affector = particleNode->createGravityAffector(particleModel->getGravityAffectorGravity(),particleModel->getGravityAffectorTimeForceLost());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->ROTATE)
+		{
+			scene::IParticleAffector* affector = particleNode->createRotationAffector(particleModel->getRotationAffectorSpeed(),particleModel->getRotationAffectorPivotPoint());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+		else if((*affector) == particleModel->SCALE)
+		{
+			scene::IParticleAffector* affector = particleNode->createScaleParticleAffector(particleModel->getScaleAffectorScaleTo());
+			particleNode->addAffector(affector);
+			affector->drop();
+		}
+	}
 }
 
 ParticleManager::~ParticleManager(void)

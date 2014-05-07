@@ -1,21 +1,18 @@
 #include "ParticleParser.h"
-#include "string"
 
 using namespace irr;
-
 
 ParticleParser::ParticleParser()
 {
 
 }
 
-
-
 ParticleModel ParticleParser::parse(const char* filename)
 {
 	// Creates a XML reader and set path to load the XML file from
 	io::IrrXMLReader* xmlReader = io::createIrrXMLReader(filename);
 
+	// The Particle model where all the values will be stored
 	ParticleModel model = ParticleModel();
 
 	while (xmlReader && xmlReader->read())
@@ -110,8 +107,6 @@ ParticleModel ParticleParser::parse(const char* filename)
 			break;
 		}
 	}
-
-
 	
 	// Delete the xml parser after usage
 	delete xmlReader;
