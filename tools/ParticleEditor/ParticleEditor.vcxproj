@@ -135,6 +135,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_mainwindow.h" />
+    <ClInclude Include="InputReceiver.h" />
     <ClInclude Include="source\IrrDisplay.h" />
     <ClInclude Include="source\Util.h" />
     <ClInclude Include="source\XML.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_QIrrlichtWidget.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="InputReceiver.cpp" />
     <ClCompile Include="source\IrrDisplay.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\mainwindow.cpp" />

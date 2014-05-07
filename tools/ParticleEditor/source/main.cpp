@@ -12,6 +12,7 @@
 #include "mainwindow.h"
 #include "QIrrlichtWidget.h"
 #include "IrrDisplay.h"
+#include "InputReceiver.h"
 
 using namespace irr;
 
@@ -43,10 +44,11 @@ int main(int argc, char **argv)
 
 	// Create the irrlicht widget
     QIrrlichtWidget irrWidget;
-    irrWidget.init();
+	InputReceiver* inputReceiver = new InputReceiver;
+	IrrDisplay irrDisplay = IrrDisplay(inputReceiver);
+    irrWidget.init(inputReceiver, &irrDisplay);
 
 	// Initialize our display class and make it build up an irrlicht instaniation
-	IrrDisplay irrDisplay = IrrDisplay();
 	irrDisplay.setupIrrlicht( irrWidget.getIrrlichtDevice() );
 	irrDisplay.displayParticle(&m);
 

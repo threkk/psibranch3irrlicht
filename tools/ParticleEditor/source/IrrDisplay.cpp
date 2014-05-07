@@ -1,10 +1,12 @@
 #include "IrrDisplay.h"
 #include "ParticleModel.h"
 #include "ParticleManager.h"
+#include "InputReceiver.h"
 
-IrrDisplay::IrrDisplay(void)
+IrrDisplay::IrrDisplay(InputReceiver* inputReceiver)
 {
 	activeParticle = nullptr;
+	this->inputReceiver = inputReceiver;
 }
 
 void IrrDisplay::setupIrrlicht( IrrlichtDevice* device )
@@ -34,7 +36,25 @@ void IrrDisplay::setupIrrlicht( IrrlichtDevice* device )
 	pManager = new ParticleManager(driver, device, manager);
 
     // Create a camera to view the box
-    scene::ICameraSceneNode* cam = manager->addCameraSceneNode(0, core::vector3df(0,10,-20), core::vector3df(0,10,0));
+    cam = manager->addCameraSceneNode(0, core::vector3df(0,10,-20), core::vector3df(0,10,0));
+}
+
+void IrrDisplay::update()
+{
+	core::vector3df pos = cam->getPosition();
+
+	// Zoom with the scroll wheel
+	pos.Z = -20 + inputReceiver->mouseWheel;
+
+	// Move with the mouse, when zoomed out move faster
+	pos.X += ((float) inputReceiver->deltaMouse.X / 30) * (-pos.Z / 10);
+	pos.Y -= ((float) inputReceiver->deltaMouse.Y / 30) * (-pos.Z / 10);
+
+	cam->setPosition(pos);
+
+	// Target is a bit behind the particle
+	pos.Z += 10;
+	cam->setTarget(pos);
 }
 
 void IrrDisplay::displayParticle (ParticleModel* model)
