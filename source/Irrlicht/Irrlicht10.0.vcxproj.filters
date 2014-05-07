@@ -1399,7 +1399,10 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ParticleParser.h">
-      <Filter>include\ParticleEditor</Filter>
+      <Filter>include\ParticleEditor</Filter>    
+      </ClInclude>
+    <ClInclude Include="..\..\include\AI\Transition.h">
+      <Filter>include\ai</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

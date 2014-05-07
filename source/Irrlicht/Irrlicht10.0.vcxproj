@@ -848,6 +848,7 @@
     <ClInclude Include="..\..\include\AI\StateIdle.h" />
     <ClInclude Include="..\..\include\AI\StateInvestigatePoint.h" />
     <ClInclude Include="..\..\include\AI\StateMachine.h" />
+    <ClInclude Include="..\..\include\AI\Transition.h" />
     <ClInclude Include="..\..\include\EDriverFeatures.h" />
     <ClInclude Include="..\..\include\EMaterialFlags.h" />
     <ClInclude Include="..\..\include\IAnimatedMeshMD3.h" />
