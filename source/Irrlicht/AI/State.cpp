@@ -1,65 +1,53 @@
 #include "ai/State.h"
 #include <algorithm>
 
+#include "AI/StateMachine.h"
+
 State::~State(void)
 {
 	// Delete the substates
-	if ( !substates.empty() )
+	if ( !transitions.empty() )
 	{
-		for ( size_t i = 0; i < substates.size(); i++ )
+		for ( size_t i = 0; i < transitions.size(); i++ )
 		{
-			delete substates[i];
+			delete transitions[i];
 		}
 	}
 }
 
 void State::execute(void) 
 {
-	if ( executeable() ) {
-		// First check for substates
-		if ( !substates.empty() )
-		{
-			for ( size_t i = 0; i < substates.size(); i++ )
-			{
-				if ( substates[i]->executeable() )
-				{
-					return substates[i]->execute();
-				}
-			}
-		}
-
-		// No executable substate? Execute this state
-		action();
-	}
-	else
+		
+	for ( unsigned int j = 0; j < transitions.size(); j++ )
 	{
-		noActionFallback();
+		if ( transitions[j]->condition())
+		{
+			stateMachine->changeState(transitions[j]->getTarget());
+			return;
+		}
 	}
+
+	// No executable substate? Execute this state
+	action();
 }
 
-void State::addSubState(State* state)
+void State::addTransition(Transition* transition)
 {
-	substates.push_back(state);
+	transitions.push_back(transition);
 	sort();
 }
 
-void State::removeSubState(State* state)
+void State::removeTransition(Transition* transition)
 {
-	substates.erase(std::remove(substates.begin(), substates.end(), state));
+	transitions.erase(std::remove(transitions.begin(), transitions.end(), transition));
 }
 
 void State::sort()
 {
-	std::sort(substates.begin(), substates.end(), compare);
+	std::sort(transitions.begin(), transitions.end(), compare);
 }
 
-bool State::compare(State* state1, State* state2)
+bool State::compare(Transition* transition1, Transition* transition2)
 {
-	return state1->priority > state2->priority;
-}
-
-void State::noActionFallback()
-{
-	// Nothing here
-	// Overwrite if needed
+	return transition1->priority > transition2->priority;
 }

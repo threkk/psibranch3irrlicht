@@ -1,6 +1,9 @@
 #pragma once
 
 #include <vector>
+#include "AI\Transition.h"
+
+class StateMachine;
 
 /**
  * State
@@ -51,21 +54,16 @@ public:
 	void execute(void);
 
 	/**
-	* Subsumption: Adds a new substate
+	* Adds a new transition
 	*/
-	void addSubState(State* state);
+	void addTransition(Transition* transition);
 
 	/**
-	* Subsumption: Removes the substate from the list
+	* Removes a transition from the list
 	*/
-	void removeSubState(State* state);
-
-	// Subsumption: If more than one state can be executed, the state with the highest priority will be executed
-	int priority;
+	void removeTransition(Transition* transition);
 	 
 private:
-	// Contains substates in a sorted vector (highest first)
-	std::vector<State*> substates;
 
 	/**
 	* Sort the vector
@@ -73,9 +71,9 @@ private:
 	void sort();
 
 	/**
-	* State-Priority-Comparator Method
+	* Transition-Priority-Comparator Method
 	*/
-	bool static State::compare(State* state1, State* state2);
+	bool static State::compare(Transition* transition1, Transition* transition2);
 
 protected:
 	/**
@@ -85,9 +83,9 @@ protected:
 	virtual void action() = 0;
 
 	/**
-	* This function will run if the state is not executable
-	* This method will be called by execute.
-	* This function doesn't do anything and needs to be overwridden by the other states.
+	* contains all the transitions for the state in a sorted vector
 	*/
-	virtual void noActionFallback();
+	std::vector<Transition*> transitions;
+
+	StateMachine* stateMachine;
 };
