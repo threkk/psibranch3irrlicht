@@ -184,7 +184,7 @@ void MainWindow::on_pushButton_Color_Min_clicked()
 
 void MainWindow::on_pushButton_Color_Max_clicked()
 {
-    QColor color = QColorDialog::getColor(Qt::green);
+    QColor color = QColorDialog::getColor(QColor( model.getMaxStartColor().getRed(), model.getMaxStartColor().getGreen(), model.getMaxStartColor().getBlue(), model.getMaxStartColor().getAlpha()));
 
     QPushButton* button = this->findChild<QPushButton*>("pushButton_Color_Max");
     setButtonColor (button, color);
