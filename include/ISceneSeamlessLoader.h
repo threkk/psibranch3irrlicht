@@ -11,6 +11,7 @@
 using namespace irr;
 using namespace scene;
 
+
 namespace irr
 {
 namespace scene
@@ -28,24 +29,25 @@ namespace scene
      *
      * For more information about the .irr files, read tutorial number 15.
      */
+
+	/**
+     * Struct that contains all relevant information about a scene:
+     * the position in the vector, the ISceneManager used to load the
+     * resources and the uri to the file.
+     */
+	typedef struct {
+		//! Position of the scene in the vector.
+		int position;
+        //! Scene manager used to load the resources. There is one different
+        //! per scene. 
+		ISceneManager* smngr;
+        //! Uri to the .irr file.
+		io::path uri;
+	} NScene;
+
 	class IRRLICHT_API ISceneSeamlessLoader 
 	{
 	private:
-        /**
-         * Internal struct that contains all relevant information about a scene:
-         * the position in the vector, the ISceneManager used to load the
-         * resources and the uri to the file.
-         */
-		typedef struct {
-            //! Position of the scene in the vector.
-			int position;
-            //! Scene manager used to load the resources. There is one different
-            //! per scene. 
-			ISceneManager* smngr;
-            //! Uri to the .irr file.
-			io::path uri;
-		} NScene;
-
         //! Main scene manager that has the current scene.
 		ISceneManager* actual;
         //! Vector with all the scenes preloaded.
@@ -66,10 +68,10 @@ namespace scene
          * This method adds one new scene to the vector and loads the resources
          * to the cache.
          * \param uriToNewScene The uri to the new scene to be added.
-         * \return The index in the vector. Needed to switch to the scene. -1 if
-         * error.
+         * \return The NScene with its position in the vector in the position 
+		 * field. Returns nothing in case of error.
          */
-		int preloadScene(irr::io::path uriToNewScene);
+		NScene preloadScene(irr::io::path uriToNewScene);
         /**
          * This method unloads a scene from the cache. All the resources will be
          * dropped if they are not used by other scene.
@@ -84,6 +86,12 @@ namespace scene
          * \param sceneIndex Position in the vector of the scene.
          */
 		void setScene(int sceneIndex);
+
+		/**
+		 * This method returns the vector with all the scenes currently preloaded.
+		 * \return The vector with all the scenes currently loaded.
+		 */
+		std::vector<NScene> getScenes();
 	};
 } //! end namespace scene
 } //! end namespace irr 
