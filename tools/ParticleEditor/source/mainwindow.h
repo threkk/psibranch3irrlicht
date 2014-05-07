@@ -71,6 +71,20 @@ private slots:
 
     void on_pushButton_OpenTex_clicked();
 
+	void on_lineEdit_Center_X_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Y_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_RingThickness_textChanged(const QString &arg1);
+
+	void on_lineEdit_Radius_textChanged(const QString &arg1);
+
+	void on_lineEdit_CylinderLength_textChanged(const QString &arg1);
+
+	void on_checkBox_OutlineOnly_clicked(const bool &arg1);
+
     /** End events of changes in the gui **/
 
 private:

@@ -20,6 +20,11 @@ ParticleModel::ParticleModel()
 	minStartSize = core::dimension2df(4.0f, 4.0f);
 	maxStartSize = core ::dimension2df(8.0f, 8.0f);
 	position = core::vector3df(0,0,0);
+	ringThickness = 1;
+	radius = 5;
+	center = core::vector3df(0,0,0);
+	lengthCylinder = 5;
+	outlineOnly = false;
 	pathNameTexture;
 }
 

@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QPushButton>
+#include <QCheckBox>
 
 #include <ParticleParser.h>
 
@@ -97,6 +98,27 @@ void MainWindow::fillFields (ParticleModel* model)
 
     QComboBox* comboBox_EmitterType = this->findChild<QComboBox*>("comboBox_EmitterType");
     comboBox_EmitterType->setCurrentIndex((int) model->getEmitterType());
+
+	QLineEdit* lineEdit_Center_X = this->findChild<QLineEdit*>("lineEdit_Center_X");
+    lineEdit_Center_X->setText(QString::number((double) model->getCenter().X));
+
+    QLineEdit* lineEdit_Center_Y = this->findChild<QLineEdit*>("lineEdit_Center_Y");
+    lineEdit_Center_Y->setText(QString::number((double) model->getCenter().Y));
+
+    QLineEdit* lineEdit_Center_Z = this->findChild<QLineEdit*>("lineEdit_Center_Z");
+    lineEdit_Center_Z->setText(QString::number((double) model->getCenter().Z));
+
+	QLineEdit* lineEdit_RingThickness = this->findChild<QLineEdit*>("lineEdit_RingThickness");
+	lineEdit_RingThickness->setText(QString::number((double) model->getRingThickness()));
+
+	QLineEdit* lineEdit_Radius = this->findChild<QLineEdit*>("lineEdit_Radius");
+	lineEdit_Radius->setText(QString::number((double) model->getRadius()));
+
+	QLineEdit* lineEdit_CylinderLength = this->findChild<QLineEdit*>("lineEdit_CylinderLength");
+	lineEdit_CylinderLength->setText(QString::number((double) model->getLengthCylinder()));
+
+	QCheckBox* checkBox_OutlineOnly = this->findChild<QCheckBox*>("checkBox_OutlineOnly");
+	checkBox_OutlineOnly->setChecked(model->getOutLineOnly());
 
     QFileInfo fileInfo(model->getPathNameTexture().c_str());
 	QPushButton* pushButtonOpenText = this->findChild<QPushButton*>("pushButton_OpenTex");
@@ -240,6 +262,55 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 {
     model.setEmitterType(static_cast<ParticleModel::EmitterTypes>(index));
     std::cout << "Change of emitter type: " << model.getEmitterType() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_X_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (arg1.toFloat(), model.getCenter().Y, model.getCenter().Z));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_Y_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (model.getCenter().X, arg1.toFloat(), model.getCenter().Z));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_Z_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (model.getCenter().X, model.getCenter().Y, arg1.toFloat()));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_RingThickness_textChanged(const QString &arg1)
+{
+	model.setRingThickness(arg1.toFloat());
+	std::cout << "Change of ring thickness: " << model.getRingThickness() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Radius_textChanged(const QString &arg1)
+{
+	model.setRadius(arg1.toFloat());
+	std::cout << "Change of radius: " << model.getRadius() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_CylinderLength_textChanged(const QString &arg1)
+{
+	model.setLengthCylinder(arg1.toFloat());
+	std::cout << "Change of cylinder length: " << model.getLengthCylinder() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_OutlineOnly_clicked(const bool &arg1)
+{
+	model.setOutLineOnly(arg1);
+	std::cout << "Change of outline only: " << model.getOutLineOnly() << std::endl;
 	irrDisplay->displayParticle(&model);
 }
 
