@@ -70,12 +70,12 @@ ParticleModel ParticleParser::parse(const char* filename)
 				else if (!strcmp("MaxStartColor", xmlReader->getNodeName()))
 				{
 					model.setMaxColor(video::SColor(xmlReader->getAttributeValueAsInt("Alpha"), xmlReader->getAttributeValueAsInt("Red"),
-						xmlReader->getAttributeValueAsInt("Blue"), xmlReader->getAttributeValueAsInt("Green")));
+						xmlReader->getAttributeValueAsInt("Green"), xmlReader->getAttributeValueAsInt("Blue")));
 				}
 				else if (!strcmp("MinStartColor", xmlReader->getNodeName()))
 				{
 					model.setMinColor(video::SColor(xmlReader->getAttributeValueAsInt("Alpha"), xmlReader->getAttributeValueAsInt("Red"),
-						xmlReader->getAttributeValueAsInt("Blue"), xmlReader->getAttributeValueAsInt("Green")));
+						xmlReader->getAttributeValueAsInt("Green"), xmlReader->getAttributeValueAsInt("Blue")));
 				}
 				else if (!strcmp("MaxStartSize", xmlReader->getNodeName()))
 				{
