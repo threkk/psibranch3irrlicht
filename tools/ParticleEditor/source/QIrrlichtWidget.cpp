@@ -92,7 +92,7 @@ void QIrrlichtWidget::resizeEvent( QResizeEvent* event )
         irr::scene::ICameraSceneNode *cam = device->getSceneManager()->getActiveCamera();
         if ( cam != 0 )
         {
-            cam->setAspectRatio( (float) size.Height / size.Width );
+            cam->setAspectRatio( (float) size.Width / size.Height );
         }
     }
     QWidget::resizeEvent(event);
