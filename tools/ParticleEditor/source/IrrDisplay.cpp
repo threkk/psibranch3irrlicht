@@ -42,7 +42,7 @@ void IrrDisplay::displayParticle (ParticleModel* model)
 	if (activeParticle != nullptr) {
 		activeParticle->remove();
 	}
-
+	
 	// Spawn a particle based on a particle model
 	activeParticle = pManager->spawnDataModelParticle(model, core::vector3df(0,0,0), model->getPathNameTexture());
 }

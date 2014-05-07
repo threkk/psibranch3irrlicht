@@ -21,15 +21,15 @@ int main(int argc, char **argv)
     QApplication a(argc, argv);
 
     // Create the particle model which keeps the values in memory
-    ParticleModel* m = new ParticleModel();
+    ParticleModel m = ParticleModel();
 
 	// Change some default values so that we have a nice demo (can be removed in the future)
-	m->setPathNameTexture("../../../../Media/smoke.png");
-	m->setDirection(core::vector3df(0, 0.01, 0));
-	m->setLifeTimeMin(1300);
-	m->setLifeTimeMax(1500);
-	m->setMaxStartSize(core::dimension2df(1.5,1.5));
-	m->setMinStartSize(core::dimension2df(1,1));
+	m.setPathNameTexture("../../../../Media/smoke.png");
+	m.setDirection(core::vector3df(0, 0.01, 0));
+	m.setLifeTimeMin(1300);
+	m.setLifeTimeMax(1500);
+	m.setMaxStartSize(core::dimension2df(1.5,1.5));
+	m.setMinStartSize(core::dimension2df(1,1));
 
     // Create and show the window
     MainWindow w;
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 	// Initialize our display class and make it build up an irrlicht instaniation
 	IrrDisplay irrDisplay = IrrDisplay();
 	irrDisplay.setupIrrlicht( irrWidget.getIrrlichtDevice() );
-	irrDisplay.displayParticle(m);
+	irrDisplay.displayParticle(&m);
 
 	// Add the irrlicht widget to the layout after irrlicht is linked to it
 	layout->addWidget(&irrWidget);

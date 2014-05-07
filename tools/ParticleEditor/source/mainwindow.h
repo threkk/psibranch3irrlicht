@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include "XML.h"
+#include <ParticleModel.h>
 
-class ParticleModel;
 class IrrDisplay;
 
 namespace Ui {
@@ -19,7 +19,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void setParticleModel (ParticleModel* model);
+    void setParticleModel (ParticleModel model);
 	void setIrrDisplay (IrrDisplay* irrDisplay);
     ~MainWindow();
 
@@ -79,7 +79,7 @@ private:
     Ui::MainWindow *ui;
 
     // The particle model
-    ParticleModel* model;
+    ParticleModel model;
 
     XML xml;
 
