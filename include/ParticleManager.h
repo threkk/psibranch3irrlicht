@@ -54,6 +54,10 @@ public:
 	*/
 	IParticleSystemSceneNode* spawnXMLParticle(const char* filename, vector3df position, IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
 
+	void life(float lifeTime, bool fade);
+	void update(float deltaTime);
+	void start(void);
+
 	/**
 	*The deconstructor
 	*/
@@ -87,6 +91,20 @@ private:
 	*an Affector is an external force acting on the particle like fadeout
 	*/
 	void checkForAffectors(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
+
+	/**
+	 * Since when the particle is alive
+	 */
+	float aliveSince;
+
+	/**
+	 * How long the particle should life
+	 */
+	float lifeTime;
+
+	bool fade;
+
+	
 };
 
 #endif
