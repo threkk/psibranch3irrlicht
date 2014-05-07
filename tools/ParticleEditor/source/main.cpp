@@ -35,8 +35,8 @@ int main(int argc, char **argv)
     MainWindow w;
     w.show();
 
-	// For now we work a 800x600 editor
-	w.resize(800, 600);
+	// For now we work a 900x675 editor
+	w.resize(900, 675);
 
 	// Get the layout from the ui
     QLayout* layout = w.layout();
