@@ -34,7 +34,11 @@ public:
 		currentState(currentState),
 		previousState(previousState),
 		globalState(globalState)
-	{}
+	{
+		if ( currentState != NULL ) currentState->stateMachine = this;
+		if ( previousState != NULL ) previousState->stateMachine = this;
+		if ( globalState != NULL ) globalState->stateMachine = this;
+	}
 
 	virtual ~StateMachine(void)
 	{
@@ -48,6 +52,7 @@ public:
 	void setCurrentState(State* s)
 	{
 		currentState = s;
+		if ( currentState != NULL ) currentState->stateMachine = this;
 	}
 	
 	/**
@@ -56,6 +61,7 @@ public:
 	void setGlobalState(State* s)
 	{
 		globalState = s;
+		if ( globalState != NULL ) globalState->stateMachine = this;
 	}
 	
 	/**
@@ -64,6 +70,7 @@ public:
 	void setPreviousState(State* s)
 	{
 		previousState = s;
+		if ( previousState != NULL ) previousState->stateMachine = this;
 	}
 
 	/** Use these methods to use the FSM **/
@@ -77,11 +84,16 @@ public:
 	{
 		previousState = currentState;
 		currentState = state;
+		
 
 		// Exit previous state
 		if ( previousState ) previousState->exit();
 		// Enter current state
-		if ( currentState ) currentState->enter();
+		if ( currentState ) 
+		{
+			currentState->stateMachine = this;
+			currentState->enter();
+		}
 	}
 
 	/**

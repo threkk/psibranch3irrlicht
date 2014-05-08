@@ -31,6 +31,13 @@ class StateMachine;
 class __declspec(dllexport) State
 {
 public:
+	/**
+	 * The state machine
+	 */
+	StateMachine* stateMachine;
+
+	State(void);
+
 	virtual ~State(void);
 
 	/**
@@ -62,18 +69,33 @@ public:
 	* Removes a transition from the list
 	*/
 	void removeTransition(Transition* transition);
+
+	/**
+	* Adds a new transition
+	*/
+	void addSubTransition(Transition* transition);
+
+	/**
+	* Removes a transition from the list
+	*/
+	void removeSubTransition(Transition* transition);
 	 
 private:
 
 	/**
 	* Sort the vector
 	*/
-	void sort();
+	void sort(std::vector<Transition*>* list);
 
 	/**
 	* Transition-Priority-Comparator Method
 	*/
 	bool static State::compare(Transition* transition1, Transition* transition2);
+
+	/**
+	 * StateMachine for substates
+	 */
+	StateMachine* internalStateMachine;
 
 protected:
 	/**
@@ -83,9 +105,14 @@ protected:
 	virtual void action() = 0;
 
 	/**
-	* contains all the transitions for the state in a sorted vector
+	* Contains all the transitions for the state in a sorted vector
 	*/
 	std::vector<Transition*> transitions;
 
-	StateMachine* stateMachine;
+	/**
+	* Contains all the transitions to substates in a sorted vector
+	*/
+	std::vector<Transition*> internalTransitions;
+
+	
 };
