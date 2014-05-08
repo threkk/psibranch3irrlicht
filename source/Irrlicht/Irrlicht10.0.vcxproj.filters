@@ -114,7 +114,7 @@
     </Filter>
     <Filter Include="Irrlicht\AI\Message">
       <UniqueIdentifier>{79f4d08a-c1b5-4c20-b071-87edf7d29045}</UniqueIdentifier>
-	  </Filter>
+    </Filter>
     <Filter Include="include\non-realtime-networking">
       <UniqueIdentifier>{78750382-dc3f-483f-93c7-10197dcae6bf}</UniqueIdentifier>
     </Filter>
@@ -126,6 +126,9 @@
     </Filter>
     <Filter Include="Irrlicht\ParticleEditor">
       <UniqueIdentifier>{2ee02c6c-5aca-44ac-adc9-d36c7ebe96fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Irrlicht\AI\Transitions">
+      <UniqueIdentifier>{9c7daf9c-51db-4732-8890-365900e9aee8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1376,7 +1379,7 @@
     </ClInclude>
     <ClInclude Include="..\..\include\AI\ILiving.h">
       <Filter>include\ai</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
@@ -1399,9 +1402,18 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\ParticleParser.h">
-      <Filter>include\ParticleEditor</Filter>    
-      </ClInclude>
+      <Filter>include\ParticleEditor</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\AI\Transition.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="OnSpotTransition.h" />
+    <ClInclude Include="..\..\include\AI\OnSpotTransition.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="onKnockedDownTransition.h" />
+    <ClInclude Include="..\..\include\AI\OnKnockedDownTransition.h">
       <Filter>include\ai</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2379,7 +2391,7 @@
     </ClCompile>
     <ClCompile Include="AI\StateGoToPointRotate.cpp">
       <Filter>Irrlicht\AI\States</Filter>
-	 </ClCompile>
+    </ClCompile>
     <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
@@ -2400,6 +2412,14 @@
     </ClCompile>
     <ClCompile Include="ParticleParser.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="OnSpotTransition.cpp" />
+    <ClCompile Include="AI\OnSpotTransition.cpp">
+      <Filter>Irrlicht\AI\Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="onKnockedDownTransition.cpp" />
+    <ClCompile Include="AI\OnKnockedDownTransition.cpp">
+      <Filter>Irrlicht\AI\Transitions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
