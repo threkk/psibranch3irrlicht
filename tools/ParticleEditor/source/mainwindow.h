@@ -85,6 +85,60 @@ private slots:
 
 	void on_checkBox_OutlineOnly_clicked(const bool &arg1);
 
+	void on_checkBox_Attract_Affector_clicked(const bool &arg1);
+
+	void on_lineEdit_Attract_Point_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Attract_Point_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Attract_Point_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Speed_textChanged(const QString &arg1);
+
+	void on_checkBox_Attract_clicked(const bool &arg1);
+
+	void on_checkBox_AffectX_clicked(const bool &arg1);
+
+	void on_checkBox_AffectY_clicked(const bool &arg1);
+
+	void on_checkBox_AffectZ_clicked(const bool &arg1);
+
+	void on_checkBox_Fade_out_clicked(const bool &arg1);
+
+	void on_pushButton_Target_Color_clicked();
+
+	void on_lineEdit_Fade_Out_Time_textChanged(const QString &arg1);
+
+	void on_checkBox_Gravity_clicked(const bool &arg1);
+
+	void on_lineEdit_Gravity_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Gravity_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Gravity_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Time_force_lost_textChanged(const QString &arg1);
+
+	void on_checkBox_Rotate_clicked(const bool &arg1);
+
+	void on_lineEdit_Speed_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Speed_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Speed_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Pivot_Point_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Pivot_Point_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Pivot_Point_Z_textChanged(const QString &arg1);
+
+	void on_checkBox_Scale_clicked(const bool &arg1);
+
+	void on_lineEdit_Scale_to_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Scale_to_Y_textChanged(const QString &arg1);
+
     /** End events of changes in the gui **/
 
 private:

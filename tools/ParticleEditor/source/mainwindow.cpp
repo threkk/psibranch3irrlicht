@@ -124,6 +124,88 @@ void MainWindow::fillFields (ParticleModel* model)
 	QPushButton* pushButtonOpenText = this->findChild<QPushButton*>("pushButton_OpenTex");
 	if (pushButtonOpenText != nullptr)
 		pushButtonOpenText->setText(fileInfo.fileName());
+	
+	//Affectors
+	QCheckBox* checkBox_Attract_Affector = this->findChild<QCheckBox*>("checkBox_Attract_Affector");
+	checkBox_Attract_Affector->setChecked(model->hasAffector(ParticleModel::AffectorTypes::ATTRACT));
+
+	QLineEdit* lineEdit_Attract_Point_X = this->findChild<QLineEdit*>("lineEdit_Attract_Point_X");
+	lineEdit_Attract_Point_X->setText(QString::number((double) model->getAttractionAffectorPoint().X));
+
+	QLineEdit* lineEdit_Attract_Point_Y = this->findChild<QLineEdit*>("lineEdit_Attract_Point_Y");
+	lineEdit_Attract_Point_Y->setText(QString::number((double) model->getAttractionAffectorPoint().Y));
+
+	QLineEdit* lineEdit_Attract_Point_Z = this->findChild<QLineEdit*>("lineEdit_Attract_Point_Z");
+	lineEdit_Attract_Point_Z->setText(QString::number((double) model->getAttractionAffectorPoint().Z));
+
+	QLineEdit* lineEdit_Speed = this->findChild<QLineEdit*>("lineEdit_Speed");
+	lineEdit_Speed->setText(QString::number((double) model->getAttractionAffectorSpeed()));
+
+	QCheckBox* checkBox_Attract = this->findChild<QCheckBox*>("checkBox_Attract");
+	checkBox_Attract->setChecked(model->getAttractionAffectorAttract());
+
+	QCheckBox* checkBox_AffectX = this->findChild<QCheckBox*>("checkBox_AffectX");
+	checkBox_AffectX->setChecked(model->getAttractionAffectorAffectX());
+
+	QCheckBox* checkBox_AffectY = this->findChild<QCheckBox*>("checkBox_AffectY");
+	checkBox_AffectY->setChecked(model->getAttractionAffectorAffectY());
+
+	QCheckBox* checkBox_AffectZ = this->findChild<QCheckBox*>("checkBox_AffectZ");
+	checkBox_AffectZ->setChecked(model->getAttractionAffectorAffectZ());
+
+	QCheckBox* checkBox_Fade_out = this->findChild<QCheckBox*>("checkBox_Fade_out");
+	checkBox_Fade_out->setChecked(model->hasAffector(ParticleModel::AffectorTypes::FADE_OUT));
+
+	QPushButton* pushButton_Target_Color = this->findChild<QPushButton*>("pushButton_Target_Color");
+	setButtonColor (pushButton_Target_Color, Util::SColorToQColor(model->getFadeOutAffectorTargetColor()));
+
+	QLineEdit* lineEdit_Fade_Out_Time = this->findChild<QLineEdit*>("lineEdit_Fade_Out_Time");
+	lineEdit_Fade_Out_Time->setText(QString::number((double) model->getFadeOutAffectorTimeNeededToFadeOut()));
+
+	QCheckBox* checkBox_Gravity = this->findChild<QCheckBox*>("checkBox_Gravity");
+	checkBox_Gravity->setChecked(model->hasAffector(ParticleModel::AffectorTypes::GRAVITY));
+
+	QLineEdit* lineEdit_Gravity_X = this->findChild<QLineEdit*>("lineEdit_Gravity_X");
+	lineEdit_Gravity_X->setText(QString::number((double) model->getGravityAffectorGravity().X));
+
+	QLineEdit* lineEdit_Gravity_Y = this->findChild<QLineEdit*>("lineEdit_Gravity_Y");
+	lineEdit_Gravity_Y->setText(QString::number((double) model->getGravityAffectorGravity().Y));
+
+	QLineEdit* lineEdit_Gravity_Z = this->findChild<QLineEdit*>("lineEdit_Gravity_Z");
+	lineEdit_Gravity_Z->setText(QString::number((double) model->getGravityAffectorGravity().Z));
+
+	QLineEdit* lineEdit_Time_force_lost = this->findChild<QLineEdit*>("lineEdit_Time_force_lost");
+	lineEdit_Time_force_lost->setText(QString::number((double) model->getGravityAffectorTimeForceLost()));
+
+	QCheckBox* checkBox_Rotate = this->findChild<QCheckBox*>("checkBox_Rotate");
+	checkBox_Rotate->setChecked(model->hasAffector(ParticleModel::AffectorTypes::ROTATE));
+
+	QLineEdit* lineEdit_Speed_X = this->findChild<QLineEdit*>("lineEdit_Speed_X");
+	lineEdit_Speed_X->setText(QString::number((double) model->getRotationAffectorSpeed().X));
+
+	QLineEdit* lineEdit_Speed_Y = this->findChild<QLineEdit*>("lineEdit_Speed_Y");
+	lineEdit_Speed_Y->setText(QString::number((double) model->getRotationAffectorSpeed().Y));
+
+	QLineEdit* lineEdit_Speed_Z = this->findChild<QLineEdit*>("lineEdit_Speed_Z");
+	lineEdit_Speed_Z->setText(QString::number((double) model->getRotationAffectorSpeed().Z));
+
+	QLineEdit* lineEdit_Pivot_Point_X = this->findChild<QLineEdit*>("lineEdit_Pivot_Point_X");
+	lineEdit_Pivot_Point_X->setText(QString::number((double) model->getRotationAffectorPivotPoint().X));
+
+	QLineEdit* lineEdit_Pivot_Point_Y = this->findChild<QLineEdit*>("lineEdit_Pivot_Point_Y");
+	lineEdit_Pivot_Point_Y->setText(QString::number((double) model->getRotationAffectorPivotPoint().Y));
+
+	QLineEdit* lineEdit_Pivot_Point_Z = this->findChild<QLineEdit*>("lineEdit_Pivot_Point_Z");
+	lineEdit_Pivot_Point_Z->setText(QString::number((double) model->getRotationAffectorPivotPoint().Z));
+
+	QCheckBox* checkBox_Scale = this->findChild<QCheckBox*>("checkBox_Scale");
+	checkBox_Scale->setChecked(model->hasAffector(ParticleModel::AffectorTypes::SCALE));
+
+	QLineEdit* lineEdit_Scale_to_X = this->findChild<QLineEdit*>("lineEdit_Scale_to_X");
+	lineEdit_Scale_to_X->setText(QString::number((double) model->getScaleAffectorScaleTo().Width));
+
+	QLineEdit* lineEdit_Scale_to_Y = this->findChild<QLineEdit*>("lineEdit_Scale_to_Y");
+	lineEdit_Scale_to_Y->setText(QString::number((double) model->getScaleAffectorScaleTo().Height));
 }
 
 void MainWindow::on_actionSave_XML_triggered()
@@ -311,6 +393,249 @@ void MainWindow::on_checkBox_OutlineOnly_clicked(const bool &arg1)
 {
 	model.setOutLineOnly(arg1);
 	std::cout << "Change of outline only: " << model.getOutLineOnly() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_Attract_Affector_clicked(const bool &arg1)
+{
+	if(arg1 == true)
+	{
+		model.addAffectorType(ParticleModel::AffectorTypes::ATTRACT);
+	}
+	if(arg1 == false)
+	{ 
+		model.removeAffectorType(ParticleModel::AffectorTypes::ATTRACT);
+	}
+	std::cout << "Change of affectorType: " << model.getAffectors() << std::endl;
+	std::cout << "Change of boolean " << arg1 << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Attract_Point_X_textChanged(const QString &arg1)
+{
+	model.setAttractionAffectorPoint(core::vector3df(arg1.toFloat(), model.getAttractionAffectorPoint().Y, model.getAttractionAffectorPoint().Z));
+	std::cout << "Change of center: " << model.getAttractionAffectorPoint().X << ", " << model.getAttractionAffectorPoint().Y
+		<< ", " << model.getAttractionAffectorPoint().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Attract_Point_Y_textChanged(const QString &arg1)
+{
+	model.setAttractionAffectorPoint(core::vector3df(model.getAttractionAffectorPoint().X, arg1.toFloat(), model.getAttractionAffectorPoint().Z));
+	std::cout << "Change of center: " << model.getAttractionAffectorPoint().X << ", " << model.getAttractionAffectorPoint().Y
+		<< ", " << model.getAttractionAffectorPoint().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Attract_Point_Z_textChanged(const QString &arg1)
+{
+	model.setAttractionAffectorPoint(core::vector3df(model.getAttractionAffectorPoint().X, model.getAttractionAffectorPoint().Y, arg1.toFloat()));
+	std::cout << "Change of center: " << model.getAttractionAffectorPoint().X << ", " << model.getAttractionAffectorPoint().Y
+		<< ", " << model.getAttractionAffectorPoint().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Speed_textChanged(const QString &arg1)
+{
+	model.setAttractionAffectorSpeed(arg1.toFloat());
+	std::cout << "Change of attract speed: " << model.getAttractionAffectorSpeed() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_Attract_clicked(const bool &arg1)
+{
+	model.setAttractionAffectorAttract(arg1);
+	std::cout << "Change of attract boolean: " << model.getAttractionAffectorAttract() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_AffectX_clicked(const bool &arg1)
+{
+	model.setAttractionAffectorAffectX(arg1);
+	std::cout << "Change of attraction affect X: " << model.getAttractionAffectorAffectX() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_AffectY_clicked(const bool &arg1)
+{
+	model.setAttractionAffectorAffectY(arg1);
+	std::cout << "Change of attraction affect Y: " << model.getAttractionAffectorAffectY() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_AffectZ_clicked(const bool &arg1)
+{
+	model.setAttractionAffectorAffectZ(arg1);
+	std::cout << "Change of attraction affect Z: " << model.getAttractionAffectorAffectZ() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_Fade_out_clicked(const bool &arg1)
+{
+	if(arg1 == true)
+	{
+		model.addAffectorType(ParticleModel::AffectorTypes::FADE_OUT);
+	}
+	if(arg1 == false)
+	{ 
+		model.removeAffectorType(ParticleModel::AffectorTypes::FADE_OUT);
+	}
+	std::cout << "Change of affectorType: " << model.getAffectors() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_pushButton_Target_Color_clicked()
+{
+	QColor color = QColorDialog::getColor(QColor( model.getFadeOutAffectorTargetColor().getRed(), model.getFadeOutAffectorTargetColor().getGreen(), model.getFadeOutAffectorTargetColor().getBlue(), model.getFadeOutAffectorTargetColor().getAlpha()));
+
+    QPushButton* button = this->findChild<QPushButton*>("pushButton_Target_Color");
+    setButtonColor (button, color);
+
+    model.setFadeOutAffectorTargetColor(Util::QColorToSColor(color));
+
+    std::cout << "Change of target color: " << model.getFadeOutAffectorTargetColor().getAlpha() << ", " << model.getFadeOutAffectorTargetColor().getRed() << ", " << model.getFadeOutAffectorTargetColor().getBlue() << ", " << model.getFadeOutAffectorTargetColor().getGreen() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Fade_Out_Time_textChanged(const QString &arg1)
+{
+	model.setFadeOutAffectorTimeNeededToFadeOut(arg1.toFloat());
+	std::cout << "Change of time needed to fade out: " << model.getFadeOutAffectorTimeNeededToFadeOut() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_Gravity_clicked(const bool &arg1)
+{
+	if(arg1 == true)
+	{
+		model.addAffectorType(ParticleModel::AffectorTypes::GRAVITY);
+	}
+	if(arg1 == false)
+	{ 
+		model.removeAffectorType(ParticleModel::AffectorTypes::GRAVITY);
+	}
+	std::cout << "Change of affectorType: " << model.getAffectors() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Gravity_X_textChanged(const QString &arg1)
+{
+	model.setGravityAffectorGravity(core::vector3df(arg1.toFloat(), model.getGravityAffectorGravity().Y, model.getGravityAffectorGravity().Z));
+	std::cout << "Change of center: " << model.getGravityAffectorGravity().X << ", " << model.getGravityAffectorGravity().Y
+		<< ", " << model.getGravityAffectorGravity().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Gravity_Y_textChanged(const QString &arg1)
+{
+	model.setGravityAffectorGravity(core::vector3df(model.getGravityAffectorGravity().X, arg1.toFloat(), model.getGravityAffectorGravity().Z));
+	std::cout << "Change of center: " << model.getGravityAffectorGravity().X << ", " << model.getGravityAffectorGravity().Y
+		<< ", " << model.getGravityAffectorGravity().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Gravity_Z_textChanged(const QString &arg1)
+{
+	model.setGravityAffectorGravity(core::vector3df(model.getGravityAffectorGravity().X, model.getGravityAffectorGravity().Y, arg1.toFloat()));
+	std::cout << "Change of center: " << model.getGravityAffectorGravity().X << ", " << model.getGravityAffectorGravity().Y
+		<< ", " << model.getGravityAffectorGravity().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Time_force_lost_textChanged(const QString &arg1)
+{
+	model.setGravityAffectorTimeForceLost(arg1.toFloat());
+	std::cout << "Change of time force lost: " << model.getGravityAffectorTimeForceLost() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_Rotate_clicked(const bool &arg1)
+{
+	if(arg1 == true)
+	{
+		model.addAffectorType(ParticleModel::AffectorTypes::ROTATE);
+	}
+	if(arg1 == false)
+	{ 
+		model.removeAffectorType(ParticleModel::AffectorTypes::ROTATE);
+	}
+	std::cout << "Change of affectorType: " << model.getAffectors() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Speed_X_textChanged(const QString &arg1)
+{
+	model.setRotationAffectorSpeed(core::vector3df(arg1.toFloat(), model.getRotationAffectorSpeed().Y, model.getRotationAffectorSpeed().Z));
+	std::cout << "Change of center: " << model.getRotationAffectorSpeed().X << ", " << model.getRotationAffectorSpeed().Y
+		<< ", " << model.getRotationAffectorSpeed().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Speed_Y_textChanged(const QString &arg1)
+{
+	model.setRotationAffectorSpeed(core::vector3df(model.getRotationAffectorSpeed().X, arg1.toFloat(), model.getRotationAffectorSpeed().Z));
+	std::cout << "Change of center: " << model.getRotationAffectorSpeed().X << ", " << model.getRotationAffectorSpeed().Y
+		<< ", " << model.getRotationAffectorSpeed().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Speed_Z_textChanged(const QString &arg1)
+{
+	model.setRotationAffectorSpeed(core::vector3df(model.getRotationAffectorSpeed().X, model.getRotationAffectorSpeed().Y, arg1.toFloat()));
+	std::cout << "Change of center: " << model.getRotationAffectorSpeed().X << ", " << model.getRotationAffectorSpeed().Y
+		<< ", " << model.getRotationAffectorSpeed().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Pivot_Point_X_textChanged(const QString &arg1)
+{
+	model.setRotationAffectorPivotPoint(core::vector3df(arg1.toFloat(), model.getRotationAffectorSpeed().Y, model.getRotationAffectorPivotPoint().Z));
+	std::cout << "Change of center: " << model.getRotationAffectorPivotPoint().X << ", " << model.getRotationAffectorPivotPoint().Y
+		<< ", " << model.getRotationAffectorPivotPoint().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Pivot_Point_Y_textChanged(const QString &arg1)
+{
+	model.setRotationAffectorSpeed(core::vector3df(model.getRotationAffectorSpeed().X, arg1.toFloat(), model.getRotationAffectorSpeed().Z ));
+	std::cout << "Change of center: " << model.getRotationAffectorPivotPoint().X << ", " << model.getRotationAffectorPivotPoint().Y
+		<< ", " << model.getRotationAffectorPivotPoint().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Pivot_Point_Z_textChanged(const QString &arg1)
+{
+	model.setRotationAffectorSpeed(core::vector3df(model.getRotationAffectorSpeed().X, model.getRotationAffectorSpeed().Y, arg1.toFloat()));
+	std::cout << "Change of center: " << model.getRotationAffectorPivotPoint().X << ", " << model.getRotationAffectorPivotPoint().Y
+		<< ", " << model.getRotationAffectorPivotPoint().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_checkBox_Scale_clicked(const bool &arg1)
+{
+	if(arg1 == true)
+	{
+		model.addAffectorType(ParticleModel::AffectorTypes::SCALE);
+	}
+	if(arg1 == false)
+	{ 
+		model.removeAffectorType(ParticleModel::AffectorTypes::SCALE);
+	}
+	std::cout << "Change of affectorType: " << model.getAffectors() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Scale_to_X_textChanged(const QString &arg1)
+{
+	model.setScaleAffectorScaleTo(core::dimension2df(arg1.toFloat(), model.getScaleAffectorScaleTo().Height));
+    std::cout << "Change of min scale size: " << model.getScaleAffectorScaleTo().Width << ", " << model.getScaleAffectorScaleTo().Height << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Scale_to_Y_textChanged(const QString &arg1)
+{
+	model.setScaleAffectorScaleTo(core::dimension2df(model.getScaleAffectorScaleTo().Width, arg1.toFloat()));
+    std::cout << "Change of min scale size: " << model.getScaleAffectorScaleTo().Width << ", " << model.getScaleAffectorScaleTo().Height << std::endl;
 	irrDisplay->displayParticle(&model);
 }
 

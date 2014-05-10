@@ -25,6 +25,20 @@ ParticleModel::ParticleModel()
 	center = core::vector3df(0,0,0);
 	lengthCylinder = 5;
 	outlineOnly = false;
+	this->addAffectorType(ParticleModel::AffectorTypes::NOPE);
+	point = core::vector3df(0,0,0);
+	gravity = core::vector3df(0,-0.02999999933f,0);
+	rotationSpeed = core::vector3df(5,5,5);
+	pivotPoint = core::vector3df(0,0,0);
+	speed = 1;
+	attract = true;
+	affectX = true;
+	affectY = true;
+	affectZ = true;
+	targetColor = video::SColor(0,0,0,0);
+	timeNeededToFadeOut = 1000;
+	timeForceLost = 1000;
+	scaleTo = core::dimension2df(1,1);
 	pathNameTexture;
 }
 
@@ -155,11 +169,6 @@ void ParticleModel::setAffectors(core::list<AffectorTypes> affectors)
 	this->affectorTypes = affectors;
 }
 
-void ParticleModel::addAffectorType(AffectorTypes affectorType)
-{
-	this->affectorTypes.push_back(affectorType);
-}
-
 void ParticleModel::setAttractionAffectorPoint(core::vector3df point)
 {
 	this->point = point;
@@ -223,6 +232,26 @@ void ParticleModel::setRotationAffectorPivotPoint(core::vector3df pivotPoint)
 void ParticleModel::setScaleAffectorScaleTo(core::dimension2df scaleTo)
 {
 	this->scaleTo = scaleTo;
+}
+
+// This function lets you add affectorTypes to the affector List
+void ParticleModel::addAffectorType(AffectorTypes affectorType)
+{
+	this->affectorTypes.push_back(affectorType);
+}
+
+// This function removes an affectorType from the affector list but only if it has the one you want to erase.
+void ParticleModel::removeAffectorType(AffectorTypes affectorType)
+{
+	for(auto affector = affectorTypes.begin(); affector != affectorTypes.end(); ++affector)
+	{
+		if((*affector) == affectorType)
+		{
+			core::list<AffectorTypes>::Iterator current = affector;
+			affector--;
+			affectorTypes.erase(current);
+		}
+	}
 }
 
 ////////////////////////// GETTERS ///////////////////////////////////
@@ -460,10 +489,20 @@ void ParticleModel::print(void)
 	std::cout << "Max start size: ";
 	printDimension(this->getMaxStartSize());
 
-	// std::cout << "Texture " << this->getPathNameTexture().c_str() << std::endl;
-
 	std::cout << "Position: ";
 	printVector(this->getPosition());
+}
+
+bool ParticleModel::hasAffector(AffectorTypes affectorType)
+{
+	for(auto affector = this->getAffectors()->begin(); affector != this->getAffectors()->end(); ++affector)
+	{
+		if((*affector) == affectorType)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 ParticleModel::~ParticleModel(void)
