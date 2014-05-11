@@ -170,7 +170,7 @@ void XML::SaveXML(ParticleModel* model)
 		else if((*affector) == model->FADE_OUT)
 		{
 			xmlWriter.writeStartElement("FADE_OUT");
-			xmlWriter.writeStartElement("MaxStartColor");
+			xmlWriter.writeStartElement("FadeOutAffectorTargetColor");
 			xmlWriter.writeAttribute("Alpha",QString::number(model->getFadeOutAffectorTargetColor().getAlpha()));
 			xmlWriter.writeAttribute("Red",QString::number(model->getFadeOutAffectorTargetColor().getRed()));
 			xmlWriter.writeAttribute("Green",QString::number(model->getFadeOutAffectorTargetColor().getGreen()));
@@ -212,7 +212,7 @@ void XML::SaveXML(ParticleModel* model)
 		else if((*affector) == model->SCALE)
 		{
 			xmlWriter.writeStartElement("SCALE");
-			xmlWriter.writeStartElement("MaxStartSize");
+			xmlWriter.writeStartElement("ScaleAffectorScaleTo");
 			xmlWriter.writeAttribute("Height",QString::number(model->getScaleAffectorScaleTo().Height));
 			xmlWriter.writeAttribute("Width",QString::number(model->getScaleAffectorScaleTo().Width));
 			xmlWriter.writeEndElement();
