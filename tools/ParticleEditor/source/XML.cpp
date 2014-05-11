@@ -147,7 +147,7 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeAttribute("OutLineOnly",QString::number(model->getOutLineOnly()));
     xmlWriter.writeEndElement();
 	xmlWriter.writeStartElement("Affectors");
-	/*
+	
 	for(auto affector = model->getAffectors()->begin(); affector != model->getAffectors()->end(); ++affector)
 	{
 		if ((*affector) == model->ATTRACT)
@@ -219,7 +219,7 @@ void XML::SaveXML(ParticleModel* model)
 			xmlWriter.writeEndElement();
 		}
 	}
-	*/
+	
 	xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
