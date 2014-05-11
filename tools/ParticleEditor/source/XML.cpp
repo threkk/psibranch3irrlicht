@@ -158,7 +158,7 @@ void XML::SaveXML(ParticleModel* model)
 			xmlWriter.writeAttribute("Y",QString::number(model->getAttractionAffectorPoint().Y));
 			xmlWriter.writeAttribute("Z",QString::number(model->getAttractionAffectorPoint().Z));
 			xmlWriter.writeEndElement();
-			xmlWriter.writeStartElement("ATTRACT Rest");
+			xmlWriter.writeStartElement("ATTRACT_Rest");
 			xmlWriter.writeAttribute("AttractionAffectorSpeed",QString::number(model->getAttractionAffectorSpeed()));
 			xmlWriter.writeAttribute("AttractionAffectorAttract",QString::number(model->getAttractionAffectorAttract()));
 			xmlWriter.writeAttribute("AttractionAffectorAffectX",QString::number(model->getAttractionAffectorAffectX()));
@@ -176,7 +176,7 @@ void XML::SaveXML(ParticleModel* model)
 			xmlWriter.writeAttribute("Green",QString::number(model->getFadeOutAffectorTargetColor().getGreen()));
 			xmlWriter.writeAttribute("Blue",QString::number(model->getFadeOutAffectorTargetColor().getBlue()));
 			xmlWriter.writeEndElement();
-			xmlWriter.writeStartElement("FADE_OUT Rest");
+			xmlWriter.writeStartElement("FADE_OUT_Rest");
 			xmlWriter.writeAttribute("FadeOutAffectorTimeNeededToFadeOut",QString::number(model->getFadeOutAffectorTimeNeededToFadeOut()));
 			xmlWriter.writeEndElement();
 			xmlWriter.writeEndElement();
@@ -189,7 +189,7 @@ void XML::SaveXML(ParticleModel* model)
 			xmlWriter.writeAttribute("Y",QString::number(model->getGravityAffectorGravity().Y));
 			xmlWriter.writeAttribute("Z",QString::number(model->getGravityAffectorGravity().Z));
 			xmlWriter.writeEndElement();
-			xmlWriter.writeStartElement("GRAVITY Rest");
+			xmlWriter.writeStartElement("GRAVITY_Rest");
 			xmlWriter.writeAttribute("GravityAffectorTimeForceLost",QString::number(model->getGravityAffectorTimeForceLost()));
 			xmlWriter.writeEndElement();
 			xmlWriter.writeEndElement();
