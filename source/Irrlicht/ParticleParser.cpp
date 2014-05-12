@@ -114,6 +114,7 @@ ParticleModel ParticleParser::parse(const char* filename)
 				else if (!strcmp("FADE_OUT_Rest", xmlReader->getNodeName()))
 				{
 					model.setFadeOutAffectorTimeNeededToFadeOut(u32(xmlReader->getAttributeValueAsInt("FadeOutAffectorTimeNeededToFadeOut")));
+					model.addAffectorType(ParticleModel::AffectorTypes::FADE_OUT);
 				}
 				else if (!strcmp("AttractionAffectorPoint", xmlReader->getNodeName()))
 				{
@@ -127,6 +128,7 @@ ParticleModel ParticleParser::parse(const char* filename)
 					model.setAttractionAffectorAffectX(s32(xmlReader->getAttributeValueAsInt("AttractionAffectorAffectX")));
 					model.setAttractionAffectorAffectY(s32(xmlReader->getAttributeValueAsInt("AttractionAffectorAffectY")));
 					model.setAttractionAffectorAffectZ(s32(xmlReader->getAttributeValueAsInt("AttractionAffectorAffectZ")));
+					model.addAffectorType(ParticleModel::AffectorTypes::ATTRACT);
 				}
 				else if (!strcmp("GravityAffectorGravity", xmlReader->getNodeName()))
 				{
@@ -136,6 +138,7 @@ ParticleModel ParticleParser::parse(const char* filename)
 				else if (!strcmp("GRAVITY_Rest", xmlReader->getNodeName()))
 				{
 					model.setGravityAffectorTimeForceLost(u32(xmlReader->getAttributeValueAsInt("GravityAffectorTimeForceLost")));
+					model.addAffectorType(ParticleModel::AffectorTypes::GRAVITY);
 				}
 				else if (!strcmp("RotationAffectorSpeed", xmlReader->getNodeName()))
 				{
@@ -146,12 +149,12 @@ ParticleModel ParticleParser::parse(const char* filename)
 				{
 					model.setRotationAffectorPivotPoint(core::vector3df(xmlReader->getAttributeValueAsFloat("X"), xmlReader->getAttributeValueAsFloat("Y"),
 						xmlReader->getAttributeValueAsFloat("Z")));
+					model.addAffectorType(ParticleModel::AffectorTypes::ROTATE);
 				}
 				else if (!strcmp("ScaleAffectorScaleTo", xmlReader->getNodeName()))
 				{
 					model.setScaleAffectorScaleTo(core::dimension2df(xmlReader->getAttributeValueAsFloat("Width"), xmlReader->getAttributeValueAsFloat("Height")));
-
-					std::cout << "Scale Width: " << model.getScaleAffectorScaleTo().Width << std::endl;
+					model.addAffectorType(ParticleModel::AffectorTypes::SCALE);
 				}
 			}
 			break;
