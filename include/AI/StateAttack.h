@@ -14,18 +14,21 @@ class __declspec(dllexport) StateAttack: public State
 {
 public:
 	StateAttack(Detectable* stateOwner, ILiving* target, irr::scene::ISceneManager* sceneMgr,
-		std::function<void(void*)> callbackFunction, void* callbackParameter);
+		std::function<void(ILiving*, void*)> callbackFunction, void* callbackParameter);
 	~StateAttack(void);
 
+	void setOwner(Detectable* owner);
+	void setTarget(ILiving* target);
+
 	/** Inherited Methods **/
-	bool executeable(void);
 	void enter();
 	void exit();
+
 protected:
 	Detectable* owner;
 	ILiving* target;
 	irr::scene::ISceneManager* sceneMgr;
-	std::function<void(void*)> callbackFunction;
+	std::function<void(ILiving*, void*)> callbackFunction;
 	void* callbackParameter;
 
 	/** Inherited Methods **/

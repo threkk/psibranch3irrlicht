@@ -12,15 +12,14 @@
 class __declspec(dllexport) StateInvestigatePoint : public State
 {
 public:
-	StateInvestigatePoint(Detectable* stateOwner, irr::core::vector3df* point, float attentionSpan, float visionLength, float offset,
-		irr::scene::ISceneManager* sceneManager, irr::IrrlichtDevice* device, std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction, 
-		IPathfinding* pathUtil, StateMachine* stateMachine);
+	StateInvestigatePoint(Detectable* stateOwner, irr::core::vector3df* point, float visionLength, float offset,
+		std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction, 
+		IPathfinding* pathUtil);
 	~StateInvestigatePoint(void);
 
-	/** Inherited methods **/
-	bool executeable(void);
 	void enter();
 	void exit();
+
 protected:
 	// The owner of the state
 	Detectable* stateOwner;
@@ -28,38 +27,15 @@ protected:
 	// The point to investigate
 	irr::core::vector3df point;
 
-	// The state machine
-	StateMachine* stateMachine;
-
 	// The pathfinding utility
 	IPathfinding* pathUtil;
 
 	// The callback function
 	std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction;
 
-	// How long state owner should look at point
-	float attentionSpan;
-
-	// From what distance state owner can see the point
-	float visionLength;
-
 	// Distance value to stop NPC from walking right into the goal
 	float offset;
-
-	// Irrlicht scene manager
-	irr::scene::ISceneManager* sceneManager;
-
-	// Irrlicht device
-	irr::IrrlichtDevice* device;
-
-	// Timer variables
-	irr::u32 now;
-	irr::u32 then;
-	irr::f32 frameDeltaTime;
-	irr::f32 timer;
-
-	// Updates the delta time variable
-	void updateDeltaTime();
+	float visionLength;
 
 	/** Overwritten methods **/
 	void action();

@@ -13,7 +13,6 @@ public:
 	~StateIdle(void);
 
 	/** Inherited Methods **/
-	bool executeable(void);
 	void enter();
 	void exit();
 private:

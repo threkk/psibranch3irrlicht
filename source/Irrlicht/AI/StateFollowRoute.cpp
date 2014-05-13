@@ -21,11 +21,6 @@ StateFollowRoute::~StateFollowRoute(void)
 {
 }
 
-bool StateFollowRoute::executeable(void)
-{
-	return true;
-}
-
 void StateFollowRoute::enter()
 {
 	// Reset timer variables
@@ -58,6 +53,11 @@ void StateFollowRoute::enter()
 
 void StateFollowRoute::exit()
 {
+}
+
+void StateFollowRoute::setRoute(std::vector<std::pair<irr::core::vector3df, float>> route)
+{
+	this->route = route;
 }
 
 void StateFollowRoute::action()

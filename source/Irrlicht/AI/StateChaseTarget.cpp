@@ -6,42 +6,17 @@ StateChaseTarget::StateChaseTarget(Detectable* stateOwner, Detectable* target, i
 	std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine)
 	: StateFollowTarget(stateOwner, target, sceneMgr, callbackFunction, pathUtil, stateMachine)
 {
-	hasSeen = false;
-	hasLastPointSeen = false;
+	
 }
-
 
 StateChaseTarget::~StateChaseTarget(void)
 {
 }
 
-bool StateChaseTarget::executeable(void)
-{
-	// The state will execute as soon as the player is seen
-	if(owner->isObjectInfront(target, sceneMgr))
-	{
-		hasSeen = true;
-		lastPointSeen = this->target->getPosition();
-		return true;
-	}
-	//If the player is not seen check if there is a lastPointSeen
-	else if(hasSeen || hasLastPointSeen)
-	{
-		hasSeen = false;
-		hasLastPointSeen = true;
-		return true;
-	}
-	//Otherwise return false
-	else
-	{
-		hasSeen = false;
-		hasLastPointSeen = false;
-		return false;
-	}
-}
-
 void StateChaseTarget::action()
 {
+	if ( owner == NULL || target == NULL ) return;
+
 	// Get the position of the target
 	irr::core::vector3df toPos;
 	if(hasSeen)

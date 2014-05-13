@@ -16,7 +16,6 @@ public:
 	~StateChaseTarget(void);
 
 	/** Inherited Methods **/
-	virtual bool executeable(void);
 
 protected:
 	

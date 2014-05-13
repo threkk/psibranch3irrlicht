@@ -1,16 +1,19 @@
 #pragma once
 
-#include "AI\Transition.h"
+#include "ai\Transition.h"
 
 class __declspec(dllexport) OnKnockedDownTransition: public Transition
 {
 private:
-	unsigned int* health;
+	int* health;
 
 public:
-	OnKnockedDownTransition(unsigned int* hp);
+	OnKnockedDownTransition(int* hp);
+	OnKnockedDownTransition(int* hp, State* target);
 	~OnKnockedDownTransition();
 
 	bool condition();
+
+	void setHealth(int* hp);
 };
 

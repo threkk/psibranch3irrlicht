@@ -14,6 +14,22 @@
 class __declspec(dllexport) MessageClient
 {
 
+public:
+
+	virtual ~MessageClient(void)
+	{
+	}
+
+	/**
+	 * This method will be called when a new message is received
+	 */
+	virtual void receiveMessage(MessageObject message) = 0;
+
+	/**
+	 * Returns the ID of the message client
+	 */
+	int getID();
+
 protected:
 
 	/**
@@ -56,22 +72,6 @@ protected:
 	 * Sends a new message to all receivers that subscibed the given topic
 	 */
 	void sendMessageToTopic(MessageObject message, std::string topic);
-
-public:
-
-	virtual ~MessageClient(void)
-	{
-	}
-
-	/**
-	 * This method will be called when a new message is received
-	 */
-	virtual void receiveMessage(MessageObject message) = 0;
-
-	/**
-	 * Returns the ID of the message client
-	 */
-	int getID();
 
 private:
 	static int count;

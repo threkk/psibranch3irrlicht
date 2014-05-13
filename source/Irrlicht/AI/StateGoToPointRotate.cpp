@@ -16,11 +16,6 @@ StateGoToPointRotate::~StateGoToPointRotate(void)
 
 }
 
-bool StateGoToPointRotate::executeable(void)
-{
-	return true;
-}
-
 void StateGoToPointRotate::enter()
 {
 }

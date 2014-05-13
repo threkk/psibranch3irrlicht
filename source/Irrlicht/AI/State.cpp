@@ -43,6 +43,12 @@ void State::execute(void)
 		{
 			if ( stateMachine != NULL )
 			{
+				// First, call the callback method of the transition if set
+				if ( transitions[j]->callbackOnConditionTrue != NULL )
+				{
+					transitions[j]->callbackOnConditionTrue(transitions[j]->callbackParameter);
+				}
+
 				// If no target, return to previous state
 				if ( transitions[j]->getTarget() == NULL ) 
 				{
@@ -50,6 +56,7 @@ void State::execute(void)
 				} else {
 					stateMachine->changeState(transitions[j]->getTarget());
 				}
+				transitions[j]->reset();
 				return;
 			} else {
 				printf("WARNING: State machine not set\n");

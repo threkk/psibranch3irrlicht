@@ -18,7 +18,6 @@ public:
 	~StateGoToPointRotate(void);
 
 	/** Inherited methods **/
-	virtual bool executeable(void);
 	virtual void enter();
 	virtual void exit();
 protected:

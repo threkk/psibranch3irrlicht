@@ -17,8 +17,10 @@ public:
 		std::function<void(irr::core::vector3df*)> callbackFunction, IPathfinding* pathUtil, StateMachine* stateMachine);
 	~StateFollowTarget(void);
 
+	void setTarget(Detectable *target);
+	void setOwner(Detectable *owner);
+
 	/** Inherited Methods **/
-	virtual bool executeable(void);
 	virtual void enter();
 	virtual void exit();
 protected:

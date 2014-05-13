@@ -12,11 +12,6 @@ StateIdle::~StateIdle(void)
 
 }
 
-bool StateIdle::executeable(void)
-{
-	return true;
-}
-
 void StateIdle::enter()
 {
 }

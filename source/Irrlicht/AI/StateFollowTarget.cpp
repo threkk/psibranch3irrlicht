@@ -19,11 +19,6 @@ StateFollowTarget::~StateFollowTarget(void)
 {
 }
 
-bool StateFollowTarget::executeable(void)
-{
-	return true;
-}
-
 void StateFollowTarget::enter()
 {
 }
@@ -34,6 +29,8 @@ void StateFollowTarget::exit()
 
 void StateFollowTarget::action()
 {
+	if ( owner == NULL || target == NULL ) return;
+
 	// Get position of object by the pathfinding utility
 	std::vector<irr::core::vector3df> path = pathUtil->returnPath(&this->owner->getPosition(), &this->target->getGroundPosition());
 	
@@ -52,4 +49,14 @@ void StateFollowTarget::action()
 void StateFollowTarget::noActionFallback()
 {
 	stateMachine->returnToPreviousState();
+}
+
+void StateFollowTarget::setTarget(Detectable *target)
+{
+	this->target = target;
+}
+
+void StateFollowTarget::setOwner(Detectable *owner)
+{
+	this->owner = owner;
 }

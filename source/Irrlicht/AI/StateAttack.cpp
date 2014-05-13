@@ -3,7 +3,7 @@
 
 
 StateAttack::StateAttack(Detectable* stateOwner, ILiving* target, irr::scene::ISceneManager* sceneMgr,
-	std::function<void(void*)> callbackFunction, void* callbackParameter)
+	std::function<void(ILiving*, void*)> callbackFunction, void* callbackParameter)
 {
 	this->owner = stateOwner;
 	this->target = target;
@@ -17,11 +17,6 @@ StateAttack::~StateAttack(void)
 {
 }
 
-bool StateAttack::executeable(void)
-{
-	return owner->isObjectInfront(target, sceneMgr, 110);
-}
-
 void StateAttack::enter()
 {
 }
@@ -32,5 +27,15 @@ void StateAttack::exit()
 
 void StateAttack::action()
 {
-	callbackFunction(callbackParameter);
+	callbackFunction(target, callbackParameter);
+}
+
+void StateAttack::setOwner(Detectable* owner)
+{
+	this->owner = owner;
+}
+
+void StateAttack::setTarget(ILiving* target)
+{
+	this->target = target;
 }

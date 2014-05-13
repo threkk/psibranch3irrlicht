@@ -16,8 +16,9 @@ public:
 		IPathfinding* pathUtil, std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction);
 	~StateFollowRoute(void);
 
+	void setRoute(std::vector<std::pair<irr::core::vector3df, float>> route);
+
 	/** Inherited Methods **/
-	bool executeable(void);
 	void enter();
 	void exit();
 protected:

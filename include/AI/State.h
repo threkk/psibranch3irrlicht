@@ -51,11 +51,6 @@ public:
 	virtual void exit() = 0;
 
 	/**
-	* Subsumption: Checks if the requirements for this state are fulfilled
-	*/
-	virtual bool executeable(void) = 0;
-
-	/**
 	* Executes one of the substates or this state
 	*/
 	void execute(void);
