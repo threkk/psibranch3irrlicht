@@ -9,7 +9,6 @@ StateIdle::StateIdle(std::function<void(void*)> callbackFunction, void* callback
 
 StateIdle::~StateIdle(void)
 {
-
 }
 
 void StateIdle::enter()

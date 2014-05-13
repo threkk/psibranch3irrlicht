@@ -27,7 +27,7 @@ public:
 	Transition() : callbackOnConditionTrue(NULL), callbackParameter(NULL) {}
 	Transition(State *target) : callbackOnConditionTrue(NULL), callbackParameter(NULL), targetState(target) {}
 
-	virtual ~Transition(void);
+	virtual ~Transition(void) {}
 
 	/**
 	* Checks if the condition for this transition are fulfilled

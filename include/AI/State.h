@@ -36,8 +36,14 @@ public:
 	 */
 	StateMachine* stateMachine;
 
+	/**
+	 * Default Constructor
+	 */
 	State(void);
 
+	/**
+	 * Destructor
+	 */
 	virtual ~State(void);
 
 	/**
