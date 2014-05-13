@@ -48,7 +48,7 @@ void StateChaseTarget::action()
 		{
 			hasLastPointSeen = false;
 			hasSeen = false;
-			stateMachine->returnToPreviousState();
+			//stateMachine->returnToPreviousState();
 		}
 	}
 }

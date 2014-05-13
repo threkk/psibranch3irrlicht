@@ -44,5 +44,4 @@ protected:
 
 	/** Inherited Methods **/
 	void action();
-	void noActionFallback();
 };

@@ -24,8 +24,8 @@ protected:
 	State* targetState;
 
 public:
-	Transition() : callbackOnConditionTrue(NULL), callbackParameter(NULL) {}
-	Transition(State *target) : callbackOnConditionTrue(NULL), callbackParameter(NULL), targetState(target) {}
+	Transition() : ownerState(NULL), targetState(NULL), callbackOnConditionTrue(NULL), callbackParameter(NULL) {}
+	Transition(State *target) : ownerState(NULL), callbackOnConditionTrue(NULL), callbackParameter(NULL), targetState(target) {}
 
 	virtual ~Transition(void) {}
 

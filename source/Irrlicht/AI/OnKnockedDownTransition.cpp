@@ -18,7 +18,7 @@ OnKnockedDownTransition::~OnKnockedDownTransition()
 bool OnKnockedDownTransition::condition()
 {
 	if ( health == NULL ) return false;
-	return &health <= 0;
+	return *health <= 0;
 }
 
 void OnKnockedDownTransition::setHealth(int* health)

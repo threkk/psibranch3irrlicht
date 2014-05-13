@@ -20,6 +20,7 @@ public:
 	void enter();
 	void exit();
 
+	void setPoint(irr::core::vector3df point);
 protected:
 	// The owner of the state
 	Detectable* stateOwner;

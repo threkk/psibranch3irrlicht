@@ -9,6 +9,7 @@ StateInvestigatePoint::StateInvestigatePoint(Detectable* stateOwner, irr::core::
 	this->visionLength = visionLength;
 	this->callbackFunction = callbackFunction;
 	this->pathUtil = pathUtil;
+	if ( point != NULL ) this->point = *point;
 }
 
 StateInvestigatePoint::~StateInvestigatePoint(void)
@@ -21,6 +22,11 @@ void StateInvestigatePoint::enter()
 
 void StateInvestigatePoint::exit()
 {
+}
+
+void StateInvestigatePoint::setPoint(irr::core::vector3df point)
+{
+	this->point = point;
 }
 
 void StateInvestigatePoint::action()

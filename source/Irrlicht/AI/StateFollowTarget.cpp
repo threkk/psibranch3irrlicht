@@ -46,11 +46,6 @@ void StateFollowTarget::action()
 	}
 }
 
-void StateFollowTarget::noActionFallback()
-{
-	stateMachine->returnToPreviousState();
-}
-
 void StateFollowTarget::setTarget(Detectable *target)
 {
 	this->target = target;
