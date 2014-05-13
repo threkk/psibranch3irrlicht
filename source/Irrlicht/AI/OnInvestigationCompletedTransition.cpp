@@ -1,8 +1,8 @@
 #include "ai\OnInvestigationCompletedTransition.h"
 
 OnInvestigationCompletedTransition::OnInvestigationCompletedTransition
-	(Detectable *owner, float attentionSpan, float visionLength, std::string topic)
-	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), topic(topic), Transition()
+	(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic)
+	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), device(device), topic(topic), Transition()
 {
 	generateId();
 	subscribe(topic);
@@ -10,8 +10,8 @@ OnInvestigationCompletedTransition::OnInvestigationCompletedTransition
 }
 
 OnInvestigationCompletedTransition::OnInvestigationCompletedTransition
-	(Detectable *owner, float attentionSpan, float visionLength, std::string topic, State* state)
-	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), topic(topic), Transition(state)
+	(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic, State* state)
+	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), device(device), topic(topic), Transition(state)
 {
 	generateId();
 	subscribe(topic);

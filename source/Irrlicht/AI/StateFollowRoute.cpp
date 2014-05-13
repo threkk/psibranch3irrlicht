@@ -5,7 +5,8 @@ StateFollowRoute::StateFollowRoute(Detectable* stateOwner, std::vector<std::pair
 	IPathfinding* pathUtil, std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction)
 {
 	this->stateOwner = stateOwner;
-	this->route = *route;
+	if ( route != NULL ) 
+		this->route = *route;
 	this->device = device;
 	this->pathUtil = pathUtil;
 

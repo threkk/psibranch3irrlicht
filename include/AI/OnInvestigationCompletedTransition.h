@@ -8,8 +8,8 @@
 class __declspec(dllexport) OnInvestigationCompletedTransition: public Transition, public MessageClient
 {
 public:
-	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan, float visionLength, std::string topic);
-	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan, float visionLength, std::string topic, State* state);
+	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic);
+	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic, State* state);
 	~OnInvestigationCompletedTransition();
 
 	bool condition();

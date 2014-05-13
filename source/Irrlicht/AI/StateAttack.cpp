@@ -27,7 +27,9 @@ void StateAttack::exit()
 
 void StateAttack::action()
 {
-	callbackFunction(target, callbackParameter);
+	if ( target != NULL ) {
+		callbackFunction(target, callbackParameter);
+	}
 }
 
 void StateAttack::setOwner(Detectable* owner)
