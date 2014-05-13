@@ -100,9 +100,9 @@ public:
 	/**
 	 * Sets the previous state
 	 */
-	void setPreviousState(State* s)
+	void setPreviousState(State* previousState)
 	{
-		push(s);
+		push(previousState);
 		if ( previousState != NULL ) previousState->stateMachine = this;
 	}
 
