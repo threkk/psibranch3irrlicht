@@ -1441,6 +1441,9 @@
     <ClInclude Include="..\..\include\AI\OnMessageTransition.h">
       <Filter>include\ai\Transitions</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\AI\NewStateMachine.h">
+      <Filter>include\ai</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">

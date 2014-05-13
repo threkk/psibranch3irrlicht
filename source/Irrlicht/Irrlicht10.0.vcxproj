@@ -839,6 +839,7 @@
     <ClInclude Include="..\..\include\AI\MessageClient.h" />
     <ClInclude Include="..\..\include\AI\MessageHandler.h" />
     <ClInclude Include="..\..\include\AI\MessageObject.h" />
+    <ClInclude Include="..\..\include\AI\NewStateMachine.h" />
     <ClInclude Include="..\..\include\AI\OnBooleanFalseTransition.h" />
     <ClInclude Include="..\..\include\AI\OnBooleanTrueTransition.h" />
     <ClInclude Include="..\..\include\AI\OnInvestigationCompletedTransition.h" />
