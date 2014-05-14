@@ -22,6 +22,7 @@ ParticleModel ParticleParser::parse(const char* filename)
 		// Search for elements in the XML file and store them in the model
 		case io::EXN_ELEMENT:
 			{
+				// Particle attributes
 				if (!strcmp("Direction", xmlReader->getNodeName()))
 				{
 					model.setDirection(core::vector3df(xmlReader->getAttributeValueAsFloat("X"),
@@ -70,12 +71,12 @@ ParticleModel ParticleParser::parse(const char* filename)
 				else if (!strcmp("MaxStartColor", xmlReader->getNodeName()))
 				{
 					model.setMaxColor(video::SColor(xmlReader->getAttributeValueAsInt("Alpha"), xmlReader->getAttributeValueAsInt("Red"),
-						xmlReader->getAttributeValueAsInt("Blue"), xmlReader->getAttributeValueAsInt("Green")));
+						xmlReader->getAttributeValueAsInt("Green"), xmlReader->getAttributeValueAsInt("Blue")));
 				}
 				else if (!strcmp("MinStartColor", xmlReader->getNodeName()))
 				{
 					model.setMinColor(video::SColor(xmlReader->getAttributeValueAsInt("Alpha"), xmlReader->getAttributeValueAsInt("Red"),
-						xmlReader->getAttributeValueAsInt("Blue"), xmlReader->getAttributeValueAsInt("Green")));
+						xmlReader->getAttributeValueAsInt("Green"), xmlReader->getAttributeValueAsInt("Blue")));
 				}
 				else if (!strcmp("MaxStartSize", xmlReader->getNodeName()))
 				{
@@ -102,6 +103,58 @@ ParticleModel ParticleParser::parse(const char* filename)
 					model.setRadius(f32(xmlReader->getAttributeValueAsFloat("Radius")));
 					model.setNormalDirectionModifier(f32(xmlReader->getAttributeValueAsFloat("NormalDirectionModifier")));
 					model.setMbNumber(s32(xmlReader->getAttributeValueAsInt("MbNumber")));
+				}
+
+				// Affectors
+				else if (!strcmp("FadeOutAffectorTargetColor", xmlReader->getNodeName()))
+				{
+					model.setFadeOutAffectorTargetColor(video::SColor(xmlReader->getAttributeValueAsInt("Alpha"), xmlReader->getAttributeValueAsInt("Red"),
+						xmlReader->getAttributeValueAsInt("Green"), xmlReader->getAttributeValueAsInt("Blue")));
+				}
+				else if (!strcmp("FADE_OUT_Rest", xmlReader->getNodeName()))
+				{
+					model.setFadeOutAffectorTimeNeededToFadeOut(u32(xmlReader->getAttributeValueAsInt("FadeOutAffectorTimeNeededToFadeOut")));
+					model.addAffectorType(ParticleModel::AffectorTypes::FADE_OUT);
+				}
+				else if (!strcmp("AttractionAffectorPoint", xmlReader->getNodeName()))
+				{
+					model.setAttractionAffectorPoint(core::vector3df(xmlReader->getAttributeValueAsFloat("X"), xmlReader->getAttributeValueAsFloat("Y"),
+						xmlReader->getAttributeValueAsFloat("Z")));
+				}
+				else if (!strcmp("ATTRACT_Rest", xmlReader->getNodeName()))
+				{
+					model.setAttractionAffectorAttract(s32(xmlReader->getAttributeValueAsInt("AttractionAffectorAttract")));
+					model.setAttractionAffectorSpeed(f32(xmlReader->getAttributeValueAsFloat("AttractionAffectorSpeed")));
+					model.setAttractionAffectorAffectX(s32(xmlReader->getAttributeValueAsInt("AttractionAffectorAffectX")));
+					model.setAttractionAffectorAffectY(s32(xmlReader->getAttributeValueAsInt("AttractionAffectorAffectY")));
+					model.setAttractionAffectorAffectZ(s32(xmlReader->getAttributeValueAsInt("AttractionAffectorAffectZ")));
+					model.addAffectorType(ParticleModel::AffectorTypes::ATTRACT);
+				}
+				else if (!strcmp("GravityAffectorGravity", xmlReader->getNodeName()))
+				{
+					model.setGravityAffectorGravity(core::vector3df(xmlReader->getAttributeValueAsFloat("X"), xmlReader->getAttributeValueAsFloat("Y"),
+						xmlReader->getAttributeValueAsFloat("Z")));
+				}
+				else if (!strcmp("GRAVITY_Rest", xmlReader->getNodeName()))
+				{
+					model.setGravityAffectorTimeForceLost(u32(xmlReader->getAttributeValueAsInt("GravityAffectorTimeForceLost")));
+					model.addAffectorType(ParticleModel::AffectorTypes::GRAVITY);
+				}
+				else if (!strcmp("RotationAffectorSpeed", xmlReader->getNodeName()))
+				{
+					model.setRotationAffectorSpeed(core::vector3df(xmlReader->getAttributeValueAsFloat("X"), xmlReader->getAttributeValueAsFloat("Y"),
+						xmlReader->getAttributeValueAsFloat("Z")));
+				}
+				else if (!strcmp("RotationAffectorPivotPoint", xmlReader->getNodeName()))
+				{
+					model.setRotationAffectorPivotPoint(core::vector3df(xmlReader->getAttributeValueAsFloat("X"), xmlReader->getAttributeValueAsFloat("Y"),
+						xmlReader->getAttributeValueAsFloat("Z")));
+					model.addAffectorType(ParticleModel::AffectorTypes::ROTATE);
+				}
+				else if (!strcmp("ScaleAffectorScaleTo", xmlReader->getNodeName()))
+				{
+					model.setScaleAffectorScaleTo(core::dimension2df(xmlReader->getAttributeValueAsFloat("Width"), xmlReader->getAttributeValueAsFloat("Height")));
+					model.addAffectorType(ParticleModel::AffectorTypes::SCALE);
 				}
 			}
 			break;

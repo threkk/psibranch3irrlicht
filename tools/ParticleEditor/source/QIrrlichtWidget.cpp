@@ -7,6 +7,9 @@
 #include <qpainter.h>
 #include <iostream>
 
+#include "IrrDisplay.h"
+#include "InputReceiver.h"
+
 using namespace irr;
 using namespace core;
 using namespace scene;
@@ -34,7 +37,7 @@ QIrrlichtWidget::~QIrrlichtWidget()
     }
 }
 
-void QIrrlichtWidget::init()
+void QIrrlichtWidget::init(InputReceiver* inputReceiver, IrrDisplay* irrDisplay)
 {
     // Don't initialize more than once!
     if ( device != 0 ) return;
@@ -45,6 +48,7 @@ void QIrrlichtWidget::init()
     params.WindowId = (void*)winId();
     params.WindowSize.Width = width();
     params.WindowSize.Height = height();
+	params.EventReceiver = (IEventReceiver*) inputReceiver;
 
     device = irr::createDeviceEx( params );
 
@@ -54,6 +58,9 @@ void QIrrlichtWidget::init()
     connect( this, SIGNAL(updateIrrlicht(irr::IrrlichtDevice*)),
              this, SLOT(autoUpdateIrrlicht(irr::IrrlichtDevice*)) );
     startTimer(0);
+
+	this->irrDisplay = irrDisplay;
+	this->inputReceiver = inputReceiver;
 }
 
 
@@ -92,7 +99,7 @@ void QIrrlichtWidget::resizeEvent( QResizeEvent* event )
         irr::scene::ICameraSceneNode *cam = device->getSceneManager()->getActiveCamera();
         if ( cam != 0 )
         {
-            cam->setAspectRatio( (float) size.Height / size.Width );
+            cam->setAspectRatio( (float) size.Width / size.Height );
         }
     }
     QWidget::resizeEvent(event);
@@ -105,6 +112,12 @@ void QIrrlichtWidget::autoUpdateIrrlicht( irr::IrrlichtDevice* device )
     irr::video::SColor color (0,0,0,0);
 
     device->getVideoDriver()->beginScene( true, true, color );
+
+	// Update the particle displayer
+	irrDisplay->update();
+
+	// Reset the input receiver at the end of the frame
+	inputReceiver->reset();
 
     device->getSceneManager()->drawAll();
     device->getGUIEnvironment()->drawAll();
@@ -212,7 +225,7 @@ void QIrrlichtWidget::sendMouseEventToIrrlicht( QMouseEvent* event, bool pressed
         break;
 
     default:
-        return; // Cannot handle this mouse event
+		break;
     }
 
     irrEvent.MouseInput.X = event->x();
@@ -234,6 +247,15 @@ void QIrrlichtWidget::mousePressEvent( QMouseEvent* event )
 void QIrrlichtWidget::mouseReleaseEvent( QMouseEvent* event )
 {
     if ( device != 0 )
+    {
+        sendMouseEventToIrrlicht( event, false );
+    }
+    event->ignore();
+}
+
+void QIrrlichtWidget::mouseMoveEvent (QMouseEvent* event )
+{
+	if ( device != 0 )
     {
         sendMouseEventToIrrlicht( event, false );
     }

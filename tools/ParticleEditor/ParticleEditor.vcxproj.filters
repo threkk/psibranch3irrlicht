@@ -59,6 +59,9 @@
     <ClInclude Include="source\XML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InputReceiver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.ui">
@@ -101,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_QIrrlichtWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="InputReceiver.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

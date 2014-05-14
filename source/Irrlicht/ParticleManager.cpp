@@ -48,14 +48,12 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 
 IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(const char* filename, vector3df position,IAnimatedMesh* animatedMesh, IMesh* mesh)
 {
-	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
-
 	// Parse the xml file to a particle model
 	ParticleParser parser = ParticleParser();
 	ParticleModel model = parser.parse(filename);
 
 	// Spawn the particle model
-	this->spawnDataModelParticle(&model, position, model.getPathNameTexture().c_str());
+	IParticleSystemSceneNode* particleNode = this->spawnDataModelParticle(&model, position, model.getPathNameTexture().c_str());
 
 	// Return the particle node
 	return particleNode;

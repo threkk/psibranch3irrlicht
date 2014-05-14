@@ -84,7 +84,6 @@ public:
 	 * Setters for setting all the properties that are used for the particle affectors
 	 */
 	void setAffectors(core::list<AffectorTypes> affectors);
-	void addAffectorType(AffectorTypes affectorType);
 	void setAttractionAffectorPoint(core::vector3df point);
 	void setAttractionAffectorSpeed(f32 speed);
 	void setAttractionAffectorAttract(bool attract);
@@ -98,6 +97,13 @@ public:
 	void setRotationAffectorSpeed(core::vector3df rotationSpeed);
 	void setRotationAffectorPivotPoint(core::vector3df pivotPoint);
 	void setScaleAffectorScaleTo(core::dimension2df scaleTo);
+
+	/**
+	* Functions to add and remove affectorTypes from the affectors list so it is possible
+	* to have more than one affectorType at once or have none at all.
+	*/
+	void addAffectorType(AffectorTypes affectorType);
+	void removeAffectorType(AffectorTypes affectorType);
 
 	/**
 	 * Getters from all the properties for the emitters
@@ -146,6 +152,8 @@ public:
 	core::dimension2df getScaleAffectorScaleTo();
 
 	void print(void);
+
+	bool hasAffector(AffectorTypes affectorType);
 
 	/**
 	 * Deconstructor
