@@ -53,6 +53,19 @@ public:
 	};
 
 	/**
+	 * Material types, for now we have two material types
+	 * ADD: this add the particle colors on top of eachother, 
+	 *		more particles makes it look more bright
+	 * SOLID: when using solid the particles are normal images
+	 *		which get spawned
+	 */
+	enum MaterialTypes
+	{
+		ADD = 0,
+		SOLID
+	};
+
+	/**
 	 * Setters for setting all the properties that are used for the particle emitters
 	 */
 	void setEmitterType(EmitterTypes emitterType);
@@ -81,6 +94,7 @@ public:
 	void setOutLineOnly(bool outlineOnly);
 	void setStopEmitting(u32 stopEmitting);
 	void setremoveAfter(u32 removeAfter);
+	void setMaterialType(MaterialTypes materialType);
 
 	/**
 	 * Setters for setting all the properties that are used for the particle affectors
@@ -136,6 +150,7 @@ public:
 	bool getOutLineOnly();
 	u32 getStopEmitting();
 	u32 getRemoveAfter();
+	MaterialTypes getMaterialType();
 
 	/**
 	 * Getters from all the properties for the affectors
@@ -179,6 +194,7 @@ private:
 	video::SColor minStartColor, maxStartColor;
 	core::dimension2df minStartSize, maxStartSize;
 	bool useNormalDirection, everyMeshVertex, outlineOnly;
+	MaterialTypes materialType;
 
 	/**
 	 * The variables that are used for the particle affector

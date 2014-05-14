@@ -93,6 +93,10 @@ ParticleModel ParticleParser::parse(const char* filename)
 					core::stringc text = core::stringc(xmlReader->getAttributeValue("PathName"));
 					model.setPathNameTexture(filepath + "/" + text);
 				}
+				else if (!strcmp("Material", xmlReader->getNodeName()))
+				{
+					model.setMaterialType(ParticleModel::MaterialTypes(xmlReader->getAttributeValueAsInt("Type")));
+				}
 				else if (!strcmp("Rest", xmlReader->getNodeName()))
 				{
 					model.setOutLineOnly(s32(xmlReader->getAttributeValueAsInt("OutLineOnly")));
