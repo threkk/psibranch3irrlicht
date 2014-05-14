@@ -1,4 +1,5 @@
 #include "ParticleManager.h"
+#include "TempEffect.h"
 
 ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevice* irrDevice, ISceneManager* sManager)
 {
@@ -170,6 +171,15 @@ void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSy
 			affector->drop();
 		}
 	}
+}
+
+void ParticleManager::update(float deltaTime)
+{
+	for(auto actor = tempEffects.begin(); actor != tempEffects.end(); ++actor)
+	{
+			
+	}
+	
 }
 
 ParticleManager::~ParticleManager(void)

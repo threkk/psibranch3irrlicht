@@ -80,7 +80,7 @@ public:
 	void setEveryMeshVertex(bool everMeshVertex);
 	void setOutLineOnly(bool outlineOnly);
 	void setStopEmitting(u32 stopEmitting);
-	void setremoveAfter(u32 removeAfter);
+	void setRemoveParticleAfter(u32 removeParticleAfter);
 
 	/**
 	 * Setters for setting all the properties that are used for the particle affectors
@@ -135,7 +135,7 @@ public:
 	bool getEveryMeshVertex();
 	bool getOutLineOnly();
 	u32 getStopEmitting();
-	u32 getRemoveAfter();
+	u32 getRemoveParticleAfter();
 
 	/**
 	 * Getters from all the properties for the affectors
@@ -173,7 +173,7 @@ private:
 	core::aabbox3df aabbox;
 	core::vector3df position,direction,center,normal;
 	s32 maxAngleDegrees, mbNumber;
-	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS, stopEmitting, removeAfter;
+	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS, stopEmitting, removeParticleAfter;
 	f32 normalDirectionModifier, radius, lengthCylinder, ringThickness;
 	core::stringc pathNameTexture;
 	video::SColor minStartColor, maxStartColor;

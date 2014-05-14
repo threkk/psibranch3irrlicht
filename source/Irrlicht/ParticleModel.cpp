@@ -25,6 +25,8 @@ ParticleModel::ParticleModel()
 	center = core::vector3df(0,0,0);
 	lengthCylinder = 5;
 	outlineOnly = false;
+	stopEmitting = 0;
+	removeParticleAfter = 0;
 	this->addAffectorType(ParticleModel::AffectorTypes::NOPE);
 	point = core::vector3df(0,0,0);
 	gravity = core::vector3df(0,-0.02999999933f,0);
@@ -161,6 +163,16 @@ void ParticleModel::setEveryMeshVertex(bool everyMeshVertex)
 void ParticleModel::setOutLineOnly(bool outlineOnly)
 {
 	this->outlineOnly = outlineOnly;
+}
+
+void ParticleModel::setStopEmitting(u32 stopEmitting)
+{
+	this->stopEmitting = stopEmitting;
+}
+
+void ParticleModel::setRemoveParticleAfter(u32 removeParticleAfter)
+{
+	this->removeParticleAfter = removeParticleAfter;
 }
 
 ////////////////////////// AFFECTOR SETTERS ///////////////////////////////////
@@ -373,6 +385,16 @@ bool ParticleModel::getEveryMeshVertex()
 bool ParticleModel::getOutLineOnly()
 {
 	return this->outlineOnly;
+}
+
+u32 ParticleModel::getStopEmitting()
+{
+	return this->stopEmitting;
+}
+
+u32 ParticleModel::getRemoveParticleAfter()
+{
+	return this->removeParticleAfter;
 }
 
 ////////////////////////// AFFECTOR GETTERS ///////////////////////////////////

@@ -146,6 +146,15 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeAttribute("EveryMeshVertex",QString::number(model->getEveryMeshVertex()));
     xmlWriter.writeAttribute("OutLineOnly",QString::number(model->getOutLineOnly()));
     xmlWriter.writeEndElement();
+
+	xmlWriter.writeStartElement("StopEmitting");
+	xmlWriter.writeAttribute("StopEmittingAfter", QString::number(model->getStopEmitting()));
+	xmlWriter.writeEndElement();
+
+	xmlWriter.writeStartElement("RemoveParticleAfter");
+	xmlWriter.writeAttribute("RemoveParticleAfter", QString::number(model->getRemoveParticleAfter()));
+	xmlWriter.writeEndElement();
+	
 	xmlWriter.writeStartElement("Affectors");
 	
 	for(auto affector = model->getAffectors()->begin(); affector != model->getAffectors()->end(); ++affector)

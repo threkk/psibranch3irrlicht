@@ -120,6 +120,12 @@ void MainWindow::fillFields (ParticleModel* model)
 	QCheckBox* checkBox_OutlineOnly = this->findChild<QCheckBox*>("checkBox_OutlineOnly");
 	checkBox_OutlineOnly->setChecked(model->getOutLineOnly());
 
+	QLineEdit* lineEdit_StopEmittingAfter = this->findChild<QLineEdit*>("lineEdit_StopEmittingAfter");
+	lineEdit_StopEmittingAfter->setText(QString::number((double) model->getStopEmitting()));
+
+	QLineEdit* lineEdit_RemoveAffectAfter = this->findChild<QLineEdit*>("lineEdit_RemoveAffectAfter");
+	lineEdit_RemoveAffectAfter->setText(QString::number((double) model->getRemoveParticleAfter()));
+
     QFileInfo fileInfo(model->getPathNameTexture().c_str());
 	QPushButton* pushButtonOpenText = this->findChild<QPushButton*>("pushButton_OpenTex");
 	if (pushButtonOpenText != nullptr)
@@ -393,6 +399,20 @@ void MainWindow::on_checkBox_OutlineOnly_clicked(const bool &arg1)
 {
 	model.setOutLineOnly(arg1);
 	std::cout << "Change of outline only: " << model.getOutLineOnly() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_StopEmittingAfter_textChanged(const QString & arg1)
+{
+	model.setStopEmitting(arg1.toFloat());
+	std::cout << "Change of Stop emitting: " << model.getStopEmitting() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_RemoveAffectAfter_textChanged(const QString & arg1)
+{
+	model.setRemoveParticleAfter(arg1.toFloat());
+	std::cout << "Change of Remove After: " << model.getRemoveParticleAfter() << std::endl;
 	irrDisplay->displayParticle(&model);
 }
 

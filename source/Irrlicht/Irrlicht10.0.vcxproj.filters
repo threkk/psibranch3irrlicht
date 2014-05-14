@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="include">
@@ -1402,6 +1402,10 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\include\IQualityTexture.h" />
+    <ClInclude Include="TempEffect.h">
+      <Filter>include\ParticleEditor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2397,6 +2401,10 @@
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
     <ClCompile Include="ParticleParser.cpp">
+      <Filter>Irrlicht\ParticleEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="CQualityTexture.cpp" />
+    <ClCompile Include="TempEffect.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
   </ItemGroup>

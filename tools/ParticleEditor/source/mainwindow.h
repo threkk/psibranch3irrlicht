@@ -85,6 +85,10 @@ private slots:
 
 	void on_checkBox_OutlineOnly_clicked(const bool &arg1);
 
+	void on_lineEdit_StopEmittingAfter_textChanged(const QString &arg1);
+
+	void on_lineEdit_RemoveAffectAfter_textChanged(const QString &arg1);
+
 	void on_checkBox_Attract_Affector_clicked(const bool &arg1);
 
 	void on_lineEdit_Attract_Point_X_textChanged(const QString &arg1);

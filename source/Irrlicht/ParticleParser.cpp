@@ -104,6 +104,14 @@ ParticleModel ParticleParser::parse(const char* filename)
 					model.setNormalDirectionModifier(f32(xmlReader->getAttributeValueAsFloat("NormalDirectionModifier")));
 					model.setMbNumber(s32(xmlReader->getAttributeValueAsInt("MbNumber")));
 				}
+				else if (!strcmp("StopEmitting", xmlReader->getNodeName()))
+				{
+					model.setStopEmitting(u32(xmlReader->getAttributeValueAsInt("StopEmittingAfter")));
+				}
+				else if (!strcmp("RemoveParticleAfter", xmlReader->getNodeName()))
+				{
+					model.setRemoveParticleAfter(u32(xmlReader->getAttributeValueAsInt("RemoveParticleAfter")));
+				}
 
 				// Affectors
 				else if (!strcmp("FadeOutAffectorTargetColor", xmlReader->getNodeName()))
