@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
+    <width>1100</width>
     <height>800</height>
    </rect>
   </property>
@@ -1234,8 +1234,8 @@ border: 0;text-align:left;padding-left:5px;</string>
    <widget class="QLineEdit" name="lineEdit_StopEmittingAfter">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>610</y>
+      <x>960</x>
+      <y>20</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -1250,8 +1250,8 @@ border: 0;text-align:left;padding-left:5px;</string>
    <widget class="QLineEdit" name="lineEdit_RemoveAffectAfter">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>640</y>
+      <x>960</x>
+      <y>60</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -1266,8 +1266,8 @@ border: 0;text-align:left;padding-left:5px;</string>
    <widget class="QLabel" name="label_OutlineOnly_2">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>610</y>
+      <x>850</x>
+      <y>20</y>
       <width>120</width>
       <height>16</height>
      </rect>
@@ -1282,8 +1282,8 @@ border: 0;text-align:left;padding-left:5px;</string>
    <widget class="QLabel" name="label_OutlineOnly_3">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>640</y>
+      <x>850</x>
+      <y>60</y>
       <width>120</width>
       <height>16</height>
      </rect>
@@ -1301,7 +1301,7 @@ border: 0;text-align:left;padding-left:5px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>850</width>
+     <width>1100</width>
      <height>21</height>
     </rect>
    </property>
