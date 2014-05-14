@@ -79,6 +79,8 @@ public:
 	void setUseNormalDirection(bool useNormalDirection);
 	void setEveryMeshVertex(bool everMeshVertex);
 	void setOutLineOnly(bool outlineOnly);
+	void setStopEmitting(u32 stopEmitting);
+	void setremoveAfter(u32 removeAfter);
 
 	/**
 	 * Setters for setting all the properties that are used for the particle affectors
@@ -132,6 +134,8 @@ public:
 	bool getUseNormalDirection();
 	bool getEveryMeshVertex();
 	bool getOutLineOnly();
+	u32 getStopEmitting();
+	u32 getRemoveAfter();
 
 	/**
 	 * Getters from all the properties for the affectors
@@ -169,7 +173,7 @@ private:
 	core::aabbox3df aabbox;
 	core::vector3df position,direction,center,normal;
 	s32 maxAngleDegrees, mbNumber;
-	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS;
+	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS, stopEmitting, removeAfter;
 	f32 normalDirectionModifier, radius, lengthCylinder, ringThickness;
 	core::stringc pathNameTexture;
 	video::SColor minStartColor, maxStartColor;

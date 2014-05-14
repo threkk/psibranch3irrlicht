@@ -1231,6 +1231,70 @@ border: 0;text-align:left;padding-left:5px;</string>
      </widget>
     </widget>
    </widget>
+   <widget class="QLineEdit" name="lineEdit_StopEmittingAfter">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>610</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_RemoveAffectAfter">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>640</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_OutlineOnly_2">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>610</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop affect after</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_OutlineOnly_3">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>640</y>
+      <width>120</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove affect after</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
