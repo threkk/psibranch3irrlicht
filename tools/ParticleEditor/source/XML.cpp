@@ -107,13 +107,13 @@ void XML::SaveXML(ParticleModel* model)
     xmlWriter.writeAttribute("Min",QString::number(model->getMinPPS()));
     xmlWriter.writeEndElement();
 
-
     xmlWriter.writeStartElement("MaxStartColor");
     xmlWriter.writeAttribute("Alpha",QString::number(model->getMaxStartColor().getAlpha()));
     xmlWriter.writeAttribute("Red",QString::number(model->getMaxStartColor().getRed()));
     xmlWriter.writeAttribute("Green",QString::number(model->getMaxStartColor().getGreen()));
 	xmlWriter.writeAttribute("Blue",QString::number(model->getMaxStartColor().getBlue()));
     xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("MinStartColor");
     xmlWriter.writeAttribute("Alpha",QString::number(model->getMinStartColor().getAlpha()));
     xmlWriter.writeAttribute("Red",QString::number(model->getMinStartColor().getRed()));
@@ -121,12 +121,11 @@ void XML::SaveXML(ParticleModel* model)
 	xmlWriter.writeAttribute("Blue",QString::number(model->getMinStartColor().getBlue()));
     xmlWriter.writeEndElement();
 
-
-
     xmlWriter.writeStartElement("MaxStartSize");
     xmlWriter.writeAttribute("Height",QString::number(model->getMaxStartSize().Height));
     xmlWriter.writeAttribute("Width",QString::number(model->getMaxStartSize().Width));
     xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("MinStartSize");
     xmlWriter.writeAttribute("Height",QString::number(model->getMinStartSize().Height));
     xmlWriter.writeAttribute("Width",QString::number(model->getMinStartSize().Width));
@@ -134,6 +133,10 @@ void XML::SaveXML(ParticleModel* model)
 
     xmlWriter.writeStartElement("Texture");
     xmlWriter.writeAttribute("PathName",pathTex.fileName().toUtf8().constData());
+    xmlWriter.writeEndElement();
+
+	xmlWriter.writeStartElement("Material");
+    xmlWriter.writeAttribute("Type",QString::number(model->getMaterialType()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Rest");

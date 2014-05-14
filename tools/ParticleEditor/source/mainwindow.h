@@ -143,6 +143,20 @@ private slots:
 
 	void on_lineEdit_Scale_to_Y_textChanged(const QString &arg1);
 
+	void on_lineEdit_Normal_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Normal_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Normal_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Aabbox_Width_textChanged(const QString &arg1);
+
+	void on_lineEdit_Aabbox_Height_textChanged(const QString &arg1);
+
+	void on_lineEdit_Aabbox_Depth_textChanged(const QString &arg1);
+
+	void on_comboBox_MaterialType_currentIndexChanged(int index);
+
     /** End events of changes in the gui **/
 
 private:

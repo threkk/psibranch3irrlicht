@@ -212,6 +212,27 @@ void MainWindow::fillFields (ParticleModel* model)
 
 	QLineEdit* lineEdit_Scale_to_Y = this->findChild<QLineEdit*>("lineEdit_Scale_to_Y");
 	lineEdit_Scale_to_Y->setText(QString::number((double) model->getScaleAffectorScaleTo().Height));
+
+	QLineEdit* lineEdit_Normal_X = this->findChild<QLineEdit*>("lineEdit_Normal_X");
+	lineEdit_Normal_X->setText(QString::number((double) model->getNormal().X));
+
+	QLineEdit* lineEdit_Normal_Y = this->findChild<QLineEdit*>("lineEdit_Normal_Y");
+	lineEdit_Normal_Y->setText(QString::number((double) model->getNormal().Y));
+
+	QLineEdit* lineEdit_Normal_Z = this->findChild<QLineEdit*>("lineEdit_Normal_Z");
+	lineEdit_Normal_Z->setText(QString::number((double) model->getNormal().Z));
+
+	QLineEdit* lineEdit_Aabbox_Width = this->findChild<QLineEdit*>("lineEdit_Aabbox_Width");
+	lineEdit_Aabbox_Width->setText(QString::number((double) model->getAabbox().MaxEdge.X * 2));
+
+	QLineEdit* lineEdit_Aabbox_Height = this->findChild<QLineEdit*>("lineEdit_Aabbox_Height");
+	lineEdit_Aabbox_Height->setText(QString::number((double) model->getAabbox().MaxEdge.Y * 2));
+
+	QLineEdit* lineEdit_Aabbox_Depth = this->findChild<QLineEdit*>("lineEdit_Aabbox_Depth");
+	lineEdit_Aabbox_Depth->setText(QString::number((double) model->getAabbox().MaxEdge.Z * 2));
+
+	QComboBox* comboBox_MaterialType = this->findChild<QComboBox*>("comboBox_MaterialType");
+    comboBox_MaterialType->setCurrentIndex((int) model->getMaterialType());
 }
 
 void MainWindow::on_actionSave_XML_triggered()
@@ -259,7 +280,7 @@ void MainWindow::on_lineEdit_Direction_Z_textChanged(const QString &arg1)
 
 void MainWindow::on_pushButton_Color_Min_clicked()
 {
-    QColor color = QColorDialog::getColor(QColor( model.getMinStartColor().getRed(), model.getMinStartColor().getGreen(), model.getMinStartColor().getBlue(), model.getMinStartColor().getAlpha()));
+	QColor color = QColorDialog::getColor(QColor( model.getMinStartColor().getRed(), model.getMinStartColor().getGreen(), model.getMinStartColor().getBlue(), model.getMinStartColor().getAlpha()), 0, "Min start color", QColorDialog::ShowAlphaChannel);
 
     QPushButton* button = this->findChild<QPushButton*>("pushButton_Color_Min");
     setButtonColor (button, color);
@@ -272,7 +293,7 @@ void MainWindow::on_pushButton_Color_Min_clicked()
 
 void MainWindow::on_pushButton_Color_Max_clicked()
 {
-    QColor color = QColorDialog::getColor(QColor( model.getMaxStartColor().getRed(), model.getMaxStartColor().getGreen(), model.getMaxStartColor().getBlue(), model.getMaxStartColor().getAlpha()));
+	QColor color = QColorDialog::getColor(QColor( model.getMaxStartColor().getRed(), model.getMaxStartColor().getGreen(), model.getMaxStartColor().getBlue(), model.getMaxStartColor().getAlpha()), 0, "Max start color", QColorDialog::ShowAlphaChannel);
 
     QPushButton* button = this->findChild<QPushButton*>("pushButton_Color_Max");
     setButtonColor (button, color);
@@ -506,7 +527,7 @@ void MainWindow::on_checkBox_Fade_out_clicked(const bool &arg1)
 
 void MainWindow::on_pushButton_Target_Color_clicked()
 {
-	QColor color = QColorDialog::getColor(QColor( model.getFadeOutAffectorTargetColor().getRed(), model.getFadeOutAffectorTargetColor().getGreen(), model.getFadeOutAffectorTargetColor().getBlue(), model.getFadeOutAffectorTargetColor().getAlpha()));
+	QColor color = QColorDialog::getColor(QColor( model.getFadeOutAffectorTargetColor().getRed(), model.getFadeOutAffectorTargetColor().getGreen(), model.getFadeOutAffectorTargetColor().getBlue(), model.getFadeOutAffectorTargetColor().getAlpha()), 0, "Fadeout target color", QColorDialog::ShowAlphaChannel);
 
     QPushButton* button = this->findChild<QPushButton*>("pushButton_Target_Color");
     setButtonColor (button, color);
@@ -656,6 +677,64 @@ void MainWindow::on_lineEdit_Scale_to_Y_textChanged(const QString &arg1)
 {
 	model.setScaleAffectorScaleTo(core::dimension2df(model.getScaleAffectorScaleTo().Width, arg1.toFloat()));
     std::cout << "Change of min scale size: " << model.getScaleAffectorScaleTo().Width << ", " << model.getScaleAffectorScaleTo().Height << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Normal_X_textChanged(const QString &arg1)
+{
+	model.setNormal(core::vector3df(arg1.toFloat(), model.getNormal().Y, model.getNormal().Z));
+	std::cout << "Change of normal: " << model.getNormal().X << ", " << model.getNormal().Y
+		<< ", " << model.getNormal().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Normal_Y_textChanged(const QString &arg1)
+{
+	model.setNormal(core::vector3df(model.getNormal().X, arg1.toFloat(), model.getNormal().Z ));
+	std::cout << "Change of normal: " << model.getNormal().X << ", " << model.getNormal().Y
+		<< ", " << model.getNormal().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Normal_Z_textChanged(const QString &arg1)
+{
+	model.setNormal(core::vector3df(model.getNormal().X, model.getNormal().Y, arg1.toFloat()));
+	std::cout << "Change of normal: " << model.getNormal().X << ", " << model.getNormal().Y
+		<< ", " << model.getNormal().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Aabbox_Width_textChanged(const QString &arg1)
+{
+	model.setAabbox(core::aabbox3df(-arg1.toFloat()/2, model.getAabbox().MinEdge.Y, model.getAabbox().MinEdge.Z,
+		arg1.toFloat()/2, model.getAabbox().MaxEdge.Y, model.getAabbox().MaxEdge.Z));
+	std::cout << "Change of aabbox: " << model.getAabbox().MinEdge.X << ", " << model.getAabbox().MinEdge.Y << ", " << model.getAabbox().MinEdge.Z
+		 << ", " << model.getAabbox().MaxEdge.X << ", " << model.getAabbox().MaxEdge.Y << ", " << model.getAabbox().MaxEdge.Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Aabbox_Height_textChanged(const QString &arg1)
+{
+	model.setAabbox(core::aabbox3df(model.getAabbox().MinEdge.X, -arg1.toFloat()/2, model.getAabbox().MinEdge.Z,
+		model.getAabbox().MaxEdge.X, arg1.toFloat()/2, model.getAabbox().MaxEdge.Z));
+	std::cout << "Change of aabbox: " << model.getAabbox().MinEdge.X << ", " << model.getAabbox().MinEdge.Y << ", " << model.getAabbox().MinEdge.Z
+		 << ", " << model.getAabbox().MaxEdge.X << ", " << model.getAabbox().MaxEdge.Y << ", " << model.getAabbox().MaxEdge.Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Aabbox_Depth_textChanged(const QString &arg1)
+{
+	model.setAabbox(core::aabbox3df(model.getAabbox().MinEdge.X, model.getAabbox().MinEdge.Y, -arg1.toFloat()/2,
+		model.getAabbox().MaxEdge.X, model.getAabbox().MaxEdge.Y, arg1.toFloat()/2));
+	std::cout << "Change of aabbox: " << model.getAabbox().MinEdge.X << ", " << model.getAabbox().MinEdge.Y << ", " << model.getAabbox().MinEdge.Z
+		 << ", " << model.getAabbox().MaxEdge.X << ", " << model.getAabbox().MaxEdge.Y << ", " << model.getAabbox().MaxEdge.Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_comboBox_MaterialType_currentIndexChanged(int index)
+{
+    model.setMaterialType(static_cast<ParticleModel::MaterialTypes>(index));
+    std::cout << "Change of material type: " << model.getMaterialType() << std::endl;
 	irrDisplay->displayParticle(&model);
 }
 

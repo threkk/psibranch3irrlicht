@@ -14,10 +14,26 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	particleNode->setScale(core::vector3df(0.5f, 0.5f,0.5f));
 	particleNode->setMaterialFlag(video::EMF_LIGHTING, false);
 	particleNode->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
-	particleNode->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
+
+	// Set the right matarial type for the particle node
+	if (model->getMaterialType() == ParticleModel::MaterialTypes::ADD)
+	{
+		particleNode->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
+	}
+	else if (model->getMaterialType() == ParticleModel::MaterialTypes::SOLID)
+	{
+		particleNode->setMaterialType(video::EMT_ONETEXTURE_BLEND);
+		particleNode->getMaterial(0).MaterialTypeParam = video::pack_textureBlendFunc (video::EBF_SRC_ALPHA, video::EBF_ONE_MINUS_SRC_ALPHA,
+			video::EMFN_MODULATE_1X, video::EAS_TEXTURE | video::EAS_VERTEX_COLOR);
+	}
+
+	// Set the particle texture
 	particleNode->setMaterialTexture(0, driver->getTexture(pathName));
+
+	// Set the node at the given position
 	particleNode->setPosition(position);
 
+	// Spawn an emitter based on the given type
 	switch(model->getEmitterType())
 	{
 	case(model->BOX):

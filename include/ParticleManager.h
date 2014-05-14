@@ -54,6 +54,7 @@ public:
 	*/
 	IParticleSystemSceneNode* spawnXMLParticle(const char* filename, vector3df position, IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
 
+
 	void update(float deltaTime);
 
 	/**
