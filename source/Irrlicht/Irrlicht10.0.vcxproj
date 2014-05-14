@@ -1122,7 +1122,6 @@
     <ClInclude Include="COpenGLSLMaterialRenderer.h" />
     <ClInclude Include="COpenGLTexture.h" />
     <ClInclude Include="glext.h" />
-    <ClInclude Include="StartTime.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="CD3D8Driver.h" />
     <ClInclude Include="CD3D8MaterialRenderer.h" />
@@ -1456,7 +1455,6 @@
     <ClCompile Include="ParticleManager.cpp" />
     <ClCompile Include="ParticleModel.cpp" />
     <ClCompile Include="ParticleParser.cpp" />
-    <ClCompile Include="StartTime.cpp" />
     <ClCompile Include="zlib\adler32.c" />
     <ClCompile Include="zlib\compress.c" />
     <ClCompile Include="zlib\crc32.c" />

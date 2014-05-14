@@ -1402,9 +1402,6 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="StartTime.h">
-      <Filter>include\ParticleEditor</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2400,9 +2397,6 @@
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
     <ClCompile Include="ParticleParser.cpp">
-      <Filter>Irrlicht\ParticleEditor</Filter>
-    </ClCompile>
-    <ClCompile Include="StartTime.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
   </ItemGroup>

@@ -174,22 +174,6 @@ void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSy
 	}
 }
 
-void ParticleManager::life(float lifeTime, bool fade)
-{
-	this->lifeTime = lifeTime;
-	this->fade = fade;
-}
-
-void ParticleManager::start(void)
-{
-	aliveSince = 
-}
-
-void ParticleManager::update(float deltaTime)
-{
-	
-}
-
 ParticleManager::~ParticleManager(void)
 {
 }
