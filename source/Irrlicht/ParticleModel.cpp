@@ -12,8 +12,8 @@ ParticleModel::ParticleModel()
 	direction = core::vector3df(0.0f, 0.1f, 0.0f);
 	minPPS = 50;
 	maxPPS = 200;
-	minStartColor = video::SColor(0,0,0,255);
-	maxStartColor = video::SColor(0,255,255,255);
+	minStartColor = video::SColor(255,0,0,255);
+	maxStartColor = video::SColor(255,255,255,255);
 	lifeTimeMin = 50;
 	lifeTimeMax = 75;
 	maxAngleDegrees = 0;
@@ -40,6 +40,7 @@ ParticleModel::ParticleModel()
 	timeForceLost = 1000;
 	scaleTo = core::dimension2df(1,1);
 	pathNameTexture;
+	materialType = MaterialTypes::ADD;
 }
 
 ////////////////////////// SETTERS ///////////////////////////////////
@@ -161,6 +162,11 @@ void ParticleModel::setEveryMeshVertex(bool everyMeshVertex)
 void ParticleModel::setOutLineOnly(bool outlineOnly)
 {
 	this->outlineOnly = outlineOnly;
+}
+
+void ParticleModel::setMaterialType(MaterialTypes materialType)
+{
+	this->materialType = materialType;
 }
 
 ////////////////////////// AFFECTOR SETTERS ///////////////////////////////////
@@ -373,6 +379,11 @@ bool ParticleModel::getEveryMeshVertex()
 bool ParticleModel::getOutLineOnly()
 {
 	return this->outlineOnly;
+}
+
+ParticleModel::MaterialTypes ParticleModel::getMaterialType()
+{
+	return this->materialType;
 }
 
 ////////////////////////// AFFECTOR GETTERS ///////////////////////////////////

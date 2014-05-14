@@ -87,6 +87,7 @@ private:
 	*an Affector is an external force acting on the particle like fadeout
 	*/
 	void checkForAffectors(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
+
 };
 
 #endif
