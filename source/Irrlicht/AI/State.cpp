@@ -57,6 +57,7 @@ void State::execute(void)
 					stateMachine->changeState(transitions[j]->getTarget());
 				}
 				transitions[j]->reset();
+				stateMachine->updateCurrentState();
 				return;
 			} else {
 				printf("WARNING: State machine not set\n");

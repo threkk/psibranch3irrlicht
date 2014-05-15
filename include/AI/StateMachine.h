@@ -146,12 +146,23 @@ public:
 	}
 
 	/**
+	 * Call this method to execute only the current state.
+	 */
+	void updateCurrentState() 
+	{
+		// Same for the current state
+		if (currentState) 
+			currentState->execute();
+
+	}
+
+	/**
 	 * Set the current state to the previous one.
 	 * The current state will then be the new previous state.
 	 */
 	void returnToPreviousState()
 	{
-		if ( currentState && stack.size() ) {
+		if ( currentState && !stack.empty() ) {
 
 			currentState->exit();
 			currentState = pop();

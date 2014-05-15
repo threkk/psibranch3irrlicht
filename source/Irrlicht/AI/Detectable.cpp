@@ -36,7 +36,9 @@ bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* 
 
 	// Return false if point is too far away to see
 	if (this->getPosition().getDistanceFrom(object->getPosition()) > visionLength)
+	{
 		return false;
+	}
 
 	// Get difference vector between object and me
 	irr::core::vector3df difference = object->getPosition() - this->getPosition();
