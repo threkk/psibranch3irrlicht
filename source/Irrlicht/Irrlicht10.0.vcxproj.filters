@@ -1403,7 +1403,7 @@
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\include\IQualityTexture.h" />
-    <ClInclude Include="TempEffect.h">
+    <ClInclude Include="..\..\include\TempEffect.h">
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
   </ItemGroup>

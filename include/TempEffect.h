@@ -9,7 +9,7 @@ class IRRLICHT_API TempEffect
 {
 public:
 	// The default constructor
-	TempEffect(scene::IParticleSystemSceneNode* particleNode, u32 startTime, u32 StopEmitting, u32 RemoveParticleAfter);
+	TempEffect(scene::IParticleSystemSceneNode* particleNode, u32 startTime, u32 stopEmitting, u32 removeParticleAfter);
 
 	// Function which checks if the particle effect is expired
 	bool isOver(u32 currentTime);
@@ -17,10 +17,11 @@ public:
 	// The deconstructor
 	~TempEffect(void);
 
-private:
-
 	IParticleSystemSceneNode* node;
+
+private:
 	int startTime;
+	u32 stopEmitting, removeParticleAfter;
 
 };
 

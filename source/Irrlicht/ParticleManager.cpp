@@ -5,6 +5,7 @@ ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevic
 	driver = videoDriver;
 	device = irrDevice;
 	smgr = sManager;
+	tempEffects = core::list<TempEffect*>();
 }
 
 IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName, IAnimatedMesh* animatedMesh, IMesh* mesh)
@@ -59,6 +60,15 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	case(model->NONE):
 		break;
 	}
+
+	if (model->getStopEmitting() > 0 || model->getRemoveParticleAfter() > 0)
+	{
+		TempEffect* temp = new TempEffect(particleNode, device->getTimer()->getTime(),
+			model->getStopEmitting(), model->getRemoveParticleAfter());
+		std::cout << "ADD PARTICLE TO TEMP EFFECTS" << std::endl;
+		tempEffects.push_back(temp);
+	}
+
 	return particleNode;
 }
 
@@ -70,14 +80,6 @@ IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(const char* filename
 
 	// Spawn the particle model
 	IParticleSystemSceneNode* particleNode = this->spawnDataModelParticle(&model, position, model.getPathNameTexture().c_str());
-
-	if (model.getStopEmitting() > 0 || model.getRemoveParticleAfter() > 0)
-	{
-		TempEffect temp = TempEffect(particleNode, device->getTimer()->getTime(),
-			model.getRemoveParticleAfter(), model.getStopEmitting());
-
-		tempEffects.push_back(temp);
-	}
 
 	// Return the particle node
 	return particleNode;
@@ -196,16 +198,48 @@ void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSy
 	}
 }
 
-void ParticleManager::update(float deltaTime)
+void ParticleManager::update()
 {
+	std::cout << device->getTimer()->getTime() << std::endl;
 	for(auto tempEffect = tempEffects.begin(); tempEffect != tempEffects.end(); ++tempEffect)
 	{
-		if ((*tempEffect).isOver(device->getTimer()->getTime()))
+		if ((*tempEffect)->isOver(device->getTimer()->getTime()))
 		{
-			
+			if (tempEffects.size() == 1) {
+				tempEffects.erase(tempEffect);
+				break;
+			} else {
+				core::list<TempEffect*>::Iterator current = tempEffect;
+				tempEffect--;
+				tempEffects.erase(current);
+			}
 		}
 	}
-	
+}
+
+void ParticleManager::removeParticle(scene::IParticleSystemSceneNode* node) 
+{
+	if (tempEffects.size() == 0) {
+		if (node)
+			node->remove();
+		return;
+	}
+
+	for(auto tempEffect = tempEffects.begin(); tempEffect != tempEffects.end(); ++tempEffect)
+	{
+		if ((*tempEffect)->node == node) {
+			if (tempEffects.size() == 1) {
+				tempEffects.erase(tempEffect);
+				break;
+			} else {
+				core::list<TempEffect*>::Iterator current = tempEffect;
+				tempEffect--;
+				tempEffects.erase(current);
+			}
+			std::cout << "REMOVE PARTICLE" << std::endl;
+			node->remove();
+		}
+	}
 }
 
 ParticleManager::~ParticleManager(void)

@@ -55,8 +55,9 @@ public:
 	*/
 	IParticleSystemSceneNode* spawnXMLParticle(const char* filename, vector3df position, IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
 
+	void update(void);
 
-	void update(float deltaTime);
+	void removeParticle(scene::IParticleSystemSceneNode* node);
 
 	/**
 	*The deconstructor
@@ -92,7 +93,7 @@ private:
 	*/
 	void checkForAffectors(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
 	
-	core::list<TempEffect> tempEffects;
+	core::list<TempEffect*> tempEffects;
 };
 
 #endif

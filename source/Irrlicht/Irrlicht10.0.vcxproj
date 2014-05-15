@@ -903,6 +903,7 @@
     <ClInclude Include="..\..\include\position2d.h" />
     <ClInclude Include="..\..\include\quaternion.h" />
     <ClInclude Include="..\..\include\rect.h" />
+    <ClInclude Include="..\..\include\TempEffect.h" />
     <ClInclude Include="..\..\include\triangle3d.h" />
     <ClInclude Include="..\..\include\vector2d.h" />
     <ClInclude Include="..\..\include\vector3d.h" />
@@ -1123,7 +1124,6 @@
     <ClInclude Include="COpenGLSLMaterialRenderer.h" />
     <ClInclude Include="COpenGLTexture.h" />
     <ClInclude Include="glext.h" />
-    <ClInclude Include="TempEffect.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="CD3D8Driver.h" />
     <ClInclude Include="CD3D8MaterialRenderer.h" />

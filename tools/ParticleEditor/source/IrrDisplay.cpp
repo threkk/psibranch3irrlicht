@@ -41,6 +41,7 @@ void IrrDisplay::setupIrrlicht( IrrlichtDevice* device )
 
 void IrrDisplay::update()
 {
+
 	core::vector3df pos = cam->getPosition();
 
 	// Zoom with the scroll wheel
@@ -55,12 +56,14 @@ void IrrDisplay::update()
 	// Target is a bit behind the particle
 	pos.Z += 10;
 	cam->setTarget(pos);
+
+	pManager->update();
 }
 
 void IrrDisplay::displayParticle (ParticleModel* model)
 {
-	if (activeParticle != nullptr) {
-		activeParticle->remove();
+	if (activeParticle != nullptr &&) {
+		pManager->removeParticle(activeParticle);
 	}
 	
 	// Spawn a particle based on a particle model
