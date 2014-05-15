@@ -4,12 +4,12 @@
 
 ParticleModel model = ParticleModel();
 
-TempEffect::TempEffect()
+TempEffect::TempEffect(scene::IParticleSystemSceneNode* particleNode, u32 startTime, u32 StopEmitting, u32 RemoveParticleAfter)
 {
 
 }
 
-bool TempEffect::isOver(int currentTime)
+bool TempEffect::isOver(u32 currentTime)
 {
 	if (currentTime > startTime + model.getStopEmitting())
 	{

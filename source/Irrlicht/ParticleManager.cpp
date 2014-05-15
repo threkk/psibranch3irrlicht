@@ -1,5 +1,4 @@
 #include "ParticleManager.h"
-#include "TempEffect.h"
 
 ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevice* irrDevice, ISceneManager* sManager)
 {
@@ -71,6 +70,14 @@ IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(const char* filename
 
 	// Spawn the particle model
 	IParticleSystemSceneNode* particleNode = this->spawnDataModelParticle(&model, position, model.getPathNameTexture().c_str());
+
+	if (model.getStopEmitting() > 0 || model.getRemoveParticleAfter() > 0)
+	{
+		TempEffect temp = TempEffect(particleNode, device->getTimer()->getTime(),
+			model.getRemoveParticleAfter(), model.getStopEmitting());
+
+		tempEffects.push_back(temp);
+	}
 
 	// Return the particle node
 	return particleNode;
@@ -191,9 +198,12 @@ void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSy
 
 void ParticleManager::update(float deltaTime)
 {
-	for(auto actor = tempEffects.begin(); actor != tempEffects.end(); ++actor)
+	for(auto tempEffect = tempEffects.begin(); tempEffect != tempEffects.end(); ++tempEffect)
 	{
+		if ((*tempEffect).isOver(device->getTimer()->getTime()))
+		{
 			
+		}
 	}
 	
 }

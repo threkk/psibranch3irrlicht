@@ -5,6 +5,7 @@
 #include "IrrCompileConfig.h"
 #include "ParticleModel.h"
 #include "ParticleParser.h"
+#include "TempEffect.h"
 
 using namespace irr;
 using namespace scene;
