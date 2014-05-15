@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="include">
@@ -114,7 +114,7 @@
     </Filter>
     <Filter Include="Irrlicht\AI\Message">
       <UniqueIdentifier>{79f4d08a-c1b5-4c20-b071-87edf7d29045}</UniqueIdentifier>
-	  </Filter>
+    </Filter>
     <Filter Include="include\non-realtime-networking">
       <UniqueIdentifier>{78750382-dc3f-483f-93c7-10197dcae6bf}</UniqueIdentifier>
     </Filter>
@@ -1376,7 +1376,7 @@
     </ClInclude>
     <ClInclude Include="..\..\include\AI\ILiving.h">
       <Filter>include\ai</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="non-realtime-networking\NonRealtimeNetworkingException.h">
       <Filter>include\non-realtime-networking</Filter>
     </ClInclude>
@@ -1401,6 +1401,11 @@
     <ClInclude Include="..\..\include\ParticleParser.h">
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\include\IQualityTexture.h">
+      <Filter>include\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISwitcher.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2376,7 +2381,7 @@
     </ClCompile>
     <ClCompile Include="AI\StateGoToPointRotate.cpp">
       <Filter>Irrlicht\AI\States</Filter>
-	 </ClCompile>
+    </ClCompile>
     <ClCompile Include="non-realtime-networking\NonRealtimeNetworkingUtilities.cpp">
       <Filter>Irrlicht\non-realtime-networking</Filter>
     </ClCompile>
@@ -2398,6 +2403,10 @@
     <ClCompile Include="ParticleParser.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
+    <ClCompile Include="CQualityTexture.cpp">
+      <Filter>Irrlicht\video</Filter>
+    </ClCompile>
+    <ClCompile Include="CSwitcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Irrlicht.rc" />

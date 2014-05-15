@@ -8,30 +8,33 @@ using namespace irr;
 namespace irr {
 namespace video {
 	
+class IRRLICHT_API SwitchTrigger
+{
+private:
+	scene::ISceneNode* node;
+public:
+	SwitchTrigger(scene::ISceneNode* node);
+	~SwitchTrigger();
+	bool isClose(scene::ISceneNode* other);
+	bool isClose(core::vector3df position);
+};
+
 class Switcher 
 {
 private:
-	SwitchTrigger trigger;
+	SwitchTrigger* trigger;
 public:
-	Switcher(SwitchTrigger trigger);
+	Switcher(SwitchTrigger* trg);
 	~Switcher();
 	virtual void switchElement()=0;
 	virtual bool isClose(scene::ISceneNode* node)=0;
 	virtual bool isClose(core::vector3df position)=0;
 };
 
-class IRRLICHT_API SwitchTrigger
-{
-	SwitchTrigger(scene::ISceneNode* node);
-	~SwitchTrigger();
-	bool isClose(scene::ISceneNode* node);
-	bool isClose(core::vector3df position);
-};
-
 class IRRLICHT_API TextureSwitcher : public Switcher
 {
 private:
-	IQualityTexture texture;
+	IQualityTexture* texture;
 public:
 	TextureSwitcher(SwitchTrigger trigger);
 	~TextureSwitcher();
@@ -51,11 +54,12 @@ public:
 class IRRLICHT_API SceneSwitcher : public Switcher
 {
 private:
-	ISceneSeamlessLoader smgr;
+	ISceneSeamlessLoader* smgr;
 public:
 	SceneSwitcher(SwitchTrigger trigger);
 	~SceneSwitcher();
 	void setScene(scene::ISceneSeamlessLoader smgr);
+};
 
 } // end namespace video
 } // end namespace irr
