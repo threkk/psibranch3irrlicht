@@ -178,24 +178,20 @@ namespace irrlicht_nonrealtimenetworking {
 		setPortNumber(portNo);
 		openClientSocket(ipAddress);
 	}
-	
 	void NonRealtimeNetworkingUtilities::receiveDataThread(){
-        DWORD threadId[1];
-        NonRealtimeNetworkingUtilities *pp = this;
-        HANDLE threadHandle = CreateThread(NULL, 0, networkingThread, pp, 0, NULL);
-        WaitForSingleObject(threadHandle, INFINITE);
-        CloseHandle(threadHandle);
+		pthread_create(&thread, NULL, networkingThread, this);
     }
 
-    DWORD WINAPI NonRealtimeNetworkingUtilities::networkingThread(LPVOID lpParam){
+    void * NonRealtimeNetworkingUtilities::networkingThread(void * lpParam){
         NonRealtimeNetworkingUtilities* utility = (NonRealtimeNetworkingUtilities*)lpParam;
         
-        if(utility != NULL){
-            std::cout<< "the new thread utility is ok";
+  if(utility != NULL){
+   std::cout << "yay it works";
             utility->receiveData();
         }
-        return 0;
+  return 0;
     }
+
 
 	/**
 	Send the content of the buffer to the other side of the pipe.

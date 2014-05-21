@@ -11,6 +11,7 @@
 #include <windows.h>
 #include <tchar.h>
 #include <winsock.h>
+#include <pthread.h>
 
 #define BUFFER_LIMIT "!@#$%"
 #define PORT_NUMBER 6
@@ -30,6 +31,7 @@ namespace irrlicht_nonrealtimenetworking {
 		int sessionId; // Player's ID
 
 		// Common attributes
+		pthread_t thread;
 		char* buffer;
 		int portNumber;
 
@@ -62,8 +64,7 @@ namespace irrlicht_nonrealtimenetworking {
 		void sendData();
 		void receiveData();
 		void receiveDataThread();
-        static DWORD WINAPI networkingThread(LPVOID lpParam);
-
+		static void * networkingThread(void * lpParam);
 
 		// WinSock terminate
 		void closeConnection();
