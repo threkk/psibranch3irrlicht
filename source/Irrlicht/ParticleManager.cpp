@@ -61,11 +61,12 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 		break;
 	}
 
+	// If the model has a value of stopEmitting or removeParticleAfter
+	// then make a temporary particle effect and push it to the list tempEffects.
 	if (model->getStopEmitting() > 0 || model->getRemoveParticleAfter() > 0)
 	{
 		TempEffect* temp = new TempEffect(particleNode, device->getTimer()->getTime(),
 			model->getStopEmitting(), model->getRemoveParticleAfter());
-		std::cout << "ADD PARTICLE TO TEMP EFFECTS" << std::endl;
 		tempEffects.push_back(temp);
 	}
 
@@ -200,7 +201,6 @@ void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSy
 
 void ParticleManager::update()
 {
-	std::cout << device->getTimer()->getTime() << std::endl;
 	for(auto tempEffect = tempEffects.begin(); tempEffect != tempEffects.end(); ++tempEffect)
 	{
 		if ((*tempEffect)->isOver(device->getTimer()->getTime()))
@@ -217,29 +217,9 @@ void ParticleManager::update()
 	}
 }
 
-void ParticleManager::removeParticle(scene::IParticleSystemSceneNode* node) 
+void ParticleManager::clearTempEffects()
 {
-	if (tempEffects.size() == 0) {
-		if (node)
-			node->remove();
-		return;
-	}
-
-	for(auto tempEffect = tempEffects.begin(); tempEffect != tempEffects.end(); ++tempEffect)
-	{
-		if ((*tempEffect)->node == node) {
-			if (tempEffects.size() == 1) {
-				tempEffects.erase(tempEffect);
-				break;
-			} else {
-				core::list<TempEffect*>::Iterator current = tempEffect;
-				tempEffect--;
-				tempEffects.erase(current);
-			}
-			std::cout << "REMOVE PARTICLE" << std::endl;
-			node->remove();
-		}
-	}
+	tempEffects.clear();
 }
 
 ParticleManager::~ParticleManager(void)

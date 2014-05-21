@@ -62,8 +62,9 @@ void IrrDisplay::update()
 
 void IrrDisplay::displayParticle (ParticleModel* model)
 {
-	if (activeParticle != nullptr &&) {
-		pManager->removeParticle(activeParticle);
+	if (activeParticle != nullptr && manager->getRootSceneNode()->getChildren().size() > 1) {
+		activeParticle->remove();
+		pManager->clearTempEffects();
 	}
 	
 	// Spawn a particle based on a particle model

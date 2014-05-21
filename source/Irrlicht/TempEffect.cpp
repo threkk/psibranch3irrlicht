@@ -12,18 +12,15 @@ TempEffect::TempEffect(scene::IParticleSystemSceneNode* particleNode, u32 startT
 
 bool TempEffect::isOver(u32 currentTime)
 {
-	std::cout << "Currenttime: " << currentTime << " stopEmitting: " << (startTime + stopEmitting) << std::endl;
 	if (currentTime > startTime + stopEmitting && stopEmitting != 0)
 	{
 		if ( node != nullptr) {
 			node->setEmitter(0);
-			std::cout << "Disable emitter" << std::endl;
 		} else {
-			std::cout << "Node is nullptr" << std::endl;
+
 		}
 	}
 
-	std::cout << "Currenttime: " << currentTime << " removeParticleAfter: " << (startTime + removeParticleAfter) << std::endl;
 	if (currentTime > startTime + removeParticleAfter && removeParticleAfter != 0)
 	{
 		if ( node != nullptr)
