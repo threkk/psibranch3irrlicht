@@ -2,14 +2,28 @@
 
 // SwitchTrigger
 
-SwitchTrigger::SwitchTrigger(scene::ISceneNode* node)
+SwitchTrigger::SwitchTrigger(scene::ISceneNode* referenceNode)
 {
 	this->node = node;
 }
 
 SwitchTrigger::~SwitchTrigger()
 {
-	delete node;
+	if(this->node) delete this->node;
+	this->switchers.clear();
+}
+
+void SwitchTrigger::attach(Switcher* swt)
+{
+	this->switchers.push_back(swt);
+}
+
+void SwitchTrigger::notify()
+{
+	for(int i = 0; i < this->switchers.size(); i++)
+	{
+		this->switchers[i]->update();
+	}
 }
 
 bool SwitchTrigger::isClose(scene::ISceneNode* other)
@@ -18,6 +32,7 @@ bool SwitchTrigger::isClose(scene::ISceneNode* other)
 		((node->getPosition().Y + (node->getBoundingBox().MaxEdge.Y)) > (other->getPosition().Y - (other->getBoundingBox().MaxEdge.Y)) && (node->getPosition().Y - (node->getBoundingBox().MaxEdge.Y)) < (other->getPosition().Y + (other->getBoundingBox().MaxEdge.Y ))) &&
 		((node->getPosition().Z + (node->getBoundingBox().MaxEdge.Z)) > (other->getPosition().Z - (other->getBoundingBox().MaxEdge.Z)) && (node->getPosition().Z - (node->getBoundingBox().MaxEdge.Z)) < (other->getPosition().Z + (other->getBoundingBox().MaxEdge.Z ))))
 	{
+		this->notify();
 		return true;
 	}else
 	{
@@ -27,10 +42,11 @@ bool SwitchTrigger::isClose(scene::ISceneNode* other)
 
 bool SwitchTrigger::isClose(core::vector3df position)
 {
-	if(	(node->getPosition().X - node->getBoundingBox().MaxEdge.X) < position.X) && (node->getPosition().X + node->getBoundingBox().MaxEdge.X) > position.X &&
-		(node->getPosition().Y + node->getBoundingBox().MaxEdge.Y) > position.Y) && (node->getPosition().Y - node->getBoundingBox().MaxEdge.Y) < position.Y &&
-		(node->getPosition().Z + node->getBoundingBox().MaxEdge.Z) > position.Z) && (node->getPosition().Z - node->getBoundingBox().MaxEdge.Z) < position.Z )
+	if(	((node->getPosition().X - node->getBoundingBox().MaxEdge.X) < position.X) && (node->getPosition().X + node->getBoundingBox().MaxEdge.X) > position.X &&
+		((node->getPosition().Y + node->getBoundingBox().MaxEdge.Y) > position.Y) && (node->getPosition().Y - node->getBoundingBox().MaxEdge.Y) < position.Y &&
+		((node->getPosition().Z + node->getBoundingBox().MaxEdge.Z) > position.Z) && (node->getPosition().Z - node->getBoundingBox().MaxEdge.Z) < position.Z )
 	{
+		this->notify();
 		return true;
 	}else
 	{
@@ -43,4 +59,42 @@ bool SwitchTrigger::isClose(core::vector3df position)
 Switcher::Switcher(SwitchTrigger* trg)
 {
 	this->trigger = trg;
+	this->trigger->attach(this);
 }
+
+Switcher::~Switcher()
+{
+	//TODO Delete element from the vector
+	delete trigger;
+}
+
+// Texture Switcher
+TextureSwitcher::TextureSwitcher(SwitchTrigger* trigger, scene::ISceneNode* dst) : Switcher(trigger)
+{
+	this->node = dst;
+	this->texture = NULL;
+	this->textureLayer = NULL;
+}
+
+TextureSwitcher::~TextureSwitcher()
+{
+	if(this->node) delete this->node;
+	if(this->texture) delete this->texture;
+}
+
+void TextureSwitcher::setTexture(u32 textureLayer, IQualityTexture* texture)
+{
+	this->texture = texture;
+	this->textureLayer = textureLayer;
+}
+
+void TextureSwitcher::update()
+{
+	if(this->texture && this->textureLayer) 
+	{
+		this->node->setMaterialTexture(textureLayer,texture);
+
+	}
+}
+
+// Scene Switcher
