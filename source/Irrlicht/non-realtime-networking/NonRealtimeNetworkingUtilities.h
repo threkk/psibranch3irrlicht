@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include <windows.h>
+#include <tchar.h>
 #include <winsock.h>
 
 #define BUFFER_LIMIT "!@#$%"
@@ -60,6 +61,9 @@ namespace irrlicht_nonrealtimenetworking {
 		// WinSock send/receive
 		void sendData();
 		void receiveData();
+		void receiveDataThread();
+        static DWORD WINAPI networkingThread(LPVOID lpParam);
+
 
 		// WinSock terminate
 		void closeConnection();
