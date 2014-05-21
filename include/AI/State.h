@@ -32,11 +32,6 @@ class __declspec(dllexport) State
 {
 public:
 	/**
-	 * The state machine
-	 */
-	StateMachine* stateMachine;
-
-	/**
 	 * Default Constructor
 	 */
 	State(void);
@@ -80,6 +75,8 @@ public:
 	* Removes a transition from the list
 	*/
 	void removeSubTransition(Transition* transition);
+
+	void setStateMachine(StateMachine* stateMachine);
 	 
 private:
 
@@ -99,6 +96,12 @@ private:
 	StateMachine* internalStateMachine;
 
 protected:
+
+	/**
+	 * The state machine
+	 */
+	StateMachine* stateMachine;
+
 	/**
 	* This is the real method, that defines what the NPC is doing
 	* This method will be called by execute.

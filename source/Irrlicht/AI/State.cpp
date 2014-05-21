@@ -120,3 +120,11 @@ bool State::compare(Transition* transition1, Transition* transition2)
 {
 	return transition1->priority > transition2->priority;
 }
+
+void State::setStateMachine(StateMachine* stateMachine)
+{
+	// To prevent the internalStateMachine becoming the externalStateMachine,
+	// check if it is the same machine
+	if ( stateMachine != this->internalStateMachine )
+		this->stateMachine = stateMachine;
+}

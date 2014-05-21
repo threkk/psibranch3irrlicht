@@ -74,7 +74,7 @@ public:
 	void setCurrentState(State* s)
 	{
 		currentState = s;
-		if ( currentState != NULL ) currentState->stateMachine = this;
+		if ( currentState != NULL ) currentState->setStateMachine(this);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public:
 	void setGlobalState(State* s)
 	{
 		globalState = s;
-		if ( globalState != NULL ) globalState->stateMachine = this;
+		if ( globalState != NULL ) globalState->setStateMachine(this);
 	}
 	
 	/**
@@ -103,7 +103,7 @@ public:
 	void setPreviousState(State* previousState)
 	{
 		push(previousState);
-		if ( previousState != NULL ) previousState->stateMachine = this;
+		if ( previousState != NULL ) previousState->setStateMachine(this);
 	}
 
 	/** Use these methods to use the FSM **/
@@ -125,7 +125,7 @@ public:
 		currentState = state;
 		if ( currentState ) 
 		{
-			currentState->stateMachine = this;
+			currentState->setStateMachine(this);
 			currentState->enter();
 		}
 	}
@@ -153,7 +153,6 @@ public:
 		// Same for the current state
 		if (currentState) 
 			currentState->execute();
-
 	}
 
 	/**

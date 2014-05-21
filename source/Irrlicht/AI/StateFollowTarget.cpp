@@ -37,12 +37,8 @@ void StateFollowTarget::action()
 	// If there is a path to the object walk to it
 	if ( !path.empty() && path.size() > 1 )
 	{
-		// Don't walk right into the target
-		if (this->owner->getPosition().getDistanceFrom(this->target->getGroundPosition()) > 100)
-		{
-			// Call callback method
-			callbackFunction(&path.at(1));
-		}
+		// Call callback method
+		callbackFunction(&path.at(1));
 	}
 }
 
