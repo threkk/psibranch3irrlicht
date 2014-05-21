@@ -39,9 +39,6 @@ bool OnTargetLostTransition::condition()
 	} else {
 		// Target can be seen, reset Timer()
 		reset();
-
-		// Save the position
-		lastPosition = owner->getGroundPosition();
 	}
 	
 	return false;
