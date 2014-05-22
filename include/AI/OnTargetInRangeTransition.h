@@ -7,10 +7,10 @@
 class __declspec(dllexport) OnTargetInRangeTransition: public Transition
 {
 public:
-	OnTargetInRangeTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr);
-	OnTargetInRangeTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr, State* state);
-	OnTargetInRangeTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr, irr::f32 range);
-	OnTargetInRangeTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr, irr::f32 range, State* state);
+	OnTargetInRangeTransition(Detectable *owner, Detectable* target);
+	OnTargetInRangeTransition(Detectable *owner, Detectable* target, State* state);
+	OnTargetInRangeTransition(Detectable *owner, Detectable* target, irr::f32 range);
+	OnTargetInRangeTransition(Detectable *owner, Detectable* target, irr::f32 range, State* state);
 	~OnTargetInRangeTransition();
 
 	bool condition();
@@ -21,7 +21,6 @@ public:
 
 private:
 	Detectable *owner, *target;
-	ISceneManager* sceneMgr;
 	irr::f32 range;
 };
 
