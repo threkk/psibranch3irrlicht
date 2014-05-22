@@ -201,19 +201,15 @@ void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSy
 
 void ParticleManager::update()
 {
-	std::cout << "Update" << std::endl;
 	for(auto tempEffect = tempEffects.begin(); tempEffect != tempEffects.end(); ++tempEffect)
 	{
 		if ((*tempEffect)->isOver(device->getTimer()->getTime()))
 		{
-			std::cout << "Particle is over" << std::endl;
 			if (tempEffect ==  tempEffects.begin()) {
-				std::cout << "First particle, remove" << std::endl;
 				tempEffects.erase(tempEffect);
 				tempEffect = tempEffects.begin();
 				break;
 			} else {
-				std::cout << "NOT first particle, remove " << tempEffects.size() << std::endl;
 				core::list<TempEffect*>::Iterator current = tempEffect;
 				tempEffect--;
 				tempEffects.erase(current);
