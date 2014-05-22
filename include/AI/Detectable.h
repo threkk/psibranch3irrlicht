@@ -11,6 +11,8 @@ class __declspec(dllexport) Detectable
 public:
 	virtual ~Detectable(void);
 
+	Detectable();
+	Detectable(irr::f32 visionLengt, irr::f32 FOVRadian, irr::f32 meshSize);
 
 	/**
 	 * Checks if the target is infront of this class. Uses the passed vision length.
@@ -64,10 +66,15 @@ public:
 	 * Return the node
 	 */
 	virtual irr::scene::ISceneNode* getNode() = 0;
+
+	
 protected:
 	// The length that defines how far this object can see
 	irr::f32 visionLength;
 
 	// The angle of the field of view in radians
 	irr::f32 FOVRadian;
+
+	// The size of the mesh
+	irr::f32 meshSize;
 };

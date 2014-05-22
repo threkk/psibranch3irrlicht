@@ -6,6 +6,19 @@ Detectable::~Detectable(void)
 {
 }
 
+Detectable::Detectable() : 
+	visionLength(1000), 
+	FOVRadian((atan(1.f)*4)/3), // 90°
+	meshSize(0)
+{
+}
+
+Detectable::Detectable(irr::f32 visionLength, irr::f32 FOVRadian, irr::f32 meshSize) :
+	visionLength(visionLength),
+	FOVRadian(FOVRadian),
+	meshSize(meshSize)
+{
+}
 
 bool Detectable::isObjectInfront(Detectable* object, irr::scene::ISceneManager* sceneMgr, irr::f32 visionLength)
 {
@@ -49,7 +62,7 @@ bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* 
 
 	// Shoot an ray from the target to this object to check if the player can be seen
 	irr::core::line3d<irr::f32> ray;
-	ray.start = object->getPosition();
+	ray.start = object->getPosition() + (this->getPosition() - object->getPosition()).normalize() * object->meshSize;
 	ray.end = object->getPosition() + (this->getPosition() - ray.start).normalize() * visionLength ;
 
 	// Get the scene node that will be hit from the ray
@@ -60,8 +73,6 @@ bool Detectable::isObjectVisible(Detectable* object, irr::scene::ISceneManager* 
 	// If the found node has the same ID as the searched node, the object can be seen
 	if (selectedSceneNode && selectedSceneNode->getID() == this->getNodeID())
 	{
-		irr::s32 f1 = this->getNodeID();
-		irr::s32 f2 = selectedSceneNode->getID();
 		// Object can be seen
 		return true;
 	}
