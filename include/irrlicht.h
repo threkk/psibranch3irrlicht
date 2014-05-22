@@ -187,6 +187,7 @@
 #include "vector2d.h"
 #include "vector3d.h"
 #include "ISceneSeamlessLoader.h"
+#include "ISceneMeshLoader.h"
 
 /*! \mainpage Irrlicht Engine 1.8 API documentation
  *
