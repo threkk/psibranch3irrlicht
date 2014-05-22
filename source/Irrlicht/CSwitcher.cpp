@@ -4,7 +4,7 @@
 
 SwitchTrigger::SwitchTrigger(scene::ISceneNode* referenceNode)
 {
-	this->node = node;
+	this->node = referenceNode;
 }
 
 SwitchTrigger::~SwitchTrigger()
@@ -22,7 +22,11 @@ void SwitchTrigger::notify()
 {
 	for(int i = 0; i < this->switchers.size(); i++)
 	{
-		this->switchers[i]->update();
+		if(this->switchers[i]->active)
+		{
+			this->switchers[i]->active = false;
+			this->switchers[i]->update();
+		}
 	}
 }
 
@@ -58,6 +62,7 @@ bool SwitchTrigger::isClose(core::vector3df position)
 
 Switcher::Switcher(SwitchTrigger* trg)
 {
+	this->active = true;
 	this->trigger = trg;
 	this->trigger->attach(this);
 }
@@ -90,7 +95,7 @@ void TextureSwitcher::setTexture(u32 textureLayer, IQualityTexture* texture)
 
 void TextureSwitcher::update()
 {
-	if(this->texture && this->textureLayer) 
+	if(this->texture != NULL && this->textureLayer != NULL) 
 	{
 		this->node->setMaterialTexture(textureLayer,texture);
 
@@ -98,3 +103,27 @@ void TextureSwitcher::update()
 }
 
 // Scene Switcher
+SceneSwitcher::SceneSwitcher(SwitchTrigger* trigger, scene::ISceneSeamlessLoader* smgr) : Switcher(trigger)
+{
+	this->smgr = smgr;
+	this->sceneIndex = NULL;
+}
+
+SceneSwitcher::~SceneSwitcher()
+{
+	// We do not want to delete the sceneManager.
+	// if(this->smgr) delete smgr;
+}
+
+void SceneSwitcher::setScene(int sceneIndex)
+{
+	this->sceneIndex = sceneIndex;
+}
+
+void SceneSwitcher::update()
+{
+	if(this->sceneIndex != NULL)
+	{
+		this->smgr->setScene(this->sceneIndex);
+	}
+}

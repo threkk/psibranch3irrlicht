@@ -1,5 +1,4 @@
 #include "ISceneNode.h"
-#include "IQualityTexture.h"
 #include "IAnimatedMeshSceneNode.h"
 #include "ISceneSeamlessLoader.h";
 #include <vector>
@@ -31,6 +30,7 @@ class Switcher
 private:
 	SwitchTrigger* trigger;
 public:
+	bool active;
 	Switcher(SwitchTrigger* trg);
 	~Switcher();
 	virtual void update()=0;
@@ -50,8 +50,21 @@ public:
 	void update();
 };
 
+// SceneSwitcher : Observer
+class IRRLICHT_API SceneSwitcher : public Switcher
+{
+private:
+	ISceneSeamlessLoader* smgr;
+	int sceneIndex;
+public:
+	SceneSwitcher(SwitchTrigger* trigger, scene::ISceneSeamlessLoader* smgr);
+	~SceneSwitcher();
+	void setScene(int sceneIndex);
+	void update();
+};
+
 // MeshSwitcher : Observer
-class IRRLICHT_API MeshSwitcher : public Switcher
+/*class IRRLICHT_API MeshSwitcher : public Switcher
 {
 private:
 	ISceneNode* mesh;
@@ -60,19 +73,7 @@ public:
 	~MeshSwitcher();
 	void setMesh(scene::ISceneNode* mesh);
 	void update();
-};
-
-// SceneSwitcher : Observer
-class IRRLICHT_API SceneSwitcher : public Switcher
-{
-private:
-	ISceneSeamlessLoader* smgr;
-public:
-	SceneSwitcher(SwitchTrigger* trigger, scene::ISceneSeamlessLoader smgr);
-	~SceneSwitcher();
-	void setScene(int sceneIndex);
-	void update();
-};
+};*/
 
 } // end namespace video
 } // end namespace irr
