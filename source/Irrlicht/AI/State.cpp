@@ -66,27 +66,39 @@ void State::execute(void)
 	}
 
 	// Internal transition check (Substates)
-	for ( size_t i = 0; i < internalTransitions.size(); i++ )
-	{
-		if ( internalTransitions[i]->condition())
-		{
-			// If no target, return to previous state
-			if ( internalTransitions[i]->getTarget() == NULL ) 
-			{
-				internalStateMachine->returnToPreviousState();
-			} else {
-				internalStateMachine->changeState(internalTransitions[i]->getTarget());
-			}
-		}
-	}
-
-	// Is this state the current state?
+	// Do only if the current state is this state - otherwise we don't look at internal states!
 	if ( internalStateMachine->isCurrentState(this) )
 	{
-		action();
-	} else {
-		internalStateMachine->update();
+		for ( size_t i = 0; i < internalTransitions.size(); i++ )
+		{
+			if ( internalTransitions[i]->condition())
+			{
+				// First, call the callback method of the transition if set
+				if ( internalTransitions[i]->callbackOnConditionTrue != NULL )
+				{
+					internalTransitions[i]->callbackOnConditionTrue(transitions[i]->callbackParameter);
+				}
+
+				// If no target, return to previous state
+				if ( internalTransitions[i]->getTarget() == NULL ) 
+				{
+					internalStateMachine->returnToPreviousState();
+				} else {
+					internalStateMachine->changeState(internalTransitions[i]->getTarget());
+				}
+				internalTransitions[i]->reset();
+			}
+		}
+		// Is this state still the current state?
+		if ( internalStateMachine->isCurrentState(this) )
+		{
+			// Call action
+			action();
+			return;
+		}
 	}
+	// If we the internal state is not the current state update the internal statemachine
+	internalStateMachine->update();
 }
 
 void State::addTransition(Transition* transition)
