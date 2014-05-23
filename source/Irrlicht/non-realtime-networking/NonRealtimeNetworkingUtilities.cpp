@@ -179,22 +179,23 @@ namespace irrlicht_nonrealtimenetworking {
 		openClientSocket(ipAddress);
 	}
 	
-	void NonRealtimeNetworkingUtilities::receiveDataThread(){
-        DWORD threadId[1];
-        NonRealtimeNetworkingUtilities *pp = this;
-        HANDLE threadHandle = CreateThread(NULL, 0, networkingThread, pp, 0, NULL);
-        WaitForSingleObject(threadHandle, INFINITE);
-        CloseHandle(threadHandle);
+	void NonRealtimeNetworkingUtilities::receiveDataThread() {
+
+		unsigned threadID;
+
+		HANDLE hThread = (HANDLE)_beginthreadex(NULL, 0, networkingThread, this, 0, &threadID);
+		WaitForSingleObjectEx(hThread, INFINITE, true);
+		CloseHandle(hThread);
+
     }
 
-    DWORD WINAPI NonRealtimeNetworkingUtilities::networkingThread(LPVOID lpParam){
-        NonRealtimeNetworkingUtilities* utility = (NonRealtimeNetworkingUtilities*)lpParam;
+    unsigned __stdcall NonRealtimeNetworkingUtilities::networkingThread(void* lpParam){
+        NonRealtimeNetworkingUtilities* utility = static_cast<NonRealtimeNetworkingUtilities*>(lpParam);
         
         if(utility != NULL){
-            std::cout<< "the new thread utility is ok";
             utility->receiveData();
         }
-        return 0;
+		return 0;
     }
 
 	/**
@@ -228,8 +229,8 @@ namespace irrlicht_nonrealtimenetworking {
 	void NonRealtimeNetworkingUtilities::receiveData() {
 
 		int bytesRecv = SOCKET_ERROR;
-		char* tmpBuffer = new char[256];
-		bytesRecv = recv(s, tmpBuffer, 256, 0);
+		char* tmpBuffer = new char[1000];
+		bytesRecv = recv(s, tmpBuffer, 1000, 0);
 
 		if (bytesRecv == SOCKET_ERROR)
 			throw NonRealtimeNetworkingException("Receive failed: " + WSAGetLastError());
