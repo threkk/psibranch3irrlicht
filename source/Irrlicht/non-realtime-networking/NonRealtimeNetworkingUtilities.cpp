@@ -178,25 +178,6 @@ namespace irrlicht_nonrealtimenetworking {
 		setPortNumber(portNo);
 		openClientSocket(ipAddress);
 	}
-	
-	void NonRealtimeNetworkingUtilities::receiveDataThread() {
-
-		unsigned threadID;
-
-		HANDLE hThread = (HANDLE)_beginthreadex(NULL, 0, networkingThread, this, 0, &threadID);
-		WaitForSingleObjectEx(hThread, INFINITE, true);
-		CloseHandle(hThread);
-
-    }
-
-    unsigned __stdcall NonRealtimeNetworkingUtilities::networkingThread(void* lpParam){
-        NonRealtimeNetworkingUtilities* utility = static_cast<NonRealtimeNetworkingUtilities*>(lpParam);
-        
-        if(utility != NULL){
-            utility->receiveData();
-        }
-		return 0;
-    }
 
 	/**
 	Send the content of the buffer to the other side of the pipe.
