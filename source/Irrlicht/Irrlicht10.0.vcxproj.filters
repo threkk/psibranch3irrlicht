@@ -1406,6 +1406,9 @@
     <ClInclude Include="..\..\include\ISceneMeshLoader.h">
       <Filter>include\scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\ISceneMeshLoaderCallback.h">
+      <Filter>include\scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">

@@ -9,12 +9,13 @@ ISceneMeshLoader::ISceneMeshLoader(scene::ISceneManager* smgr)
 	this->actual = smgr;
 }
 
-void ISceneMeshLoader::switchSceneNode(ISceneNode* node, io::path filePath)
+void ISceneMeshLoader::switchSceneNode(ISceneNode* node, io::path filePath, ISceneMeshLoaderCallback* callbackclass)
 {
 	threadArgs* args = new threadArgs();
 	args->filePath = filePath;
 	args->node = node;
 	args->smgr = actual;
+	args->callbackclass = callbackclass;
 	pthread_t thread = pthread_t();
 	if(mutexsum == NULL)
 		pthread_mutex_init(&mutexsum, NULL);
@@ -36,13 +37,14 @@ void *ISceneMeshLoader::loadNewFile(void *threadargs)
 	pthread_mutex_lock(&mutexsum);
 		scene::ISceneNode* newNode = args->smgr->addMeshSceneNode(aniMesh);
 		newNode->setPosition(args->node->getPosition());
-		args->smgr->getRootSceneNode()->removeChild(args->node);
+//		args->smgr->getRootSceneNode()->removeChild(args->node);
 		//scene::ISceneNode *test = args->node->;
 		//*test = *args->node;
-		//args->node->remove();
-		*args->node = *newNode;
+		args->node->remove();
+		//*args->node = *newNode;
 		//newNode = NULL;
 		//test->remove();
+		args->callbackclass->MeshCallBack(newNode);
     pthread_mutex_unlock(&mutexsum);
 	
 	delete args;

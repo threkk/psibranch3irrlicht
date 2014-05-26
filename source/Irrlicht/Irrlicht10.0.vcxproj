@@ -862,6 +862,7 @@
     <ClInclude Include="..\..\include\IrrlichtDevice.h" />
     <ClInclude Include="..\..\include\irrTypes.h" />
     <ClInclude Include="..\..\include\ISceneMeshLoader.h" />
+    <ClInclude Include="..\..\include\ISceneMeshLoaderCallback.h" />
     <ClInclude Include="..\..\include\ISceneSeamlessLoader.h" />
     <ClInclude Include="..\..\include\ITimer.h" />
     <ClInclude Include="..\..\include\Keycodes.h" />

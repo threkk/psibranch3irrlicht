@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "pthread.h"
+#include "ISceneMeshLoaderCallback.h"
 //#include <pthread.h>
 
 using namespace irr;
@@ -17,30 +18,19 @@ namespace irr
 {
 namespace scene
 {
-    /** TODO change this all comments
+    /**
 
-     * This class allows to load more scenes in addition to the current one to
-     * the cache. The scenes are stored as .irr files and just providing the uri
-     * all the resources are loaded to the cache. 
-     *
-     * Once the class is preloaded to the cache, you can change between the
-     * current scene and any preloaded scene without having to load the
-     * resources using the function setScene and giving the index returned
-     * during the preloading. If one scene is not going to be used anymore, it
-     * can be destroyed using dropPreloadedScene.
-     *
-     * For more information about the .irr files, read tutorial number 15.
+     * This class allows you to load a new mesh asynchronous and via a callback method you can add the new mesh to your pointer.
+	 * This class is used to make object appear better if you get closer to them (more polygons for example
      */
 
 	class IRRLICHT_API ISceneMeshLoader 
 	{
-		/*#define SMGR_LOCK_START if(pthread_mutex_lock (&ISceneMeshLoader::mutexsum) == 0){
-		#define SMGR_LOCK_END }pthread_mutex_unlock (&ISceneMeshLoader::mutexsum);*/
-
 		struct threadArgs{
 			scene::ISceneManager* smgr;
 			scene::ISceneNode* node;
 			io::path filePath;
+			ISceneMeshLoaderCallback* callbackclass;
 		};
 
 	private:
@@ -59,7 +49,7 @@ namespace scene
          */
 		~ISceneMeshLoader();
 
-		void switchSceneNode(ISceneNode* node, io::path filePath);
+		void switchSceneNode(ISceneNode* node, io::path filePath, ISceneMeshLoaderCallback* callbackclass);
 
 		static void startLock();
 		static void endLock();
