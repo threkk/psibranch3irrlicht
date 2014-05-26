@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
+    <width>1264</width>
     <height>800</height>
    </rect>
   </property>
@@ -14,445 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLineEdit" name="lineEdit_Angle">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>125</y>
-      <width>100</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Degrees</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Angle">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>125</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Angle</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Lifetime_Min">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>150</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Min</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Lifetime">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>150</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Life time</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_EmitterType">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>60</y>
-      <width>100</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>None</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Box</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Point</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Animated Mesh</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Cylinder</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Mesh</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Ring</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Sphere</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>60</y>
-      <width>110</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Emitter type</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_name">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>20</y>
-      <width>100</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_name">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>20</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Name</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Direction_X">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>100</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>X</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Direction">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>100</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Direction</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_PPS">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>175</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Particles per second</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Min_Color">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>200</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start color</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Direction_Y">
-    <property name="geometry">
-     <rect>
-      <x>715</x>
-      <y>100</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Y</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Direction_Z">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>100</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMethodHints">
-     <set>Qt::ImhNone</set>
-    </property>
-    <property name="placeholderText">
-     <string>Z</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Lifetime_Max">
-    <property name="geometry">
-     <rect>
-      <x>733</x>
-      <y>150</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Max</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_PPS_Min">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>175</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Min</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_PPS_Max">
-    <property name="geometry">
-     <rect>
-      <x>733</x>
-      <y>175</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Max</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_Color_Min">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>200</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 206, 216);
-border: 0;text-align:left;padding-left:5px;</string>
-    </property>
-    <property name="text">
-     <string>Min</string>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_Color_Max">
-    <property name="geometry">
-     <rect>
-      <x>733</x>
-      <y>200</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::StrongFocus</enum>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 206, 216);
-border: 0;text-align:left;padding-left:5px;</string>
-    </property>
-    <property name="text">
-     <string>Max</string>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_MinStartSize">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>225</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Min start size</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_MinStartSize_Y">
-    <property name="geometry">
-     <rect>
-      <x>733</x>
-      <y>225</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Y</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_MinStartSize_X">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>225</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>X</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_MaxStartSize">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>250</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Max start size</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_MaxStartSize_X">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>250</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="mouseTracking">
-     <bool>true</bool>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>X</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_MaxStartSize_Y">
-    <property name="geometry">
-     <rect>
-      <x>733</x>
-      <y>250</y>
-      <width>47</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="placeholderText">
-     <string>Y</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="irr_widget" native="true">
     <property name="geometry">
      <rect>
@@ -463,230 +24,11 @@ border: 0;text-align:left;padding-left:5px;</string>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_OpenTex">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>275</y>
-      <width>101</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>ArrowCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-border: 1;text-align:left;padding-left:5px;</string>
-    </property>
-    <property name="text">
-     <string>Load Image</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_MaxStartSize_2">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>275</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Texture</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Center">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>20</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Center</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Center_Z">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>20</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMethodHints">
-     <set>Qt::ImhNone</set>
-    </property>
-    <property name="placeholderText">
-     <string>Z</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Center_X">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>20</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>X</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Center_Y">
-    <property name="geometry">
-     <rect>
-      <x>965</x>
-      <y>20</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Y</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_RingThickness">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>95</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ring Thickness</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_RingThickness">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>95</y>
-      <width>100</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Radius">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>120</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Radius</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Radius">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>120</y>
-      <width>100</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_CylinderLength">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>145</y>
-      <width>100</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_CylinderLength">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>145</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cylinder length</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_OutlineOnly">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>170</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Outline only</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox_OutlineOnly">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>170</y>
-      <width>101</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QTabWidget" name="Affectors">
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>310</y>
+      <y>270</y>
       <width>291</width>
       <height>151</height>
      </rect>
@@ -695,7 +37,7 @@ border: 1;text-align:left;padding-left:5px;</string>
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <property name="documentMode">
      <bool>false</bool>
@@ -1231,224 +573,1237 @@ border: 0;text-align:left;padding-left:5px;</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_StopEmittingAfter">
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>255</y>
-      <width>101</width>
-      <height>20</height>
+      <x>860</x>
+      <y>130</y>
+      <width>241</width>
+      <height>151</height>
      </rect>
     </property>
-    <property name="inputMask">
-     <string/>
+    <property name="widgetResizable">
+     <bool>true</bool>
     </property>
-    <property name="placeholderText">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_RemoveAffectAfter">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>280</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_OutlineOnly_2">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>255</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop affect after</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_OutlineOnly_3">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>280</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove affect after</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Normal_Z">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>45</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMethodHints">
-     <set>Qt::ImhNone</set>
-    </property>
-    <property name="placeholderText">
-     <string>Z</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Normal_Y">
-    <property name="geometry">
-     <rect>
-      <x>965</x>
-      <y>45</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Y</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Normal_X">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>45</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>X</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Normal">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>45</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Normal</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Aabbox_Depth">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>70</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="inputMethodHints">
-     <set>Qt::ImhNone</set>
-    </property>
-    <property name="placeholderText">
-     <string>Depth</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_Aabbox">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>70</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>AABBox</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Aabbox_Height">
-    <property name="geometry">
-     <rect>
-      <x>965</x>
-      <y>70</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Height</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_Aabbox_Width">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>70</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>Width</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_MaterialType">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>210</y>
-      <width>120</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Material</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox_MaterialType">
-    <property name="geometry">
-     <rect>
-      <x>930</x>
-      <y>210</y>
-      <width>100</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="currentText">
-     <string>Add color</string>
-    </property>
-    <item>
-     <property name="text">
-      <string>Add color</string>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>239</width>
+       <height>149</height>
+      </rect>
      </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Solid color</string>
+     <widget class="QLabel" name="label_Center">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Center</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Z">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="placeholderText">
+       <string>Z</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Y">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_X">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Normal_Z">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>60</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="placeholderText">
+       <string>Z</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Normal">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Normal</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Normal_X">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>60</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Normal_Y">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>60</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_CylinderLength">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>90</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_CylinderLength">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cylinder length</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_OutlineOnly">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>120</y>
+        <width>101</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_OutlineOnly">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Outline only</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Cylinder</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_4">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>10</y>
+      <width>251</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>249</width>
+       <height>249</height>
+      </rect>
      </property>
-    </item>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <widget class="QLabel" name="label_MaxStartSize_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Texture</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_Color_Max">
+      <property name="geometry">
+       <rect>
+        <x>183</x>
+        <y>175</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 206, 216);
+border: 0;text-align:left;padding-left:5px;</string>
+      </property>
+      <property name="text">
+       <string>Max</string>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_MinStartSize">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Min start size</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Lifetime_Min">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>125</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Min</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_EmitterType">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>35</y>
+        <width>100</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Box</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Point</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cylinder</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ring</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sphere</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_PPS">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Particles per second</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Lifetime_Max">
+      <property name="geometry">
+       <rect>
+        <x>183</x>
+        <y>125</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Max</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Direction_Z">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>75</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="placeholderText">
+       <string>Z</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_OpenTex">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>250</y>
+        <width>101</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+border: 1;text-align:left;padding-left:5px;</string>
+      </property>
+      <property name="text">
+       <string>Load Image</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_MaxStartSize">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>225</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Max start size</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Angle">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Angle</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Angle">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>100</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Degrees</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_MinStartSize_X">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>200</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_MinStartSize_Y">
+      <property name="geometry">
+       <rect>
+        <x>183</x>
+        <y>200</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_Color_Min">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>175</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 206, 216);
+border: 0;text-align:left;padding-left:5px;</string>
+      </property>
+      <property name="text">
+       <string>Min</string>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_PPS_Max">
+      <property name="geometry">
+       <rect>
+        <x>183</x>
+        <y>150</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Max</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Direction">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>75</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Direction</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Direction_Y">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>75</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Lifetime">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>125</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Life time</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_MaxStartSize_Y">
+      <property name="geometry">
+       <rect>
+        <x>183</x>
+        <y>225</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_MaxStartSize_X">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>225</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Min_Color">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>175</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start color</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_PPS_Min">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>150</y>
+        <width>47</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Min</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>35</y>
+        <width>110</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Emitter type</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Direction_X">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>75</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_MaterialType">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>280</y>
+        <width>100</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="currentText">
+       <string>Add color</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Add color</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Solid color</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_OutlineOnly_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>305</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop affect after</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_OutlineOnly_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>330</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove affect after</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_RemoveAffectAfter">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>330</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_StopEmittingAfter">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>305</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_MaterialType">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>280</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Material</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Standard attributes</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_5">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>400</y>
+      <width>241</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>239</width>
+       <height>89</height>
+      </rect>
+     </property>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Sphere</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_X_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Center_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Center</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Y_3">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Z_3">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="placeholderText">
+       <string>Z</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Radius">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>60</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Radius">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Radius</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_3">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>10</y>
+      <width>241</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>239</width>
+       <height>119</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Box</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Aabbox_Depth">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>90</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="placeholderText">
+       <string>Depth</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Aabbox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>AABBox</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Aabbox_Width">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Width</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Aabbox_Height">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>60</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Height</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_2">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>280</y>
+      <width>241</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>239</width>
+       <height>119</height>
+      </rect>
+     </property>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Ring</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_X_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Center_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Center</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Z_2">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="placeholderText">
+       <string>Z</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Y_2">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_RingThickness">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>60</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_RingThickness">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ring Thickness</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Radius_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Radius</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Radius_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>90</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -1456,7 +1811,7 @@ border: 0;text-align:left;padding-left:5px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1100</width>
+     <width>1264</width>
      <height>21</height>
     </rect>
    </property>
@@ -1464,7 +1819,6 @@ border: 0;text-align:left;padding-left:5px;</string>
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
     <addaction name="actionOpen_XML"/>
     <addaction name="actionSave_XML"/>
    </widget>

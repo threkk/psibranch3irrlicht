@@ -77,9 +77,23 @@ private slots:
 
     void on_lineEdit_Center_Z_textChanged(const QString &arg1);
 
+	void on_lineEdit_Center_X_2_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Y_2_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Z_2_textChanged(const QString &arg1);
+
+	void on_lineEdit_Center_X_3_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Y_3_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Z_3_textChanged(const QString &arg1);
+
 	void on_lineEdit_RingThickness_textChanged(const QString &arg1);
 
 	void on_lineEdit_Radius_textChanged(const QString &arg1);
+
+	void on_lineEdit_Radius_2_textChanged(const QString &arg1);
 
 	void on_lineEdit_CylinderLength_textChanged(const QString &arg1);
 

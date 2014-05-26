@@ -108,10 +108,31 @@ void MainWindow::fillFields (ParticleModel* model)
     QLineEdit* lineEdit_Center_Z = this->findChild<QLineEdit*>("lineEdit_Center_Z");
     lineEdit_Center_Z->setText(QString::number((double) model->getCenter().Z));
 
+	QLineEdit* lineEdit_Center_X_2 = this->findChild<QLineEdit*>("lineEdit_Center_X_2");
+    lineEdit_Center_X->setText(QString::number((double) model->getCenter().X));
+
+    QLineEdit* lineEdit_Center_Y_2 = this->findChild<QLineEdit*>("lineEdit_Center_Y_2");
+    lineEdit_Center_Y->setText(QString::number((double) model->getCenter().Y));
+
+    QLineEdit* lineEdit_Center_Z_2 = this->findChild<QLineEdit*>("lineEdit_Center_Z_2");
+    lineEdit_Center_Z->setText(QString::number((double) model->getCenter().Z));
+
+	QLineEdit* lineEdit_Center_X_3 = this->findChild<QLineEdit*>("lineEdit_Center_X_3");
+    lineEdit_Center_X->setText(QString::number((double) model->getCenter().X));
+
+    QLineEdit* lineEdit_Center_Y_3 = this->findChild<QLineEdit*>("lineEdit_Center_Y_3");
+    lineEdit_Center_Y->setText(QString::number((double) model->getCenter().Y));
+
+    QLineEdit* lineEdit_Center_Z_3 = this->findChild<QLineEdit*>("lineEdit_Center_Z_3");
+    lineEdit_Center_Z->setText(QString::number((double) model->getCenter().Z));
+
 	QLineEdit* lineEdit_RingThickness = this->findChild<QLineEdit*>("lineEdit_RingThickness");
 	lineEdit_RingThickness->setText(QString::number((double) model->getRingThickness()));
 
 	QLineEdit* lineEdit_Radius = this->findChild<QLineEdit*>("lineEdit_Radius");
+	lineEdit_Radius->setText(QString::number((double) model->getRadius()));
+
+	QLineEdit* lineEdit_Radius_2 = this->findChild<QLineEdit*>("lineEdit_Radius_2");
 	lineEdit_Radius->setText(QString::number((double) model->getRadius()));
 
 	QLineEdit* lineEdit_CylinderLength = this->findChild<QLineEdit*>("lineEdit_CylinderLength");
@@ -233,6 +254,22 @@ void MainWindow::fillFields (ParticleModel* model)
 
 	QComboBox* comboBox_MaterialType = this->findChild<QComboBox*>("comboBox_MaterialType");
     comboBox_MaterialType->setCurrentIndex((int) model->getMaterialType());
+
+	/*if (model->getEmitterType() == 1)
+	{
+		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->hide();
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->hide();
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->hide();
+
+		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
+		area3->show();
+	}*/
+
 }
 
 void MainWindow::on_actionSave_XML_triggered()
@@ -372,6 +409,74 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
     model.setEmitterType(static_cast<ParticleModel::EmitterTypes>(index));
     std::cout << "Change of emitter type: " << model.getEmitterType() << std::endl;
 	irrDisplay->displayParticle(&model);
+	/*
+			if (model.getEmitterType() == 0)
+	{
+		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->hide();
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->hide();
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->hide();
+
+		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
+		area3->hide();
+	}
+		else if (model.getEmitterType() == 2)
+	{
+		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->hide();
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->hide();
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->hide();
+
+		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
+		area3->hide();
+	} 	else if (model.getEmitterType() == 3)
+	{
+		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->show();
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->hide();
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->hide();
+
+		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
+		area3->hide();
+	} else if (model.getEmitterType() == 4)
+	{
+		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->hide();
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->show();
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->hide();
+
+		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
+		area3->hide();
+	} else if (model.getEmitterType() == 5)
+	{
+		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->hide();
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->hide();
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->show();
+
+		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
+		area3->hide();
+	}*/
 }
 
 void MainWindow::on_lineEdit_Center_X_textChanged(const QString &arg1)
@@ -395,6 +500,48 @@ void MainWindow::on_lineEdit_Center_Z_textChanged(const QString &arg1)
 	irrDisplay->displayParticle(&model);
 }
 
+void MainWindow::on_lineEdit_Center_X_2_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (arg1.toFloat(), model.getCenter().Y, model.getCenter().Z));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_Y_2_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (model.getCenter().X, arg1.toFloat(), model.getCenter().Z));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_Z_2_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (model.getCenter().X, model.getCenter().Y, arg1.toFloat()));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_X_3_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (arg1.toFloat(), model.getCenter().Y, model.getCenter().Z));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_Y_3_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (model.getCenter().X, arg1.toFloat(), model.getCenter().Z));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Center_Z_3_textChanged(const QString &arg1)
+{
+    model.setCenter(core::vector3df (model.getCenter().X, model.getCenter().Y, arg1.toFloat()));
+    std::cout << "Change of center: " << model.getCenter().X << ", " << model.getCenter().Y << ", " << model.getCenter().Z << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
 void MainWindow::on_lineEdit_RingThickness_textChanged(const QString &arg1)
 {
 	model.setRingThickness(arg1.toFloat());
@@ -403,6 +550,13 @@ void MainWindow::on_lineEdit_RingThickness_textChanged(const QString &arg1)
 }
 
 void MainWindow::on_lineEdit_Radius_textChanged(const QString &arg1)
+{
+	model.setRadius(arg1.toFloat());
+	std::cout << "Change of radius: " << model.getRadius() << std::endl;
+	irrDisplay->displayParticle(&model);
+}
+
+void MainWindow::on_lineEdit_Radius_2_textChanged(const QString &arg1)
 {
 	model.setRadius(arg1.toFloat());
 	std::cout << "Change of radius: " << model.getRadius() << std::endl;
