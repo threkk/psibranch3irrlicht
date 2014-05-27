@@ -8,8 +8,10 @@
 class __declspec(dllexport) OnInvestigationCompletedTransition: public Transition, public MessageClient
 {
 public:
-	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic);
-	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic, State* state);
+	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan, 
+		float visionLength, irr::IrrlichtDevice *device, irr::scene::ISceneManager *sceneMgr, std::string topic);
+	OnInvestigationCompletedTransition(Detectable *owner, float attentionSpan,
+		float visionLength, irr::IrrlichtDevice *device, irr::scene::ISceneManager *sceneMgr, std::string topic, State* state);
 	~OnInvestigationCompletedTransition();
 
 	bool condition();
@@ -18,6 +20,8 @@ public:
 	void receiveMessage(MessageObject object);
 
 private:
+	irr::scene::ISceneManager *sceneMgr;
+
 	Detectable *owner;
 	irr::core::vector3df point;
 

@@ -1,14 +1,11 @@
 #include "ai/StateInvestigatePoint.h"
 
-StateInvestigatePoint::StateInvestigatePoint(Detectable* stateOwner, irr::core::vector3df* point, float visionLength, float offset,
+StateInvestigatePoint::StateInvestigatePoint(Detectable* stateOwner, irr::core::vector3df* point, float visionLength, 
+	float offset, irr::scene::ISceneManager *sceneMgr,
 	std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction, 
 	IPathfinding* pathUtil)
+	: stateOwner(stateOwner), offset(offset), visionLength(visionLength), callbackFunction(callbackFunction), pathUtil(pathUtil), sceneMgr(sceneMgr)
 {
-	this->stateOwner = stateOwner;
-	this->offset = offset;
-	this->visionLength = visionLength;
-	this->callbackFunction = callbackFunction;
-	this->pathUtil = pathUtil;
 	if ( point != NULL ) this->point = *point;
 }
 
@@ -32,7 +29,7 @@ void StateInvestigatePoint::setPoint(irr::core::vector3df point)
 void StateInvestigatePoint::action()
 {
 	// If NPC can see the point
-	if (stateOwner->getPosition().getDistanceFrom(point) <= visionLength)
+	if ( stateOwner->isPointVisible(point, sceneMgr) )
 	{
 		// Call callback method - boolean is true, NPC can see the point, vector is the position of the point
 		callbackFunction(&std::make_pair(true, &point));

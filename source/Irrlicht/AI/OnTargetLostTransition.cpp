@@ -31,13 +31,13 @@ bool OnTargetLostTransition::condition()
 		// Increase the timer
 		timer += frameDeltaTime;
 		
-		printf("TIMER %f\n", timer);
 		if (timer >= timeSpan)
 		{
 			return true;
 		}
 	} else {
-		// Target can be seen, reset Timer()
+		// Target can be seen
+		// Reset Timer
 		reset();
 	}
 	

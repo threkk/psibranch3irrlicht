@@ -17,6 +17,14 @@ public:
 	{
 	}
 
+	/**
+	 * Returns the path from point A to B
+	 */
 	virtual std::vector<irr::core::vector3df> returnPath(irr::core::vector3df *pStart, irr::core::vector3df *pEnd) = 0;
+
+	/**
+	 * Returns a boolean if the path can be found and saves the path from point A to B in the path parameter
+	 */
+	virtual bool returnPath(irr::core::vector3df *pStart, irr::core::vector3df *pEnd, std::vector<irr::core::vector3df> *path) = 0;
 };
 

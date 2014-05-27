@@ -47,28 +47,6 @@ public:
 	/** Use these methods to initialize the FSM **/
 
 	/**
-	 * Returns the previous state and eliminates it of the stack
-	 */
-	State* pop(){
-		State* res = NULL;
-
-		if(stack.size())
-		{
-			res = stack[stack.size()-1];
-			stack.erase(std::remove(stack.begin(), stack.end(), res), stack.end());
-		}
-
-		return res;
-	}
-
-	/**
-	 * Pushes a state to the stack
-	 */
-	void push(State* s){
-		stack.push_back(s);
-	}
-
-	/**
 	 * Sets the current state
 	 */
 	void setCurrentState(State* s)
@@ -181,5 +159,28 @@ public:
 protected:
 	State* globalState;
 	State* currentState;
+
+private:
+		/**
+	 * Returns the previous state and eliminates it of the stack
+	 */
+	State* pop(){
+		State* res = NULL;
+
+		if(stack.size())
+		{
+			res = stack[stack.size()-1];
+			stack.erase(std::remove(stack.begin(), stack.end(), res), stack.end());
+		}
+
+		return res;
+	}
+
+	/**
+	 * Pushes a state to the stack
+	 */
+	void push(State* s){
+		stack.push_back(s);
+	}
 };
 

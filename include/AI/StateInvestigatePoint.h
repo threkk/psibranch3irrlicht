@@ -3,6 +3,7 @@
 #include "ai/IPathfinding.h"
 #include "ai/StateMachine.h"
 #include <functional>
+#include "ISceneManager.h"
 
 #pragma once
 /**
@@ -12,7 +13,8 @@
 class __declspec(dllexport) StateInvestigatePoint : public State
 {
 public:
-	StateInvestigatePoint(Detectable* stateOwner, irr::core::vector3df* point, float visionLength, float offset,
+	StateInvestigatePoint::StateInvestigatePoint(Detectable* stateOwner, irr::core::vector3df* point, float visionLength, 
+		float offset, irr::scene::ISceneManager* sceneMgr,
 		std::function<void(std::pair<bool, irr::core::vector3df*>*)> callbackFunction, 
 		IPathfinding* pathUtil);
 	~StateInvestigatePoint(void);
@@ -22,6 +24,9 @@ public:
 
 	void setPoint(irr::core::vector3df point);
 protected:
+	// Scene Manager
+	irr::scene::ISceneManager* sceneMgr;
+
 	// The owner of the state
 	Detectable* stateOwner;
 

@@ -1438,10 +1438,19 @@
     <ClInclude Include="..\..\include\AI\OnMessageTransition.h">
       <Filter>include\ai\Transitions</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\AI\NewStateMachine.h">
-      <Filter>include\ai</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\AI\OnTargetLostTransition.h">
+      <Filter>include\ai\Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AI\OnPositionUnreachableTransition.h">
+      <Filter>include\ai\Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AI\OnPositionReachedTransition.h">
+      <Filter>include\ai\Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AI\OnPositionNotReachedTransition.h">
+      <Filter>include\ai\Transitions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\AI\OnTargetUnreachableTransition.h">
       <Filter>include\ai\Transitions</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2463,6 +2472,18 @@
       <Filter>Irrlicht\AI\Transitions</Filter>
     </ClCompile>
     <ClCompile Include="AI\OnTargetLostTransition.cpp">
+      <Filter>Irrlicht\AI\Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\OnPositionReachedTransition.cpp">
+      <Filter>Irrlicht\AI\Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\OnPositionUnreachableTransition.cpp">
+      <Filter>Irrlicht\AI\Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\OnPositionNotReachedTransition.cpp">
+      <Filter>Irrlicht\AI\Transitions</Filter>
+    </ClCompile>
+    <ClCompile Include="AI\OnTargetUnreachableTransition.cpp">
       <Filter>Irrlicht\AI\Transitions</Filter>
     </ClCompile>
   </ItemGroup>

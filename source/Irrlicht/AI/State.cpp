@@ -53,11 +53,14 @@ void State::execute(void)
 				if ( transitions[j]->getTarget() == NULL ) 
 				{
 					stateMachine->returnToPreviousState();
+					// The previous state won't be updated to prevent getting stuck in an infinite loop
 				} else {
 					stateMachine->changeState(transitions[j]->getTarget());
+					// Update the new state
+					stateMachine->updateCurrentState();
 				}
 				transitions[j]->reset();
-				stateMachine->updateCurrentState();
+				
 				return;
 			} else {
 				printf("WARNING: State machine not set\n");

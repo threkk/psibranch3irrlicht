@@ -1,8 +1,8 @@
 #include "ai\OnInvestigationCompletedTransition.h"
 
 OnInvestigationCompletedTransition::OnInvestigationCompletedTransition
-	(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic)
-	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), device(device), topic(topic), Transition()
+	(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, irr::scene::ISceneManager *sceneMgr, std::string topic)
+	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), device(device), sceneMgr(sceneMgr), topic(topic), Transition()
 {
 	generateId();
 	subscribe(topic);
@@ -10,8 +10,8 @@ OnInvestigationCompletedTransition::OnInvestigationCompletedTransition
 }
 
 OnInvestigationCompletedTransition::OnInvestigationCompletedTransition
-	(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, std::string topic, State* state)
-	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), device(device), topic(topic), Transition(state)
+	(Detectable *owner, float attentionSpan, float visionLength, irr::IrrlichtDevice *device, irr::scene::ISceneManager *sceneMgr, std::string topic, State* state)
+	: owner(owner), attentionSpan(attentionSpan), visionLength(visionLength), device(device), sceneMgr(sceneMgr), topic(topic), Transition(state)
 {
 	generateId();
 	subscribe(topic);
@@ -31,7 +31,7 @@ bool OnInvestigationCompletedTransition::condition()
 	then = now;
 
 	// If NPC can see the point
-	if (owner->getPosition().getDistanceFrom(point) <= visionLength)
+	if (owner->isPointVisible(point, sceneMgr, irr::core::vector3df(0, 0, 1), visionLength) )
 	{
 		// Increase the timer
 		timer += frameDeltaTime;
