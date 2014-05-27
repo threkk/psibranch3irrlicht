@@ -16,6 +16,7 @@ private:
 	scene::ISceneNode* node;
 	std::vector <class Switcher *> switchers;
 public:
+	double triggeringDistance;
 	SwitchTrigger(scene::ISceneNode* referenceNode);
 	~SwitchTrigger();
 	void attach(Switcher* swt);
@@ -47,6 +48,7 @@ public:
 	TextureSwitcher(SwitchTrigger* trigger, scene::ISceneNode* dst);
 	~TextureSwitcher();
 	void setTexture(u32 textureLayer, IQualityTexture* texture);
+	void setTexture(u32 textureLayer, ITexture* texture);
 	void update();
 };
 
