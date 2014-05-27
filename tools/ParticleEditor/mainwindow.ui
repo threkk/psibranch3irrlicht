@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1264</width>
-    <height>800</height>
+    <width>1021</width>
+    <height>570</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,28 +19,46 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>541</width>
-      <height>481</height>
+      <width>540</width>
+      <height>511</height>
      </rect>
     </property>
    </widget>
    <widget class="QTabWidget" name="Affectors">
     <property name="geometry">
      <rect>
-      <x>840</x>
-      <y>280</y>
-      <width>291</width>
+      <x>560</x>
+      <y>380</y>
+      <width>441</width>
       <height>151</height>
      </rect>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>16</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="elideMode">
+     <enum>Qt::ElideNone</enum>
+    </property>
+    <property name="usesScrollButtons">
+     <bool>true</bool>
     </property>
     <property name="documentMode">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -198,6 +216,18 @@
        <string>AffectZ</string>
       </property>
      </widget>
+     <zorder>label_Attract_Point</zorder>
+     <zorder>lineEdit_Attract_Point_Z</zorder>
+     <zorder>lineEdit_Attract_Point_Y</zorder>
+     <zorder>lineEdit_Attract_Point_X</zorder>
+     <zorder>checkBox_Attract_Affector</zorder>
+     <zorder>label</zorder>
+     <zorder>lineEdit_Speed</zorder>
+     <zorder>checkBox_Attract</zorder>
+     <zorder>checkBox_AffectX</zorder>
+     <zorder>checkBox_AffectY</zorder>
+     <zorder>checkBox_AffectZ</zorder>
+     <zorder>scrollArea</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -457,7 +487,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>80</y>
+        <y>70</y>
         <width>120</width>
         <height>16</height>
        </rect>
@@ -473,7 +503,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>80</y>
+        <y>70</y>
         <width>30</width>
         <height>20</height>
        </rect>
@@ -489,7 +519,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <property name="geometry">
        <rect>
         <x>165</x>
-        <y>80</y>
+        <y>70</y>
         <width>30</width>
         <height>20</height>
        </rect>
@@ -502,7 +532,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <property name="geometry">
        <rect>
         <x>130</x>
-        <y>80</y>
+        <y>70</y>
         <width>30</width>
         <height>20</height>
        </rect>
@@ -520,7 +550,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
+        <y>40</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -536,7 +566,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <property name="geometry">
        <rect>
         <x>100</x>
-        <y>30</y>
+        <y>40</y>
         <width>30</width>
         <height>20</height>
        </rect>
@@ -549,7 +579,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <property name="geometry">
        <rect>
         <x>150</x>
-        <y>30</y>
+        <y>40</y>
         <width>30</width>
         <height>20</height>
        </rect>
@@ -579,11 +609,14 @@ border: 0;text-align:left;padding-left:5px;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>70</y>
+      <x>800</x>
+      <y>10</y>
       <width>241</width>
       <height>151</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollArea { border: 0 }</string>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -593,14 +626,14 @@ border: 0;text-align:left;padding-left:5px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>239</width>
-       <height>149</height>
+       <width>241</width>
+       <height>151</height>
       </rect>
      </property>
      <widget class="QLabel" name="label_Center">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>30</y>
         <width>120</width>
         <height>16</height>
@@ -616,7 +649,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_Z">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>180</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -632,7 +665,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_Y">
       <property name="geometry">
        <rect>
-        <x>155</x>
+        <x>145</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -645,7 +678,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_X">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -658,7 +691,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Normal_Z">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>180</x>
         <y>60</y>
         <width>30</width>
         <height>20</height>
@@ -674,7 +707,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_Normal">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>60</y>
         <width>120</width>
         <height>16</height>
@@ -690,7 +723,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Normal_X">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>60</y>
         <width>30</width>
         <height>20</height>
@@ -703,7 +736,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Normal_Y">
       <property name="geometry">
        <rect>
-        <x>155</x>
+        <x>145</x>
         <y>60</y>
         <width>30</width>
         <height>20</height>
@@ -716,7 +749,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_CylinderLength">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>90</y>
         <width>100</width>
         <height>20</height>
@@ -732,7 +765,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_CylinderLength">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>90</y>
         <width>120</width>
         <height>16</height>
@@ -748,7 +781,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QCheckBox" name="checkBox_OutlineOnly">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>120</y>
         <width>101</width>
         <height>17</height>
@@ -761,7 +794,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_OutlineOnly">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>120</y>
         <width>120</width>
         <height>16</height>
@@ -779,12 +812,22 @@ border: 0;text-align:left;padding-left:5px;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>241</width>
+        <width>211</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-weight:bold</string>
       </property>
       <property name="text">
        <string>Cylinder</string>
@@ -793,14 +836,28 @@ border: 0;text-align:left;padding-left:5px;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <zorder>label_Center</zorder>
+     <zorder>lineEdit_Center_Z</zorder>
+     <zorder>lineEdit_Center_Y</zorder>
+     <zorder>lineEdit_Center_X</zorder>
+     <zorder>lineEdit_Normal_Z</zorder>
+     <zorder>label_Normal</zorder>
+     <zorder>lineEdit_Normal_X</zorder>
+     <zorder>lineEdit_Normal_Y</zorder>
+     <zorder>lineEdit_CylinderLength</zorder>
+     <zorder>label_CylinderLength</zorder>
+     <zorder>checkBox_OutlineOnly</zorder>
+     <zorder>label_OutlineOnly</zorder>
+     <zorder>label_5</zorder>
+     <zorder>scrollArea_5</zorder>
     </widget>
    </widget>
    <widget class="QScrollArea" name="scrollArea_4">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>70</y>
-      <width>251</width>
+      <x>560</x>
+      <y>10</y>
+      <width>231</width>
       <height>361</height>
      </rect>
     </property>
@@ -815,6 +872,12 @@ border: 0;text-align:left;padding-left:5px;</string>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollArea {
+	border:0;
+border-right:1px solid #999;
+}</string>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
@@ -832,8 +895,8 @@ border: 0;text-align:left;padding-left:5px;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>249</width>
+       <y>1</y>
+       <width>229</width>
        <height>359</height>
       </rect>
      </property>
@@ -1394,6 +1457,16 @@ border: 0;text-align:left;padding-left:5px;</string>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-weight:bold</string>
+      </property>
       <property name="text">
        <string>Standard attributes</string>
       </property>
@@ -1406,11 +1479,14 @@ border: 0;text-align:left;padding-left:5px;</string>
    <widget class="QScrollArea" name="scrollArea_3">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>70</y>
+      <x>800</x>
+      <y>10</y>
       <width>241</width>
       <height>101</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string>QScrollArea { border: 0 }</string>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -1420,8 +1496,8 @@ border: 0;text-align:left;padding-left:5px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>239</width>
-       <height>99</height>
+       <width>241</width>
+       <height>101</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -1435,12 +1511,22 @@ border: 0;text-align:left;padding-left:5px;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>241</width>
+        <width>211</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-weight:bold</string>
       </property>
       <property name="text">
        <string>Box</string>
@@ -1452,9 +1538,9 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Aabbox_Depth">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>70</y>
-        <width>61</width>
+        <x>146</x>
+        <y>60</y>
+        <width>64</width>
         <height>20</height>
        </rect>
       </property>
@@ -1468,7 +1554,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_Aabbox">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>30</y>
         <width>120</width>
         <height>16</height>
@@ -1484,9 +1570,9 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Aabbox_Width">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>61</width>
+        <x>0</x>
+        <y>60</y>
+        <width>64</width>
         <height>20</height>
        </rect>
       </property>
@@ -1497,9 +1583,9 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Aabbox_Height">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>70</y>
-        <width>61</width>
+        <x>73</x>
+        <y>60</y>
+        <width>64</width>
         <height>20</height>
        </rect>
       </property>
@@ -1524,11 +1610,14 @@ border: 0;text-align:left;padding-left:5px;</string>
    <widget class="QScrollArea" name="scrollArea_2">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>70</y>
+      <x>800</x>
+      <y>10</y>
       <width>241</width>
       <height>121</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollArea { border: 0 }</string>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -1538,8 +1627,8 @@ border: 0;text-align:left;padding-left:5px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>239</width>
-       <height>119</height>
+       <width>241</width>
+       <height>121</height>
       </rect>
      </property>
      <widget class="QLabel" name="label_6">
@@ -1547,12 +1636,22 @@ border: 0;text-align:left;padding-left:5px;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>241</width>
+        <width>211</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-weight:bold</string>
       </property>
       <property name="text">
        <string>Ring</string>
@@ -1564,7 +1663,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_X_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -1577,7 +1676,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_Center_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>30</y>
         <width>120</width>
         <height>16</height>
@@ -1593,7 +1692,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_Z_2">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>180</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -1609,7 +1708,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_Y_2">
       <property name="geometry">
        <rect>
-        <x>155</x>
+        <x>145</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -1622,7 +1721,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_RingThickness">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>60</y>
         <width>100</width>
         <height>20</height>
@@ -1638,7 +1737,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_RingThickness">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>60</y>
         <width>120</width>
         <height>16</height>
@@ -1654,7 +1753,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_Radius_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>90</y>
         <width>120</width>
         <height>16</height>
@@ -1670,7 +1769,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Radius_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>90</y>
         <width>100</width>
         <height>20</height>
@@ -1686,13 +1785,19 @@ border: 0;text-align:left;padding-left:5px;</string>
     </widget>
    </widget>
    <widget class="QScrollArea" name="scrollArea_5">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>70</y>
+      <x>800</x>
+      <y>10</y>
       <width>241</width>
       <height>91</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollArea { border: 0 }</string>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -1702,8 +1807,8 @@ border: 0;text-align:left;padding-left:5px;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>239</width>
-       <height>89</height>
+       <width>241</width>
+       <height>91</height>
       </rect>
      </property>
      <widget class="QLabel" name="label_10">
@@ -1711,12 +1816,22 @@ border: 0;text-align:left;padding-left:5px;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>241</width>
+        <width>211</width>
         <height>20</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-weight:bold</string>
       </property>
       <property name="text">
        <string>Sphere</string>
@@ -1728,7 +1843,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_X_3">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -1741,7 +1856,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_Center_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>30</y>
         <width>120</width>
         <height>16</height>
@@ -1757,7 +1872,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_Y_3">
       <property name="geometry">
        <rect>
-        <x>155</x>
+        <x>145</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -1770,7 +1885,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Center_Z_3">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>180</x>
         <y>30</y>
         <width>30</width>
         <height>20</height>
@@ -1786,7 +1901,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Radius">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>60</y>
         <width>100</width>
         <height>20</height>
@@ -1802,7 +1917,7 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLabel" name="label_Radius">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>60</y>
         <width>120</width>
         <height>16</height>
@@ -1815,15 +1930,31 @@ border: 0;text-align:left;padding-left:5px;</string>
        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
       </property>
      </widget>
+     <zorder>label_10</zorder>
+     <zorder>lineEdit_Center_X_3</zorder>
+     <zorder>label_Center_3</zorder>
+     <zorder>lineEdit_Center_Y_3</zorder>
+     <zorder>lineEdit_Center_Z_3</zorder>
+     <zorder>lineEdit_Radius</zorder>
+     <zorder>label_Radius</zorder>
+     <zorder>scrollArea</zorder>
     </widget>
    </widget>
+   <zorder>irr_widget</zorder>
+   <zorder>Affectors</zorder>
+   <zorder>scrollArea</zorder>
+   <zorder>scrollArea_4</zorder>
+   <zorder>scrollArea_3</zorder>
+   <zorder>scrollArea_2</zorder>
+   <zorder>scrollArea_5</zorder>
+   <zorder>label_6</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1264</width>
+     <width>1021</width>
      <height>21</height>
     </rect>
    </property>

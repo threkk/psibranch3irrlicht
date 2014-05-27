@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     w.show();
 
 	// For now we work a 900x675 editor
-	w.resize(1140, 550);
+	w.resize(1020, 565);
 
 	// Get the layout from the ui
     QLayout* layout = w.layout();
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 	layout->addWidget(&irrWidget);
 	irrWidget.setParent(w.findChild<QWidget*>("centralWidget"));
 	irrWidget.move(10, 10);
-	irrWidget.resize(540, 480);
+	irrWidget.resize(540, 511);
 
     // Add the particle model to the window
     w.setIrrDisplay (&irrDisplay);
