@@ -2,13 +2,13 @@
 
 OnTargetUnreachableTransition::OnTargetUnreachableTransition(Detectable *owner, Detectable *target,
 	irr::IrrlichtDevice* device, IPathfinding *pathfinding)
-	: owner(owner), target(target), timeout(10), deviation(100), device(device), pathfinding(pathfinding), Transition()
+	: owner(owner), target(target), timeout(3), deviation(100), device(device), pathfinding(pathfinding), Transition()
 {
 }
 
 OnTargetUnreachableTransition::OnTargetUnreachableTransition(Detectable *owner,  Detectable *target,
 	irr::IrrlichtDevice* device, IPathfinding *pathfinding, State* state)
-	: owner(owner), target(target), timeout(10), deviation(100), device(device), pathfinding(pathfinding), Transition(state)
+	: owner(owner), target(target), timeout(3), deviation(100), device(device), pathfinding(pathfinding), Transition(state)
 {
 }
 
@@ -42,17 +42,17 @@ bool OnTargetUnreachableTransition::condition()
 	frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
 	then = now;
 
-	// If owner is at point
+	// If owner is not at the same position as the target
 	if (owner->getPosition().getDistanceFrom(target->getPosition()) > deviation)
 	{
+		// If there is no path OR
+		// if point has not changed since last time
 		std::vector<irr::core::vector3df> path;
-		if ( !pathfinding->returnPath(&owner->getPosition(), &target->getPosition(), &path) || path.empty())
+		if ( !pathfinding->returnPath(&owner->getPosition(), &target->getPosition(), &path) ||
+			path.empty() ||
+			owner->getPosition().getDistanceFrom(lastPosition) <= deviation )
 		{
-			// If there is no path
-			return true;
-		} else if ( owner->getPosition().getDistanceFrom(lastPosition) <= deviation )
-		{
-			// If point has not changed since last time
+			
 			// Increase the timer
 			timer += frameDeltaTime;
 

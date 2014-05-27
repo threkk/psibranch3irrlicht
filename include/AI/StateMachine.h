@@ -93,7 +93,7 @@ public:
 	 */
 	void changeState(State* state)
 	{
-		
+
 		if ( currentState )
 		{
 			currentState->exit();
@@ -105,6 +105,13 @@ public:
 		{
 			currentState->setStateMachine(this);
 			currentState->enter();
+		}
+		
+		// Check history size
+		if ( stack.size() > 32 )
+		{
+			// More than 32 elements? Remove first 16
+			stack.erase(stack.begin(), stack.begin() + 16);
 		}
 	}
 

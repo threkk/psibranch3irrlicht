@@ -3,12 +3,13 @@
 #include "ai\Transition.h"
 #include "AI\Detectable.h"
 #include "ISceneManager.h"
+#include "IPathfinding.h"
 
 class __declspec(dllexport) OnTargetSpottedTransition: public Transition
 {
 public:
-	OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr);
-	OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr, State* state);
+	OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr, IPathfinding *pathfinding);
+	OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager* sceneMgr, IPathfinding *pathfinding, State* state);
 	~OnTargetSpottedTransition();
 
 	bool condition();
@@ -17,6 +18,7 @@ public:
 	void setTarget(Detectable *target);
 
 private:
+	IPathfinding *pathfinding;
 	Detectable *owner, *target;
 	ISceneManager* sceneMgr;
 };

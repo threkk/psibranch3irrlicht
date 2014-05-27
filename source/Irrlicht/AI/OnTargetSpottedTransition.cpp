@@ -1,12 +1,12 @@
 #include "ai\OnTargetSpottedTransition.h"
 
-OnTargetSpottedTransition::OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager *sceneMgr)
-	: owner(owner), target(target), sceneMgr(sceneMgr), Transition()
+OnTargetSpottedTransition::OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager *sceneMgr, IPathfinding *pathfinding)
+	: owner(owner), target(target), sceneMgr(sceneMgr), pathfinding(pathfinding), Transition()
 {
 }
 
-OnTargetSpottedTransition::OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager *sceneMgr, State* state)
-	: owner(owner), target(target), sceneMgr(sceneMgr), Transition(state)
+OnTargetSpottedTransition::OnTargetSpottedTransition(Detectable *owner, Detectable* target, ISceneManager *sceneMgr, IPathfinding *pathfinding, State* state)
+	: owner(owner), target(target), sceneMgr(sceneMgr), pathfinding(pathfinding), Transition(state)
 {
 }
 
@@ -18,28 +18,8 @@ bool OnTargetSpottedTransition::condition()
 {
 	if ( target == NULL || owner == NULL || sceneMgr == NULL ) return false;
 
-	// The state will execute as soon as the player is seen
-	if(owner->isObjectInfront(target, sceneMgr))
-	{
-		//hasSeen = true;
-		//lastPointSeen = this->target->getPosition();
-		return true;
-	}
-	return false;
-	//If the player is not seen check if there is a lastPointSeen
-	/*else if(hasSeen || hasLastPointSeen)
-	{
-		hasSeen = false;
-		hasLastPointSeen = true;
-		return true;
-	}
-	//Otherwise return false
-	else
-	{
-		hasSeen = false;
-		hasLastPointSeen = false;
-		return false;
-	}*/
+	std::vector<irr::core::vector3df> path;
+	return (owner->isObjectInfront(target, sceneMgr) && pathfinding->returnPath(&owner->getGroundPosition(), &target->getGroundPosition(), &path));
 }
 
 void OnTargetSpottedTransition::setOwner(Detectable *owner)
