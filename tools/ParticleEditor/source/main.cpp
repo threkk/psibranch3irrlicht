@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     w.show();
 
 	// For now we work a 900x675 editor
-	w.resize(1140, 625);
+	w.resize(1140, 550);
 
 	// Get the layout from the ui
     QLayout* layout = w.layout();
