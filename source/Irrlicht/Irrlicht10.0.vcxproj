@@ -343,6 +343,9 @@
       <ImportLibrary>..\..\lib\Win32-visualstudio\Irrlicht.lib</ImportLibrary>
       <Version>1.8</Version>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y "$(ProjectDir)$(OutDir)$(TargetFileName)" "$(SolutionDir)$(Configuration)\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -560,7 +563,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\include;zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_IRR_STATIC_LIB_;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions); _ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_IRR_STATIC_LIB_;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>
       </ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -830,12 +833,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\AI\Detectable.h" />
+    <ClInclude Include="..\..\include\AI\ILiving.h" />
+    <ClInclude Include="..\..\include\AI\IPathfinding.h" />
+    <ClInclude Include="..\..\include\AI\MessageClient.h" />
+    <ClInclude Include="..\..\include\AI\MessageHandler.h" />
+    <ClInclude Include="..\..\include\AI\MessageObject.h" />
+    <ClInclude Include="..\..\include\AI\State.h" />
+    <ClInclude Include="..\..\include\AI\StateAttack.h" />
+    <ClInclude Include="..\..\include\AI\StateChaseTarget.h" />
+    <ClInclude Include="..\..\include\AI\StateFollowRoute.h" />
+    <ClInclude Include="..\..\include\AI\StateGoToPointRotate.h" />
+    <ClInclude Include="..\..\include\AI\StateFollowTarget.h" />
+    <ClInclude Include="..\..\include\AI\StateIdle.h" />
+    <ClInclude Include="..\..\include\AI\StateInvestigatePoint.h" />
+    <ClInclude Include="..\..\include\AI\StateMachine.h" />
     <ClInclude Include="..\..\include\EDriverFeatures.h" />
     <ClInclude Include="..\..\include\EMaterialFlags.h" />
     <ClInclude Include="..\..\include\IAnimatedMeshMD3.h" />
     <ClInclude Include="..\..\include\IEventReceiver.h" />
     <ClInclude Include="..\..\include\ILogger.h" />
     <ClInclude Include="..\..\include\IOSOperator.h" />
+    <ClInclude Include="..\..\include\IQualityTexture.h" />
     <ClInclude Include="..\..\include\IRandomizer.h" />
     <ClInclude Include="..\..\include\IReferenceCounted.h" />
     <ClInclude Include="..\..\include\IrrCompileConfig.h" />
@@ -845,6 +864,9 @@
     <ClInclude Include="..\..\include\ISceneSeamlessLoader.h" />
     <ClInclude Include="..\..\include\ITimer.h" />
     <ClInclude Include="..\..\include\Keycodes.h" />
+    <ClInclude Include="..\..\include\ParticleManager.h" />
+    <ClInclude Include="..\..\include\ParticleModel.h" />
+    <ClInclude Include="..\..\include\ParticleParser.h" />
     <ClInclude Include="..\..\include\SIrrCreationParameters.h" />
     <ClInclude Include="..\..\include\SKeyMap.h" />
     <ClInclude Include="..\..\include\EDriverTypes.h" />
@@ -988,12 +1010,6 @@
     <ClInclude Include="..\..\include\IGUIToolbar.h" />
     <ClInclude Include="..\..\include\IGUITreeView.h" />
     <ClInclude Include="..\..\include\IGUIWindow.h" />
-    <ClInclude Include="AI\Detectable.h" />
-    <ClInclude Include="AI\IPathfinding.h" />
-    <ClInclude Include="AI\State.h" />
-    <ClInclude Include="AI\StateAttack.h" />
-    <ClInclude Include="AI\StateChasePlayer.h" />
-    <ClInclude Include="AI\StateIdle.h" />
     <ClInclude Include="CCgMaterialRenderer.h" />
     <ClInclude Include="CD3D9CgMaterialRenderer.h" />
     <ClInclude Include="CDefaultSceneNodeAnimatorFactory.h" />
@@ -1252,10 +1268,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI\Detectable.cpp" />
+    <ClCompile Include="AI\MessageClient.cpp" />
+    <ClCompile Include="AI\MessageHandler.cpp" />
+    <ClCompile Include="AI\MessageObject.cpp" />
     <ClCompile Include="AI\State.cpp" />
     <ClCompile Include="AI\StateAttack.cpp" />
-    <ClCompile Include="AI\StateChasePlayer.cpp" />
+    <ClCompile Include="AI\StateChaseTarget.cpp" />
+    <ClCompile Include="AI\StateFollowRoute.cpp" />
+    <ClCompile Include="AI\StateGoToPointRotate.cpp" />
+    <ClCompile Include="AI\StateFollowTarget.cpp" />
     <ClCompile Include="AI\StateIdle.cpp" />
+    <ClCompile Include="AI\StateInvestigatePoint.cpp" />
     <ClCompile Include="CCgMaterialRenderer.cpp" />
     <ClCompile Include="CD3D9CgMaterialRenderer.cpp" />
     <ClCompile Include="CDefaultSceneNodeAnimatorFactory.cpp" />
@@ -1264,6 +1287,7 @@
     <ClCompile Include="CMeshCache.cpp" />
     <ClCompile Include="CMeshManipulator.cpp" />
     <ClCompile Include="COpenGLCgMaterialRenderer.cpp" />
+    <ClCompile Include="CQualityTexture.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="C3DSMeshFileLoader.cpp" />
     <ClCompile Include="CSceneSeamlessLoader.cpp" />
@@ -1432,6 +1456,9 @@
     <ClCompile Include="non-realtime-networking\SOAP\stdsoap2.cpp" />
     <ClCompile Include="os.cpp" />
     <ClCompile Include="lzma\LzmaDec.c" />
+    <ClCompile Include="ParticleManager.cpp" />
+    <ClCompile Include="ParticleModel.cpp" />
+    <ClCompile Include="ParticleParser.cpp" />
     <ClCompile Include="zlib\adler32.c" />
     <ClCompile Include="zlib\compress.c" />
     <ClCompile Include="zlib\crc32.c" />

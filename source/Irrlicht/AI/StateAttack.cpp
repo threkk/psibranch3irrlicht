@@ -1,8 +1,8 @@
-#include "StateAttack.h"
+#include "ai/StateAttack.h"
 
 
 
-StateAttack::StateAttack(Detectable* stateOwner, Detectable* target, irr::scene::ISceneManager* sceneMgr,
+StateAttack::StateAttack(Detectable* stateOwner, ILiving* target, irr::scene::ISceneManager* sceneMgr,
 	std::function<void(void*)> callbackFunction, void* callbackParameter)
 {
 	this->owner = stateOwner;
@@ -19,12 +19,18 @@ StateAttack::~StateAttack(void)
 
 bool StateAttack::executeable(void)
 {
-	// Only attack if target is directly in front of the object
-	return owner->isObjectInfront(target, sceneMgr);
+	return owner->isObjectInfront(target, sceneMgr, 110);
+}
+
+void StateAttack::enter()
+{
+}
+
+void StateAttack::exit()
+{
 }
 
 void StateAttack::action()
 {
-	// Execute callback function
 	callbackFunction(callbackParameter);
 }

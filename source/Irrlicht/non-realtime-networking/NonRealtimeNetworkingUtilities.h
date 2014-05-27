@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include <windows.h>
+#include <tchar.h>
 #include <winsock.h>
 
 #define BUFFER_LIMIT "!@#$%"
