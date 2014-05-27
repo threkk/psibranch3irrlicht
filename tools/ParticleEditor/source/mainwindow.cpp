@@ -255,7 +255,7 @@ void MainWindow::fillFields (ParticleModel* model)
 	QComboBox* comboBox_MaterialType = this->findChild<QComboBox*>("comboBox_MaterialType");
     comboBox_MaterialType->setCurrentIndex((int) model->getMaterialType());
 
-	/*if (model->getEmitterType() == 1)
+	if (model->getEmitterType() == 1)
 	{
 		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
 		area->hide();
@@ -268,7 +268,7 @@ void MainWindow::fillFields (ParticleModel* model)
 
 		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
 		area3->show();
-	}*/
+	}
 
 }
 
@@ -409,7 +409,7 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
     model.setEmitterType(static_cast<ParticleModel::EmitterTypes>(index));
     std::cout << "Change of emitter type: " << model.getEmitterType() << std::endl;
 	irrDisplay->displayParticle(&model);
-	/*
+	
 			if (model.getEmitterType() == 0)
 	{
 		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
@@ -424,7 +424,21 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
 		area3->hide();
 	}
-		else if (model.getEmitterType() == 2)
+		else if (model.getEmitterType() == 1)
+		{
+			QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->hide();
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->hide();
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->hide();
+
+		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
+		area3->show();
+
+			} else if (model.getEmitterType() == 2)
 	{
 		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
 		area->hide();
@@ -439,9 +453,6 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 		area3->hide();
 	} 	else if (model.getEmitterType() == 3)
 	{
-		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
-		area->show();
-
 		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
 		area2->hide();
 
@@ -450,20 +461,25 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 
 		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
 		area3->hide();
+
+		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
+		area->show();
+
 	} else if (model.getEmitterType() == 4)
 	{
 		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
 		area->hide();
 
-		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
-		area2->show();
-
 		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
 		area5->hide();
 
 		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
 		area3->hide();
-	} else if (model.getEmitterType() == 5)
+
+		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
+		area2->show();
+
+	} else 
 	{
 		QScrollArea* area = this->findChild<QScrollArea*>("scrollArea");
 		area->hide();
@@ -471,12 +487,12 @@ void MainWindow::on_comboBox_EmitterType_currentIndexChanged(int index)
 		QScrollArea* area2 = this->findChild<QScrollArea*>("scrollArea_2");
 		area2->hide();
 
-		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
-		area5->show();
-
 		QScrollArea* area3 = this->findChild<QScrollArea*>("scrollArea_3");
 		area3->hide();
-	}*/
+
+		QScrollArea* area5 = this->findChild<QScrollArea*>("scrollArea_5");
+		area5->show();
+	}
 }
 
 void MainWindow::on_lineEdit_Center_X_textChanged(const QString &arg1)

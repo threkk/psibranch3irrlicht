@@ -42,14 +42,8 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	case(model->POINT):
 		createPointEmittingParticle(model,particleNode);
 		break;
-	case(model->ANIMATED_MESH):
-		createAnimatedMeshEmittingParticle(model,particleNode,animatedMesh);
-		break;
 	case(model->CYLINDER):
 		createCylinderEmittingParticle(model,particleNode);
-		break;
-	case(model->MESH):
-		createMeshEmittingParticle(model,particleNode,mesh);
 		break;
 	case(model->RING):
 		createRingEmittingParticle(model,particleNode);

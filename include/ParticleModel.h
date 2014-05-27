@@ -30,9 +30,7 @@ public:
 		NONE = 0,
 		BOX,
 		POINT,
-		ANIMATED_MESH,
 		CYLINDER,
-		MESH,
 		RING,
 		SPHERE
 	};

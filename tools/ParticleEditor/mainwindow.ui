@@ -27,8 +27,8 @@
    <widget class="QTabWidget" name="Affectors">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>270</y>
+      <x>840</x>
+      <y>220</y>
       <width>291</width>
       <height>151</height>
      </rect>
@@ -580,7 +580,7 @@ border: 0;text-align:left;padding-left:5px;</string>
     <property name="geometry">
      <rect>
       <x>860</x>
-      <y>130</y>
+      <y>10</y>
       <width>241</width>
       <height>151</height>
      </rect>
@@ -793,6 +793,20 @@ border: 0;text-align:left;padding-left:5px;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <zorder>label_Center</zorder>
+     <zorder>lineEdit_Center_Z</zorder>
+     <zorder>lineEdit_Center_Y</zorder>
+     <zorder>lineEdit_Center_X</zorder>
+     <zorder>lineEdit_Normal_Z</zorder>
+     <zorder>label_Normal</zorder>
+     <zorder>lineEdit_Normal_X</zorder>
+     <zorder>lineEdit_Normal_Y</zorder>
+     <zorder>lineEdit_CylinderLength</zorder>
+     <zorder>label_CylinderLength</zorder>
+     <zorder>checkBox_OutlineOnly</zorder>
+     <zorder>label_OutlineOnly</zorder>
+     <zorder>label_5</zorder>
+     <zorder>scrollArea_2</zorder>
     </widget>
    </widget>
    <widget class="QScrollArea" name="scrollArea_4">
@@ -801,7 +815,7 @@ border: 0;text-align:left;padding-left:5px;</string>
       <x>570</x>
       <y>10</y>
       <width>251</width>
-      <height>251</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -834,7 +848,7 @@ border: 0;text-align:left;padding-left:5px;</string>
        <x>0</x>
        <y>0</y>
        <width>249</width>
-       <height>249</height>
+       <height>359</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -1315,7 +1329,7 @@ border: 0;text-align:left;padding-left:5px;</string>
        </rect>
       </property>
       <property name="text">
-       <string>Stop affect after</string>
+       <string>Stop affect time</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -1331,7 +1345,7 @@ border: 0;text-align:left;padding-left:5px;</string>
        </rect>
       </property>
       <property name="text">
-       <string>Remove affect after</string>
+       <string>Remove affect time</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -1403,145 +1417,13 @@ border: 0;text-align:left;padding-left:5px;</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QScrollArea" name="scrollArea_5">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>400</y>
-      <width>241</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents_5">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>239</width>
-       <height>89</height>
-      </rect>
-     </property>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>241</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>Sphere</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_Center_X_3">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>30</y>
-        <width>30</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>X</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_Center_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>120</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Center</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_Center_Y_3">
-      <property name="geometry">
-       <rect>
-        <x>165</x>
-        <y>30</y>
-        <width>30</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="placeholderText">
-       <string>Y</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_Center_Z_3">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>30</y>
-        <width>30</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="inputMethodHints">
-       <set>Qt::ImhNone</set>
-      </property>
-      <property name="placeholderText">
-       <string>Z</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_Radius">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>60</y>
-        <width>100</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="inputMask">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_Radius">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>120</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Radius</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-      </property>
-     </widget>
-    </widget>
-   </widget>
    <widget class="QScrollArea" name="scrollArea_3">
     <property name="geometry">
      <rect>
       <x>860</x>
       <y>10</y>
       <width>241</width>
-      <height>121</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -1553,7 +1435,7 @@ border: 0;text-align:left;padding-left:5px;</string>
        <x>0</x>
        <y>0</y>
        <width>239</width>
-       <height>119</height>
+       <height>99</height>
       </rect>
      </property>
      <property name="minimumSize">
@@ -1584,9 +1466,9 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Aabbox_Depth">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>90</y>
-        <width>71</width>
+        <x>170</x>
+        <y>70</y>
+        <width>61</width>
         <height>20</height>
        </rect>
       </property>
@@ -1616,9 +1498,9 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Aabbox_Width">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>30</y>
-        <width>71</width>
+        <x>10</x>
+        <y>70</y>
+        <width>61</width>
         <height>20</height>
        </rect>
       </property>
@@ -1629,11 +1511,23 @@ border: 0;text-align:left;padding-left:5px;</string>
      <widget class="QLineEdit" name="lineEdit_Aabbox_Height">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>60</y>
-        <width>71</width>
+        <x>90</x>
+        <y>70</y>
+        <width>61</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="statusTip">
+       <string/>
+      </property>
+      <property name="accessibleName">
+       <string/>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
       </property>
       <property name="placeholderText">
        <string>Height</string>
@@ -1645,7 +1539,7 @@ border: 0;text-align:left;padding-left:5px;</string>
     <property name="geometry">
      <rect>
       <x>860</x>
-      <y>280</y>
+      <y>10</y>
       <width>241</width>
       <height>121</height>
      </rect>
@@ -1801,6 +1695,138 @@ border: 0;text-align:left;padding-left:5px;</string>
       </property>
       <property name="placeholderText">
        <string/>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea_5">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>10</y>
+      <width>241</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>239</width>
+       <height>89</height>
+      </rect>
+     </property>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Sphere</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_X_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>X</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Center_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Center</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Y_3">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Y</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Center_Z_3">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>30</y>
+        <width>30</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+      <property name="placeholderText">
+       <string>Z</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_Radius">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>60</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_Radius">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>120</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Radius</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
       </property>
      </widget>
     </widget>
