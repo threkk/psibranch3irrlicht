@@ -57,7 +57,7 @@ void State::execute(void)
 				} else {
 					stateMachine->changeState(transitions[j]->getTarget());
 					// Update the new state
-					stateMachine->updateCurrentState();
+					//stateMachine->updateCurrentState();
 				}
 				transitions[j]->reset();
 				
