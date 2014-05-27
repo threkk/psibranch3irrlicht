@@ -50,6 +50,6 @@ Code must be documented. For additional documentation, use the wiki. After each 
 #### Team 12
 * **Philip Heimböck** - @philipheimboeck
 * Rob van Diepen - @rmvandiepen
-* José Manuel Carmona Roldán - 
+* José Manuel Carmona Roldán - @carmonj001
 * Merlijn Blekemolen - @merlijnblekemolen
 * ~~Sandro Miccoli - @sandromiccoli~~

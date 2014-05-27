@@ -24,7 +24,7 @@ ISceneSeamlessLoader::~ISceneSeamlessLoader()
 }
 
 //! Preload a scene to cache
-int ISceneSeamlessLoader::preloadScene(io::path uriToNewScene) 
+NScene ISceneSeamlessLoader::preloadScene(io::path uriToNewScene) 
 {
     //! Fill a new NScene.
 	NScene scene;
@@ -44,10 +44,9 @@ int ISceneSeamlessLoader::preloadScene(io::path uriToNewScene)
 	catch(std::bad_alloc)
 	{
 		std::cout << "Allocation failed. The scene was not added.\n";
-		return -1;
 	}
     //! Important. The position to call the scene.
-	return scene.position;
+	return scene;
 }
 
 //! Drops a scene. It works like the destructor but for only one scene.
@@ -80,5 +79,11 @@ void ISceneSeamlessLoader::setScene(int sceneIndex)
 	{
 		std::cout << "Index out of bounds. The scene was not loaded\n";
 		return ;
-	}
+	}	
+}
+
+//! Returns the vector with the scenes.
+std::vector<NScene> ISceneSeamlessLoader::getScenes() 
+{
+	return *scenes;
 }
