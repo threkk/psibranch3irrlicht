@@ -18,12 +18,15 @@ namespace MasterGameServer
     [System.ComponentModel.ToolboxItem(false)]
     public class GameWS : System.Web.Services.WebService
     {
+
+        const string PLAYER_ANONYMOUS = "ANONYMOUS";
+
         /// <summary>
         /// Dictionary is an equivalent of Map that we see in C++ and Java.
         /// For each game its ID (a string) is kept together with 
-        /// IDs and IP addreses of players playing it.
+        /// a list of players playing it.
         /// </summary>
-        static Dictionary<string, Dictionary<int, string>> games = new Dictionary<string, Dictionary<int,string>>();
+        static Dictionary<string, List<Player>> games = new Dictionary<string, List<Player>>();
 
         /// <summary>
         /// For each game a session counter is kept. It is used
@@ -56,9 +59,9 @@ namespace MasterGameServer
         /// name of the game to be played by a player
         /// </param>
         [WebMethod]
-        public int register(string gameName)
+        public int register(string gameName, string login)
         {
-            // Check if the parameter was provided
+            // Check if the name of the game was provided
             if (String.IsNullOrEmpty(gameName))
                 throw new Exception("Register: gameName cannot be empty!");
 
@@ -66,22 +69,33 @@ namespace MasterGameServer
                 Lock the critical section to prevent inconsistency
                 and unexpected behaviour of the server.
             */
+
+            Player player;
+
             lock (syncLock) // beginning of critical section
             {
                 // If a game was not registered on the server:
                 if (!games.Keys.ToList().Contains(gameName))
                 {
-                    games.Add(gameName, new Dictionary<int, string>()); // Initialize game's dictionary
+                    games.Add(gameName, new List<Player>()); // Initialize game's list
                     sessionCounters.Add(gameName, 1); // Initialize the session counter for that game
                 }
 
-                // Put player's session ID and his IP address into the dictionary
-                // sessions.Add(sessionCounter++, HttpContext.Current.Request.UserHostAddress);
-                games[gameName].Add(sessionCounters[gameName]++, Context.Request.ServerVariables["REMOTE_ADDR"]);
+                // Save player:
+                player = new Player()
+                {
+                    sessionId = sessionCounters[gameName]++,
+                    ipAddress = Context.Request.ServerVariables["REMOTE_ADDR"],
+                    login = (String.IsNullOrEmpty(login) ? PLAYER_ANONYMOUS : login),
+                    waiting = (String.IsNullOrEmpty(login) ? false : true)
+                };
+
+                games[gameName].Add(player);
+
             } // end of critical section
             
             // Return player's session ID
-            return sessionCounters[gameName] - 1;
+            return player.sessionId;
         }
 
         /// <summary>
@@ -108,7 +122,7 @@ namespace MasterGameServer
                 throw new Exception("GetOpponentsIpAddress: game called " + gameName + " has not been registered on the server");
 
             // return the IP address of the opponent
-            return games[gameName][sessionId - 1];
+            return games[gameName].Find(item => item.sessionId == (sessionId - 1)).ipAddress;
         }
 
         /// <summary>
@@ -119,11 +133,12 @@ namespace MasterGameServer
         /// </summary>
         /// <param name="gameName">name of the game to retrieve players for</param>
         [WebMethod]
-        public List<string> getGamePlayers(string gameName)
+        public List<string> getAvailiblePlayers(string gameName)
         {
+
             // Check if the parameter was provided
             if (String.IsNullOrEmpty(gameName))
-                throw new Exception("GetGamePlayers: gameName cannot be empty!");
+                throw new Exception("GetAvailiblePlayers: gameName cannot be empty!");
 
             // if such game was not registered on the server, return null
             if (!games.Keys.ToList().Contains(gameName))
@@ -131,12 +146,15 @@ namespace MasterGameServer
 
             // create a list of players for a given game
             List<string> players = new List<string>();
-            // add player data one by one
-            foreach(KeyValuePair<int, string> entry in games[gameName])
-                players.Add("Session ID: " + entry.Key + ", IP: " + entry.Value);
 
-            // return the list of players
+            foreach (Player p in games[gameName])
+            {
+                if (p.waiting == true)
+                    players.Add(p.login);
+            }
+
             return players;
+
         }
 
     }
