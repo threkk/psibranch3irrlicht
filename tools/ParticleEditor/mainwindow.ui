@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Particle Editor</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="irr_widget" native="true">
@@ -216,18 +216,6 @@
        <string>AffectZ</string>
       </property>
      </widget>
-     <zorder>label_Attract_Point</zorder>
-     <zorder>lineEdit_Attract_Point_Z</zorder>
-     <zorder>lineEdit_Attract_Point_Y</zorder>
-     <zorder>lineEdit_Attract_Point_X</zorder>
-     <zorder>checkBox_Attract_Affector</zorder>
-     <zorder>label</zorder>
-     <zorder>lineEdit_Speed</zorder>
-     <zorder>checkBox_Attract</zorder>
-     <zorder>checkBox_AffectX</zorder>
-     <zorder>checkBox_AffectY</zorder>
-     <zorder>checkBox_AffectZ</zorder>
-     <zorder>scrollArea</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -836,20 +824,6 @@ border: 0;text-align:left;padding-left:5px;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <zorder>label_Center</zorder>
-     <zorder>lineEdit_Center_Z</zorder>
-     <zorder>lineEdit_Center_Y</zorder>
-     <zorder>lineEdit_Center_X</zorder>
-     <zorder>lineEdit_Normal_Z</zorder>
-     <zorder>label_Normal</zorder>
-     <zorder>lineEdit_Normal_X</zorder>
-     <zorder>lineEdit_Normal_Y</zorder>
-     <zorder>lineEdit_CylinderLength</zorder>
-     <zorder>label_CylinderLength</zorder>
-     <zorder>checkBox_OutlineOnly</zorder>
-     <zorder>label_OutlineOnly</zorder>
-     <zorder>label_5</zorder>
-     <zorder>scrollArea_5</zorder>
     </widget>
    </widget>
    <widget class="QScrollArea" name="scrollArea_4">
@@ -1930,24 +1904,8 @@ border: 0;text-align:left;padding-left:5px;</string>
        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
       </property>
      </widget>
-     <zorder>label_10</zorder>
-     <zorder>lineEdit_Center_X_3</zorder>
-     <zorder>label_Center_3</zorder>
-     <zorder>lineEdit_Center_Y_3</zorder>
-     <zorder>lineEdit_Center_Z_3</zorder>
-     <zorder>lineEdit_Radius</zorder>
-     <zorder>label_Radius</zorder>
-     <zorder>scrollArea</zorder>
     </widget>
    </widget>
-   <zorder>irr_widget</zorder>
-   <zorder>Affectors</zorder>
-   <zorder>scrollArea</zorder>
-   <zorder>scrollArea_4</zorder>
-   <zorder>scrollArea_3</zorder>
-   <zorder>scrollArea_2</zorder>
-   <zorder>scrollArea_5</zorder>
-   <zorder>label_6</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
