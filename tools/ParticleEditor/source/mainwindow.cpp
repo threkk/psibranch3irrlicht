@@ -282,7 +282,9 @@ void MainWindow::on_actionSave_XML_triggered()
 void MainWindow::on_actionOpen_XML_triggered()
 {
     std::cout << "Open xml: " << std::endl;
-	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",  tr("Files (*.*)"));
+	QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "",  tr("Files (*.xml)"));
+	if ( fileName.isEmpty() )
+        return;
 	ParticleParser p = ParticleParser();
 	ParticleModel model = p.parse(fileName.toStdString().c_str());
 	this->setParticleModel(model);

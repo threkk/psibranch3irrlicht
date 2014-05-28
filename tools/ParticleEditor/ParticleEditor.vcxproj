@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_mainwindow.h" />
     <ClInclude Include="InputReceiver.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="source\IrrDisplay.h" />
     <ClInclude Include="source\Util.h" />
     <ClInclude Include="source\XML.h" />
@@ -198,6 +199,12 @@
     <ProjectReference Include="..\..\source\Irrlicht\Irrlicht10.0.vcxproj">
       <Project>{e08e042a-6c45-411b-92be-3cc31331019f}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ParticleEditor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -62,6 +62,9 @@
     <ClInclude Include="InputReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.ui">
@@ -108,5 +111,11 @@
     <ClCompile Include="InputReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ParticleEditor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon1.ico" />
   </ItemGroup>
 </Project>
