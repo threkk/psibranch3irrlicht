@@ -4,7 +4,7 @@
 
 class ISceneMeshLoaderCallback {
 public:
-	virtual void MeshCallBack(irr::scene::ISceneNode* newnode) = 0;
+	virtual void MeshCallBack(irr::scene::ISceneNode* newnode, int type) = 0;
 
 };
 
