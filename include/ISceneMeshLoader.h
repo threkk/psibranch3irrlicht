@@ -37,6 +37,7 @@ namespace scene
         //! Main scene manager that has the current scene.
 		ISceneManager* actual;
 
+
 		static void *loadNewFile(void *threadargs);
 	public:
         /**

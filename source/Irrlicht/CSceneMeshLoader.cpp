@@ -37,13 +37,7 @@ void *ISceneMeshLoader::loadNewFile(void *threadargs)
 	pthread_mutex_lock(&mutexsum);
 		scene::ISceneNode* newNode = args->smgr->addMeshSceneNode(aniMesh);
 		newNode->setPosition(args->node->getPosition());
-//		args->smgr->getRootSceneNode()->removeChild(args->node);
-		//scene::ISceneNode *test = args->node->;
-		//*test = *args->node;
 		args->node->remove();
-		//*args->node = *newNode;
-		//newNode = NULL;
-		//test->remove();
 		args->callbackclass->MeshCallBack(newNode);
     pthread_mutex_unlock(&mutexsum);
 	
