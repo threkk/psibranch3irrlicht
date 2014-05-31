@@ -1,6 +1,6 @@
-
 #ifndef GameWSSOAP_NSMAP
 #define GameWSSOAP_NSMAP
+
 SOAP_NMAC struct Namespace namespaces[] =
 {
 	{"SOAP-ENV", "http://www.w3.org/2003/05/soap-envelope", "http://schemas.xmlsoap.org/soap/envelope/", NULL},

@@ -86,8 +86,72 @@ SOAP_FMAC3 int * SOAP_FMAC4 soap_get_int(struct soap*, int *, const char*, const
 #endif
 
 
+#ifndef SOAP_TYPE_float
+#define SOAP_TYPE_float (41)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_float(struct soap*, float *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_float(struct soap*, const char*, int, const float *, const char*);
+SOAP_FMAC3 float * SOAP_FMAC4 soap_in_float(struct soap*, const char*, float *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_float(struct soap*, const float *, const char*, const char*);
+
+#ifndef soap_write_float
+#define soap_write_float(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_float(soap, data),0) || soap_put_float(soap, data, "float", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 float * SOAP_FMAC4 soap_get_float(struct soap*, float *, const char*, const char*);
+
+#ifndef soap_read_float
+#define soap_read_float(soap, data) ( soap_begin_recv(soap) || !soap_get_float(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_time
+#define SOAP_TYPE_time (38)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_time(struct soap*, time_t *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_time(struct soap*, const char*, int, const time_t *, const char*);
+SOAP_FMAC3 time_t * SOAP_FMAC4 soap_in_time(struct soap*, const char*, time_t *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_time(struct soap*, const time_t *, const char*, const char*);
+
+#ifndef soap_write_time
+#define soap_write_time(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_time(soap, data),0) || soap_put_time(soap, data, "dateTime", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 time_t * SOAP_FMAC4 soap_get_time(struct soap*, time_t *, const char*, const char*);
+
+#ifndef soap_read_time
+#define soap_read_time(soap, data) ( soap_begin_recv(soap) || !soap_get_time(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_bool
+#define SOAP_TYPE_bool (34)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_bool(struct soap*, bool *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_bool(struct soap*, const char*, int, const bool *, const char*);
+
+SOAP_FMAC3S const char* SOAP_FMAC4S soap_bool2s(struct soap*, bool);
+SOAP_FMAC3 bool * SOAP_FMAC4 soap_in_bool(struct soap*, const char*, bool *, const char*);
+
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2bool(struct soap*, const char*, bool *);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_bool(struct soap*, const bool *, const char*, const char*);
+
+#ifndef soap_write_bool
+#define soap_write_bool(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_bool(soap, data),0) || soap_put_bool(soap, data, "boolean", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 bool * SOAP_FMAC4 soap_get_bool(struct soap*, bool *, const char*, const char*);
+
+#ifndef soap_read_bool
+#define soap_read_bool(soap, data) ( soap_begin_recv(soap) || !soap_get_bool(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
 #ifndef SOAP_TYPE_std__string
-#define SOAP_TYPE_std__string (15)
+#define SOAP_TYPE_std__string (32)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_std__string(struct soap*, std::string *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_std__string(struct soap*, const std::string *);
@@ -118,124 +182,240 @@ inline void soap_delete_std__string(struct soap *soap, std::string *p) { soap_de
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_std__string(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE__GameWS__getOpponentsIpAddressResponse
-#define SOAP_TYPE__GameWS__getOpponentsIpAddressResponse (14)
+#ifndef SOAP_TYPE__GameWS__getScoreListResponse
+#define SOAP_TYPE__GameWS__getScoreListResponse (31)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getOpponentsIpAddressResponse(struct soap*, const char*, int, const _GameWS__getOpponentsIpAddressResponse *, const char*);
-SOAP_FMAC3 _GameWS__getOpponentsIpAddressResponse * SOAP_FMAC4 soap_in__GameWS__getOpponentsIpAddressResponse(struct soap*, const char*, _GameWS__getOpponentsIpAddressResponse *, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getScoreListResponse(struct soap*, const char*, int, const _GameWS__getScoreListResponse *, const char*);
+SOAP_FMAC3 _GameWS__getScoreListResponse * SOAP_FMAC4 soap_in__GameWS__getScoreListResponse(struct soap*, const char*, _GameWS__getScoreListResponse *, const char*);
 
-#ifndef soap_write__GameWS__getOpponentsIpAddressResponse
-#define soap_write__GameWS__getOpponentsIpAddressResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:getOpponentsIpAddressResponse", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_write__GameWS__getScoreListResponse
+#define soap_write__GameWS__getScoreListResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:getScoreListResponse", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 _GameWS__getOpponentsIpAddressResponse * SOAP_FMAC4 soap_get__GameWS__getOpponentsIpAddressResponse(struct soap*, _GameWS__getOpponentsIpAddressResponse *, const char*, const char*);
+SOAP_FMAC3 _GameWS__getScoreListResponse * SOAP_FMAC4 soap_get__GameWS__getScoreListResponse(struct soap*, _GameWS__getScoreListResponse *, const char*, const char*);
 
-#ifndef soap_read__GameWS__getOpponentsIpAddressResponse
-#define soap_read__GameWS__getOpponentsIpAddressResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__getOpponentsIpAddressResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_read__GameWS__getScoreListResponse
+#define soap_read__GameWS__getScoreListResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__getScoreListResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 _GameWS__getOpponentsIpAddressResponse * SOAP_FMAC2 soap_instantiate__GameWS__getOpponentsIpAddressResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC1 _GameWS__getScoreListResponse * SOAP_FMAC2 soap_instantiate__GameWS__getScoreListResponse(struct soap*, int, const char*, const char*, size_t*);
 
-inline _GameWS__getOpponentsIpAddressResponse * soap_new__GameWS__getOpponentsIpAddressResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__getOpponentsIpAddressResponse(soap, n, NULL, NULL, NULL); }
+inline _GameWS__getScoreListResponse * soap_new__GameWS__getScoreListResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__getScoreListResponse(soap, n, NULL, NULL, NULL); }
 
-inline _GameWS__getOpponentsIpAddressResponse * soap_new_req__GameWS__getOpponentsIpAddressResponse(struct soap *soap) { _GameWS__getOpponentsIpAddressResponse *_p = soap_instantiate__GameWS__getOpponentsIpAddressResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+inline _GameWS__getScoreListResponse * soap_new_req__GameWS__getScoreListResponse(struct soap *soap) { _GameWS__getScoreListResponse *_p = soap_instantiate__GameWS__getScoreListResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
 
-inline _GameWS__getOpponentsIpAddressResponse * soap_new_set__GameWS__getOpponentsIpAddressResponse(struct soap *soap, std::string *getOpponentsIpAddressResult) { _GameWS__getOpponentsIpAddressResponse *_p = soap_instantiate__GameWS__getOpponentsIpAddressResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getOpponentsIpAddressResponse::getOpponentsIpAddressResult = getOpponentsIpAddressResult; } return _p; }
+inline _GameWS__getScoreListResponse * soap_new_set__GameWS__getScoreListResponse(struct soap *soap, GameWS__ArrayOfScore *getScoreListResult) { _GameWS__getScoreListResponse *_p = soap_instantiate__GameWS__getScoreListResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getScoreListResponse::getScoreListResult = getScoreListResult; } return _p; }
 
-inline void soap_delete__GameWS__getOpponentsIpAddressResponse(struct soap *soap, _GameWS__getOpponentsIpAddressResponse *p) { soap_delete(soap, p); }
+inline void soap_delete__GameWS__getScoreListResponse(struct soap *soap, _GameWS__getScoreListResponse *p) { soap_delete(soap, p); }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getOpponentsIpAddressResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getScoreListResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE__GameWS__getOpponentsIpAddress
-#define SOAP_TYPE__GameWS__getOpponentsIpAddress (13)
+#ifndef SOAP_TYPE__GameWS__getScoreList
+#define SOAP_TYPE__GameWS__getScoreList (30)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getOpponentsIpAddress(struct soap*, const char*, int, const _GameWS__getOpponentsIpAddress *, const char*);
-SOAP_FMAC3 _GameWS__getOpponentsIpAddress * SOAP_FMAC4 soap_in__GameWS__getOpponentsIpAddress(struct soap*, const char*, _GameWS__getOpponentsIpAddress *, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getScoreList(struct soap*, const char*, int, const _GameWS__getScoreList *, const char*);
+SOAP_FMAC3 _GameWS__getScoreList * SOAP_FMAC4 soap_in__GameWS__getScoreList(struct soap*, const char*, _GameWS__getScoreList *, const char*);
 
-#ifndef soap_write__GameWS__getOpponentsIpAddress
-#define soap_write__GameWS__getOpponentsIpAddress(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:getOpponentsIpAddress", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_write__GameWS__getScoreList
+#define soap_write__GameWS__getScoreList(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:getScoreList", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 _GameWS__getOpponentsIpAddress * SOAP_FMAC4 soap_get__GameWS__getOpponentsIpAddress(struct soap*, _GameWS__getOpponentsIpAddress *, const char*, const char*);
+SOAP_FMAC3 _GameWS__getScoreList * SOAP_FMAC4 soap_get__GameWS__getScoreList(struct soap*, _GameWS__getScoreList *, const char*, const char*);
 
-#ifndef soap_read__GameWS__getOpponentsIpAddress
-#define soap_read__GameWS__getOpponentsIpAddress(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__getOpponentsIpAddress(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_read__GameWS__getScoreList
+#define soap_read__GameWS__getScoreList(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__getScoreList(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 _GameWS__getOpponentsIpAddress * SOAP_FMAC2 soap_instantiate__GameWS__getOpponentsIpAddress(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC1 _GameWS__getScoreList * SOAP_FMAC2 soap_instantiate__GameWS__getScoreList(struct soap*, int, const char*, const char*, size_t*);
 
-inline _GameWS__getOpponentsIpAddress * soap_new__GameWS__getOpponentsIpAddress(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__getOpponentsIpAddress(soap, n, NULL, NULL, NULL); }
+inline _GameWS__getScoreList * soap_new__GameWS__getScoreList(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__getScoreList(soap, n, NULL, NULL, NULL); }
 
-inline _GameWS__getOpponentsIpAddress * soap_new_req__GameWS__getOpponentsIpAddress(struct soap *soap, int sessionId) { _GameWS__getOpponentsIpAddress *_p = soap_instantiate__GameWS__getOpponentsIpAddress(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getOpponentsIpAddress::sessionId = sessionId; } return _p; }
+inline _GameWS__getScoreList * soap_new_req__GameWS__getScoreList(struct soap *soap, int limit) { _GameWS__getScoreList *_p = soap_instantiate__GameWS__getScoreList(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getScoreList::limit = limit; } return _p; }
 
-inline _GameWS__getOpponentsIpAddress * soap_new_set__GameWS__getOpponentsIpAddress(struct soap *soap, std::string *gameName, int sessionId) { _GameWS__getOpponentsIpAddress *_p = soap_instantiate__GameWS__getOpponentsIpAddress(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getOpponentsIpAddress::gameName = gameName; _p->_GameWS__getOpponentsIpAddress::sessionId = sessionId; } return _p; }
+inline _GameWS__getScoreList * soap_new_set__GameWS__getScoreList(struct soap *soap, std::string *gameName, int limit) { _GameWS__getScoreList *_p = soap_instantiate__GameWS__getScoreList(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getScoreList::gameName = gameName; _p->_GameWS__getScoreList::limit = limit; } return _p; }
 
-inline void soap_delete__GameWS__getOpponentsIpAddress(struct soap *soap, _GameWS__getOpponentsIpAddress *p) { soap_delete(soap, p); }
+inline void soap_delete__GameWS__getScoreList(struct soap *soap, _GameWS__getScoreList *p) { soap_delete(soap, p); }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getOpponentsIpAddress(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getScoreList(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE__GameWS__registerResponse
-#define SOAP_TYPE__GameWS__registerResponse (12)
+#ifndef SOAP_TYPE__GameWS__addScoreResponse
+#define SOAP_TYPE__GameWS__addScoreResponse (29)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__registerResponse(struct soap*, const char*, int, const _GameWS__registerResponse *, const char*);
-SOAP_FMAC3 _GameWS__registerResponse * SOAP_FMAC4 soap_in__GameWS__registerResponse(struct soap*, const char*, _GameWS__registerResponse *, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__addScoreResponse(struct soap*, const char*, int, const _GameWS__addScoreResponse *, const char*);
+SOAP_FMAC3 _GameWS__addScoreResponse * SOAP_FMAC4 soap_in__GameWS__addScoreResponse(struct soap*, const char*, _GameWS__addScoreResponse *, const char*);
 
-#ifndef soap_write__GameWS__registerResponse
-#define soap_write__GameWS__registerResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:registerResponse", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_write__GameWS__addScoreResponse
+#define soap_write__GameWS__addScoreResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:addScoreResponse", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 _GameWS__registerResponse * SOAP_FMAC4 soap_get__GameWS__registerResponse(struct soap*, _GameWS__registerResponse *, const char*, const char*);
+SOAP_FMAC3 _GameWS__addScoreResponse * SOAP_FMAC4 soap_get__GameWS__addScoreResponse(struct soap*, _GameWS__addScoreResponse *, const char*, const char*);
 
-#ifndef soap_read__GameWS__registerResponse
-#define soap_read__GameWS__registerResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__registerResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_read__GameWS__addScoreResponse
+#define soap_read__GameWS__addScoreResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__addScoreResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 _GameWS__registerResponse * SOAP_FMAC2 soap_instantiate__GameWS__registerResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC1 _GameWS__addScoreResponse * SOAP_FMAC2 soap_instantiate__GameWS__addScoreResponse(struct soap*, int, const char*, const char*, size_t*);
 
-inline _GameWS__registerResponse * soap_new__GameWS__registerResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__registerResponse(soap, n, NULL, NULL, NULL); }
+inline _GameWS__addScoreResponse * soap_new__GameWS__addScoreResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__addScoreResponse(soap, n, NULL, NULL, NULL); }
 
-inline _GameWS__registerResponse * soap_new_req__GameWS__registerResponse(struct soap *soap, int registerResult) { _GameWS__registerResponse *_p = soap_instantiate__GameWS__registerResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__registerResponse::registerResult = registerResult; } return _p; }
+inline _GameWS__addScoreResponse * soap_new_req__GameWS__addScoreResponse(struct soap *soap, int addScoreResult) { _GameWS__addScoreResponse *_p = soap_instantiate__GameWS__addScoreResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__addScoreResponse::addScoreResult = addScoreResult; } return _p; }
 
-inline _GameWS__registerResponse * soap_new_set__GameWS__registerResponse(struct soap *soap, int registerResult) { _GameWS__registerResponse *_p = soap_instantiate__GameWS__registerResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__registerResponse::registerResult = registerResult; } return _p; }
+inline _GameWS__addScoreResponse * soap_new_set__GameWS__addScoreResponse(struct soap *soap, int addScoreResult) { _GameWS__addScoreResponse *_p = soap_instantiate__GameWS__addScoreResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__addScoreResponse::addScoreResult = addScoreResult; } return _p; }
 
-inline void soap_delete__GameWS__registerResponse(struct soap *soap, _GameWS__registerResponse *p) { soap_delete(soap, p); }
+inline void soap_delete__GameWS__addScoreResponse(struct soap *soap, _GameWS__addScoreResponse *p) { soap_delete(soap, p); }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__registerResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__addScoreResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE__GameWS__register
-#define SOAP_TYPE__GameWS__register (11)
+#ifndef SOAP_TYPE__GameWS__addScore
+#define SOAP_TYPE__GameWS__addScore (28)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__register(struct soap*, const char*, int, const _GameWS__register *, const char*);
-SOAP_FMAC3 _GameWS__register * SOAP_FMAC4 soap_in__GameWS__register(struct soap*, const char*, _GameWS__register *, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__addScore(struct soap*, const char*, int, const _GameWS__addScore *, const char*);
+SOAP_FMAC3 _GameWS__addScore * SOAP_FMAC4 soap_in__GameWS__addScore(struct soap*, const char*, _GameWS__addScore *, const char*);
 
-#ifndef soap_write__GameWS__register
-#define soap_write__GameWS__register(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_write__GameWS__addScore
+#define soap_write__GameWS__addScore(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:addScore", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 _GameWS__register * SOAP_FMAC4 soap_get__GameWS__register(struct soap*, _GameWS__register *, const char*, const char*);
+SOAP_FMAC3 _GameWS__addScore * SOAP_FMAC4 soap_get__GameWS__addScore(struct soap*, _GameWS__addScore *, const char*, const char*);
 
-#ifndef soap_read__GameWS__register
-#define soap_read__GameWS__register(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__register(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_read__GameWS__addScore
+#define soap_read__GameWS__addScore(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__addScore(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 _GameWS__register * SOAP_FMAC2 soap_instantiate__GameWS__register(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC1 _GameWS__addScore * SOAP_FMAC2 soap_instantiate__GameWS__addScore(struct soap*, int, const char*, const char*, size_t*);
 
-inline _GameWS__register * soap_new__GameWS__register(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__register(soap, n, NULL, NULL, NULL); }
+inline _GameWS__addScore * soap_new__GameWS__addScore(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__addScore(soap, n, NULL, NULL, NULL); }
 
-inline _GameWS__register * soap_new_req__GameWS__register(struct soap *soap) { _GameWS__register *_p = soap_instantiate__GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+inline _GameWS__addScore * soap_new_req__GameWS__addScore(struct soap *soap, int sessionId, float score) { _GameWS__addScore *_p = soap_instantiate__GameWS__addScore(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__addScore::sessionId = sessionId; _p->_GameWS__addScore::score = score; } return _p; }
 
-inline _GameWS__register * soap_new_set__GameWS__register(struct soap *soap, std::string *gameName) { _GameWS__register *_p = soap_instantiate__GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__register::gameName = gameName; } return _p; }
+inline _GameWS__addScore * soap_new_set__GameWS__addScore(struct soap *soap, int sessionId, float score) { _GameWS__addScore *_p = soap_instantiate__GameWS__addScore(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__addScore::sessionId = sessionId; _p->_GameWS__addScore::score = score; } return _p; }
 
-inline void soap_delete__GameWS__register(struct soap *soap, _GameWS__register *p) { soap_delete(soap, p); }
+inline void soap_delete__GameWS__addScore(struct soap *soap, _GameWS__addScore *p) { soap_delete(soap, p); }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__register(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__addScore(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__checkInResponse
+#define SOAP_TYPE__GameWS__checkInResponse (27)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__checkInResponse(struct soap*, const char*, int, const _GameWS__checkInResponse *, const char*);
+SOAP_FMAC3 _GameWS__checkInResponse * SOAP_FMAC4 soap_in__GameWS__checkInResponse(struct soap*, const char*, _GameWS__checkInResponse *, const char*);
+
+#ifndef soap_write__GameWS__checkInResponse
+#define soap_write__GameWS__checkInResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:checkInResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__checkInResponse * SOAP_FMAC4 soap_get__GameWS__checkInResponse(struct soap*, _GameWS__checkInResponse *, const char*, const char*);
+
+#ifndef soap_read__GameWS__checkInResponse
+#define soap_read__GameWS__checkInResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__checkInResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__checkInResponse * SOAP_FMAC2 soap_instantiate__GameWS__checkInResponse(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__checkInResponse * soap_new__GameWS__checkInResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__checkInResponse(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__checkInResponse * soap_new_req__GameWS__checkInResponse(struct soap *soap, int checkInResult) { _GameWS__checkInResponse *_p = soap_instantiate__GameWS__checkInResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__checkInResponse::checkInResult = checkInResult; } return _p; }
+
+inline _GameWS__checkInResponse * soap_new_set__GameWS__checkInResponse(struct soap *soap, int checkInResult) { _GameWS__checkInResponse *_p = soap_instantiate__GameWS__checkInResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__checkInResponse::checkInResult = checkInResult; } return _p; }
+
+inline void soap_delete__GameWS__checkInResponse(struct soap *soap, _GameWS__checkInResponse *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__checkInResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__checkIn
+#define SOAP_TYPE__GameWS__checkIn (26)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__checkIn(struct soap*, const char*, int, const _GameWS__checkIn *, const char*);
+SOAP_FMAC3 _GameWS__checkIn * SOAP_FMAC4 soap_in__GameWS__checkIn(struct soap*, const char*, _GameWS__checkIn *, const char*);
+
+#ifndef soap_write__GameWS__checkIn
+#define soap_write__GameWS__checkIn(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:checkIn", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__checkIn * SOAP_FMAC4 soap_get__GameWS__checkIn(struct soap*, _GameWS__checkIn *, const char*, const char*);
+
+#ifndef soap_read__GameWS__checkIn
+#define soap_read__GameWS__checkIn(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__checkIn(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__checkIn * SOAP_FMAC2 soap_instantiate__GameWS__checkIn(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__checkIn * soap_new__GameWS__checkIn(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__checkIn(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__checkIn * soap_new_req__GameWS__checkIn(struct soap *soap, int sessionId) { _GameWS__checkIn *_p = soap_instantiate__GameWS__checkIn(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__checkIn::sessionId = sessionId; } return _p; }
+
+inline _GameWS__checkIn * soap_new_set__GameWS__checkIn(struct soap *soap, int sessionId) { _GameWS__checkIn *_p = soap_instantiate__GameWS__checkIn(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__checkIn::sessionId = sessionId; } return _p; }
+
+inline void soap_delete__GameWS__checkIn(struct soap *soap, _GameWS__checkIn *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__checkIn(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__removePlayerResponse
+#define SOAP_TYPE__GameWS__removePlayerResponse (25)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__removePlayerResponse(struct soap*, const char*, int, const _GameWS__removePlayerResponse *, const char*);
+SOAP_FMAC3 _GameWS__removePlayerResponse * SOAP_FMAC4 soap_in__GameWS__removePlayerResponse(struct soap*, const char*, _GameWS__removePlayerResponse *, const char*);
+
+#ifndef soap_write__GameWS__removePlayerResponse
+#define soap_write__GameWS__removePlayerResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:removePlayerResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__removePlayerResponse * SOAP_FMAC4 soap_get__GameWS__removePlayerResponse(struct soap*, _GameWS__removePlayerResponse *, const char*, const char*);
+
+#ifndef soap_read__GameWS__removePlayerResponse
+#define soap_read__GameWS__removePlayerResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__removePlayerResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__removePlayerResponse * SOAP_FMAC2 soap_instantiate__GameWS__removePlayerResponse(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__removePlayerResponse * soap_new__GameWS__removePlayerResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__removePlayerResponse(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__removePlayerResponse * soap_new_req__GameWS__removePlayerResponse(struct soap *soap, int removePlayerResult) { _GameWS__removePlayerResponse *_p = soap_instantiate__GameWS__removePlayerResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__removePlayerResponse::removePlayerResult = removePlayerResult; } return _p; }
+
+inline _GameWS__removePlayerResponse * soap_new_set__GameWS__removePlayerResponse(struct soap *soap, int removePlayerResult) { _GameWS__removePlayerResponse *_p = soap_instantiate__GameWS__removePlayerResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__removePlayerResponse::removePlayerResult = removePlayerResult; } return _p; }
+
+inline void soap_delete__GameWS__removePlayerResponse(struct soap *soap, _GameWS__removePlayerResponse *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__removePlayerResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__removePlayer
+#define SOAP_TYPE__GameWS__removePlayer (24)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__removePlayer(struct soap*, const char*, int, const _GameWS__removePlayer *, const char*);
+SOAP_FMAC3 _GameWS__removePlayer * SOAP_FMAC4 soap_in__GameWS__removePlayer(struct soap*, const char*, _GameWS__removePlayer *, const char*);
+
+#ifndef soap_write__GameWS__removePlayer
+#define soap_write__GameWS__removePlayer(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:removePlayer", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__removePlayer * SOAP_FMAC4 soap_get__GameWS__removePlayer(struct soap*, _GameWS__removePlayer *, const char*, const char*);
+
+#ifndef soap_read__GameWS__removePlayer
+#define soap_read__GameWS__removePlayer(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__removePlayer(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__removePlayer * SOAP_FMAC2 soap_instantiate__GameWS__removePlayer(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__removePlayer * soap_new__GameWS__removePlayer(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__removePlayer(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__removePlayer * soap_new_req__GameWS__removePlayer(struct soap *soap, int sessionId) { _GameWS__removePlayer *_p = soap_instantiate__GameWS__removePlayer(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__removePlayer::sessionId = sessionId; } return _p; }
+
+inline _GameWS__removePlayer * soap_new_set__GameWS__removePlayer(struct soap *soap, int sessionId) { _GameWS__removePlayer *_p = soap_instantiate__GameWS__removePlayer(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__removePlayer::sessionId = sessionId; } return _p; }
+
+inline void soap_delete__GameWS__removePlayer(struct soap *soap, _GameWS__removePlayer *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__removePlayer(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE__GameWS__getGamesPlayedResponse
-#define SOAP_TYPE__GameWS__getGamesPlayedResponse (10)
+#define SOAP_TYPE__GameWS__getGamesPlayedResponse (23)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getGamesPlayedResponse(struct soap*, const char*, int, const _GameWS__getGamesPlayedResponse *, const char*);
@@ -257,14 +437,14 @@ inline _GameWS__getGamesPlayedResponse * soap_new__GameWS__getGamesPlayedRespons
 
 inline _GameWS__getGamesPlayedResponse * soap_new_req__GameWS__getGamesPlayedResponse(struct soap *soap) { _GameWS__getGamesPlayedResponse *_p = soap_instantiate__GameWS__getGamesPlayedResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
 
-inline _GameWS__getGamesPlayedResponse * soap_new_set__GameWS__getGamesPlayedResponse(struct soap *soap, GameWS__ArrayOfString *getGamesPlayedResult) { _GameWS__getGamesPlayedResponse *_p = soap_instantiate__GameWS__getGamesPlayedResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getGamesPlayedResponse::getGamesPlayedResult = getGamesPlayedResult; } return _p; }
+inline _GameWS__getGamesPlayedResponse * soap_new_set__GameWS__getGamesPlayedResponse(struct soap *soap, GameWS__ArrayOfGame *getGamesPlayedResult) { _GameWS__getGamesPlayedResponse *_p = soap_instantiate__GameWS__getGamesPlayedResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getGamesPlayedResponse::getGamesPlayedResult = getGamesPlayedResult; } return _p; }
 
 inline void soap_delete__GameWS__getGamesPlayedResponse(struct soap *soap, _GameWS__getGamesPlayedResponse *p) { soap_delete(soap, p); }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getGamesPlayedResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE__GameWS__getGamesPlayed
-#define SOAP_TYPE__GameWS__getGamesPlayed (9)
+#define SOAP_TYPE__GameWS__getGamesPlayed (22)
 #endif
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getGamesPlayed(struct soap*, const char*, int, const _GameWS__getGamesPlayed *, const char*);
@@ -292,39 +472,416 @@ inline void soap_delete__GameWS__getGamesPlayed(struct soap *soap, _GameWS__getG
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getGamesPlayed(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_GameWS__ArrayOfString
-#define SOAP_TYPE_GameWS__ArrayOfString (8)
+#ifndef SOAP_TYPE__GameWS__getPlayersResponse
+#define SOAP_TYPE__GameWS__getPlayersResponse (21)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__ArrayOfString(struct soap*, const char*, int, const GameWS__ArrayOfString *, const char*);
-SOAP_FMAC3 GameWS__ArrayOfString * SOAP_FMAC4 soap_in_GameWS__ArrayOfString(struct soap*, const char*, GameWS__ArrayOfString *, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getPlayersResponse(struct soap*, const char*, int, const _GameWS__getPlayersResponse *, const char*);
+SOAP_FMAC3 _GameWS__getPlayersResponse * SOAP_FMAC4 soap_in__GameWS__getPlayersResponse(struct soap*, const char*, _GameWS__getPlayersResponse *, const char*);
 
-#ifndef soap_write_GameWS__ArrayOfString
-#define soap_write_GameWS__ArrayOfString(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:ArrayOfString", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_write__GameWS__getPlayersResponse
+#define soap_write__GameWS__getPlayersResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:getPlayersResponse", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 GameWS__ArrayOfString * SOAP_FMAC4 soap_get_GameWS__ArrayOfString(struct soap*, GameWS__ArrayOfString *, const char*, const char*);
+SOAP_FMAC3 _GameWS__getPlayersResponse * SOAP_FMAC4 soap_get__GameWS__getPlayersResponse(struct soap*, _GameWS__getPlayersResponse *, const char*, const char*);
 
-#ifndef soap_read_GameWS__ArrayOfString
-#define soap_read_GameWS__ArrayOfString(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__ArrayOfString(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_read__GameWS__getPlayersResponse
+#define soap_read__GameWS__getPlayersResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__getPlayersResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 GameWS__ArrayOfString * SOAP_FMAC2 soap_instantiate_GameWS__ArrayOfString(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC1 _GameWS__getPlayersResponse * SOAP_FMAC2 soap_instantiate__GameWS__getPlayersResponse(struct soap*, int, const char*, const char*, size_t*);
 
-inline GameWS__ArrayOfString * soap_new_GameWS__ArrayOfString(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__ArrayOfString(soap, n, NULL, NULL, NULL); }
+inline _GameWS__getPlayersResponse * soap_new__GameWS__getPlayersResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__getPlayersResponse(soap, n, NULL, NULL, NULL); }
 
-inline GameWS__ArrayOfString * soap_new_req_GameWS__ArrayOfString(struct soap *soap) { GameWS__ArrayOfString *_p = soap_instantiate_GameWS__ArrayOfString(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+inline _GameWS__getPlayersResponse * soap_new_req__GameWS__getPlayersResponse(struct soap *soap) { _GameWS__getPlayersResponse *_p = soap_instantiate__GameWS__getPlayersResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
 
-inline GameWS__ArrayOfString * soap_new_set_GameWS__ArrayOfString(struct soap *soap, std::vector<std::string >& string) { GameWS__ArrayOfString *_p = soap_instantiate_GameWS__ArrayOfString(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__ArrayOfString::string = string; } return _p; }
+inline _GameWS__getPlayersResponse * soap_new_set__GameWS__getPlayersResponse(struct soap *soap, GameWS__ArrayOfPlayer *getPlayersResult) { _GameWS__getPlayersResponse *_p = soap_instantiate__GameWS__getPlayersResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__getPlayersResponse::getPlayersResult = getPlayersResult; } return _p; }
 
-inline void soap_delete_GameWS__ArrayOfString(struct soap *soap, GameWS__ArrayOfString *p) { soap_delete(soap, p); }
+inline void soap_delete__GameWS__getPlayersResponse(struct soap *soap, _GameWS__getPlayersResponse *p) { soap_delete(soap, p); }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__ArrayOfString(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getPlayersResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__getPlayers
+#define SOAP_TYPE__GameWS__getPlayers (20)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__getPlayers(struct soap*, const char*, int, const _GameWS__getPlayers *, const char*);
+SOAP_FMAC3 _GameWS__getPlayers * SOAP_FMAC4 soap_in__GameWS__getPlayers(struct soap*, const char*, _GameWS__getPlayers *, const char*);
+
+#ifndef soap_write__GameWS__getPlayers
+#define soap_write__GameWS__getPlayers(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:getPlayers", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__getPlayers * SOAP_FMAC4 soap_get__GameWS__getPlayers(struct soap*, _GameWS__getPlayers *, const char*, const char*);
+
+#ifndef soap_read__GameWS__getPlayers
+#define soap_read__GameWS__getPlayers(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__getPlayers(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__getPlayers * SOAP_FMAC2 soap_instantiate__GameWS__getPlayers(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__getPlayers * soap_new__GameWS__getPlayers(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__getPlayers(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__getPlayers * soap_new_req__GameWS__getPlayers(struct soap *soap) { _GameWS__getPlayers *_p = soap_instantiate__GameWS__getPlayers(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline _GameWS__getPlayers * soap_new_set__GameWS__getPlayers(struct soap *soap) { _GameWS__getPlayers *_p = soap_instantiate__GameWS__getPlayers(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline void soap_delete__GameWS__getPlayers(struct soap *soap, _GameWS__getPlayers *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__getPlayers(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__playResponse
+#define SOAP_TYPE__GameWS__playResponse (19)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__playResponse(struct soap*, const char*, int, const _GameWS__playResponse *, const char*);
+SOAP_FMAC3 _GameWS__playResponse * SOAP_FMAC4 soap_in__GameWS__playResponse(struct soap*, const char*, _GameWS__playResponse *, const char*);
+
+#ifndef soap_write__GameWS__playResponse
+#define soap_write__GameWS__playResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:playResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__playResponse * SOAP_FMAC4 soap_get__GameWS__playResponse(struct soap*, _GameWS__playResponse *, const char*, const char*);
+
+#ifndef soap_read__GameWS__playResponse
+#define soap_read__GameWS__playResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__playResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__playResponse * SOAP_FMAC2 soap_instantiate__GameWS__playResponse(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__playResponse * soap_new__GameWS__playResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__playResponse(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__playResponse * soap_new_req__GameWS__playResponse(struct soap *soap) { _GameWS__playResponse *_p = soap_instantiate__GameWS__playResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline _GameWS__playResponse * soap_new_set__GameWS__playResponse(struct soap *soap, GameWS__PlayRequestResult *playResult) { _GameWS__playResponse *_p = soap_instantiate__GameWS__playResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__playResponse::playResult = playResult; } return _p; }
+
+inline void soap_delete__GameWS__playResponse(struct soap *soap, _GameWS__playResponse *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__playResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__play
+#define SOAP_TYPE__GameWS__play (18)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__play(struct soap*, const char*, int, const _GameWS__play *, const char*);
+SOAP_FMAC3 _GameWS__play * SOAP_FMAC4 soap_in__GameWS__play(struct soap*, const char*, _GameWS__play *, const char*);
+
+#ifndef soap_write__GameWS__play
+#define soap_write__GameWS__play(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:play", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__play * SOAP_FMAC4 soap_get__GameWS__play(struct soap*, _GameWS__play *, const char*, const char*);
+
+#ifndef soap_read__GameWS__play
+#define soap_read__GameWS__play(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__play(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__play * SOAP_FMAC2 soap_instantiate__GameWS__play(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__play * soap_new__GameWS__play(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__play(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__play * soap_new_req__GameWS__play(struct soap *soap, int sessionId) { _GameWS__play *_p = soap_instantiate__GameWS__play(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__play::sessionId = sessionId; } return _p; }
+
+inline _GameWS__play * soap_new_set__GameWS__play(struct soap *soap, int sessionId) { _GameWS__play *_p = soap_instantiate__GameWS__play(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__play::sessionId = sessionId; } return _p; }
+
+inline void soap_delete__GameWS__play(struct soap *soap, _GameWS__play *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__play(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__registerResponse
+#define SOAP_TYPE__GameWS__registerResponse (17)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__registerResponse(struct soap*, const char*, int, const _GameWS__registerResponse *, const char*);
+SOAP_FMAC3 _GameWS__registerResponse * SOAP_FMAC4 soap_in__GameWS__registerResponse(struct soap*, const char*, _GameWS__registerResponse *, const char*);
+
+#ifndef soap_write__GameWS__registerResponse
+#define soap_write__GameWS__registerResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:registerResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__registerResponse * SOAP_FMAC4 soap_get__GameWS__registerResponse(struct soap*, _GameWS__registerResponse *, const char*, const char*);
+
+#ifndef soap_read__GameWS__registerResponse
+#define soap_read__GameWS__registerResponse(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__registerResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__registerResponse * SOAP_FMAC2 soap_instantiate__GameWS__registerResponse(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__registerResponse * soap_new__GameWS__registerResponse(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__registerResponse(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__registerResponse * soap_new_req__GameWS__registerResponse(struct soap *soap) { _GameWS__registerResponse *_p = soap_instantiate__GameWS__registerResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline _GameWS__registerResponse * soap_new_set__GameWS__registerResponse(struct soap *soap, GameWS__PlayRequestResult *registerResult) { _GameWS__registerResponse *_p = soap_instantiate__GameWS__registerResponse(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__registerResponse::registerResult = registerResult; } return _p; }
+
+inline void soap_delete__GameWS__registerResponse(struct soap *soap, _GameWS__registerResponse *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__registerResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__GameWS__register
+#define SOAP_TYPE__GameWS__register (16)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__GameWS__register(struct soap*, const char*, int, const _GameWS__register *, const char*);
+SOAP_FMAC3 _GameWS__register * SOAP_FMAC4 soap_in__GameWS__register(struct soap*, const char*, _GameWS__register *, const char*);
+
+#ifndef soap_write__GameWS__register
+#define soap_write__GameWS__register(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__register * SOAP_FMAC4 soap_get__GameWS__register(struct soap*, _GameWS__register *, const char*, const char*);
+
+#ifndef soap_read__GameWS__register
+#define soap_read__GameWS__register(soap, data) ( soap_begin_recv(soap) || !soap_get__GameWS__register(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 _GameWS__register * SOAP_FMAC2 soap_instantiate__GameWS__register(struct soap*, int, const char*, const char*, size_t*);
+
+inline _GameWS__register * soap_new__GameWS__register(struct soap *soap, int n = -1) { return soap_instantiate__GameWS__register(soap, n, NULL, NULL, NULL); }
+
+inline _GameWS__register * soap_new_req__GameWS__register(struct soap *soap) { _GameWS__register *_p = soap_instantiate__GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline _GameWS__register * soap_new_set__GameWS__register(struct soap *soap, std::string *gameName, std::string *login) { _GameWS__register *_p = soap_instantiate__GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->_GameWS__register::gameName = gameName; _p->_GameWS__register::login = login; } return _p; }
+
+inline void soap_delete__GameWS__register(struct soap *soap, _GameWS__register *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__GameWS__register(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__ArrayOfGame
+#define SOAP_TYPE_GameWS__ArrayOfGame (15)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__ArrayOfGame(struct soap*, const char*, int, const GameWS__ArrayOfGame *, const char*);
+SOAP_FMAC3 GameWS__ArrayOfGame * SOAP_FMAC4 soap_in_GameWS__ArrayOfGame(struct soap*, const char*, GameWS__ArrayOfGame *, const char*);
+
+#ifndef soap_write_GameWS__ArrayOfGame
+#define soap_write_GameWS__ArrayOfGame(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:ArrayOfGame", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfGame * SOAP_FMAC4 soap_get_GameWS__ArrayOfGame(struct soap*, GameWS__ArrayOfGame *, const char*, const char*);
+
+#ifndef soap_read_GameWS__ArrayOfGame
+#define soap_read_GameWS__ArrayOfGame(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__ArrayOfGame(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__ArrayOfGame * SOAP_FMAC2 soap_instantiate_GameWS__ArrayOfGame(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__ArrayOfGame * soap_new_GameWS__ArrayOfGame(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__ArrayOfGame(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__ArrayOfGame * soap_new_req_GameWS__ArrayOfGame(struct soap *soap) { GameWS__ArrayOfGame *_p = soap_instantiate_GameWS__ArrayOfGame(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline GameWS__ArrayOfGame * soap_new_set_GameWS__ArrayOfGame(struct soap *soap, std::vector<GameWS__Game * >& Game) { GameWS__ArrayOfGame *_p = soap_instantiate_GameWS__ArrayOfGame(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__ArrayOfGame::Game = Game; } return _p; }
+
+inline void soap_delete_GameWS__ArrayOfGame(struct soap *soap, GameWS__ArrayOfGame *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__ArrayOfGame(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__Score
+#define SOAP_TYPE_GameWS__Score (14)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__Score(struct soap*, const char*, int, const GameWS__Score *, const char*);
+SOAP_FMAC3 GameWS__Score * SOAP_FMAC4 soap_in_GameWS__Score(struct soap*, const char*, GameWS__Score *, const char*);
+
+#ifndef soap_write_GameWS__Score
+#define soap_write_GameWS__Score(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:Score", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__Score * SOAP_FMAC4 soap_get_GameWS__Score(struct soap*, GameWS__Score *, const char*, const char*);
+
+#ifndef soap_read_GameWS__Score
+#define soap_read_GameWS__Score(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__Score(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__Score * SOAP_FMAC2 soap_instantiate_GameWS__Score(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__Score * soap_new_GameWS__Score(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__Score(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__Score * soap_new_req_GameWS__Score(struct soap *soap, float score) { GameWS__Score *_p = soap_instantiate_GameWS__Score(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__Score::score = score; } return _p; }
+
+inline GameWS__Score * soap_new_set_GameWS__Score(struct soap *soap, std::string *playerLogin, float score) { GameWS__Score *_p = soap_instantiate_GameWS__Score(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__Score::playerLogin = playerLogin; _p->GameWS__Score::score = score; } return _p; }
+
+inline void soap_delete_GameWS__Score(struct soap *soap, GameWS__Score *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__Score(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__ArrayOfScore
+#define SOAP_TYPE_GameWS__ArrayOfScore (13)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__ArrayOfScore(struct soap*, const char*, int, const GameWS__ArrayOfScore *, const char*);
+SOAP_FMAC3 GameWS__ArrayOfScore * SOAP_FMAC4 soap_in_GameWS__ArrayOfScore(struct soap*, const char*, GameWS__ArrayOfScore *, const char*);
+
+#ifndef soap_write_GameWS__ArrayOfScore
+#define soap_write_GameWS__ArrayOfScore(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:ArrayOfScore", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfScore * SOAP_FMAC4 soap_get_GameWS__ArrayOfScore(struct soap*, GameWS__ArrayOfScore *, const char*, const char*);
+
+#ifndef soap_read_GameWS__ArrayOfScore
+#define soap_read_GameWS__ArrayOfScore(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__ArrayOfScore(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__ArrayOfScore * SOAP_FMAC2 soap_instantiate_GameWS__ArrayOfScore(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__ArrayOfScore * soap_new_GameWS__ArrayOfScore(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__ArrayOfScore(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__ArrayOfScore * soap_new_req_GameWS__ArrayOfScore(struct soap *soap) { GameWS__ArrayOfScore *_p = soap_instantiate_GameWS__ArrayOfScore(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline GameWS__ArrayOfScore * soap_new_set_GameWS__ArrayOfScore(struct soap *soap, std::vector<GameWS__Score * >& Score) { GameWS__ArrayOfScore *_p = soap_instantiate_GameWS__ArrayOfScore(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__ArrayOfScore::Score = Score; } return _p; }
+
+inline void soap_delete_GameWS__ArrayOfScore(struct soap *soap, GameWS__ArrayOfScore *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__ArrayOfScore(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__Game
+#define SOAP_TYPE_GameWS__Game (12)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__Game(struct soap*, const char*, int, const GameWS__Game *, const char*);
+SOAP_FMAC3 GameWS__Game * SOAP_FMAC4 soap_in_GameWS__Game(struct soap*, const char*, GameWS__Game *, const char*);
+
+#ifndef soap_write_GameWS__Game
+#define soap_write_GameWS__Game(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:Game", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__Game * SOAP_FMAC4 soap_get_GameWS__Game(struct soap*, GameWS__Game *, const char*, const char*);
+
+#ifndef soap_read_GameWS__Game
+#define soap_read_GameWS__Game(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__Game(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__Game * SOAP_FMAC2 soap_instantiate_GameWS__Game(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__Game * soap_new_GameWS__Game(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__Game(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__Game * soap_new_req_GameWS__Game(struct soap *soap, int checkInInterval) { GameWS__Game *_p = soap_instantiate_GameWS__Game(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__Game::checkInInterval = checkInInterval; } return _p; }
+
+inline GameWS__Game * soap_new_set_GameWS__Game(struct soap *soap, std::string *name, GameWS__ArrayOfScore *highScores, int checkInInterval) { GameWS__Game *_p = soap_instantiate_GameWS__Game(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__Game::name = name; _p->GameWS__Game::highScores = highScores; _p->GameWS__Game::checkInInterval = checkInInterval; } return _p; }
+
+inline void soap_delete_GameWS__Game(struct soap *soap, GameWS__Game *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__Game(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__ArrayOfFloat
+#define SOAP_TYPE_GameWS__ArrayOfFloat (11)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__ArrayOfFloat(struct soap*, const char*, int, const GameWS__ArrayOfFloat *, const char*);
+SOAP_FMAC3 GameWS__ArrayOfFloat * SOAP_FMAC4 soap_in_GameWS__ArrayOfFloat(struct soap*, const char*, GameWS__ArrayOfFloat *, const char*);
+
+#ifndef soap_write_GameWS__ArrayOfFloat
+#define soap_write_GameWS__ArrayOfFloat(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:ArrayOfFloat", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfFloat * SOAP_FMAC4 soap_get_GameWS__ArrayOfFloat(struct soap*, GameWS__ArrayOfFloat *, const char*, const char*);
+
+#ifndef soap_read_GameWS__ArrayOfFloat
+#define soap_read_GameWS__ArrayOfFloat(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__ArrayOfFloat(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__ArrayOfFloat * SOAP_FMAC2 soap_instantiate_GameWS__ArrayOfFloat(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__ArrayOfFloat * soap_new_GameWS__ArrayOfFloat(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__ArrayOfFloat(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__ArrayOfFloat * soap_new_req_GameWS__ArrayOfFloat(struct soap *soap) { GameWS__ArrayOfFloat *_p = soap_instantiate_GameWS__ArrayOfFloat(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline GameWS__ArrayOfFloat * soap_new_set_GameWS__ArrayOfFloat(struct soap *soap, std::vector<float >& float_) { GameWS__ArrayOfFloat *_p = soap_instantiate_GameWS__ArrayOfFloat(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__ArrayOfFloat::float_ = float_; } return _p; }
+
+inline void soap_delete_GameWS__ArrayOfFloat(struct soap *soap, GameWS__ArrayOfFloat *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__ArrayOfFloat(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__Player
+#define SOAP_TYPE_GameWS__Player (10)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__Player(struct soap*, const char*, int, const GameWS__Player *, const char*);
+SOAP_FMAC3 GameWS__Player * SOAP_FMAC4 soap_in_GameWS__Player(struct soap*, const char*, GameWS__Player *, const char*);
+
+#ifndef soap_write_GameWS__Player
+#define soap_write_GameWS__Player(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:Player", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__Player * SOAP_FMAC4 soap_get_GameWS__Player(struct soap*, GameWS__Player *, const char*, const char*);
+
+#ifndef soap_read_GameWS__Player
+#define soap_read_GameWS__Player(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__Player(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__Player * SOAP_FMAC2 soap_instantiate_GameWS__Player(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__Player * soap_new_GameWS__Player(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__Player(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__Player * soap_new_req_GameWS__Player(struct soap *soap, int sessionId, time_t joined, time_t lastCheckedIn, bool waiting) { GameWS__Player *_p = soap_instantiate_GameWS__Player(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__Player::sessionId = sessionId; _p->GameWS__Player::joined = joined; _p->GameWS__Player::lastCheckedIn = lastCheckedIn; _p->GameWS__Player::waiting = waiting; } return _p; }
+
+inline GameWS__Player * soap_new_set_GameWS__Player(struct soap *soap, int sessionId, std::string *login, std::string *ipAddress, time_t joined, time_t lastCheckedIn, GameWS__ArrayOfFloat *scores, bool waiting, GameWS__Game *game) { GameWS__Player *_p = soap_instantiate_GameWS__Player(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__Player::sessionId = sessionId; _p->GameWS__Player::login = login; _p->GameWS__Player::ipAddress = ipAddress; _p->GameWS__Player::joined = joined; _p->GameWS__Player::lastCheckedIn = lastCheckedIn; _p->GameWS__Player::scores = scores; _p->GameWS__Player::waiting = waiting; _p->GameWS__Player::game = game; } return _p; }
+
+inline void soap_delete_GameWS__Player(struct soap *soap, GameWS__Player *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__Player(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__ArrayOfPlayer
+#define SOAP_TYPE_GameWS__ArrayOfPlayer (9)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__ArrayOfPlayer(struct soap*, const char*, int, const GameWS__ArrayOfPlayer *, const char*);
+SOAP_FMAC3 GameWS__ArrayOfPlayer * SOAP_FMAC4 soap_in_GameWS__ArrayOfPlayer(struct soap*, const char*, GameWS__ArrayOfPlayer *, const char*);
+
+#ifndef soap_write_GameWS__ArrayOfPlayer
+#define soap_write_GameWS__ArrayOfPlayer(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:ArrayOfPlayer", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfPlayer * SOAP_FMAC4 soap_get_GameWS__ArrayOfPlayer(struct soap*, GameWS__ArrayOfPlayer *, const char*, const char*);
+
+#ifndef soap_read_GameWS__ArrayOfPlayer
+#define soap_read_GameWS__ArrayOfPlayer(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__ArrayOfPlayer(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__ArrayOfPlayer * SOAP_FMAC2 soap_instantiate_GameWS__ArrayOfPlayer(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__ArrayOfPlayer * soap_new_GameWS__ArrayOfPlayer(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__ArrayOfPlayer(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__ArrayOfPlayer * soap_new_req_GameWS__ArrayOfPlayer(struct soap *soap) { GameWS__ArrayOfPlayer *_p = soap_instantiate_GameWS__ArrayOfPlayer(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); } return _p; }
+
+inline GameWS__ArrayOfPlayer * soap_new_set_GameWS__ArrayOfPlayer(struct soap *soap, std::vector<GameWS__Player * >& Player) { GameWS__ArrayOfPlayer *_p = soap_instantiate_GameWS__ArrayOfPlayer(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__ArrayOfPlayer::Player = Player; } return _p; }
+
+inline void soap_delete_GameWS__ArrayOfPlayer(struct soap *soap, GameWS__ArrayOfPlayer *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__ArrayOfPlayer(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_GameWS__PlayRequestResult
+#define SOAP_TYPE_GameWS__PlayRequestResult (8)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_GameWS__PlayRequestResult(struct soap*, const char*, int, const GameWS__PlayRequestResult *, const char*);
+SOAP_FMAC3 GameWS__PlayRequestResult * SOAP_FMAC4 soap_in_GameWS__PlayRequestResult(struct soap*, const char*, GameWS__PlayRequestResult *, const char*);
+
+#ifndef soap_write_GameWS__PlayRequestResult
+#define soap_write_GameWS__PlayRequestResult(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || ((data)->soap_serialize(soap),0) || (data)->soap_put(soap, "GameWS:PlayRequestResult", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__PlayRequestResult * SOAP_FMAC4 soap_get_GameWS__PlayRequestResult(struct soap*, GameWS__PlayRequestResult *, const char*, const char*);
+
+#ifndef soap_read_GameWS__PlayRequestResult
+#define soap_read_GameWS__PlayRequestResult(soap, data) ( soap_begin_recv(soap) || !soap_get_GameWS__PlayRequestResult(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 GameWS__PlayRequestResult * SOAP_FMAC2 soap_instantiate_GameWS__PlayRequestResult(struct soap*, int, const char*, const char*, size_t*);
+
+inline GameWS__PlayRequestResult * soap_new_GameWS__PlayRequestResult(struct soap *soap, int n = -1) { return soap_instantiate_GameWS__PlayRequestResult(soap, n, NULL, NULL, NULL); }
+
+inline GameWS__PlayRequestResult * soap_new_req_GameWS__PlayRequestResult(struct soap *soap, int sessionId, bool hosting, int errorCode) { GameWS__PlayRequestResult *_p = soap_instantiate_GameWS__PlayRequestResult(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__PlayRequestResult::sessionId = sessionId; _p->GameWS__PlayRequestResult::hosting = hosting; _p->GameWS__PlayRequestResult::errorCode = errorCode; } return _p; }
+
+inline GameWS__PlayRequestResult * soap_new_set_GameWS__PlayRequestResult(struct soap *soap, int sessionId, std::string *opponentsIP, bool hosting, std::string *login, int errorCode) { GameWS__PlayRequestResult *_p = soap_instantiate_GameWS__PlayRequestResult(soap, -1, NULL, NULL, NULL); if (_p) { _p->soap_default(soap); _p->GameWS__PlayRequestResult::sessionId = sessionId; _p->GameWS__PlayRequestResult::opponentsIP = opponentsIP; _p->GameWS__PlayRequestResult::hosting = hosting; _p->GameWS__PlayRequestResult::login = login; _p->GameWS__PlayRequestResult::errorCode = errorCode; } return _p; }
+
+inline void soap_delete_GameWS__PlayRequestResult(struct soap *soap, GameWS__PlayRequestResult *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_GameWS__PlayRequestResult(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (45)
+#define SOAP_TYPE_SOAP_ENV__Fault (105)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Fault(struct soap*, struct SOAP_ENV__Fault *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Fault(struct soap*, const struct SOAP_ENV__Fault *);
@@ -360,7 +917,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Fault(struct soap*, int, int, voi
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (44)
+#define SOAP_TYPE_SOAP_ENV__Reason (104)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Reason(struct soap*, const struct SOAP_ENV__Reason *);
@@ -396,7 +953,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Reason(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (41)
+#define SOAP_TYPE_SOAP_ENV__Detail (101)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Detail(struct soap*, const struct SOAP_ENV__Detail *);
@@ -432,7 +989,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Detail(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (39)
+#define SOAP_TYPE_SOAP_ENV__Code (99)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Code(struct soap*, const struct SOAP_ENV__Code *);
@@ -468,7 +1025,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Code(struct soap*, int, int, void
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (38)
+#define SOAP_TYPE_SOAP_ENV__Header (98)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Header(struct soap*, struct SOAP_ENV__Header *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Header(struct soap*, const struct SOAP_ENV__Header *);
@@ -501,72 +1058,136 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Header(struct soap*, int, int, vo
 
 #endif
 
-#ifndef SOAP_TYPE___GameWS__getOpponentsIpAddress_
-#define SOAP_TYPE___GameWS__getOpponentsIpAddress_ (37)
+#ifndef SOAP_TYPE___GameWS__getScoreList_
+#define SOAP_TYPE___GameWS__getScoreList_ (97)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getOpponentsIpAddress_(struct soap*, struct __GameWS__getOpponentsIpAddress_ *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getOpponentsIpAddress_(struct soap*, const struct __GameWS__getOpponentsIpAddress_ *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__getOpponentsIpAddress_(struct soap*, const char*, int, const struct __GameWS__getOpponentsIpAddress_ *, const char*);
-SOAP_FMAC3 struct __GameWS__getOpponentsIpAddress_ * SOAP_FMAC4 soap_in___GameWS__getOpponentsIpAddress_(struct soap*, const char*, struct __GameWS__getOpponentsIpAddress_ *, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getScoreList_(struct soap*, struct __GameWS__getScoreList_ *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getScoreList_(struct soap*, const struct __GameWS__getScoreList_ *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__getScoreList_(struct soap*, const char*, int, const struct __GameWS__getScoreList_ *, const char*);
+SOAP_FMAC3 struct __GameWS__getScoreList_ * SOAP_FMAC4 soap_in___GameWS__getScoreList_(struct soap*, const char*, struct __GameWS__getScoreList_ *, const char*);
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__getOpponentsIpAddress_(struct soap*, const struct __GameWS__getOpponentsIpAddress_ *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__getScoreList_(struct soap*, const struct __GameWS__getScoreList_ *, const char*, const char*);
 
-#ifndef soap_write___GameWS__getOpponentsIpAddress_
-#define soap_write___GameWS__getOpponentsIpAddress_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__getOpponentsIpAddress_(soap, data),0) || soap_put___GameWS__getOpponentsIpAddress_(soap, data, "-GameWS:getOpponentsIpAddress", NULL) || soap_end_send(soap), (soap)->error )
-#endif
-
-SOAP_FMAC3 struct __GameWS__getOpponentsIpAddress_ * SOAP_FMAC4 soap_get___GameWS__getOpponentsIpAddress_(struct soap*, struct __GameWS__getOpponentsIpAddress_ *, const char*, const char*);
-
-#ifndef soap_read___GameWS__getOpponentsIpAddress_
-#define soap_read___GameWS__getOpponentsIpAddress_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__getOpponentsIpAddress_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_write___GameWS__getScoreList_
+#define soap_write___GameWS__getScoreList_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__getScoreList_(soap, data),0) || soap_put___GameWS__getScoreList_(soap, data, "-GameWS:getScoreList", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 struct __GameWS__getOpponentsIpAddress_ * SOAP_FMAC2 soap_instantiate___GameWS__getOpponentsIpAddress_(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 struct __GameWS__getScoreList_ * SOAP_FMAC4 soap_get___GameWS__getScoreList_(struct soap*, struct __GameWS__getScoreList_ *, const char*, const char*);
 
-inline struct __GameWS__getOpponentsIpAddress_ * soap_new___GameWS__getOpponentsIpAddress_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__getOpponentsIpAddress_(soap, n, NULL, NULL, NULL); }
-
-inline struct __GameWS__getOpponentsIpAddress_ * soap_new_req___GameWS__getOpponentsIpAddress_(struct soap *soap) { struct __GameWS__getOpponentsIpAddress_ *_p = soap_instantiate___GameWS__getOpponentsIpAddress_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getOpponentsIpAddress_(soap, _p); } return _p; }
-
-inline struct __GameWS__getOpponentsIpAddress_ * soap_new_set___GameWS__getOpponentsIpAddress_(struct soap *soap, _GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress) { struct __GameWS__getOpponentsIpAddress_ *_p = soap_instantiate___GameWS__getOpponentsIpAddress_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getOpponentsIpAddress_(soap, _p); _p->GameWS__getOpponentsIpAddress = GameWS__getOpponentsIpAddress; } return _p; }
-
-inline void soap_delete___GameWS__getOpponentsIpAddress_(struct soap *soap, struct __GameWS__getOpponentsIpAddress_ *p) { soap_delete(soap, p); }
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getOpponentsIpAddress_(struct soap*, int, int, void*, size_t, const void*, size_t);
-
-#ifndef SOAP_TYPE___GameWS__register_
-#define SOAP_TYPE___GameWS__register_ (35)
-#endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__register_(struct soap*, struct __GameWS__register_ *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__register_(struct soap*, const struct __GameWS__register_ *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__register_(struct soap*, const char*, int, const struct __GameWS__register_ *, const char*);
-SOAP_FMAC3 struct __GameWS__register_ * SOAP_FMAC4 soap_in___GameWS__register_(struct soap*, const char*, struct __GameWS__register_ *, const char*);
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__register_(struct soap*, const struct __GameWS__register_ *, const char*, const char*);
-
-#ifndef soap_write___GameWS__register_
-#define soap_write___GameWS__register_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__register_(soap, data),0) || soap_put___GameWS__register_(soap, data, "-GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_read___GameWS__getScoreList_
+#define soap_read___GameWS__getScoreList_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__getScoreList_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 struct __GameWS__register_ * SOAP_FMAC4 soap_get___GameWS__register_(struct soap*, struct __GameWS__register_ *, const char*, const char*);
+SOAP_FMAC1 struct __GameWS__getScoreList_ * SOAP_FMAC2 soap_instantiate___GameWS__getScoreList_(struct soap*, int, const char*, const char*, size_t*);
 
-#ifndef soap_read___GameWS__register_
-#define soap_read___GameWS__register_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__register_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+inline struct __GameWS__getScoreList_ * soap_new___GameWS__getScoreList_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__getScoreList_(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__getScoreList_ * soap_new_req___GameWS__getScoreList_(struct soap *soap) { struct __GameWS__getScoreList_ *_p = soap_instantiate___GameWS__getScoreList_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getScoreList_(soap, _p); } return _p; }
+
+inline struct __GameWS__getScoreList_ * soap_new_set___GameWS__getScoreList_(struct soap *soap, _GameWS__getScoreList *GameWS__getScoreList) { struct __GameWS__getScoreList_ *_p = soap_instantiate___GameWS__getScoreList_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getScoreList_(soap, _p); _p->GameWS__getScoreList = GameWS__getScoreList; } return _p; }
+
+inline void soap_delete___GameWS__getScoreList_(struct soap *soap, struct __GameWS__getScoreList_ *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getScoreList_(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__addScore_
+#define SOAP_TYPE___GameWS__addScore_ (95)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__addScore_(struct soap*, struct __GameWS__addScore_ *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__addScore_(struct soap*, const struct __GameWS__addScore_ *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__addScore_(struct soap*, const char*, int, const struct __GameWS__addScore_ *, const char*);
+SOAP_FMAC3 struct __GameWS__addScore_ * SOAP_FMAC4 soap_in___GameWS__addScore_(struct soap*, const char*, struct __GameWS__addScore_ *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__addScore_(struct soap*, const struct __GameWS__addScore_ *, const char*, const char*);
+
+#ifndef soap_write___GameWS__addScore_
+#define soap_write___GameWS__addScore_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__addScore_(soap, data),0) || soap_put___GameWS__addScore_(soap, data, "-GameWS:addScore", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 struct __GameWS__register_ * SOAP_FMAC2 soap_instantiate___GameWS__register_(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 struct __GameWS__addScore_ * SOAP_FMAC4 soap_get___GameWS__addScore_(struct soap*, struct __GameWS__addScore_ *, const char*, const char*);
 
-inline struct __GameWS__register_ * soap_new___GameWS__register_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__register_(soap, n, NULL, NULL, NULL); }
+#ifndef soap_read___GameWS__addScore_
+#define soap_read___GameWS__addScore_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__addScore_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
 
-inline struct __GameWS__register_ * soap_new_req___GameWS__register_(struct soap *soap) { struct __GameWS__register_ *_p = soap_instantiate___GameWS__register_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register_(soap, _p); } return _p; }
+SOAP_FMAC1 struct __GameWS__addScore_ * SOAP_FMAC2 soap_instantiate___GameWS__addScore_(struct soap*, int, const char*, const char*, size_t*);
 
-inline struct __GameWS__register_ * soap_new_set___GameWS__register_(struct soap *soap, _GameWS__register *GameWS__register) { struct __GameWS__register_ *_p = soap_instantiate___GameWS__register_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register_(soap, _p); _p->GameWS__register = GameWS__register; } return _p; }
+inline struct __GameWS__addScore_ * soap_new___GameWS__addScore_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__addScore_(soap, n, NULL, NULL, NULL); }
 
-inline void soap_delete___GameWS__register_(struct soap *soap, struct __GameWS__register_ *p) { soap_delete(soap, p); }
+inline struct __GameWS__addScore_ * soap_new_req___GameWS__addScore_(struct soap *soap) { struct __GameWS__addScore_ *_p = soap_instantiate___GameWS__addScore_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__addScore_(soap, _p); } return _p; }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__register_(struct soap*, int, int, void*, size_t, const void*, size_t);
+inline struct __GameWS__addScore_ * soap_new_set___GameWS__addScore_(struct soap *soap, _GameWS__addScore *GameWS__addScore) { struct __GameWS__addScore_ *_p = soap_instantiate___GameWS__addScore_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__addScore_(soap, _p); _p->GameWS__addScore = GameWS__addScore; } return _p; }
+
+inline void soap_delete___GameWS__addScore_(struct soap *soap, struct __GameWS__addScore_ *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__addScore_(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__checkIn_
+#define SOAP_TYPE___GameWS__checkIn_ (93)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__checkIn_(struct soap*, struct __GameWS__checkIn_ *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__checkIn_(struct soap*, const struct __GameWS__checkIn_ *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__checkIn_(struct soap*, const char*, int, const struct __GameWS__checkIn_ *, const char*);
+SOAP_FMAC3 struct __GameWS__checkIn_ * SOAP_FMAC4 soap_in___GameWS__checkIn_(struct soap*, const char*, struct __GameWS__checkIn_ *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__checkIn_(struct soap*, const struct __GameWS__checkIn_ *, const char*, const char*);
+
+#ifndef soap_write___GameWS__checkIn_
+#define soap_write___GameWS__checkIn_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__checkIn_(soap, data),0) || soap_put___GameWS__checkIn_(soap, data, "-GameWS:checkIn", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__checkIn_ * SOAP_FMAC4 soap_get___GameWS__checkIn_(struct soap*, struct __GameWS__checkIn_ *, const char*, const char*);
+
+#ifndef soap_read___GameWS__checkIn_
+#define soap_read___GameWS__checkIn_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__checkIn_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__checkIn_ * SOAP_FMAC2 soap_instantiate___GameWS__checkIn_(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__checkIn_ * soap_new___GameWS__checkIn_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__checkIn_(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__checkIn_ * soap_new_req___GameWS__checkIn_(struct soap *soap) { struct __GameWS__checkIn_ *_p = soap_instantiate___GameWS__checkIn_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__checkIn_(soap, _p); } return _p; }
+
+inline struct __GameWS__checkIn_ * soap_new_set___GameWS__checkIn_(struct soap *soap, _GameWS__checkIn *GameWS__checkIn) { struct __GameWS__checkIn_ *_p = soap_instantiate___GameWS__checkIn_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__checkIn_(soap, _p); _p->GameWS__checkIn = GameWS__checkIn; } return _p; }
+
+inline void soap_delete___GameWS__checkIn_(struct soap *soap, struct __GameWS__checkIn_ *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__checkIn_(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__removePlayer_
+#define SOAP_TYPE___GameWS__removePlayer_ (91)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__removePlayer_(struct soap*, struct __GameWS__removePlayer_ *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__removePlayer_(struct soap*, const struct __GameWS__removePlayer_ *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__removePlayer_(struct soap*, const char*, int, const struct __GameWS__removePlayer_ *, const char*);
+SOAP_FMAC3 struct __GameWS__removePlayer_ * SOAP_FMAC4 soap_in___GameWS__removePlayer_(struct soap*, const char*, struct __GameWS__removePlayer_ *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__removePlayer_(struct soap*, const struct __GameWS__removePlayer_ *, const char*, const char*);
+
+#ifndef soap_write___GameWS__removePlayer_
+#define soap_write___GameWS__removePlayer_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__removePlayer_(soap, data),0) || soap_put___GameWS__removePlayer_(soap, data, "-GameWS:removePlayer", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__removePlayer_ * SOAP_FMAC4 soap_get___GameWS__removePlayer_(struct soap*, struct __GameWS__removePlayer_ *, const char*, const char*);
+
+#ifndef soap_read___GameWS__removePlayer_
+#define soap_read___GameWS__removePlayer_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__removePlayer_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__removePlayer_ * SOAP_FMAC2 soap_instantiate___GameWS__removePlayer_(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__removePlayer_ * soap_new___GameWS__removePlayer_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__removePlayer_(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__removePlayer_ * soap_new_req___GameWS__removePlayer_(struct soap *soap) { struct __GameWS__removePlayer_ *_p = soap_instantiate___GameWS__removePlayer_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__removePlayer_(soap, _p); } return _p; }
+
+inline struct __GameWS__removePlayer_ * soap_new_set___GameWS__removePlayer_(struct soap *soap, _GameWS__removePlayer *GameWS__removePlayer) { struct __GameWS__removePlayer_ *_p = soap_instantiate___GameWS__removePlayer_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__removePlayer_(soap, _p); _p->GameWS__removePlayer = GameWS__removePlayer; } return _p; }
+
+inline void soap_delete___GameWS__removePlayer_(struct soap *soap, struct __GameWS__removePlayer_ *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__removePlayer_(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE___GameWS__getGamesPlayed_
-#define SOAP_TYPE___GameWS__getGamesPlayed_ (33)
+#define SOAP_TYPE___GameWS__getGamesPlayed_ (89)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getGamesPlayed_(struct soap*, struct __GameWS__getGamesPlayed_ *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getGamesPlayed_(struct soap*, const struct __GameWS__getGamesPlayed_ *);
@@ -597,72 +1218,232 @@ inline void soap_delete___GameWS__getGamesPlayed_(struct soap *soap, struct __Ga
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getGamesPlayed_(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE___GameWS__getOpponentsIpAddress
-#define SOAP_TYPE___GameWS__getOpponentsIpAddress (31)
+#ifndef SOAP_TYPE___GameWS__getPlayers_
+#define SOAP_TYPE___GameWS__getPlayers_ (87)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getOpponentsIpAddress(struct soap*, struct __GameWS__getOpponentsIpAddress *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getOpponentsIpAddress(struct soap*, const struct __GameWS__getOpponentsIpAddress *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__getOpponentsIpAddress(struct soap*, const char*, int, const struct __GameWS__getOpponentsIpAddress *, const char*);
-SOAP_FMAC3 struct __GameWS__getOpponentsIpAddress * SOAP_FMAC4 soap_in___GameWS__getOpponentsIpAddress(struct soap*, const char*, struct __GameWS__getOpponentsIpAddress *, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getPlayers_(struct soap*, struct __GameWS__getPlayers_ *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getPlayers_(struct soap*, const struct __GameWS__getPlayers_ *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__getPlayers_(struct soap*, const char*, int, const struct __GameWS__getPlayers_ *, const char*);
+SOAP_FMAC3 struct __GameWS__getPlayers_ * SOAP_FMAC4 soap_in___GameWS__getPlayers_(struct soap*, const char*, struct __GameWS__getPlayers_ *, const char*);
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__getOpponentsIpAddress(struct soap*, const struct __GameWS__getOpponentsIpAddress *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__getPlayers_(struct soap*, const struct __GameWS__getPlayers_ *, const char*, const char*);
 
-#ifndef soap_write___GameWS__getOpponentsIpAddress
-#define soap_write___GameWS__getOpponentsIpAddress(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__getOpponentsIpAddress(soap, data),0) || soap_put___GameWS__getOpponentsIpAddress(soap, data, "-GameWS:getOpponentsIpAddress", NULL) || soap_end_send(soap), (soap)->error )
-#endif
-
-SOAP_FMAC3 struct __GameWS__getOpponentsIpAddress * SOAP_FMAC4 soap_get___GameWS__getOpponentsIpAddress(struct soap*, struct __GameWS__getOpponentsIpAddress *, const char*, const char*);
-
-#ifndef soap_read___GameWS__getOpponentsIpAddress
-#define soap_read___GameWS__getOpponentsIpAddress(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__getOpponentsIpAddress(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_write___GameWS__getPlayers_
+#define soap_write___GameWS__getPlayers_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__getPlayers_(soap, data),0) || soap_put___GameWS__getPlayers_(soap, data, "-GameWS:getPlayers", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 struct __GameWS__getOpponentsIpAddress * SOAP_FMAC2 soap_instantiate___GameWS__getOpponentsIpAddress(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 struct __GameWS__getPlayers_ * SOAP_FMAC4 soap_get___GameWS__getPlayers_(struct soap*, struct __GameWS__getPlayers_ *, const char*, const char*);
 
-inline struct __GameWS__getOpponentsIpAddress * soap_new___GameWS__getOpponentsIpAddress(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__getOpponentsIpAddress(soap, n, NULL, NULL, NULL); }
-
-inline struct __GameWS__getOpponentsIpAddress * soap_new_req___GameWS__getOpponentsIpAddress(struct soap *soap) { struct __GameWS__getOpponentsIpAddress *_p = soap_instantiate___GameWS__getOpponentsIpAddress(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getOpponentsIpAddress(soap, _p); } return _p; }
-
-inline struct __GameWS__getOpponentsIpAddress * soap_new_set___GameWS__getOpponentsIpAddress(struct soap *soap, _GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress) { struct __GameWS__getOpponentsIpAddress *_p = soap_instantiate___GameWS__getOpponentsIpAddress(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getOpponentsIpAddress(soap, _p); _p->GameWS__getOpponentsIpAddress = GameWS__getOpponentsIpAddress; } return _p; }
-
-inline void soap_delete___GameWS__getOpponentsIpAddress(struct soap *soap, struct __GameWS__getOpponentsIpAddress *p) { soap_delete(soap, p); }
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getOpponentsIpAddress(struct soap*, int, int, void*, size_t, const void*, size_t);
-
-#ifndef SOAP_TYPE___GameWS__register
-#define SOAP_TYPE___GameWS__register (27)
-#endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__register(struct soap*, struct __GameWS__register *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__register(struct soap*, const struct __GameWS__register *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__register(struct soap*, const char*, int, const struct __GameWS__register *, const char*);
-SOAP_FMAC3 struct __GameWS__register * SOAP_FMAC4 soap_in___GameWS__register(struct soap*, const char*, struct __GameWS__register *, const char*);
-
-SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__register(struct soap*, const struct __GameWS__register *, const char*, const char*);
-
-#ifndef soap_write___GameWS__register
-#define soap_write___GameWS__register(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__register(soap, data),0) || soap_put___GameWS__register(soap, data, "-GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_read___GameWS__getPlayers_
+#define soap_read___GameWS__getPlayers_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__getPlayers_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 struct __GameWS__register * SOAP_FMAC4 soap_get___GameWS__register(struct soap*, struct __GameWS__register *, const char*, const char*);
+SOAP_FMAC1 struct __GameWS__getPlayers_ * SOAP_FMAC2 soap_instantiate___GameWS__getPlayers_(struct soap*, int, const char*, const char*, size_t*);
 
-#ifndef soap_read___GameWS__register
-#define soap_read___GameWS__register(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__register(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+inline struct __GameWS__getPlayers_ * soap_new___GameWS__getPlayers_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__getPlayers_(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__getPlayers_ * soap_new_req___GameWS__getPlayers_(struct soap *soap) { struct __GameWS__getPlayers_ *_p = soap_instantiate___GameWS__getPlayers_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getPlayers_(soap, _p); } return _p; }
+
+inline struct __GameWS__getPlayers_ * soap_new_set___GameWS__getPlayers_(struct soap *soap, _GameWS__getPlayers *GameWS__getPlayers) { struct __GameWS__getPlayers_ *_p = soap_instantiate___GameWS__getPlayers_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getPlayers_(soap, _p); _p->GameWS__getPlayers = GameWS__getPlayers; } return _p; }
+
+inline void soap_delete___GameWS__getPlayers_(struct soap *soap, struct __GameWS__getPlayers_ *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getPlayers_(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__play_
+#define SOAP_TYPE___GameWS__play_ (85)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__play_(struct soap*, struct __GameWS__play_ *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__play_(struct soap*, const struct __GameWS__play_ *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__play_(struct soap*, const char*, int, const struct __GameWS__play_ *, const char*);
+SOAP_FMAC3 struct __GameWS__play_ * SOAP_FMAC4 soap_in___GameWS__play_(struct soap*, const char*, struct __GameWS__play_ *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__play_(struct soap*, const struct __GameWS__play_ *, const char*, const char*);
+
+#ifndef soap_write___GameWS__play_
+#define soap_write___GameWS__play_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__play_(soap, data),0) || soap_put___GameWS__play_(soap, data, "-GameWS:play", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
-SOAP_FMAC1 struct __GameWS__register * SOAP_FMAC2 soap_instantiate___GameWS__register(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 struct __GameWS__play_ * SOAP_FMAC4 soap_get___GameWS__play_(struct soap*, struct __GameWS__play_ *, const char*, const char*);
 
-inline struct __GameWS__register * soap_new___GameWS__register(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__register(soap, n, NULL, NULL, NULL); }
+#ifndef soap_read___GameWS__play_
+#define soap_read___GameWS__play_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__play_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
 
-inline struct __GameWS__register * soap_new_req___GameWS__register(struct soap *soap) { struct __GameWS__register *_p = soap_instantiate___GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register(soap, _p); } return _p; }
+SOAP_FMAC1 struct __GameWS__play_ * SOAP_FMAC2 soap_instantiate___GameWS__play_(struct soap*, int, const char*, const char*, size_t*);
 
-inline struct __GameWS__register * soap_new_set___GameWS__register(struct soap *soap, _GameWS__register *GameWS__register) { struct __GameWS__register *_p = soap_instantiate___GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register(soap, _p); _p->GameWS__register = GameWS__register; } return _p; }
+inline struct __GameWS__play_ * soap_new___GameWS__play_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__play_(soap, n, NULL, NULL, NULL); }
 
-inline void soap_delete___GameWS__register(struct soap *soap, struct __GameWS__register *p) { soap_delete(soap, p); }
+inline struct __GameWS__play_ * soap_new_req___GameWS__play_(struct soap *soap) { struct __GameWS__play_ *_p = soap_instantiate___GameWS__play_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__play_(soap, _p); } return _p; }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__register(struct soap*, int, int, void*, size_t, const void*, size_t);
+inline struct __GameWS__play_ * soap_new_set___GameWS__play_(struct soap *soap, _GameWS__play *GameWS__play) { struct __GameWS__play_ *_p = soap_instantiate___GameWS__play_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__play_(soap, _p); _p->GameWS__play = GameWS__play; } return _p; }
+
+inline void soap_delete___GameWS__play_(struct soap *soap, struct __GameWS__play_ *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__play_(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__register_
+#define SOAP_TYPE___GameWS__register_ (83)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__register_(struct soap*, struct __GameWS__register_ *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__register_(struct soap*, const struct __GameWS__register_ *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__register_(struct soap*, const char*, int, const struct __GameWS__register_ *, const char*);
+SOAP_FMAC3 struct __GameWS__register_ * SOAP_FMAC4 soap_in___GameWS__register_(struct soap*, const char*, struct __GameWS__register_ *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__register_(struct soap*, const struct __GameWS__register_ *, const char*, const char*);
+
+#ifndef soap_write___GameWS__register_
+#define soap_write___GameWS__register_(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__register_(soap, data),0) || soap_put___GameWS__register_(soap, data, "-GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__register_ * SOAP_FMAC4 soap_get___GameWS__register_(struct soap*, struct __GameWS__register_ *, const char*, const char*);
+
+#ifndef soap_read___GameWS__register_
+#define soap_read___GameWS__register_(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__register_(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__register_ * SOAP_FMAC2 soap_instantiate___GameWS__register_(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__register_ * soap_new___GameWS__register_(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__register_(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__register_ * soap_new_req___GameWS__register_(struct soap *soap) { struct __GameWS__register_ *_p = soap_instantiate___GameWS__register_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register_(soap, _p); } return _p; }
+
+inline struct __GameWS__register_ * soap_new_set___GameWS__register_(struct soap *soap, _GameWS__register *GameWS__register) { struct __GameWS__register_ *_p = soap_instantiate___GameWS__register_(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register_(soap, _p); _p->GameWS__register = GameWS__register; } return _p; }
+
+inline void soap_delete___GameWS__register_(struct soap *soap, struct __GameWS__register_ *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__register_(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__getScoreList
+#define SOAP_TYPE___GameWS__getScoreList (81)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getScoreList(struct soap*, struct __GameWS__getScoreList *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getScoreList(struct soap*, const struct __GameWS__getScoreList *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__getScoreList(struct soap*, const char*, int, const struct __GameWS__getScoreList *, const char*);
+SOAP_FMAC3 struct __GameWS__getScoreList * SOAP_FMAC4 soap_in___GameWS__getScoreList(struct soap*, const char*, struct __GameWS__getScoreList *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__getScoreList(struct soap*, const struct __GameWS__getScoreList *, const char*, const char*);
+
+#ifndef soap_write___GameWS__getScoreList
+#define soap_write___GameWS__getScoreList(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__getScoreList(soap, data),0) || soap_put___GameWS__getScoreList(soap, data, "-GameWS:getScoreList", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__getScoreList * SOAP_FMAC4 soap_get___GameWS__getScoreList(struct soap*, struct __GameWS__getScoreList *, const char*, const char*);
+
+#ifndef soap_read___GameWS__getScoreList
+#define soap_read___GameWS__getScoreList(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__getScoreList(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__getScoreList * SOAP_FMAC2 soap_instantiate___GameWS__getScoreList(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__getScoreList * soap_new___GameWS__getScoreList(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__getScoreList(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__getScoreList * soap_new_req___GameWS__getScoreList(struct soap *soap) { struct __GameWS__getScoreList *_p = soap_instantiate___GameWS__getScoreList(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getScoreList(soap, _p); } return _p; }
+
+inline struct __GameWS__getScoreList * soap_new_set___GameWS__getScoreList(struct soap *soap, _GameWS__getScoreList *GameWS__getScoreList) { struct __GameWS__getScoreList *_p = soap_instantiate___GameWS__getScoreList(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getScoreList(soap, _p); _p->GameWS__getScoreList = GameWS__getScoreList; } return _p; }
+
+inline void soap_delete___GameWS__getScoreList(struct soap *soap, struct __GameWS__getScoreList *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getScoreList(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__addScore
+#define SOAP_TYPE___GameWS__addScore (77)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__addScore(struct soap*, struct __GameWS__addScore *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__addScore(struct soap*, const struct __GameWS__addScore *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__addScore(struct soap*, const char*, int, const struct __GameWS__addScore *, const char*);
+SOAP_FMAC3 struct __GameWS__addScore * SOAP_FMAC4 soap_in___GameWS__addScore(struct soap*, const char*, struct __GameWS__addScore *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__addScore(struct soap*, const struct __GameWS__addScore *, const char*, const char*);
+
+#ifndef soap_write___GameWS__addScore
+#define soap_write___GameWS__addScore(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__addScore(soap, data),0) || soap_put___GameWS__addScore(soap, data, "-GameWS:addScore", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__addScore * SOAP_FMAC4 soap_get___GameWS__addScore(struct soap*, struct __GameWS__addScore *, const char*, const char*);
+
+#ifndef soap_read___GameWS__addScore
+#define soap_read___GameWS__addScore(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__addScore(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__addScore * SOAP_FMAC2 soap_instantiate___GameWS__addScore(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__addScore * soap_new___GameWS__addScore(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__addScore(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__addScore * soap_new_req___GameWS__addScore(struct soap *soap) { struct __GameWS__addScore *_p = soap_instantiate___GameWS__addScore(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__addScore(soap, _p); } return _p; }
+
+inline struct __GameWS__addScore * soap_new_set___GameWS__addScore(struct soap *soap, _GameWS__addScore *GameWS__addScore) { struct __GameWS__addScore *_p = soap_instantiate___GameWS__addScore(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__addScore(soap, _p); _p->GameWS__addScore = GameWS__addScore; } return _p; }
+
+inline void soap_delete___GameWS__addScore(struct soap *soap, struct __GameWS__addScore *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__addScore(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__checkIn
+#define SOAP_TYPE___GameWS__checkIn (73)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__checkIn(struct soap*, struct __GameWS__checkIn *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__checkIn(struct soap*, const struct __GameWS__checkIn *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__checkIn(struct soap*, const char*, int, const struct __GameWS__checkIn *, const char*);
+SOAP_FMAC3 struct __GameWS__checkIn * SOAP_FMAC4 soap_in___GameWS__checkIn(struct soap*, const char*, struct __GameWS__checkIn *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__checkIn(struct soap*, const struct __GameWS__checkIn *, const char*, const char*);
+
+#ifndef soap_write___GameWS__checkIn
+#define soap_write___GameWS__checkIn(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__checkIn(soap, data),0) || soap_put___GameWS__checkIn(soap, data, "-GameWS:checkIn", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__checkIn * SOAP_FMAC4 soap_get___GameWS__checkIn(struct soap*, struct __GameWS__checkIn *, const char*, const char*);
+
+#ifndef soap_read___GameWS__checkIn
+#define soap_read___GameWS__checkIn(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__checkIn(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__checkIn * SOAP_FMAC2 soap_instantiate___GameWS__checkIn(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__checkIn * soap_new___GameWS__checkIn(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__checkIn(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__checkIn * soap_new_req___GameWS__checkIn(struct soap *soap) { struct __GameWS__checkIn *_p = soap_instantiate___GameWS__checkIn(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__checkIn(soap, _p); } return _p; }
+
+inline struct __GameWS__checkIn * soap_new_set___GameWS__checkIn(struct soap *soap, _GameWS__checkIn *GameWS__checkIn) { struct __GameWS__checkIn *_p = soap_instantiate___GameWS__checkIn(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__checkIn(soap, _p); _p->GameWS__checkIn = GameWS__checkIn; } return _p; }
+
+inline void soap_delete___GameWS__checkIn(struct soap *soap, struct __GameWS__checkIn *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__checkIn(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__removePlayer
+#define SOAP_TYPE___GameWS__removePlayer (69)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__removePlayer(struct soap*, struct __GameWS__removePlayer *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__removePlayer(struct soap*, const struct __GameWS__removePlayer *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__removePlayer(struct soap*, const char*, int, const struct __GameWS__removePlayer *, const char*);
+SOAP_FMAC3 struct __GameWS__removePlayer * SOAP_FMAC4 soap_in___GameWS__removePlayer(struct soap*, const char*, struct __GameWS__removePlayer *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__removePlayer(struct soap*, const struct __GameWS__removePlayer *, const char*, const char*);
+
+#ifndef soap_write___GameWS__removePlayer
+#define soap_write___GameWS__removePlayer(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__removePlayer(soap, data),0) || soap_put___GameWS__removePlayer(soap, data, "-GameWS:removePlayer", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__removePlayer * SOAP_FMAC4 soap_get___GameWS__removePlayer(struct soap*, struct __GameWS__removePlayer *, const char*, const char*);
+
+#ifndef soap_read___GameWS__removePlayer
+#define soap_read___GameWS__removePlayer(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__removePlayer(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__removePlayer * SOAP_FMAC2 soap_instantiate___GameWS__removePlayer(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__removePlayer * soap_new___GameWS__removePlayer(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__removePlayer(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__removePlayer * soap_new_req___GameWS__removePlayer(struct soap *soap) { struct __GameWS__removePlayer *_p = soap_instantiate___GameWS__removePlayer(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__removePlayer(soap, _p); } return _p; }
+
+inline struct __GameWS__removePlayer * soap_new_set___GameWS__removePlayer(struct soap *soap, _GameWS__removePlayer *GameWS__removePlayer) { struct __GameWS__removePlayer *_p = soap_instantiate___GameWS__removePlayer(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__removePlayer(soap, _p); _p->GameWS__removePlayer = GameWS__removePlayer; } return _p; }
+
+inline void soap_delete___GameWS__removePlayer(struct soap *soap, struct __GameWS__removePlayer *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__removePlayer(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE___GameWS__getGamesPlayed
-#define SOAP_TYPE___GameWS__getGamesPlayed (23)
+#define SOAP_TYPE___GameWS__getGamesPlayed (65)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getGamesPlayed(struct soap*, struct __GameWS__getGamesPlayed *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getGamesPlayed(struct soap*, const struct __GameWS__getGamesPlayed *);
@@ -693,10 +1474,106 @@ inline void soap_delete___GameWS__getGamesPlayed(struct soap *soap, struct __Gam
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getGamesPlayed(struct soap*, int, int, void*, size_t, const void*, size_t);
 
+#ifndef SOAP_TYPE___GameWS__getPlayers
+#define SOAP_TYPE___GameWS__getPlayers (61)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__getPlayers(struct soap*, struct __GameWS__getPlayers *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__getPlayers(struct soap*, const struct __GameWS__getPlayers *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__getPlayers(struct soap*, const char*, int, const struct __GameWS__getPlayers *, const char*);
+SOAP_FMAC3 struct __GameWS__getPlayers * SOAP_FMAC4 soap_in___GameWS__getPlayers(struct soap*, const char*, struct __GameWS__getPlayers *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__getPlayers(struct soap*, const struct __GameWS__getPlayers *, const char*, const char*);
+
+#ifndef soap_write___GameWS__getPlayers
+#define soap_write___GameWS__getPlayers(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__getPlayers(soap, data),0) || soap_put___GameWS__getPlayers(soap, data, "-GameWS:getPlayers", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__getPlayers * SOAP_FMAC4 soap_get___GameWS__getPlayers(struct soap*, struct __GameWS__getPlayers *, const char*, const char*);
+
+#ifndef soap_read___GameWS__getPlayers
+#define soap_read___GameWS__getPlayers(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__getPlayers(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__getPlayers * SOAP_FMAC2 soap_instantiate___GameWS__getPlayers(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__getPlayers * soap_new___GameWS__getPlayers(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__getPlayers(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__getPlayers * soap_new_req___GameWS__getPlayers(struct soap *soap) { struct __GameWS__getPlayers *_p = soap_instantiate___GameWS__getPlayers(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getPlayers(soap, _p); } return _p; }
+
+inline struct __GameWS__getPlayers * soap_new_set___GameWS__getPlayers(struct soap *soap, _GameWS__getPlayers *GameWS__getPlayers) { struct __GameWS__getPlayers *_p = soap_instantiate___GameWS__getPlayers(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__getPlayers(soap, _p); _p->GameWS__getPlayers = GameWS__getPlayers; } return _p; }
+
+inline void soap_delete___GameWS__getPlayers(struct soap *soap, struct __GameWS__getPlayers *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__getPlayers(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__play
+#define SOAP_TYPE___GameWS__play (57)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__play(struct soap*, struct __GameWS__play *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__play(struct soap*, const struct __GameWS__play *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__play(struct soap*, const char*, int, const struct __GameWS__play *, const char*);
+SOAP_FMAC3 struct __GameWS__play * SOAP_FMAC4 soap_in___GameWS__play(struct soap*, const char*, struct __GameWS__play *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__play(struct soap*, const struct __GameWS__play *, const char*, const char*);
+
+#ifndef soap_write___GameWS__play
+#define soap_write___GameWS__play(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__play(soap, data),0) || soap_put___GameWS__play(soap, data, "-GameWS:play", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__play * SOAP_FMAC4 soap_get___GameWS__play(struct soap*, struct __GameWS__play *, const char*, const char*);
+
+#ifndef soap_read___GameWS__play
+#define soap_read___GameWS__play(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__play(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__play * SOAP_FMAC2 soap_instantiate___GameWS__play(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__play * soap_new___GameWS__play(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__play(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__play * soap_new_req___GameWS__play(struct soap *soap) { struct __GameWS__play *_p = soap_instantiate___GameWS__play(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__play(soap, _p); } return _p; }
+
+inline struct __GameWS__play * soap_new_set___GameWS__play(struct soap *soap, _GameWS__play *GameWS__play) { struct __GameWS__play *_p = soap_instantiate___GameWS__play(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__play(soap, _p); _p->GameWS__play = GameWS__play; } return _p; }
+
+inline void soap_delete___GameWS__play(struct soap *soap, struct __GameWS__play *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__play(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE___GameWS__register
+#define SOAP_TYPE___GameWS__register (53)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default___GameWS__register(struct soap*, struct __GameWS__register *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize___GameWS__register(struct soap*, const struct __GameWS__register *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out___GameWS__register(struct soap*, const char*, int, const struct __GameWS__register *, const char*);
+SOAP_FMAC3 struct __GameWS__register * SOAP_FMAC4 soap_in___GameWS__register(struct soap*, const char*, struct __GameWS__register *, const char*);
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put___GameWS__register(struct soap*, const struct __GameWS__register *, const char*, const char*);
+
+#ifndef soap_write___GameWS__register
+#define soap_write___GameWS__register(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize___GameWS__register(soap, data),0) || soap_put___GameWS__register(soap, data, "-GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 struct __GameWS__register * SOAP_FMAC4 soap_get___GameWS__register(struct soap*, struct __GameWS__register *, const char*, const char*);
+
+#ifndef soap_read___GameWS__register
+#define soap_read___GameWS__register(soap, data) ( soap_begin_recv(soap) || !soap_get___GameWS__register(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+SOAP_FMAC1 struct __GameWS__register * SOAP_FMAC2 soap_instantiate___GameWS__register(struct soap*, int, const char*, const char*, size_t*);
+
+inline struct __GameWS__register * soap_new___GameWS__register(struct soap *soap, int n = -1) { return soap_instantiate___GameWS__register(soap, n, NULL, NULL, NULL); }
+
+inline struct __GameWS__register * soap_new_req___GameWS__register(struct soap *soap) { struct __GameWS__register *_p = soap_instantiate___GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register(soap, _p); } return _p; }
+
+inline struct __GameWS__register * soap_new_set___GameWS__register(struct soap *soap, _GameWS__register *GameWS__register) { struct __GameWS__register *_p = soap_instantiate___GameWS__register(soap, -1, NULL, NULL, NULL); if (_p) { soap_default___GameWS__register(soap, _p); _p->GameWS__register = GameWS__register; } return _p; }
+
+inline void soap_delete___GameWS__register(struct soap *soap, struct __GameWS__register *p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy___GameWS__register(struct soap*, int, int, void*, size_t, const void*, size_t);
+
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Reason
-#define SOAP_TYPE_PointerToSOAP_ENV__Reason (47)
+#define SOAP_TYPE_PointerToSOAP_ENV__Reason (107)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSOAP_ENV__Reason(struct soap*, const char *, int, struct SOAP_ENV__Reason *const*, const char *);
@@ -719,7 +1596,7 @@ SOAP_FMAC3 struct SOAP_ENV__Reason ** SOAP_FMAC4 soap_get_PointerToSOAP_ENV__Rea
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Detail
-#define SOAP_TYPE_PointerToSOAP_ENV__Detail (46)
+#define SOAP_TYPE_PointerToSOAP_ENV__Detail (106)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSOAP_ENV__Detail(struct soap*, const char *, int, struct SOAP_ENV__Detail *const*, const char *);
@@ -742,7 +1619,7 @@ SOAP_FMAC3 struct SOAP_ENV__Detail ** SOAP_FMAC4 soap_get_PointerToSOAP_ENV__Det
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Code
-#define SOAP_TYPE_PointerToSOAP_ENV__Code (40)
+#define SOAP_TYPE_PointerToSOAP_ENV__Code (100)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSOAP_ENV__Code(struct soap*, const char *, int, struct SOAP_ENV__Code *const*, const char *);
@@ -762,84 +1639,160 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_get_PointerToSOAP_ENV__Code(
 
 #endif
 
-#ifndef SOAP_TYPE_PointerTo_GameWS__getOpponentsIpAddressResponse
-#define SOAP_TYPE_PointerTo_GameWS__getOpponentsIpAddressResponse (29)
+#ifndef SOAP_TYPE_PointerTo_GameWS__getScoreListResponse
+#define SOAP_TYPE_PointerTo_GameWS__getScoreListResponse (79)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getOpponentsIpAddressResponse(struct soap*, _GameWS__getOpponentsIpAddressResponse *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getOpponentsIpAddressResponse(struct soap*, const char *, int, _GameWS__getOpponentsIpAddressResponse *const*, const char *);
-SOAP_FMAC3 _GameWS__getOpponentsIpAddressResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__getOpponentsIpAddressResponse(struct soap*, const char*, _GameWS__getOpponentsIpAddressResponse **, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__getOpponentsIpAddressResponse(struct soap*, _GameWS__getOpponentsIpAddressResponse *const*, const char*, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getScoreListResponse(struct soap*, _GameWS__getScoreListResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getScoreListResponse(struct soap*, const char *, int, _GameWS__getScoreListResponse *const*, const char *);
+SOAP_FMAC3 _GameWS__getScoreListResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__getScoreListResponse(struct soap*, const char*, _GameWS__getScoreListResponse **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__getScoreListResponse(struct soap*, _GameWS__getScoreListResponse *const*, const char*, const char*);
 
-#ifndef soap_write_PointerTo_GameWS__getOpponentsIpAddressResponse
-#define soap_write_PointerTo_GameWS__getOpponentsIpAddressResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__getOpponentsIpAddressResponse(soap, data),0) || soap_put_PointerTo_GameWS__getOpponentsIpAddressResponse(soap, data, "GameWS:getOpponentsIpAddressResponse", NULL) || soap_end_send(soap), (soap)->error )
-#endif
-
-SOAP_FMAC3 _GameWS__getOpponentsIpAddressResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__getOpponentsIpAddressResponse(struct soap*, _GameWS__getOpponentsIpAddressResponse **, const char*, const char*);
-
-#ifndef soap_read_PointerTo_GameWS__getOpponentsIpAddressResponse
-#define soap_read_PointerTo_GameWS__getOpponentsIpAddressResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__getOpponentsIpAddressResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_write_PointerTo_GameWS__getScoreListResponse
+#define soap_write_PointerTo_GameWS__getScoreListResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__getScoreListResponse(soap, data),0) || soap_put_PointerTo_GameWS__getScoreListResponse(soap, data, "GameWS:getScoreListResponse", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
+SOAP_FMAC3 _GameWS__getScoreListResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__getScoreListResponse(struct soap*, _GameWS__getScoreListResponse **, const char*, const char*);
 
-#ifndef SOAP_TYPE_PointerTo_GameWS__getOpponentsIpAddress
-#define SOAP_TYPE_PointerTo_GameWS__getOpponentsIpAddress (28)
-#endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getOpponentsIpAddress(struct soap*, _GameWS__getOpponentsIpAddress *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getOpponentsIpAddress(struct soap*, const char *, int, _GameWS__getOpponentsIpAddress *const*, const char *);
-SOAP_FMAC3 _GameWS__getOpponentsIpAddress ** SOAP_FMAC4 soap_in_PointerTo_GameWS__getOpponentsIpAddress(struct soap*, const char*, _GameWS__getOpponentsIpAddress **, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__getOpponentsIpAddress(struct soap*, _GameWS__getOpponentsIpAddress *const*, const char*, const char*);
-
-#ifndef soap_write_PointerTo_GameWS__getOpponentsIpAddress
-#define soap_write_PointerTo_GameWS__getOpponentsIpAddress(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__getOpponentsIpAddress(soap, data),0) || soap_put_PointerTo_GameWS__getOpponentsIpAddress(soap, data, "GameWS:getOpponentsIpAddress", NULL) || soap_end_send(soap), (soap)->error )
-#endif
-
-SOAP_FMAC3 _GameWS__getOpponentsIpAddress ** SOAP_FMAC4 soap_get_PointerTo_GameWS__getOpponentsIpAddress(struct soap*, _GameWS__getOpponentsIpAddress **, const char*, const char*);
-
-#ifndef soap_read_PointerTo_GameWS__getOpponentsIpAddress
-#define soap_read_PointerTo_GameWS__getOpponentsIpAddress(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__getOpponentsIpAddress(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_read_PointerTo_GameWS__getScoreListResponse
+#define soap_read_PointerTo_GameWS__getScoreListResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__getScoreListResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
 
-#ifndef SOAP_TYPE_PointerTo_GameWS__registerResponse
-#define SOAP_TYPE_PointerTo_GameWS__registerResponse (25)
+#ifndef SOAP_TYPE_PointerTo_GameWS__getScoreList
+#define SOAP_TYPE_PointerTo_GameWS__getScoreList (78)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__registerResponse(struct soap*, _GameWS__registerResponse *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__registerResponse(struct soap*, const char *, int, _GameWS__registerResponse *const*, const char *);
-SOAP_FMAC3 _GameWS__registerResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__registerResponse(struct soap*, const char*, _GameWS__registerResponse **, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__registerResponse(struct soap*, _GameWS__registerResponse *const*, const char*, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getScoreList(struct soap*, _GameWS__getScoreList *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getScoreList(struct soap*, const char *, int, _GameWS__getScoreList *const*, const char *);
+SOAP_FMAC3 _GameWS__getScoreList ** SOAP_FMAC4 soap_in_PointerTo_GameWS__getScoreList(struct soap*, const char*, _GameWS__getScoreList **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__getScoreList(struct soap*, _GameWS__getScoreList *const*, const char*, const char*);
 
-#ifndef soap_write_PointerTo_GameWS__registerResponse
-#define soap_write_PointerTo_GameWS__registerResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__registerResponse(soap, data),0) || soap_put_PointerTo_GameWS__registerResponse(soap, data, "GameWS:registerResponse", NULL) || soap_end_send(soap), (soap)->error )
-#endif
-
-SOAP_FMAC3 _GameWS__registerResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__registerResponse(struct soap*, _GameWS__registerResponse **, const char*, const char*);
-
-#ifndef soap_read_PointerTo_GameWS__registerResponse
-#define soap_read_PointerTo_GameWS__registerResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__registerResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef soap_write_PointerTo_GameWS__getScoreList
+#define soap_write_PointerTo_GameWS__getScoreList(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__getScoreList(soap, data),0) || soap_put_PointerTo_GameWS__getScoreList(soap, data, "GameWS:getScoreList", NULL) || soap_end_send(soap), (soap)->error )
 #endif
 
+SOAP_FMAC3 _GameWS__getScoreList ** SOAP_FMAC4 soap_get_PointerTo_GameWS__getScoreList(struct soap*, _GameWS__getScoreList **, const char*, const char*);
 
-#ifndef SOAP_TYPE_PointerTo_GameWS__register
-#define SOAP_TYPE_PointerTo_GameWS__register (24)
-#endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__register(struct soap*, _GameWS__register *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__register(struct soap*, const char *, int, _GameWS__register *const*, const char *);
-SOAP_FMAC3 _GameWS__register ** SOAP_FMAC4 soap_in_PointerTo_GameWS__register(struct soap*, const char*, _GameWS__register **, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__register(struct soap*, _GameWS__register *const*, const char*, const char*);
-
-#ifndef soap_write_PointerTo_GameWS__register
-#define soap_write_PointerTo_GameWS__register(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__register(soap, data),0) || soap_put_PointerTo_GameWS__register(soap, data, "GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#ifndef soap_read_PointerTo_GameWS__getScoreList
+#define soap_read_PointerTo_GameWS__getScoreList(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__getScoreList(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
-SOAP_FMAC3 _GameWS__register ** SOAP_FMAC4 soap_get_PointerTo_GameWS__register(struct soap*, _GameWS__register **, const char*, const char*);
 
-#ifndef soap_read_PointerTo_GameWS__register
-#define soap_read_PointerTo_GameWS__register(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__register(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#ifndef SOAP_TYPE_PointerTo_GameWS__addScoreResponse
+#define SOAP_TYPE_PointerTo_GameWS__addScoreResponse (75)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__addScoreResponse(struct soap*, _GameWS__addScoreResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__addScoreResponse(struct soap*, const char *, int, _GameWS__addScoreResponse *const*, const char *);
+SOAP_FMAC3 _GameWS__addScoreResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__addScoreResponse(struct soap*, const char*, _GameWS__addScoreResponse **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__addScoreResponse(struct soap*, _GameWS__addScoreResponse *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__addScoreResponse
+#define soap_write_PointerTo_GameWS__addScoreResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__addScoreResponse(soap, data),0) || soap_put_PointerTo_GameWS__addScoreResponse(soap, data, "GameWS:addScoreResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__addScoreResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__addScoreResponse(struct soap*, _GameWS__addScoreResponse **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__addScoreResponse
+#define soap_read_PointerTo_GameWS__addScoreResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__addScoreResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__addScore
+#define SOAP_TYPE_PointerTo_GameWS__addScore (74)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__addScore(struct soap*, _GameWS__addScore *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__addScore(struct soap*, const char *, int, _GameWS__addScore *const*, const char *);
+SOAP_FMAC3 _GameWS__addScore ** SOAP_FMAC4 soap_in_PointerTo_GameWS__addScore(struct soap*, const char*, _GameWS__addScore **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__addScore(struct soap*, _GameWS__addScore *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__addScore
+#define soap_write_PointerTo_GameWS__addScore(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__addScore(soap, data),0) || soap_put_PointerTo_GameWS__addScore(soap, data, "GameWS:addScore", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__addScore ** SOAP_FMAC4 soap_get_PointerTo_GameWS__addScore(struct soap*, _GameWS__addScore **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__addScore
+#define soap_read_PointerTo_GameWS__addScore(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__addScore(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__checkInResponse
+#define SOAP_TYPE_PointerTo_GameWS__checkInResponse (71)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__checkInResponse(struct soap*, _GameWS__checkInResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__checkInResponse(struct soap*, const char *, int, _GameWS__checkInResponse *const*, const char *);
+SOAP_FMAC3 _GameWS__checkInResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__checkInResponse(struct soap*, const char*, _GameWS__checkInResponse **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__checkInResponse(struct soap*, _GameWS__checkInResponse *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__checkInResponse
+#define soap_write_PointerTo_GameWS__checkInResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__checkInResponse(soap, data),0) || soap_put_PointerTo_GameWS__checkInResponse(soap, data, "GameWS:checkInResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__checkInResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__checkInResponse(struct soap*, _GameWS__checkInResponse **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__checkInResponse
+#define soap_read_PointerTo_GameWS__checkInResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__checkInResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__checkIn
+#define SOAP_TYPE_PointerTo_GameWS__checkIn (70)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__checkIn(struct soap*, _GameWS__checkIn *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__checkIn(struct soap*, const char *, int, _GameWS__checkIn *const*, const char *);
+SOAP_FMAC3 _GameWS__checkIn ** SOAP_FMAC4 soap_in_PointerTo_GameWS__checkIn(struct soap*, const char*, _GameWS__checkIn **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__checkIn(struct soap*, _GameWS__checkIn *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__checkIn
+#define soap_write_PointerTo_GameWS__checkIn(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__checkIn(soap, data),0) || soap_put_PointerTo_GameWS__checkIn(soap, data, "GameWS:checkIn", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__checkIn ** SOAP_FMAC4 soap_get_PointerTo_GameWS__checkIn(struct soap*, _GameWS__checkIn **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__checkIn
+#define soap_read_PointerTo_GameWS__checkIn(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__checkIn(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__removePlayerResponse
+#define SOAP_TYPE_PointerTo_GameWS__removePlayerResponse (67)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__removePlayerResponse(struct soap*, _GameWS__removePlayerResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__removePlayerResponse(struct soap*, const char *, int, _GameWS__removePlayerResponse *const*, const char *);
+SOAP_FMAC3 _GameWS__removePlayerResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__removePlayerResponse(struct soap*, const char*, _GameWS__removePlayerResponse **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__removePlayerResponse(struct soap*, _GameWS__removePlayerResponse *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__removePlayerResponse
+#define soap_write_PointerTo_GameWS__removePlayerResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__removePlayerResponse(soap, data),0) || soap_put_PointerTo_GameWS__removePlayerResponse(soap, data, "GameWS:removePlayerResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__removePlayerResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__removePlayerResponse(struct soap*, _GameWS__removePlayerResponse **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__removePlayerResponse
+#define soap_read_PointerTo_GameWS__removePlayerResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__removePlayerResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__removePlayer
+#define SOAP_TYPE_PointerTo_GameWS__removePlayer (66)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__removePlayer(struct soap*, _GameWS__removePlayer *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__removePlayer(struct soap*, const char *, int, _GameWS__removePlayer *const*, const char *);
+SOAP_FMAC3 _GameWS__removePlayer ** SOAP_FMAC4 soap_in_PointerTo_GameWS__removePlayer(struct soap*, const char*, _GameWS__removePlayer **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__removePlayer(struct soap*, _GameWS__removePlayer *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__removePlayer
+#define soap_write_PointerTo_GameWS__removePlayer(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__removePlayer(soap, data),0) || soap_put_PointerTo_GameWS__removePlayer(soap, data, "GameWS:removePlayer", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__removePlayer ** SOAP_FMAC4 soap_get_PointerTo_GameWS__removePlayer(struct soap*, _GameWS__removePlayer **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__removePlayer
+#define soap_read_PointerTo_GameWS__removePlayer(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__removePlayer(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
 
 #ifndef SOAP_TYPE_PointerTo_GameWS__getGamesPlayedResponse
-#define SOAP_TYPE_PointerTo_GameWS__getGamesPlayedResponse (21)
+#define SOAP_TYPE_PointerTo_GameWS__getGamesPlayedResponse (63)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getGamesPlayedResponse(struct soap*, _GameWS__getGamesPlayedResponse *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getGamesPlayedResponse(struct soap*, const char *, int, _GameWS__getGamesPlayedResponse *const*, const char *);
@@ -858,7 +1811,7 @@ SOAP_FMAC3 _GameWS__getGamesPlayedResponse ** SOAP_FMAC4 soap_get_PointerTo_Game
 
 
 #ifndef SOAP_TYPE_PointerTo_GameWS__getGamesPlayed
-#define SOAP_TYPE_PointerTo_GameWS__getGamesPlayed (20)
+#define SOAP_TYPE_PointerTo_GameWS__getGamesPlayed (62)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getGamesPlayed(struct soap*, _GameWS__getGamesPlayed *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getGamesPlayed(struct soap*, const char *, int, _GameWS__getGamesPlayed *const*, const char *);
@@ -876,8 +1829,274 @@ SOAP_FMAC3 _GameWS__getGamesPlayed ** SOAP_FMAC4 soap_get_PointerTo_GameWS__getG
 #endif
 
 
+#ifndef SOAP_TYPE_PointerTo_GameWS__getPlayersResponse
+#define SOAP_TYPE_PointerTo_GameWS__getPlayersResponse (59)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getPlayersResponse(struct soap*, _GameWS__getPlayersResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getPlayersResponse(struct soap*, const char *, int, _GameWS__getPlayersResponse *const*, const char *);
+SOAP_FMAC3 _GameWS__getPlayersResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__getPlayersResponse(struct soap*, const char*, _GameWS__getPlayersResponse **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__getPlayersResponse(struct soap*, _GameWS__getPlayersResponse *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__getPlayersResponse
+#define soap_write_PointerTo_GameWS__getPlayersResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__getPlayersResponse(soap, data),0) || soap_put_PointerTo_GameWS__getPlayersResponse(soap, data, "GameWS:getPlayersResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__getPlayersResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__getPlayersResponse(struct soap*, _GameWS__getPlayersResponse **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__getPlayersResponse
+#define soap_read_PointerTo_GameWS__getPlayersResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__getPlayersResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__getPlayers
+#define SOAP_TYPE_PointerTo_GameWS__getPlayers (58)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__getPlayers(struct soap*, _GameWS__getPlayers *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__getPlayers(struct soap*, const char *, int, _GameWS__getPlayers *const*, const char *);
+SOAP_FMAC3 _GameWS__getPlayers ** SOAP_FMAC4 soap_in_PointerTo_GameWS__getPlayers(struct soap*, const char*, _GameWS__getPlayers **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__getPlayers(struct soap*, _GameWS__getPlayers *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__getPlayers
+#define soap_write_PointerTo_GameWS__getPlayers(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__getPlayers(soap, data),0) || soap_put_PointerTo_GameWS__getPlayers(soap, data, "GameWS:getPlayers", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__getPlayers ** SOAP_FMAC4 soap_get_PointerTo_GameWS__getPlayers(struct soap*, _GameWS__getPlayers **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__getPlayers
+#define soap_read_PointerTo_GameWS__getPlayers(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__getPlayers(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__playResponse
+#define SOAP_TYPE_PointerTo_GameWS__playResponse (55)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__playResponse(struct soap*, _GameWS__playResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__playResponse(struct soap*, const char *, int, _GameWS__playResponse *const*, const char *);
+SOAP_FMAC3 _GameWS__playResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__playResponse(struct soap*, const char*, _GameWS__playResponse **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__playResponse(struct soap*, _GameWS__playResponse *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__playResponse
+#define soap_write_PointerTo_GameWS__playResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__playResponse(soap, data),0) || soap_put_PointerTo_GameWS__playResponse(soap, data, "GameWS:playResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__playResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__playResponse(struct soap*, _GameWS__playResponse **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__playResponse
+#define soap_read_PointerTo_GameWS__playResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__playResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__play
+#define SOAP_TYPE_PointerTo_GameWS__play (54)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__play(struct soap*, _GameWS__play *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__play(struct soap*, const char *, int, _GameWS__play *const*, const char *);
+SOAP_FMAC3 _GameWS__play ** SOAP_FMAC4 soap_in_PointerTo_GameWS__play(struct soap*, const char*, _GameWS__play **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__play(struct soap*, _GameWS__play *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__play
+#define soap_write_PointerTo_GameWS__play(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__play(soap, data),0) || soap_put_PointerTo_GameWS__play(soap, data, "GameWS:play", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__play ** SOAP_FMAC4 soap_get_PointerTo_GameWS__play(struct soap*, _GameWS__play **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__play
+#define soap_read_PointerTo_GameWS__play(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__play(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__registerResponse
+#define SOAP_TYPE_PointerTo_GameWS__registerResponse (51)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__registerResponse(struct soap*, _GameWS__registerResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__registerResponse(struct soap*, const char *, int, _GameWS__registerResponse *const*, const char *);
+SOAP_FMAC3 _GameWS__registerResponse ** SOAP_FMAC4 soap_in_PointerTo_GameWS__registerResponse(struct soap*, const char*, _GameWS__registerResponse **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__registerResponse(struct soap*, _GameWS__registerResponse *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__registerResponse
+#define soap_write_PointerTo_GameWS__registerResponse(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__registerResponse(soap, data),0) || soap_put_PointerTo_GameWS__registerResponse(soap, data, "GameWS:registerResponse", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__registerResponse ** SOAP_FMAC4 soap_get_PointerTo_GameWS__registerResponse(struct soap*, _GameWS__registerResponse **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__registerResponse
+#define soap_read_PointerTo_GameWS__registerResponse(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__registerResponse(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerTo_GameWS__register
+#define SOAP_TYPE_PointerTo_GameWS__register (50)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTo_GameWS__register(struct soap*, _GameWS__register *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTo_GameWS__register(struct soap*, const char *, int, _GameWS__register *const*, const char *);
+SOAP_FMAC3 _GameWS__register ** SOAP_FMAC4 soap_in_PointerTo_GameWS__register(struct soap*, const char*, _GameWS__register **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTo_GameWS__register(struct soap*, _GameWS__register *const*, const char*, const char*);
+
+#ifndef soap_write_PointerTo_GameWS__register
+#define soap_write_PointerTo_GameWS__register(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerTo_GameWS__register(soap, data),0) || soap_put_PointerTo_GameWS__register(soap, data, "GameWS:register", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 _GameWS__register ** SOAP_FMAC4 soap_get_PointerTo_GameWS__register(struct soap*, _GameWS__register **, const char*, const char*);
+
+#ifndef soap_read_PointerTo_GameWS__register
+#define soap_read_PointerTo_GameWS__register(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTo_GameWS__register(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__ArrayOfGame
+#define SOAP_TYPE_PointerToGameWS__ArrayOfGame (49)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__ArrayOfGame(struct soap*, GameWS__ArrayOfGame *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__ArrayOfGame(struct soap*, const char *, int, GameWS__ArrayOfGame *const*, const char *);
+SOAP_FMAC3 GameWS__ArrayOfGame ** SOAP_FMAC4 soap_in_PointerToGameWS__ArrayOfGame(struct soap*, const char*, GameWS__ArrayOfGame **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__ArrayOfGame(struct soap*, GameWS__ArrayOfGame *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__ArrayOfGame
+#define soap_write_PointerToGameWS__ArrayOfGame(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__ArrayOfGame(soap, data),0) || soap_put_PointerToGameWS__ArrayOfGame(soap, data, "GameWS:ArrayOfGame", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfGame ** SOAP_FMAC4 soap_get_PointerToGameWS__ArrayOfGame(struct soap*, GameWS__ArrayOfGame **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__ArrayOfGame
+#define soap_read_PointerToGameWS__ArrayOfGame(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__ArrayOfGame(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__ArrayOfPlayer
+#define SOAP_TYPE_PointerToGameWS__ArrayOfPlayer (48)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__ArrayOfPlayer(struct soap*, GameWS__ArrayOfPlayer *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__ArrayOfPlayer(struct soap*, const char *, int, GameWS__ArrayOfPlayer *const*, const char *);
+SOAP_FMAC3 GameWS__ArrayOfPlayer ** SOAP_FMAC4 soap_in_PointerToGameWS__ArrayOfPlayer(struct soap*, const char*, GameWS__ArrayOfPlayer **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__ArrayOfPlayer(struct soap*, GameWS__ArrayOfPlayer *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__ArrayOfPlayer
+#define soap_write_PointerToGameWS__ArrayOfPlayer(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__ArrayOfPlayer(soap, data),0) || soap_put_PointerToGameWS__ArrayOfPlayer(soap, data, "GameWS:ArrayOfPlayer", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfPlayer ** SOAP_FMAC4 soap_get_PointerToGameWS__ArrayOfPlayer(struct soap*, GameWS__ArrayOfPlayer **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__ArrayOfPlayer
+#define soap_read_PointerToGameWS__ArrayOfPlayer(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__ArrayOfPlayer(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__PlayRequestResult
+#define SOAP_TYPE_PointerToGameWS__PlayRequestResult (47)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__PlayRequestResult(struct soap*, GameWS__PlayRequestResult *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__PlayRequestResult(struct soap*, const char *, int, GameWS__PlayRequestResult *const*, const char *);
+SOAP_FMAC3 GameWS__PlayRequestResult ** SOAP_FMAC4 soap_in_PointerToGameWS__PlayRequestResult(struct soap*, const char*, GameWS__PlayRequestResult **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__PlayRequestResult(struct soap*, GameWS__PlayRequestResult *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__PlayRequestResult
+#define soap_write_PointerToGameWS__PlayRequestResult(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__PlayRequestResult(soap, data),0) || soap_put_PointerToGameWS__PlayRequestResult(soap, data, "GameWS:PlayRequestResult", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__PlayRequestResult ** SOAP_FMAC4 soap_get_PointerToGameWS__PlayRequestResult(struct soap*, GameWS__PlayRequestResult **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__PlayRequestResult
+#define soap_read_PointerToGameWS__PlayRequestResult(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__PlayRequestResult(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__Score
+#define SOAP_TYPE_PointerToGameWS__Score (44)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__Score(struct soap*, GameWS__Score *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__Score(struct soap*, const char *, int, GameWS__Score *const*, const char *);
+SOAP_FMAC3 GameWS__Score ** SOAP_FMAC4 soap_in_PointerToGameWS__Score(struct soap*, const char*, GameWS__Score **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__Score(struct soap*, GameWS__Score *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__Score
+#define soap_write_PointerToGameWS__Score(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__Score(soap, data),0) || soap_put_PointerToGameWS__Score(soap, data, "GameWS:Score", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__Score ** SOAP_FMAC4 soap_get_PointerToGameWS__Score(struct soap*, GameWS__Score **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__Score
+#define soap_read_PointerToGameWS__Score(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__Score(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__ArrayOfScore
+#define SOAP_TYPE_PointerToGameWS__ArrayOfScore (43)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__ArrayOfScore(struct soap*, GameWS__ArrayOfScore *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__ArrayOfScore(struct soap*, const char *, int, GameWS__ArrayOfScore *const*, const char *);
+SOAP_FMAC3 GameWS__ArrayOfScore ** SOAP_FMAC4 soap_in_PointerToGameWS__ArrayOfScore(struct soap*, const char*, GameWS__ArrayOfScore **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__ArrayOfScore(struct soap*, GameWS__ArrayOfScore *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__ArrayOfScore
+#define soap_write_PointerToGameWS__ArrayOfScore(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__ArrayOfScore(soap, data),0) || soap_put_PointerToGameWS__ArrayOfScore(soap, data, "GameWS:ArrayOfScore", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfScore ** SOAP_FMAC4 soap_get_PointerToGameWS__ArrayOfScore(struct soap*, GameWS__ArrayOfScore **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__ArrayOfScore
+#define soap_read_PointerToGameWS__ArrayOfScore(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__ArrayOfScore(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__Game
+#define SOAP_TYPE_PointerToGameWS__Game (40)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__Game(struct soap*, GameWS__Game *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__Game(struct soap*, const char *, int, GameWS__Game *const*, const char *);
+SOAP_FMAC3 GameWS__Game ** SOAP_FMAC4 soap_in_PointerToGameWS__Game(struct soap*, const char*, GameWS__Game **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__Game(struct soap*, GameWS__Game *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__Game
+#define soap_write_PointerToGameWS__Game(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__Game(soap, data),0) || soap_put_PointerToGameWS__Game(soap, data, "GameWS:Game", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__Game ** SOAP_FMAC4 soap_get_PointerToGameWS__Game(struct soap*, GameWS__Game **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__Game
+#define soap_read_PointerToGameWS__Game(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__Game(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__ArrayOfFloat
+#define SOAP_TYPE_PointerToGameWS__ArrayOfFloat (39)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__ArrayOfFloat(struct soap*, GameWS__ArrayOfFloat *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__ArrayOfFloat(struct soap*, const char *, int, GameWS__ArrayOfFloat *const*, const char *);
+SOAP_FMAC3 GameWS__ArrayOfFloat ** SOAP_FMAC4 soap_in_PointerToGameWS__ArrayOfFloat(struct soap*, const char*, GameWS__ArrayOfFloat **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__ArrayOfFloat(struct soap*, GameWS__ArrayOfFloat *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__ArrayOfFloat
+#define soap_write_PointerToGameWS__ArrayOfFloat(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__ArrayOfFloat(soap, data),0) || soap_put_PointerToGameWS__ArrayOfFloat(soap, data, "GameWS:ArrayOfFloat", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__ArrayOfFloat ** SOAP_FMAC4 soap_get_PointerToGameWS__ArrayOfFloat(struct soap*, GameWS__ArrayOfFloat **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__ArrayOfFloat
+#define soap_read_PointerToGameWS__ArrayOfFloat(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__ArrayOfFloat(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
+#ifndef SOAP_TYPE_PointerToGameWS__Player
+#define SOAP_TYPE_PointerToGameWS__Player (36)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__Player(struct soap*, GameWS__Player *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__Player(struct soap*, const char *, int, GameWS__Player *const*, const char *);
+SOAP_FMAC3 GameWS__Player ** SOAP_FMAC4 soap_in_PointerToGameWS__Player(struct soap*, const char*, GameWS__Player **, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__Player(struct soap*, GameWS__Player *const*, const char*, const char*);
+
+#ifndef soap_write_PointerToGameWS__Player
+#define soap_write_PointerToGameWS__Player(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__Player(soap, data),0) || soap_put_PointerToGameWS__Player(soap, data, "GameWS:Player", NULL) || soap_end_send(soap), (soap)->error )
+#endif
+
+SOAP_FMAC3 GameWS__Player ** SOAP_FMAC4 soap_get_PointerToGameWS__Player(struct soap*, GameWS__Player **, const char*, const char*);
+
+#ifndef soap_read_PointerToGameWS__Player
+#define soap_read_PointerToGameWS__Player(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__Player(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
+#endif
+
+
 #ifndef SOAP_TYPE_PointerTostd__string
-#define SOAP_TYPE_PointerTostd__string (19)
+#define SOAP_TYPE_PointerTostd__string (33)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTostd__string(struct soap*, std::string *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTostd__string(struct soap*, const char *, int, std::string *const*, const char *);
@@ -892,25 +2111,6 @@ SOAP_FMAC3 std::string ** SOAP_FMAC4 soap_get_PointerTostd__string(struct soap*,
 
 #ifndef soap_read_PointerTostd__string
 #define soap_read_PointerTostd__string(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerTostd__string(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
-#endif
-
-
-#ifndef SOAP_TYPE_PointerToGameWS__ArrayOfString
-#define SOAP_TYPE_PointerToGameWS__ArrayOfString (18)
-#endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToGameWS__ArrayOfString(struct soap*, GameWS__ArrayOfString *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToGameWS__ArrayOfString(struct soap*, const char *, int, GameWS__ArrayOfString *const*, const char *);
-SOAP_FMAC3 GameWS__ArrayOfString ** SOAP_FMAC4 soap_in_PointerToGameWS__ArrayOfString(struct soap*, const char*, GameWS__ArrayOfString **, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToGameWS__ArrayOfString(struct soap*, GameWS__ArrayOfString *const*, const char*, const char*);
-
-#ifndef soap_write_PointerToGameWS__ArrayOfString
-#define soap_write_PointerToGameWS__ArrayOfString(soap, data) ( soap_free_temp(soap), soap_begin_send(soap) || (soap_serialize_PointerToGameWS__ArrayOfString(soap, data),0) || soap_put_PointerToGameWS__ArrayOfString(soap, data, "GameWS:ArrayOfString", NULL) || soap_end_send(soap), (soap)->error )
-#endif
-
-SOAP_FMAC3 GameWS__ArrayOfString ** SOAP_FMAC4 soap_get_PointerToGameWS__ArrayOfString(struct soap*, GameWS__ArrayOfString **, const char*, const char*);
-
-#ifndef soap_read_PointerToGameWS__ArrayOfString
-#define soap_read_PointerToGameWS__ArrayOfString(soap, data) ( soap_begin_recv(soap) || !soap_get_PointerToGameWS__ArrayOfString(soap, data, NULL, NULL) || soap_end_recv(soap), (soap)->error )
 #endif
 
 
@@ -956,20 +2156,65 @@ SOAP_FMAC3 char ** SOAP_FMAC4 soap_get_string(struct soap*, char **, const char*
 #endif
 
 
-#ifndef SOAP_TYPE_std__vectorTemplateOfstd__string
-#define SOAP_TYPE_std__vectorTemplateOfstd__string (16)
+#ifndef SOAP_TYPE_std__vectorTemplateOfPointerToGameWS__Game
+#define SOAP_TYPE_std__vectorTemplateOfPointerToGameWS__Game (46)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_std__vectorTemplateOfstd__string(struct soap*, std::vector<std::string >*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_std__vectorTemplateOfstd__string(struct soap*, const std::vector<std::string >*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfstd__string(struct soap*, const char*, int, const std::vector<std::string >*, const char*);
-SOAP_FMAC3 std::vector<std::string >* SOAP_FMAC4 soap_in_std__vectorTemplateOfstd__string(struct soap*, const char*, std::vector<std::string >*, const char*);
-SOAP_FMAC1 std::vector<std::string > * SOAP_FMAC2 soap_instantiate_std__vectorTemplateOfstd__string(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_std__vectorTemplateOfPointerToGameWS__Game(struct soap*, std::vector<GameWS__Game * >*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_std__vectorTemplateOfPointerToGameWS__Game(struct soap*, const std::vector<GameWS__Game * >*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerToGameWS__Game(struct soap*, const char*, int, const std::vector<GameWS__Game * >*, const char*);
+SOAP_FMAC3 std::vector<GameWS__Game * >* SOAP_FMAC4 soap_in_std__vectorTemplateOfPointerToGameWS__Game(struct soap*, const char*, std::vector<GameWS__Game * >*, const char*);
+SOAP_FMAC1 std::vector<GameWS__Game * > * SOAP_FMAC2 soap_instantiate_std__vectorTemplateOfPointerToGameWS__Game(struct soap*, int, const char*, const char*, size_t*);
 
-inline std::vector<std::string > * soap_new_std__vectorTemplateOfstd__string(struct soap *soap, int n = -1) { return soap_instantiate_std__vectorTemplateOfstd__string(soap, n, NULL, NULL, NULL); }
+inline std::vector<GameWS__Game * > * soap_new_std__vectorTemplateOfPointerToGameWS__Game(struct soap *soap, int n = -1) { return soap_instantiate_std__vectorTemplateOfPointerToGameWS__Game(soap, n, NULL, NULL, NULL); }
 
-inline void soap_delete_std__vectorTemplateOfstd__string(struct soap *soap, std::vector<std::string >*p) { soap_delete(soap, p); }
+inline void soap_delete_std__vectorTemplateOfPointerToGameWS__Game(struct soap *soap, std::vector<GameWS__Game * >*p) { soap_delete(soap, p); }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_std__vectorTemplateOfstd__string(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_std__vectorTemplateOfPointerToGameWS__Game(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_std__vectorTemplateOfPointerToGameWS__Score
+#define SOAP_TYPE_std__vectorTemplateOfPointerToGameWS__Score (45)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_std__vectorTemplateOfPointerToGameWS__Score(struct soap*, std::vector<GameWS__Score * >*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_std__vectorTemplateOfPointerToGameWS__Score(struct soap*, const std::vector<GameWS__Score * >*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerToGameWS__Score(struct soap*, const char*, int, const std::vector<GameWS__Score * >*, const char*);
+SOAP_FMAC3 std::vector<GameWS__Score * >* SOAP_FMAC4 soap_in_std__vectorTemplateOfPointerToGameWS__Score(struct soap*, const char*, std::vector<GameWS__Score * >*, const char*);
+SOAP_FMAC1 std::vector<GameWS__Score * > * SOAP_FMAC2 soap_instantiate_std__vectorTemplateOfPointerToGameWS__Score(struct soap*, int, const char*, const char*, size_t*);
+
+inline std::vector<GameWS__Score * > * soap_new_std__vectorTemplateOfPointerToGameWS__Score(struct soap *soap, int n = -1) { return soap_instantiate_std__vectorTemplateOfPointerToGameWS__Score(soap, n, NULL, NULL, NULL); }
+
+inline void soap_delete_std__vectorTemplateOfPointerToGameWS__Score(struct soap *soap, std::vector<GameWS__Score * >*p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_std__vectorTemplateOfPointerToGameWS__Score(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_std__vectorTemplateOffloat
+#define SOAP_TYPE_std__vectorTemplateOffloat (42)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_std__vectorTemplateOffloat(struct soap*, std::vector<float >*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_std__vectorTemplateOffloat(struct soap*, const std::vector<float >*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOffloat(struct soap*, const char*, int, const std::vector<float >*, const char*);
+SOAP_FMAC3 std::vector<float >* SOAP_FMAC4 soap_in_std__vectorTemplateOffloat(struct soap*, const char*, std::vector<float >*, const char*);
+SOAP_FMAC1 std::vector<float > * SOAP_FMAC2 soap_instantiate_std__vectorTemplateOffloat(struct soap*, int, const char*, const char*, size_t*);
+
+inline std::vector<float > * soap_new_std__vectorTemplateOffloat(struct soap *soap, int n = -1) { return soap_instantiate_std__vectorTemplateOffloat(soap, n, NULL, NULL, NULL); }
+
+inline void soap_delete_std__vectorTemplateOffloat(struct soap *soap, std::vector<float >*p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_std__vectorTemplateOffloat(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_std__vectorTemplateOfPointerToGameWS__Player
+#define SOAP_TYPE_std__vectorTemplateOfPointerToGameWS__Player (37)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_std__vectorTemplateOfPointerToGameWS__Player(struct soap*, std::vector<GameWS__Player * >*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_std__vectorTemplateOfPointerToGameWS__Player(struct soap*, const std::vector<GameWS__Player * >*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_std__vectorTemplateOfPointerToGameWS__Player(struct soap*, const char*, int, const std::vector<GameWS__Player * >*, const char*);
+SOAP_FMAC3 std::vector<GameWS__Player * >* SOAP_FMAC4 soap_in_std__vectorTemplateOfPointerToGameWS__Player(struct soap*, const char*, std::vector<GameWS__Player * >*, const char*);
+SOAP_FMAC1 std::vector<GameWS__Player * > * SOAP_FMAC2 soap_instantiate_std__vectorTemplateOfPointerToGameWS__Player(struct soap*, int, const char*, const char*, size_t*);
+
+inline std::vector<GameWS__Player * > * soap_new_std__vectorTemplateOfPointerToGameWS__Player(struct soap *soap, int n = -1) { return soap_instantiate_std__vectorTemplateOfPointerToGameWS__Player(soap, n, NULL, NULL, NULL); }
+
+inline void soap_delete_std__vectorTemplateOfPointerToGameWS__Player(struct soap *soap, std::vector<GameWS__Player * >*p) { soap_delete(soap, p); }
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_std__vectorTemplateOfPointerToGameWS__Player(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #endif
 

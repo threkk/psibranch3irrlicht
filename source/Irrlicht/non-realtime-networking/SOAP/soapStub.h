@@ -47,78 +47,199 @@ compiling, linking, and/or using OpenSSL is allowed.
 
 #endif
 
-#ifndef SOAP_TYPE_GameWS__ArrayOfString
-#define SOAP_TYPE_GameWS__ArrayOfString (8)
-/* GameWS:ArrayOfString */
-class SOAP_CMAC GameWS__ArrayOfString
+#ifndef SOAP_TYPE_GameWS__PlayRequestResult
+#define SOAP_TYPE_GameWS__PlayRequestResult (8)
+/* GameWS:PlayRequestResult */
+class SOAP_CMAC GameWS__PlayRequestResult
 {
 public:
-	std::vector<std::string >string;	/* optional element of type xsd:string */
+	int sessionId;	/* required element of type xsd:int */
+	std::string *opponentsIP;	/* optional element of type xsd:string */
+	bool hosting;	/* required element of type xsd:boolean */
+	std::string *login;	/* optional element of type xsd:string */
+	int errorCode;	/* required element of type xsd:int */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 8; } /* = unique type id SOAP_TYPE_GameWS__ArrayOfString */
+	virtual int soap_type() const { return 8; } /* = unique type id SOAP_TYPE_GameWS__PlayRequestResult */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         GameWS__ArrayOfString() { GameWS__ArrayOfString::soap_default(NULL); }
-	virtual ~GameWS__ArrayOfString() { }
+	         GameWS__PlayRequestResult() { GameWS__PlayRequestResult::soap_default(NULL); }
+	virtual ~GameWS__PlayRequestResult() { }
 };
 #endif
 
-#ifndef SOAP_TYPE__GameWS__getGamesPlayed
-#define SOAP_TYPE__GameWS__getGamesPlayed (9)
-/* GameWS:getGamesPlayed */
-class SOAP_CMAC _GameWS__getGamesPlayed
+#ifndef SOAP_TYPE_GameWS__ArrayOfPlayer
+#define SOAP_TYPE_GameWS__ArrayOfPlayer (9)
+/* GameWS:ArrayOfPlayer */
+class SOAP_CMAC GameWS__ArrayOfPlayer
 {
 public:
+	std::vector<class GameWS__Player * >Player;	/* optional element of type GameWS:Player */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 9; } /* = unique type id SOAP_TYPE__GameWS__getGamesPlayed */
+	virtual int soap_type() const { return 9; } /* = unique type id SOAP_TYPE_GameWS__ArrayOfPlayer */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         _GameWS__getGamesPlayed() { _GameWS__getGamesPlayed::soap_default(NULL); }
-	virtual ~_GameWS__getGamesPlayed() { }
+	         GameWS__ArrayOfPlayer() { GameWS__ArrayOfPlayer::soap_default(NULL); }
+	virtual ~GameWS__ArrayOfPlayer() { }
 };
 #endif
 
-#ifndef SOAP_TYPE__GameWS__getGamesPlayedResponse
-#define SOAP_TYPE__GameWS__getGamesPlayedResponse (10)
-/* GameWS:getGamesPlayedResponse */
-class SOAP_CMAC _GameWS__getGamesPlayedResponse
+#ifndef SOAP_TYPE_GameWS__Player
+#define SOAP_TYPE_GameWS__Player (10)
+/* GameWS:Player */
+class SOAP_CMAC GameWS__Player
 {
 public:
-	GameWS__ArrayOfString *getGamesPlayedResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type GameWS:ArrayOfString */
+	int sessionId;	/* required element of type xsd:int */
+	std::string *login;	/* optional element of type xsd:string */
+	std::string *ipAddress;	/* optional element of type xsd:string */
+	time_t joined;	/* required element of type xsd:dateTime */
+	time_t lastCheckedIn;	/* required element of type xsd:dateTime */
+	class GameWS__ArrayOfFloat *scores;	/* optional element of type GameWS:ArrayOfFloat */
+	bool waiting;	/* required element of type xsd:boolean */
+	class GameWS__Game *game;	/* optional element of type GameWS:Game */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 10; } /* = unique type id SOAP_TYPE__GameWS__getGamesPlayedResponse */
+	virtual int soap_type() const { return 10; } /* = unique type id SOAP_TYPE_GameWS__Player */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         _GameWS__getGamesPlayedResponse() { _GameWS__getGamesPlayedResponse::soap_default(NULL); }
-	virtual ~_GameWS__getGamesPlayedResponse() { }
+	         GameWS__Player() { GameWS__Player::soap_default(NULL); }
+	virtual ~GameWS__Player() { }
+};
+#endif
+
+#ifndef SOAP_TYPE_GameWS__ArrayOfFloat
+#define SOAP_TYPE_GameWS__ArrayOfFloat (11)
+/* GameWS:ArrayOfFloat */
+class SOAP_CMAC GameWS__ArrayOfFloat
+{
+public:
+	std::vector<float >float_;	/* optional element of type xsd:float */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 11; } /* = unique type id SOAP_TYPE_GameWS__ArrayOfFloat */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         GameWS__ArrayOfFloat() { GameWS__ArrayOfFloat::soap_default(NULL); }
+	virtual ~GameWS__ArrayOfFloat() { }
+};
+#endif
+
+#ifndef SOAP_TYPE_GameWS__Game
+#define SOAP_TYPE_GameWS__Game (12)
+/* GameWS:Game */
+class SOAP_CMAC GameWS__Game
+{
+public:
+	std::string *name;	/* optional element of type xsd:string */
+	class GameWS__ArrayOfScore *highScores;	/* optional element of type GameWS:ArrayOfScore */
+	int checkInInterval;	/* required element of type xsd:int */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 12; } /* = unique type id SOAP_TYPE_GameWS__Game */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         GameWS__Game() { GameWS__Game::soap_default(NULL); }
+	virtual ~GameWS__Game() { }
+};
+#endif
+
+#ifndef SOAP_TYPE_GameWS__ArrayOfScore
+#define SOAP_TYPE_GameWS__ArrayOfScore (13)
+/* GameWS:ArrayOfScore */
+class SOAP_CMAC GameWS__ArrayOfScore
+{
+public:
+	std::vector<class GameWS__Score * >Score;	/* optional element of type GameWS:Score */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 13; } /* = unique type id SOAP_TYPE_GameWS__ArrayOfScore */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         GameWS__ArrayOfScore() { GameWS__ArrayOfScore::soap_default(NULL); }
+	virtual ~GameWS__ArrayOfScore() { }
+};
+#endif
+
+#ifndef SOAP_TYPE_GameWS__Score
+#define SOAP_TYPE_GameWS__Score (14)
+/* GameWS:Score */
+class SOAP_CMAC GameWS__Score
+{
+public:
+	std::string *playerLogin;	/* optional element of type xsd:string */
+	float score;	/* required element of type xsd:float */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 14; } /* = unique type id SOAP_TYPE_GameWS__Score */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         GameWS__Score() { GameWS__Score::soap_default(NULL); }
+	virtual ~GameWS__Score() { }
+};
+#endif
+
+#ifndef SOAP_TYPE_GameWS__ArrayOfGame
+#define SOAP_TYPE_GameWS__ArrayOfGame (15)
+/* GameWS:ArrayOfGame */
+class SOAP_CMAC GameWS__ArrayOfGame
+{
+public:
+	std::vector<GameWS__Game * >Game;	/* optional element of type GameWS:Game */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 15; } /* = unique type id SOAP_TYPE_GameWS__ArrayOfGame */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         GameWS__ArrayOfGame() { GameWS__ArrayOfGame::soap_default(NULL); }
+	virtual ~GameWS__ArrayOfGame() { }
 };
 #endif
 
 #ifndef SOAP_TYPE__GameWS__register
-#define SOAP_TYPE__GameWS__register (11)
+#define SOAP_TYPE__GameWS__register (16)
 /* GameWS:register */
 class SOAP_CMAC _GameWS__register
 {
 public:
 	std::string *gameName;	/* optional element of type xsd:string */
+	std::string *login;	/* optional element of type xsd:string */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 11; } /* = unique type id SOAP_TYPE__GameWS__register */
+	virtual int soap_type() const { return 16; } /* = unique type id SOAP_TYPE__GameWS__register */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -131,15 +252,15 @@ public:
 #endif
 
 #ifndef SOAP_TYPE__GameWS__registerResponse
-#define SOAP_TYPE__GameWS__registerResponse (12)
+#define SOAP_TYPE__GameWS__registerResponse (17)
 /* GameWS:registerResponse */
 class SOAP_CMAC _GameWS__registerResponse
 {
 public:
-	int registerResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* required element of type xsd:int */
+	GameWS__PlayRequestResult *registerResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type GameWS:PlayRequestResult */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 12; } /* = unique type id SOAP_TYPE__GameWS__registerResponse */
+	virtual int soap_type() const { return 17; } /* = unique type id SOAP_TYPE__GameWS__registerResponse */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
@@ -151,130 +272,501 @@ public:
 };
 #endif
 
-#ifndef SOAP_TYPE__GameWS__getOpponentsIpAddress
-#define SOAP_TYPE__GameWS__getOpponentsIpAddress (13)
-/* GameWS:getOpponentsIpAddress */
-class SOAP_CMAC _GameWS__getOpponentsIpAddress
+#ifndef SOAP_TYPE__GameWS__play
+#define SOAP_TYPE__GameWS__play (18)
+/* GameWS:play */
+class SOAP_CMAC _GameWS__play
 {
 public:
-	std::string *gameName;	/* optional element of type xsd:string */
 	int sessionId;	/* required element of type xsd:int */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 13; } /* = unique type id SOAP_TYPE__GameWS__getOpponentsIpAddress */
+	virtual int soap_type() const { return 18; } /* = unique type id SOAP_TYPE__GameWS__play */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         _GameWS__getOpponentsIpAddress() { _GameWS__getOpponentsIpAddress::soap_default(NULL); }
-	virtual ~_GameWS__getOpponentsIpAddress() { }
+	         _GameWS__play() { _GameWS__play::soap_default(NULL); }
+	virtual ~_GameWS__play() { }
 };
 #endif
 
-#ifndef SOAP_TYPE__GameWS__getOpponentsIpAddressResponse
-#define SOAP_TYPE__GameWS__getOpponentsIpAddressResponse (14)
-/* GameWS:getOpponentsIpAddressResponse */
-class SOAP_CMAC _GameWS__getOpponentsIpAddressResponse
+#ifndef SOAP_TYPE__GameWS__playResponse
+#define SOAP_TYPE__GameWS__playResponse (19)
+/* GameWS:playResponse */
+class SOAP_CMAC _GameWS__playResponse
 {
 public:
-	std::string *getOpponentsIpAddressResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type xsd:string */
+	GameWS__PlayRequestResult *playResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type GameWS:PlayRequestResult */
 	struct soap *soap;	/* transient */
 public:
-	virtual int soap_type() const { return 14; } /* = unique type id SOAP_TYPE__GameWS__getOpponentsIpAddressResponse */
+	virtual int soap_type() const { return 19; } /* = unique type id SOAP_TYPE__GameWS__playResponse */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         _GameWS__getOpponentsIpAddressResponse() { _GameWS__getOpponentsIpAddressResponse::soap_default(NULL); }
-	virtual ~_GameWS__getOpponentsIpAddressResponse() { }
+	         _GameWS__playResponse() { _GameWS__playResponse::soap_default(NULL); }
+	virtual ~_GameWS__playResponse() { }
 };
 #endif
 
-#ifndef SOAP_TYPE___GameWS__getGamesPlayed
-#define SOAP_TYPE___GameWS__getGamesPlayed (23)
-/* Operation wrapper: */
-struct __GameWS__getGamesPlayed
+#ifndef SOAP_TYPE__GameWS__getPlayers
+#define SOAP_TYPE__GameWS__getPlayers (20)
+/* GameWS:getPlayers */
+class SOAP_CMAC _GameWS__getPlayers
 {
 public:
-	_GameWS__getGamesPlayed *GameWS__getGamesPlayed;	/* optional element of type GameWS:getGamesPlayed */
+	struct soap *soap;	/* transient */
 public:
-	int soap_type() const { return 23; } /* = unique type id SOAP_TYPE___GameWS__getGamesPlayed */
+	virtual int soap_type() const { return 20; } /* = unique type id SOAP_TYPE__GameWS__getPlayers */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__getPlayers() { _GameWS__getPlayers::soap_default(NULL); }
+	virtual ~_GameWS__getPlayers() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__getPlayersResponse
+#define SOAP_TYPE__GameWS__getPlayersResponse (21)
+/* GameWS:getPlayersResponse */
+class SOAP_CMAC _GameWS__getPlayersResponse
+{
+public:
+	GameWS__ArrayOfPlayer *getPlayersResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type GameWS:ArrayOfPlayer */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 21; } /* = unique type id SOAP_TYPE__GameWS__getPlayersResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__getPlayersResponse() { _GameWS__getPlayersResponse::soap_default(NULL); }
+	virtual ~_GameWS__getPlayersResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__getGamesPlayed
+#define SOAP_TYPE__GameWS__getGamesPlayed (22)
+/* GameWS:getGamesPlayed */
+class SOAP_CMAC _GameWS__getGamesPlayed
+{
+public:
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 22; } /* = unique type id SOAP_TYPE__GameWS__getGamesPlayed */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__getGamesPlayed() { _GameWS__getGamesPlayed::soap_default(NULL); }
+	virtual ~_GameWS__getGamesPlayed() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__getGamesPlayedResponse
+#define SOAP_TYPE__GameWS__getGamesPlayedResponse (23)
+/* GameWS:getGamesPlayedResponse */
+class SOAP_CMAC _GameWS__getGamesPlayedResponse
+{
+public:
+	GameWS__ArrayOfGame *getGamesPlayedResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type GameWS:ArrayOfGame */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 23; } /* = unique type id SOAP_TYPE__GameWS__getGamesPlayedResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__getGamesPlayedResponse() { _GameWS__getGamesPlayedResponse::soap_default(NULL); }
+	virtual ~_GameWS__getGamesPlayedResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__removePlayer
+#define SOAP_TYPE__GameWS__removePlayer (24)
+/* GameWS:removePlayer */
+class SOAP_CMAC _GameWS__removePlayer
+{
+public:
+	int sessionId;	/* required element of type xsd:int */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 24; } /* = unique type id SOAP_TYPE__GameWS__removePlayer */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__removePlayer() { _GameWS__removePlayer::soap_default(NULL); }
+	virtual ~_GameWS__removePlayer() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__removePlayerResponse
+#define SOAP_TYPE__GameWS__removePlayerResponse (25)
+/* GameWS:removePlayerResponse */
+class SOAP_CMAC _GameWS__removePlayerResponse
+{
+public:
+	int removePlayerResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* required element of type xsd:int */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 25; } /* = unique type id SOAP_TYPE__GameWS__removePlayerResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__removePlayerResponse() { _GameWS__removePlayerResponse::soap_default(NULL); }
+	virtual ~_GameWS__removePlayerResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__checkIn
+#define SOAP_TYPE__GameWS__checkIn (26)
+/* GameWS:checkIn */
+class SOAP_CMAC _GameWS__checkIn
+{
+public:
+	int sessionId;	/* required element of type xsd:int */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 26; } /* = unique type id SOAP_TYPE__GameWS__checkIn */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__checkIn() { _GameWS__checkIn::soap_default(NULL); }
+	virtual ~_GameWS__checkIn() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__checkInResponse
+#define SOAP_TYPE__GameWS__checkInResponse (27)
+/* GameWS:checkInResponse */
+class SOAP_CMAC _GameWS__checkInResponse
+{
+public:
+	int checkInResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* required element of type xsd:int */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 27; } /* = unique type id SOAP_TYPE__GameWS__checkInResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__checkInResponse() { _GameWS__checkInResponse::soap_default(NULL); }
+	virtual ~_GameWS__checkInResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__addScore
+#define SOAP_TYPE__GameWS__addScore (28)
+/* GameWS:addScore */
+class SOAP_CMAC _GameWS__addScore
+{
+public:
+	int sessionId;	/* required element of type xsd:int */
+	float score;	/* required element of type xsd:float */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 28; } /* = unique type id SOAP_TYPE__GameWS__addScore */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__addScore() { _GameWS__addScore::soap_default(NULL); }
+	virtual ~_GameWS__addScore() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__addScoreResponse
+#define SOAP_TYPE__GameWS__addScoreResponse (29)
+/* GameWS:addScoreResponse */
+class SOAP_CMAC _GameWS__addScoreResponse
+{
+public:
+	int addScoreResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* required element of type xsd:int */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 29; } /* = unique type id SOAP_TYPE__GameWS__addScoreResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__addScoreResponse() { _GameWS__addScoreResponse::soap_default(NULL); }
+	virtual ~_GameWS__addScoreResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__getScoreList
+#define SOAP_TYPE__GameWS__getScoreList (30)
+/* GameWS:getScoreList */
+class SOAP_CMAC _GameWS__getScoreList
+{
+public:
+	std::string *gameName;	/* optional element of type xsd:string */
+	int limit;	/* required element of type xsd:int */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 30; } /* = unique type id SOAP_TYPE__GameWS__getScoreList */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__getScoreList() { _GameWS__getScoreList::soap_default(NULL); }
+	virtual ~_GameWS__getScoreList() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__GameWS__getScoreListResponse
+#define SOAP_TYPE__GameWS__getScoreListResponse (31)
+/* GameWS:getScoreListResponse */
+class SOAP_CMAC _GameWS__getScoreListResponse
+{
+public:
+	GameWS__ArrayOfScore *getScoreListResult;	/* SOAP 1.2 RPC return element (when namespace qualified) */	/* optional element of type GameWS:ArrayOfScore */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 31; } /* = unique type id SOAP_TYPE__GameWS__getScoreListResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _GameWS__getScoreListResponse() { _GameWS__getScoreListResponse::soap_default(NULL); }
+	virtual ~_GameWS__getScoreListResponse() { }
 };
 #endif
 
 #ifndef SOAP_TYPE___GameWS__register
-#define SOAP_TYPE___GameWS__register (27)
+#define SOAP_TYPE___GameWS__register (53)
 /* Operation wrapper: */
 struct __GameWS__register
 {
 public:
 	_GameWS__register *GameWS__register;	/* optional element of type GameWS:register */
 public:
-	int soap_type() const { return 27; } /* = unique type id SOAP_TYPE___GameWS__register */
+	int soap_type() const { return 53; } /* = unique type id SOAP_TYPE___GameWS__register */
 };
 #endif
 
-#ifndef SOAP_TYPE___GameWS__getOpponentsIpAddress
-#define SOAP_TYPE___GameWS__getOpponentsIpAddress (31)
+#ifndef SOAP_TYPE___GameWS__play
+#define SOAP_TYPE___GameWS__play (57)
 /* Operation wrapper: */
-struct __GameWS__getOpponentsIpAddress
+struct __GameWS__play
 {
 public:
-	_GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress;	/* optional element of type GameWS:getOpponentsIpAddress */
+	_GameWS__play *GameWS__play;	/* optional element of type GameWS:play */
 public:
-	int soap_type() const { return 31; } /* = unique type id SOAP_TYPE___GameWS__getOpponentsIpAddress */
+	int soap_type() const { return 57; } /* = unique type id SOAP_TYPE___GameWS__play */
 };
 #endif
 
-#ifndef SOAP_TYPE___GameWS__getGamesPlayed_
-#define SOAP_TYPE___GameWS__getGamesPlayed_ (33)
+#ifndef SOAP_TYPE___GameWS__getPlayers
+#define SOAP_TYPE___GameWS__getPlayers (61)
 /* Operation wrapper: */
-struct __GameWS__getGamesPlayed_
+struct __GameWS__getPlayers
+{
+public:
+	_GameWS__getPlayers *GameWS__getPlayers;	/* optional element of type GameWS:getPlayers */
+public:
+	int soap_type() const { return 61; } /* = unique type id SOAP_TYPE___GameWS__getPlayers */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__getGamesPlayed
+#define SOAP_TYPE___GameWS__getGamesPlayed (65)
+/* Operation wrapper: */
+struct __GameWS__getGamesPlayed
 {
 public:
 	_GameWS__getGamesPlayed *GameWS__getGamesPlayed;	/* optional element of type GameWS:getGamesPlayed */
 public:
-	int soap_type() const { return 33; } /* = unique type id SOAP_TYPE___GameWS__getGamesPlayed_ */
+	int soap_type() const { return 65; } /* = unique type id SOAP_TYPE___GameWS__getGamesPlayed */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__removePlayer
+#define SOAP_TYPE___GameWS__removePlayer (69)
+/* Operation wrapper: */
+struct __GameWS__removePlayer
+{
+public:
+	_GameWS__removePlayer *GameWS__removePlayer;	/* optional element of type GameWS:removePlayer */
+public:
+	int soap_type() const { return 69; } /* = unique type id SOAP_TYPE___GameWS__removePlayer */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__checkIn
+#define SOAP_TYPE___GameWS__checkIn (73)
+/* Operation wrapper: */
+struct __GameWS__checkIn
+{
+public:
+	_GameWS__checkIn *GameWS__checkIn;	/* optional element of type GameWS:checkIn */
+public:
+	int soap_type() const { return 73; } /* = unique type id SOAP_TYPE___GameWS__checkIn */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__addScore
+#define SOAP_TYPE___GameWS__addScore (77)
+/* Operation wrapper: */
+struct __GameWS__addScore
+{
+public:
+	_GameWS__addScore *GameWS__addScore;	/* optional element of type GameWS:addScore */
+public:
+	int soap_type() const { return 77; } /* = unique type id SOAP_TYPE___GameWS__addScore */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__getScoreList
+#define SOAP_TYPE___GameWS__getScoreList (81)
+/* Operation wrapper: */
+struct __GameWS__getScoreList
+{
+public:
+	_GameWS__getScoreList *GameWS__getScoreList;	/* optional element of type GameWS:getScoreList */
+public:
+	int soap_type() const { return 81; } /* = unique type id SOAP_TYPE___GameWS__getScoreList */
 };
 #endif
 
 #ifndef SOAP_TYPE___GameWS__register_
-#define SOAP_TYPE___GameWS__register_ (35)
+#define SOAP_TYPE___GameWS__register_ (83)
 /* Operation wrapper: */
 struct __GameWS__register_
 {
 public:
 	_GameWS__register *GameWS__register;	/* optional element of type GameWS:register */
 public:
-	int soap_type() const { return 35; } /* = unique type id SOAP_TYPE___GameWS__register_ */
+	int soap_type() const { return 83; } /* = unique type id SOAP_TYPE___GameWS__register_ */
 };
 #endif
 
-#ifndef SOAP_TYPE___GameWS__getOpponentsIpAddress_
-#define SOAP_TYPE___GameWS__getOpponentsIpAddress_ (37)
+#ifndef SOAP_TYPE___GameWS__play_
+#define SOAP_TYPE___GameWS__play_ (85)
 /* Operation wrapper: */
-struct __GameWS__getOpponentsIpAddress_
+struct __GameWS__play_
 {
 public:
-	_GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress;	/* optional element of type GameWS:getOpponentsIpAddress */
+	_GameWS__play *GameWS__play;	/* optional element of type GameWS:play */
 public:
-	int soap_type() const { return 37; } /* = unique type id SOAP_TYPE___GameWS__getOpponentsIpAddress_ */
+	int soap_type() const { return 85; } /* = unique type id SOAP_TYPE___GameWS__play_ */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__getPlayers_
+#define SOAP_TYPE___GameWS__getPlayers_ (87)
+/* Operation wrapper: */
+struct __GameWS__getPlayers_
+{
+public:
+	_GameWS__getPlayers *GameWS__getPlayers;	/* optional element of type GameWS:getPlayers */
+public:
+	int soap_type() const { return 87; } /* = unique type id SOAP_TYPE___GameWS__getPlayers_ */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__getGamesPlayed_
+#define SOAP_TYPE___GameWS__getGamesPlayed_ (89)
+/* Operation wrapper: */
+struct __GameWS__getGamesPlayed_
+{
+public:
+	_GameWS__getGamesPlayed *GameWS__getGamesPlayed;	/* optional element of type GameWS:getGamesPlayed */
+public:
+	int soap_type() const { return 89; } /* = unique type id SOAP_TYPE___GameWS__getGamesPlayed_ */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__removePlayer_
+#define SOAP_TYPE___GameWS__removePlayer_ (91)
+/* Operation wrapper: */
+struct __GameWS__removePlayer_
+{
+public:
+	_GameWS__removePlayer *GameWS__removePlayer;	/* optional element of type GameWS:removePlayer */
+public:
+	int soap_type() const { return 91; } /* = unique type id SOAP_TYPE___GameWS__removePlayer_ */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__checkIn_
+#define SOAP_TYPE___GameWS__checkIn_ (93)
+/* Operation wrapper: */
+struct __GameWS__checkIn_
+{
+public:
+	_GameWS__checkIn *GameWS__checkIn;	/* optional element of type GameWS:checkIn */
+public:
+	int soap_type() const { return 93; } /* = unique type id SOAP_TYPE___GameWS__checkIn_ */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__addScore_
+#define SOAP_TYPE___GameWS__addScore_ (95)
+/* Operation wrapper: */
+struct __GameWS__addScore_
+{
+public:
+	_GameWS__addScore *GameWS__addScore;	/* optional element of type GameWS:addScore */
+public:
+	int soap_type() const { return 95; } /* = unique type id SOAP_TYPE___GameWS__addScore_ */
+};
+#endif
+
+#ifndef SOAP_TYPE___GameWS__getScoreList_
+#define SOAP_TYPE___GameWS__getScoreList_ (97)
+/* Operation wrapper: */
+struct __GameWS__getScoreList_
+{
+public:
+	_GameWS__getScoreList *GameWS__getScoreList;	/* optional element of type GameWS:getScoreList */
+public:
+	int soap_type() const { return 97; } /* = unique type id SOAP_TYPE___GameWS__getScoreList_ */
 };
 #endif
 
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (38)
+#define SOAP_TYPE_SOAP_ENV__Header (98)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
 public:
-	int soap_type() const { return 38; } /* = unique type id SOAP_TYPE_SOAP_ENV__Header */
+	int soap_type() const { return 98; } /* = unique type id SOAP_TYPE_SOAP_ENV__Header */
 #ifdef WITH_NOEMPTYSTRUCT
 private:
 	char dummy;	/* dummy member to enable compilation */
@@ -287,7 +779,7 @@ private:
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (39)
+#define SOAP_TYPE_SOAP_ENV__Code (99)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -295,7 +787,7 @@ public:
 	char *SOAP_ENV__Value;	/* optional element of type xsd:QName */
 	struct SOAP_ENV__Code *SOAP_ENV__Subcode;	/* optional element of type SOAP-ENV:Code */
 public:
-	int soap_type() const { return 39; } /* = unique type id SOAP_TYPE_SOAP_ENV__Code */
+	int soap_type() const { return 99; } /* = unique type id SOAP_TYPE_SOAP_ENV__Code */
 };
 #endif
 
@@ -304,7 +796,7 @@ public:
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (41)
+#define SOAP_TYPE_SOAP_ENV__Detail (101)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -313,7 +805,7 @@ public:
 	int __type;	/* any type of element <fault> (defined below) */
 	void *fault;	/* transient */
 public:
-	int soap_type() const { return 41; } /* = unique type id SOAP_TYPE_SOAP_ENV__Detail */
+	int soap_type() const { return 101; } /* = unique type id SOAP_TYPE_SOAP_ENV__Detail */
 };
 #endif
 
@@ -322,14 +814,14 @@ public:
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (44)
+#define SOAP_TYPE_SOAP_ENV__Reason (104)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
 public:
 	char *SOAP_ENV__Text;	/* optional element of type xsd:string */
 public:
-	int soap_type() const { return 44; } /* = unique type id SOAP_TYPE_SOAP_ENV__Reason */
+	int soap_type() const { return 104; } /* = unique type id SOAP_TYPE_SOAP_ENV__Reason */
 };
 #endif
 
@@ -338,7 +830,7 @@ public:
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (45)
+#define SOAP_TYPE_SOAP_ENV__Fault (105)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
@@ -353,7 +845,7 @@ public:
 	char *SOAP_ENV__Role;	/* optional element of type xsd:string */
 	struct SOAP_ENV__Detail *SOAP_ENV__Detail;	/* optional element of type SOAP-ENV:Detail */
 public:
-	int soap_type() const { return 45; } /* = unique type id SOAP_TYPE_SOAP_ENV__Fault */
+	int soap_type() const { return 105; } /* = unique type id SOAP_TYPE_SOAP_ENV__Fault */
 };
 #endif
 
@@ -390,17 +882,37 @@ typedef char *_XML;
 \******************************************************************************/
 
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse);
-
 SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__register(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__register *GameWS__register, _GameWS__registerResponse *GameWS__registerResponse);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getOpponentsIpAddress(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress, _GameWS__getOpponentsIpAddressResponse *GameWS__getOpponentsIpAddressResponse);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__play(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__play *GameWS__play, _GameWS__playResponse *GameWS__playResponse);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getPlayers(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getPlayers *GameWS__getPlayers, _GameWS__getPlayersResponse *GameWS__getPlayersResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__removePlayer(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__removePlayer *GameWS__removePlayer, _GameWS__removePlayerResponse *GameWS__removePlayerResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__checkIn(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__checkIn *GameWS__checkIn, _GameWS__checkInResponse *GameWS__checkInResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__addScore(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__addScore *GameWS__addScore, _GameWS__addScoreResponse *GameWS__addScoreResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getScoreList(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getScoreList *GameWS__getScoreList, _GameWS__getScoreListResponse *GameWS__getScoreListResponse);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__register_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__register *GameWS__register, _GameWS__registerResponse *GameWS__registerResponse);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getOpponentsIpAddress_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress, _GameWS__getOpponentsIpAddressResponse *GameWS__getOpponentsIpAddressResponse);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__play_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__play *GameWS__play, _GameWS__playResponse *GameWS__playResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getPlayers_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getPlayers *GameWS__getPlayers, _GameWS__getPlayersResponse *GameWS__getPlayersResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__removePlayer_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__removePlayer *GameWS__removePlayer, _GameWS__removePlayerResponse *GameWS__removePlayerResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__checkIn_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__checkIn *GameWS__checkIn, _GameWS__checkInResponse *GameWS__checkInResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__addScore_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__addScore *GameWS__addScore, _GameWS__addScoreResponse *GameWS__addScoreResponse);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getScoreList_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getScoreList *GameWS__getScoreList, _GameWS__getScoreListResponse *GameWS__getScoreListResponse);
 
 #endif
 

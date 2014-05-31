@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Runtime.CompilerServices;
 
 namespace MasterGameServer
 {
 
     /// <summary>
     /// This Web Service acts as a master server for possibly many games.
-    /// It has a dictionary that keeps track of all games played and also 
-    /// records of all players (their IDs and IP addresses).
+    /// It keeps track of all games played and all registered players.
     /// </summary>
     
     [WebService(Namespace = "http://non-real-time-networking-web-service.psi")]
@@ -18,143 +18,325 @@ namespace MasterGameServer
     [System.ComponentModel.ToolboxItem(false)]
     public class GameWS : System.Web.Services.WebService
     {
+        
+        // CONSTANTS:
 
-        const string PLAYER_ANONYMOUS = "ANONYMOUS";
+        // Maximum number of high scores stored for each game
+        const int MAX_SCORES_PER_GAME = 15;
+
+        // ERROR CODES:
+        const int SCORE_TOO_SMALL = -5;
+        const int NO_SUCH_PLAYER = -4;
+        const int GAME_NAME_EMPTY = -3;
+        const int LOGIN_TAKEN = -2;
+        const int NO_SUCH_GAME = -1;
 
         /// <summary>
-        /// Dictionary is an equivalent of Map that we see in C++ and Java.
-        /// For each game its ID (a string) is kept together with 
-        /// a list of players playing it.
+        /// List of games registered on the server.
         /// </summary>
-        static Dictionary<string, List<Player>> games = new Dictionary<string, List<Player>>();
+        static List<Game> games = new List<Game>();
 
         /// <summary>
-        /// For each game a session counter is kept. It is used
-        /// to generate session IDs for new players.
+        /// List of players registered on the server.
         /// </summary>
-        static Dictionary<string, int> sessionCounters = new Dictionary<string, int>();
+        static List<Player> players = new List<Player>();
+
+        /// <summary>
+        /// Session counter. It is used to assign
+        /// session IDs for newly registered players.
+        /// </summary>
+        static int sessionCounter = 1;
 
         /// <summary>
         /// Object used for locking the critical section
         /// </summary>   
-        readonly object syncLock = new object();
+        static readonly object syncLock = new object();
 
-        /// <summary>
-        /// Returns a list of strings representing games registered on the server.
-        /// </summary>
-        [WebMethod]
-        public List<string> getGamesPlayed()
-        {
-            return games.Keys.ToList();
-        }
+        // Public methods:
 
         /// <summary>
         /// Registers player on the server for a given game.
         /// If a game was not registered on the server before,
-        /// a new dictionary is created to hold data of people
-        /// playing it. The server saves player's IP address
-        /// and generates a session ID for him.
+        /// its instance is created. For every player his object
+        /// is created and relevant data is stored. This function
+        /// is also responsible for putting players into pairs.
         /// </summary>
         /// <param name="gameName">
         /// name of the game to be played by a player
         /// </param>
+        /// <param name="login">
+        /// player's desired login (optional)
+        /// </param>
+        /// <returns>
+        /// Structure containing the following information:
+        ///     sessionId - session ID assigned by the server
+        ///     opponentsIP - IP address of the opponent (if hosting == false)
+        ///     hosting - determines whether the player will be hosting or joining a game
+        ///     login - player's login
+        ///     errorCode - error code, 0 if everything went fine
+        /// </returns>
         [WebMethod]
-        public int register(string gameName, string login)
+        public PlayRequestResult register(string gameName, string login)
         {
-            // Check if the name of the game was provided
+            
+            // Check parameters
             if (String.IsNullOrEmpty(gameName))
-                throw new Exception("Register: gameName cannot be empty!");
+                return new PlayRequestResult
+                {
+                    errorCode = GAME_NAME_EMPTY
+                };
+
+            PlayRequestResult playRequestResult = null;
 
             /*
                 Lock the critical section to prevent inconsistency
                 and unexpected behaviour of the server.
             */
-
-            Player player;
-
             lock (syncLock) // beginning of critical section
-            {
+            {               
+            
+            Game game = games.FirstOrDefault(g => g.name == gameName);
+
+                if (!loginAvailible(game, login))
+                    return new PlayRequestResult
+                    {
+                        errorCode = LOGIN_TAKEN
+                    };
+                            
                 // If a game was not registered on the server:
-                if (!games.Keys.ToList().Contains(gameName))
+                if (game == null)
                 {
-                    games.Add(gameName, new List<Player>()); // Initialize game's list
-                    sessionCounters.Add(gameName, 1); // Initialize the session counter for that game
+                    game = new Game { // Create new game
+                        name = gameName,
+                        highScores = new List<Score>()
+                    };
                 }
 
+                int sesId = sessionCounter++;
+
                 // Save player:
-                player = new Player()
+                Player player = new Player()
                 {
-                    sessionId = sessionCounters[gameName]++,
-                    ipAddress = Context.Request.ServerVariables["REMOTE_ADDR"],
-                    login = (String.IsNullOrEmpty(login) ? PLAYER_ANONYMOUS : login),
-                    waiting = (String.IsNullOrEmpty(login) ? false : true)
+                    sessionId = sesId,
+                    login = (String.IsNullOrEmpty(login) ? "Player" + sesId.ToString() : login),
+                    ipAddress = Context.Request.ServerVariables["REMOTE_ADDR"]
                 };
 
-                games[gameName].Add(player);
+                player.game = game;
+
+                playRequestResult = getPlayRequestResult(player);                
+
+                DateTime now = DateTime.Now;
+                player.joined = player.lastCheckedIn = now;
+
+                // This still needs to be locked as it's not thread safe
+                players.Add(player);
+                games.Add(player.game); // Initialize game's list
 
             } // end of critical section
-            
-            // Return player's session ID
-            return player.sessionId;
+
+            return playRequestResult;
+
         }
 
         /// <summary>
-        /// Returns the IP address of the opponent for a specific game.
+        /// Function decides whether the returning player will host or
+        /// join a game.
         /// </summary>
-        /// <param name="gameName">
-        /// name of the game being played
-        /// </param>
-        /// <param name="sessionId">
-        /// session ID generated by the web service after registering on it
-        /// </param>
+        /// <param name="sessionId">session ID of an already registered player</param>
+        /// <returns>
+        /// Structure containing the following information:
+        ///     opponentsIP - IP address of the opponent (if hosting == false)
+        ///     hosting - determines whether the player will be hosting or joining a game
+        ///     errorCode - error code, 0 if everything went fine
+        /// </returns>
         [WebMethod]
-        public string getOpponentsIpAddress(string gameName, int sessionId)
+        public PlayRequestResult play(int sessionId)
         {
-            // Check if the parameter was provided
-            if (String.IsNullOrEmpty(gameName))
-                throw new Exception("GetOpponentsIpAddress: gameName cannot be empty!");
+            Player player = players.FirstOrDefault(p => p.sessionId == sessionId);
 
-            // Check if provided session ID is even and is not equal to 0
-            if (sessionId < 1 || (sessionId % 2) == 1)
-                throw new Exception("GetOpponentsIpAddress: sessionId has to be a positive even integer number.");
-            // Check if given game was registered on the server
-            if (!games.Keys.ToList().Contains(gameName))
-                throw new Exception("GetOpponentsIpAddress: game called " + gameName + " has not been registered on the server");
+            if (player == null)
+                return new PlayRequestResult
+                {
+                    errorCode = NO_SUCH_PLAYER
+                };
 
-            // return the IP address of the opponent
-            return games[gameName].Find(item => item.sessionId == (sessionId - 1)).ipAddress;
+            player.ipAddress = Context.Request.ServerVariables["REMOTE_ADDR"];
+            player.lastCheckedIn = DateTime.Now;
+
+            PlayRequestResult playRequestResult = getPlayRequestResult(player);
+
+            return playRequestResult;
+
         }
 
         /// <summary>
-        /// Returns a list of people playing given game (their IDs and IP addresses).
-        /// This function is not used by the library itself,
-        /// it's just used for debugging to see whether players
-        /// register correctly for a given game.
+        /// Returns a list of players registered on the server.
         /// </summary>
-        /// <param name="gameName">name of the game to retrieve players for</param>
         [WebMethod]
-        public List<string> getAvailiblePlayers(string gameName)
+        public List<Player> getPlayers()
+        {
+            return players;
+        }
+
+        /// <summary>
+        /// Returns a list of games registered on the server.
+        /// </summary>
+        [WebMethod]
+        public List<Game> getGamesPlayed()
+        {
+            return games;
+        }
+
+        /// <summary>
+        /// Removes a player from the server. His high scores (if any)
+        /// are kept, though.
+        /// </summary>
+        /// <param name="sessionId">session ID of a player to be removed</param>
+        /// <returns>0 on success, error code otherwise</returns>
+        [WebMethod]
+        public int removePlayer(int sessionId)
         {
 
-            // Check if the parameter was provided
-            if (String.IsNullOrEmpty(gameName))
-                throw new Exception("GetAvailiblePlayers: gameName cannot be empty!");
-
-            // if such game was not registered on the server, return null
-            if (!games.Keys.ToList().Contains(gameName))
-                return null;
-
-            // create a list of players for a given game
-            List<string> players = new List<string>();
-
-            foreach (Player p in games[gameName])
+            Player playerToRemove = players.FirstOrDefault(p => p.sessionId == sessionId);
+            if (playerToRemove != null)
             {
-                if (p.waiting == true)
-                    players.Add(p.login);
+                players.Remove(playerToRemove);
+                return 0;
+            }
+            else
+                return NO_SUCH_PLAYER;
+
+        }
+
+        /// <summary>
+        /// Used to update player's lastCheckedIn attribute,
+        /// which is later used to determine whether he/she
+        /// is still active.
+        /// </summary>
+        /// <param name="sessionId">session ID of a player</param>
+        /// <returns>0 on success, error code otherwise</returns>
+        [WebMethod]
+        public int checkIn(int sessionId)
+        {
+
+            Player player = players.FirstOrDefault(p => p.sessionId == sessionId);
+            if (player == null)
+                return NO_SUCH_PLAYER;
+
+            player.lastCheckedIn = DateTime.Now;
+
+            return 0;
+
+        }
+
+        /// <summary>
+        /// Saves player's score on the server.
+        /// </summary>
+        /// <param name="sessionId">session ID of a calling player</param>
+        /// <param name="score">Score to be saved</param>
+        /// <returns>0 on success, error code otherwise</returns>
+        [WebMethod]
+        public int addScore(int sessionId, float score)
+        {
+
+            Player player = players.FirstOrDefault(p => p.sessionId == sessionId);
+            if (player == null)
+                return NO_SUCH_PLAYER;
+
+            Game game = player.game;
+            Score newScore = new Score
+            {
+                score = score,
+                playerLogin = player.login
+            };
+
+            if (game.highScores.Count == MAX_SCORES_PER_GAME)
+            {
+                Score minScore = game.highScores.OrderBy(s => s.score).FirstOrDefault();
+                if (minScore.score < newScore.score)
+                    game.replaceScore(minScore, newScore);
+                else
+                    return SCORE_TOO_SMALL;
+            }
+            else
+            {
+                game.highScores.Add(newScore);
             }
 
-            return players;
+            return 0;
+            
+        }
 
+        /// <summary>
+        /// Returns a list of high scores for a given game.
+        /// </summary>
+        /// <param name="gameName">Name of the game for which to retrieve scores.</param>
+        /// <param name="limit">Optional list size limit</param>
+        [WebMethod]
+        public List<Score> getScoreList(string gameName, int limit)
+        {
+
+            Game game = games.FirstOrDefault(g => g.name == gameName);
+            if (game == null)
+                return null;
+
+            return game.highScores.OrderByDescending(s => s.score).Take(limit).ToList();
+
+        }
+
+        /*
+         * The method is synchronized as only one thread (one player)
+         * can access it at a time.
+        */
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private PlayRequestResult getPlayRequestResult(Player player)
+        {
+
+            // Create new object
+            PlayRequestResult playRequestResult = new PlayRequestResult();
+
+            // Find the opponent:
+            Player opponent = players.FirstOrDefault(p => p.waiting == true && p.game == player.game);
+
+            if (opponent == null) // Nobody's waiting for an opponent
+            {
+                playRequestResult.hosting = true; // Calling player will host a game
+                player.waiting = true; // Calling player will wait for somebody to join him
+            }
+            else // Opponent found
+            {
+                if (opponent.isActive(player.game.checkInInterval)) // Opponent active
+                {
+                    playRequestResult.opponentsIP = opponent.ipAddress; // Assign opponent's IP address
+                    opponent.waiting = false; // Opponent is not waiting anymore
+                    player.waiting = false; // Player is not waiting
+                }
+                else // Player will host
+                {
+                    playRequestResult.hosting = true; // Calling player will host a game
+                    opponent.waiting = false; // Opponent is not waiting
+                    player.waiting = true; // Calling player will wait for somebody to join him
+                }
+
+            }
+
+            playRequestResult.sessionId = player.sessionId; // Assign player's generated session ID
+            playRequestResult.login = player.login; // Assign player's login
+
+            return playRequestResult; // Return resulting structure
+
+        }
+
+        /*
+         * Function checks whether somebody with the same login
+         * is not already playing given game.
+        */
+        private bool loginAvailible(Game game, string login)
+        {
+            if (game == null) // Such game does not exist, exit
+                return true;
+            return players.FirstOrDefault(p => p.login == login && p.game == game) == null; // return boolean value
         }
 
     }
