@@ -31,6 +31,7 @@ namespace irrlicht_nonrealtimenetworking {
 		char* opponentsIP; // Opponent's IP address
 		int sessionId; // Player's ID
 		bool hosting; // Determines whether current player is a hosting player
+		int checkInInterval; // Check in interval required by the server
 
 		// Common attributes
 		char* buffer;

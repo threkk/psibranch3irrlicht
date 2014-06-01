@@ -58,6 +58,7 @@ public:
 	bool hosting;	/* required element of type xsd:boolean */
 	std::string *login;	/* optional element of type xsd:string */
 	int errorCode;	/* required element of type xsd:int */
+	int checkInInterval; /* required element of type xsd:int */
 	struct soap *soap;	/* transient */
 public:
 	virtual int soap_type() const { return 8; } /* = unique type id SOAP_TYPE_GameWS__PlayRequestResult */

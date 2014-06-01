@@ -626,7 +626,8 @@ namespace irrlicht_nonrealtimenetworking {
 		hosting = requestResult->hosting;
 		sessionId = requestResult->sessionId;
 		opponentsIP = convertStringToCharPointer(requestResult->opponentsIP);
-		login = convertStringToCharPointer(requestResult->login);		
+		login = convertStringToCharPointer(requestResult->login);
+		checkInInterval = requestResult->checkInInterval;
 
 	}
 

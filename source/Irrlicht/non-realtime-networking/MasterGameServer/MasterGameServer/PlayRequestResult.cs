@@ -18,6 +18,8 @@ namespace MasterGameServer
         public string login { get; set; }
         // Error code (0 if no error)
         public int errorCode { get; set; }
+        // Check in interval required by the game/server
+        public int checkInInterval { get; set; }
 
     }
 }

@@ -21,6 +21,8 @@ namespace MasterGameServer
         
         // CONSTANTS:
 
+        // Check in interval required by the server (in seconds)
+        const int CHECK_IN_INTERVAL = 1000;
         // Maximum number of high scores stored for each game
         const int MAX_SCORES_PER_GAME = 15;
 
@@ -131,6 +133,7 @@ namespace MasterGameServer
 
                 // This still needs to be locked as it's not thread safe
                 players.Add(player);
+                player.game.checkInInterval = playRequestResult.checkInInterval;
                 games.Add(player.game); // Initialize game's list
 
             } // end of critical section
@@ -323,6 +326,7 @@ namespace MasterGameServer
 
             playRequestResult.sessionId = player.sessionId; // Assign player's generated session ID
             playRequestResult.login = player.login; // Assign player's login
+            playRequestResult.checkInInterval = CHECK_IN_INTERVAL; // Assign check in interval
 
             return playRequestResult; // Return resulting structure
 
