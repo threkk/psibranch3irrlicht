@@ -27,7 +27,7 @@ namespace irr
 	};
 
 	//An enum which holds the types of GUI ID's for the custom menu.
-	enum
+	enum custom
 	{
 		MENU1,
 		MENU2,
@@ -50,7 +50,7 @@ namespace irr
 			void init(IGUIEnvironment* guienv, int width, int height);
 			
 			//This init function loads the amount of buttons you want. It needs the width and height of the device and also the GUIEnvironment and also the number of buttons.
-			void init_custom(IGUIEnvironment* guienv, int width, int height, int amount_buttons);
+			void init_custom(IGUIEnvironment* guienv, int width, int height, int amount_buttons, const wchar_t *name[], const wchar_t *sub_name[]);
 
 			//typedef of the function pointers you need if you're using the networking menu.
 			typedef bool (menuReceiver::*JOIN_GAME)(void);
@@ -70,18 +70,20 @@ namespace irr
 			bool menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv, JOIN_GAME join_game, HOST_GAME host_game, JOIN_GAME_SECOND join_game_second, END_GAME end_game);
 
 			//The is the bool functions for the buttons depending on how many buttons you make you need to add the functions to this functions
-			bool menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1);
-			bool menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2);
-			bool menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3);
-			bool menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4);
-			bool menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5);
-			bool menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5, menu6 menu6);
+			bool menuCustomCases_1(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1);
+			bool menuCustomCases_2(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2);
+			bool menuCustomCases_3(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3);
+			bool menuCustomCases_4(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4);
+			bool menuCustomCases_5(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5);
+			bool menuCustomCases_6(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5, menu6 menu6);
 
 			
 			//Standard OnEvent method that needs to be implemented.
 			virtual bool OnEvent(const SEvent& event) = 0;
 
 			IGUIStaticText *text;
+
+			custom menu_ID[5];
 
 			bool result;
 

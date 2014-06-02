@@ -16,6 +16,19 @@ void menuReceiver::init(IGUIEnvironment* guienv, int width, int height)
 
 }
 
+//this function initializes the custom buttons they have a fixed height and width for the size of each buttons
+void menuReceiver::init_custom(IGUIEnvironment* guienv, int width, int height, int amount_buttons, const wchar_t *name[], const wchar_t *sub_name[])
+{
+	for(int i = 0; i < amount_buttons; i++)
+	{
+		custom menu = (custom) i;
+		guienv->addButton(rect<s32>((width / 3), (height/ 35) * ((i * 5) + 1), (width / 3) * 2, (height/ 35) * ((i * 5) + 5)), 
+			0, 
+			 menu, 
+			name[i], 
+			sub_name[i]);
+	}
+}
 
 //Implementation of the menuSwitchCases.
 bool menuReceiver::menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv, JOIN_GAME join_game, HOST_GAME host_game, JOIN_GAME_SECOND join_game_second, END_GAME end_game)
@@ -86,7 +99,7 @@ bool menuReceiver::menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv,
 	}
 }
 
-bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1)
+bool menuReceiver::menuCustomCases_1(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1)
 {
 //this is an if statement that checks is the event is a GUI event type and then it will check what the ID is and select it from the switch case
  if (event.EventType == EET_GUI_EVENT)
@@ -117,7 +130,7 @@ bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv,
 	}
 }
 
-bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2)
+bool menuReceiver::menuCustomCases_2(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2)
 {
 //this is an if statement that checks is the event is a GUI event type and then it will check what the ID is and select it from the switch case
  if (event.EventType == EET_GUI_EVENT)
@@ -154,7 +167,7 @@ bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv,
 	}
 }
 
-bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3)
+bool menuReceiver::menuCustomCases_3(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3)
 {
 //this is an if statement that checks is the event is a GUI event type and then it will check what the ID is and select it from the switch case
  if (event.EventType == EET_GUI_EVENT)
@@ -197,7 +210,7 @@ bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv,
 	}
 }
 
-bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4)
+bool menuReceiver::menuCustomCases_4(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4)
 {
 //this is an if statement that checks is the event is a GUI event type and then it will check what the ID is and select it from the switch case
  if (event.EventType == EET_GUI_EVENT)
@@ -246,7 +259,7 @@ bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv,
 	}
 }
 
-bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5)
+bool menuReceiver::menuCustomCases_5(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5)
 {
 //this is an if statement that checks is the event is a GUI event type and then it will check what the ID is and select it from the switch case
  if (event.EventType == EET_GUI_EVENT)
@@ -301,7 +314,7 @@ bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv,
 	}
 }
 
-bool menuReceiver::menuCustomCases(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5, menu6 menu6)
+bool menuReceiver::menuCustomCases_6(const SEvent& event, IGUIEnvironment* guienv, menu1 menu1, menu2 menu2, menu3 menu3, menu4 menu4, menu5 menu5, menu6 menu6)
 {
 //this is an if statement that checks is the event is a GUI event type and then it will check what the ID is and select it from the switch case
  if (event.EventType == EET_GUI_EVENT)
