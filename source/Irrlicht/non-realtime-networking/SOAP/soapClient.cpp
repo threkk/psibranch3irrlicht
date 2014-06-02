@@ -14,59 +14,8 @@ compiling, linking, and/or using OpenSSL is allowed.
 #endif
 #include "soapH.h"
 
-SOAP_SOURCE_STAMP("@(#) soapClient.cpp ver 2.8.17r 2014-03-26 17:04:09 GMT")
+SOAP_SOURCE_STAMP("@(#) soapClient.cpp ver 2.8.17r 2014-05-30 19:36:30 GMT")
 
-
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse)
-{	struct __GameWS__getGamesPlayed soap_tmp___GameWS__getGamesPlayed;
-	if (soap_endpoint == NULL)
-		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
-	if (soap_action == NULL)
-		soap_action = "http://non-real-time-networking-web-service.psi/getGamesPlayed";
-	soap_begin(soap);
-	soap->encodingStyle = NULL;
-	soap_tmp___GameWS__getGamesPlayed.GameWS__getGamesPlayed = GameWS__getGamesPlayed;
-	soap_serializeheader(soap);
-	soap_serialize___GameWS__getGamesPlayed(soap, &soap_tmp___GameWS__getGamesPlayed);
-	if (soap_begin_count(soap))
-		return soap->error;
-	if (soap->mode & SOAP_IO_LENGTH)
-	{	if (soap_envelope_begin_out(soap)
-		 || soap_putheader(soap)
-		 || soap_body_begin_out(soap)
-		 || soap_put___GameWS__getGamesPlayed(soap, &soap_tmp___GameWS__getGamesPlayed, "-GameWS:getGamesPlayed", NULL)
-		 || soap_body_end_out(soap)
-		 || soap_envelope_end_out(soap))
-			 return soap->error;
-	}
-	if (soap_end_count(soap))
-		return soap->error;
-	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
-	 || soap_envelope_begin_out(soap)
-	 || soap_putheader(soap)
-	 || soap_body_begin_out(soap)
-	 || soap_put___GameWS__getGamesPlayed(soap, &soap_tmp___GameWS__getGamesPlayed, "-GameWS:getGamesPlayed", NULL)
-	 || soap_body_end_out(soap)
-	 || soap_envelope_end_out(soap)
-	 || soap_end_send(soap))
-		return soap_closesock(soap);
-	if (!GameWS__getGamesPlayedResponse)
-		return soap_closesock(soap);
-	GameWS__getGamesPlayedResponse->soap_default(soap);
-	if (soap_begin_recv(soap)
-	 || soap_envelope_begin_in(soap)
-	 || soap_recv_header(soap)
-	 || soap_body_begin_in(soap))
-		return soap_closesock(soap);
-	GameWS__getGamesPlayedResponse->soap_get(soap, "GameWS:getGamesPlayedResponse", "");
-	if (soap->error)
-		return soap_recv_fault(soap, 0);
-	if (soap_body_end_in(soap)
-	 || soap_envelope_end_in(soap)
-	 || soap_end_recv(soap))
-		return soap_closesock(soap);
-	return soap_closesock(soap);
-}
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__register(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__register *GameWS__register, _GameWS__registerResponse *GameWS__registerResponse)
 {	struct __GameWS__register soap_tmp___GameWS__register;
@@ -119,24 +68,24 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__register(struct soap *soap, const 
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getOpponentsIpAddress(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress, _GameWS__getOpponentsIpAddressResponse *GameWS__getOpponentsIpAddressResponse)
-{	struct __GameWS__getOpponentsIpAddress soap_tmp___GameWS__getOpponentsIpAddress;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__play(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__play *GameWS__play, _GameWS__playResponse *GameWS__playResponse)
+{	struct __GameWS__play soap_tmp___GameWS__play;
 	if (soap_endpoint == NULL)
 		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
 	if (soap_action == NULL)
-		soap_action = "http://non-real-time-networking-web-service.psi/getOpponentsIpAddress";
+		soap_action = "http://non-real-time-networking-web-service.psi/play";
 	soap_begin(soap);
 	soap->encodingStyle = NULL;
-	soap_tmp___GameWS__getOpponentsIpAddress.GameWS__getOpponentsIpAddress = GameWS__getOpponentsIpAddress;
+	soap_tmp___GameWS__play.GameWS__play = GameWS__play;
 	soap_serializeheader(soap);
-	soap_serialize___GameWS__getOpponentsIpAddress(soap, &soap_tmp___GameWS__getOpponentsIpAddress);
+	soap_serialize___GameWS__play(soap, &soap_tmp___GameWS__play);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put___GameWS__getOpponentsIpAddress(soap, &soap_tmp___GameWS__getOpponentsIpAddress, "-GameWS:getOpponentsIpAddress", NULL)
+		 || soap_put___GameWS__play(soap, &soap_tmp___GameWS__play, "-GameWS:play", NULL)
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -147,20 +96,20 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getOpponentsIpAddress(struct soap 
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put___GameWS__getOpponentsIpAddress(soap, &soap_tmp___GameWS__getOpponentsIpAddress, "-GameWS:getOpponentsIpAddress", NULL)
+	 || soap_put___GameWS__play(soap, &soap_tmp___GameWS__play, "-GameWS:play", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!GameWS__getOpponentsIpAddressResponse)
+	if (!GameWS__playResponse)
 		return soap_closesock(soap);
-	GameWS__getOpponentsIpAddressResponse->soap_default(soap);
+	GameWS__playResponse->soap_default(soap);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
-	GameWS__getOpponentsIpAddressResponse->soap_get(soap, "GameWS:getOpponentsIpAddressResponse", "");
+	GameWS__playResponse->soap_get(soap, "GameWS:playResponse", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
@@ -170,24 +119,24 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getOpponentsIpAddress(struct soap 
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse)
-{	struct __GameWS__getGamesPlayed_ soap_tmp___GameWS__getGamesPlayed_;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getPlayers(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getPlayers *GameWS__getPlayers, _GameWS__getPlayersResponse *GameWS__getPlayersResponse)
+{	struct __GameWS__getPlayers soap_tmp___GameWS__getPlayers;
 	if (soap_endpoint == NULL)
 		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
 	if (soap_action == NULL)
-		soap_action = "http://non-real-time-networking-web-service.psi/getGamesPlayed";
+		soap_action = "http://non-real-time-networking-web-service.psi/getPlayers";
 	soap_begin(soap);
 	soap->encodingStyle = NULL;
-	soap_tmp___GameWS__getGamesPlayed_.GameWS__getGamesPlayed = GameWS__getGamesPlayed;
+	soap_tmp___GameWS__getPlayers.GameWS__getPlayers = GameWS__getPlayers;
 	soap_serializeheader(soap);
-	soap_serialize___GameWS__getGamesPlayed_(soap, &soap_tmp___GameWS__getGamesPlayed_);
+	soap_serialize___GameWS__getPlayers(soap, &soap_tmp___GameWS__getPlayers);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put___GameWS__getGamesPlayed_(soap, &soap_tmp___GameWS__getGamesPlayed_, "-GameWS:getGamesPlayed", NULL)
+		 || soap_put___GameWS__getPlayers(soap, &soap_tmp___GameWS__getPlayers, "-GameWS:getPlayers", NULL)
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -198,7 +147,58 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed_(struct soap *soap,
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put___GameWS__getGamesPlayed_(soap, &soap_tmp___GameWS__getGamesPlayed_, "-GameWS:getGamesPlayed", NULL)
+	 || soap_put___GameWS__getPlayers(soap, &soap_tmp___GameWS__getPlayers, "-GameWS:getPlayers", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__getPlayersResponse)
+		return soap_closesock(soap);
+	GameWS__getPlayersResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__getPlayersResponse->soap_get(soap, "GameWS:getPlayersResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse)
+{	struct __GameWS__getGamesPlayed soap_tmp___GameWS__getGamesPlayed;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/getGamesPlayed";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__getGamesPlayed.GameWS__getGamesPlayed = GameWS__getGamesPlayed;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__getGamesPlayed(soap, &soap_tmp___GameWS__getGamesPlayed);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__getGamesPlayed(soap, &soap_tmp___GameWS__getGamesPlayed, "-GameWS:getGamesPlayed", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__getGamesPlayed(soap, &soap_tmp___GameWS__getGamesPlayed, "-GameWS:getGamesPlayed", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
@@ -212,6 +212,210 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed_(struct soap *soap,
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
 	GameWS__getGamesPlayedResponse->soap_get(soap, "GameWS:getGamesPlayedResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__removePlayer(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__removePlayer *GameWS__removePlayer, _GameWS__removePlayerResponse *GameWS__removePlayerResponse)
+{	struct __GameWS__removePlayer soap_tmp___GameWS__removePlayer;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/removePlayer";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__removePlayer.GameWS__removePlayer = GameWS__removePlayer;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__removePlayer(soap, &soap_tmp___GameWS__removePlayer);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__removePlayer(soap, &soap_tmp___GameWS__removePlayer, "-GameWS:removePlayer", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__removePlayer(soap, &soap_tmp___GameWS__removePlayer, "-GameWS:removePlayer", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__removePlayerResponse)
+		return soap_closesock(soap);
+	GameWS__removePlayerResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__removePlayerResponse->soap_get(soap, "GameWS:removePlayerResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__checkIn(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__checkIn *GameWS__checkIn, _GameWS__checkInResponse *GameWS__checkInResponse)
+{	struct __GameWS__checkIn soap_tmp___GameWS__checkIn;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/checkIn";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__checkIn.GameWS__checkIn = GameWS__checkIn;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__checkIn(soap, &soap_tmp___GameWS__checkIn);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__checkIn(soap, &soap_tmp___GameWS__checkIn, "-GameWS:checkIn", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__checkIn(soap, &soap_tmp___GameWS__checkIn, "-GameWS:checkIn", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__checkInResponse)
+		return soap_closesock(soap);
+	GameWS__checkInResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__checkInResponse->soap_get(soap, "GameWS:checkInResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__addScore(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__addScore *GameWS__addScore, _GameWS__addScoreResponse *GameWS__addScoreResponse)
+{	struct __GameWS__addScore soap_tmp___GameWS__addScore;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/addScore";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__addScore.GameWS__addScore = GameWS__addScore;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__addScore(soap, &soap_tmp___GameWS__addScore);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__addScore(soap, &soap_tmp___GameWS__addScore, "-GameWS:addScore", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__addScore(soap, &soap_tmp___GameWS__addScore, "-GameWS:addScore", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__addScoreResponse)
+		return soap_closesock(soap);
+	GameWS__addScoreResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__addScoreResponse->soap_get(soap, "GameWS:addScoreResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getScoreList(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getScoreList *GameWS__getScoreList, _GameWS__getScoreListResponse *GameWS__getScoreListResponse)
+{	struct __GameWS__getScoreList soap_tmp___GameWS__getScoreList;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/getScoreList";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__getScoreList.GameWS__getScoreList = GameWS__getScoreList;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__getScoreList(soap, &soap_tmp___GameWS__getScoreList);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__getScoreList(soap, &soap_tmp___GameWS__getScoreList, "-GameWS:getScoreList", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__getScoreList(soap, &soap_tmp___GameWS__getScoreList, "-GameWS:getScoreList", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__getScoreListResponse)
+		return soap_closesock(soap);
+	GameWS__getScoreListResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__getScoreListResponse->soap_get(soap, "GameWS:getScoreListResponse", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)
@@ -272,24 +476,24 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__register_(struct soap *soap, const
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getOpponentsIpAddress_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getOpponentsIpAddress *GameWS__getOpponentsIpAddress, _GameWS__getOpponentsIpAddressResponse *GameWS__getOpponentsIpAddressResponse)
-{	struct __GameWS__getOpponentsIpAddress_ soap_tmp___GameWS__getOpponentsIpAddress_;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__play_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__play *GameWS__play, _GameWS__playResponse *GameWS__playResponse)
+{	struct __GameWS__play_ soap_tmp___GameWS__play_;
 	if (soap_endpoint == NULL)
 		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
 	if (soap_action == NULL)
-		soap_action = "http://non-real-time-networking-web-service.psi/getOpponentsIpAddress";
+		soap_action = "http://non-real-time-networking-web-service.psi/play";
 	soap_begin(soap);
 	soap->encodingStyle = NULL;
-	soap_tmp___GameWS__getOpponentsIpAddress_.GameWS__getOpponentsIpAddress = GameWS__getOpponentsIpAddress;
+	soap_tmp___GameWS__play_.GameWS__play = GameWS__play;
 	soap_serializeheader(soap);
-	soap_serialize___GameWS__getOpponentsIpAddress_(soap, &soap_tmp___GameWS__getOpponentsIpAddress_);
+	soap_serialize___GameWS__play_(soap, &soap_tmp___GameWS__play_);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put___GameWS__getOpponentsIpAddress_(soap, &soap_tmp___GameWS__getOpponentsIpAddress_, "-GameWS:getOpponentsIpAddress", NULL)
+		 || soap_put___GameWS__play_(soap, &soap_tmp___GameWS__play_, "-GameWS:play", NULL)
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -300,20 +504,326 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getOpponentsIpAddress_(struct soap
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put___GameWS__getOpponentsIpAddress_(soap, &soap_tmp___GameWS__getOpponentsIpAddress_, "-GameWS:getOpponentsIpAddress", NULL)
+	 || soap_put___GameWS__play_(soap, &soap_tmp___GameWS__play_, "-GameWS:play", NULL)
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
 		return soap_closesock(soap);
-	if (!GameWS__getOpponentsIpAddressResponse)
+	if (!GameWS__playResponse)
 		return soap_closesock(soap);
-	GameWS__getOpponentsIpAddressResponse->soap_default(soap);
+	GameWS__playResponse->soap_default(soap);
 	if (soap_begin_recv(soap)
 	 || soap_envelope_begin_in(soap)
 	 || soap_recv_header(soap)
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
-	GameWS__getOpponentsIpAddressResponse->soap_get(soap, "GameWS:getOpponentsIpAddressResponse", "");
+	GameWS__playResponse->soap_get(soap, "GameWS:playResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getPlayers_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getPlayers *GameWS__getPlayers, _GameWS__getPlayersResponse *GameWS__getPlayersResponse)
+{	struct __GameWS__getPlayers_ soap_tmp___GameWS__getPlayers_;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/getPlayers";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__getPlayers_.GameWS__getPlayers = GameWS__getPlayers;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__getPlayers_(soap, &soap_tmp___GameWS__getPlayers_);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__getPlayers_(soap, &soap_tmp___GameWS__getPlayers_, "-GameWS:getPlayers", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__getPlayers_(soap, &soap_tmp___GameWS__getPlayers_, "-GameWS:getPlayers", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__getPlayersResponse)
+		return soap_closesock(soap);
+	GameWS__getPlayersResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__getPlayersResponse->soap_get(soap, "GameWS:getPlayersResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getGamesPlayed_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getGamesPlayed *GameWS__getGamesPlayed, _GameWS__getGamesPlayedResponse *GameWS__getGamesPlayedResponse)
+{	struct __GameWS__getGamesPlayed_ soap_tmp___GameWS__getGamesPlayed_;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/getGamesPlayed";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__getGamesPlayed_.GameWS__getGamesPlayed = GameWS__getGamesPlayed;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__getGamesPlayed_(soap, &soap_tmp___GameWS__getGamesPlayed_);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__getGamesPlayed_(soap, &soap_tmp___GameWS__getGamesPlayed_, "-GameWS:getGamesPlayed", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__getGamesPlayed_(soap, &soap_tmp___GameWS__getGamesPlayed_, "-GameWS:getGamesPlayed", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__getGamesPlayedResponse)
+		return soap_closesock(soap);
+	GameWS__getGamesPlayedResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__getGamesPlayedResponse->soap_get(soap, "GameWS:getGamesPlayedResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__removePlayer_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__removePlayer *GameWS__removePlayer, _GameWS__removePlayerResponse *GameWS__removePlayerResponse)
+{	struct __GameWS__removePlayer_ soap_tmp___GameWS__removePlayer_;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/removePlayer";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__removePlayer_.GameWS__removePlayer = GameWS__removePlayer;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__removePlayer_(soap, &soap_tmp___GameWS__removePlayer_);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__removePlayer_(soap, &soap_tmp___GameWS__removePlayer_, "-GameWS:removePlayer", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__removePlayer_(soap, &soap_tmp___GameWS__removePlayer_, "-GameWS:removePlayer", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__removePlayerResponse)
+		return soap_closesock(soap);
+	GameWS__removePlayerResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__removePlayerResponse->soap_get(soap, "GameWS:removePlayerResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__checkIn_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__checkIn *GameWS__checkIn, _GameWS__checkInResponse *GameWS__checkInResponse)
+{	struct __GameWS__checkIn_ soap_tmp___GameWS__checkIn_;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/checkIn";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__checkIn_.GameWS__checkIn = GameWS__checkIn;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__checkIn_(soap, &soap_tmp___GameWS__checkIn_);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__checkIn_(soap, &soap_tmp___GameWS__checkIn_, "-GameWS:checkIn", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__checkIn_(soap, &soap_tmp___GameWS__checkIn_, "-GameWS:checkIn", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__checkInResponse)
+		return soap_closesock(soap);
+	GameWS__checkInResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__checkInResponse->soap_get(soap, "GameWS:checkInResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__addScore_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__addScore *GameWS__addScore, _GameWS__addScoreResponse *GameWS__addScoreResponse)
+{	struct __GameWS__addScore_ soap_tmp___GameWS__addScore_;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/addScore";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__addScore_.GameWS__addScore = GameWS__addScore;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__addScore_(soap, &soap_tmp___GameWS__addScore_);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__addScore_(soap, &soap_tmp___GameWS__addScore_, "-GameWS:addScore", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__addScore_(soap, &soap_tmp___GameWS__addScore_, "-GameWS:addScore", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__addScoreResponse)
+		return soap_closesock(soap);
+	GameWS__addScoreResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__addScoreResponse->soap_get(soap, "GameWS:addScoreResponse", "");
+	if (soap->error)
+		return soap_recv_fault(soap, 0);
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call___GameWS__getScoreList_(struct soap *soap, const char *soap_endpoint, const char *soap_action, _GameWS__getScoreList *GameWS__getScoreList, _GameWS__getScoreListResponse *GameWS__getScoreListResponse)
+{	struct __GameWS__getScoreList_ soap_tmp___GameWS__getScoreList_;
+	if (soap_endpoint == NULL)
+		soap_endpoint = "http://localhost:8/MasterGameServer/GameWS.asmx";
+	if (soap_action == NULL)
+		soap_action = "http://non-real-time-networking-web-service.psi/getScoreList";
+	soap_begin(soap);
+	soap->encodingStyle = NULL;
+	soap_tmp___GameWS__getScoreList_.GameWS__getScoreList = GameWS__getScoreList;
+	soap_serializeheader(soap);
+	soap_serialize___GameWS__getScoreList_(soap, &soap_tmp___GameWS__getScoreList_);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put___GameWS__getScoreList_(soap, &soap_tmp___GameWS__getScoreList_, "-GameWS:getScoreList", NULL)
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_url(soap, soap_endpoint, NULL), soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put___GameWS__getScoreList_(soap, &soap_tmp___GameWS__getScoreList_, "-GameWS:getScoreList", NULL)
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!GameWS__getScoreListResponse)
+		return soap_closesock(soap);
+	GameWS__getScoreListResponse->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	GameWS__getScoreListResponse->soap_get(soap, "GameWS:getScoreListResponse", "");
 	if (soap->error)
 		return soap_recv_fault(soap, 0);
 	if (soap_body_end_in(soap)

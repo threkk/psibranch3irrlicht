@@ -21,6 +21,11 @@ namespace irrlicht_nonrealtimenetworking {
 		strcpy(this->buffer, buffer);
 	}
 
+	void NonRealtimeNetworkingUtilities::setLogin(char* login) {
+		this->login = new char[strlen(login) + 1];
+		strcpy(this->login, login);
+	}
+
 	/**
 		Check if given string represents a valid IP address. Instead
 		of localhost use 127.0.0.1 to pass validation test.
@@ -185,7 +190,7 @@ namespace irrlicht_nonrealtimenetworking {
 	*/
 	void NonRealtimeNetworkingUtilities::sendData() {
 
-		if (strlen(buffer) == 0 || strcmp(buffer, "") == 0)
+		if (stringEmpty(buffer))
 			throw NonRealtimeNetworkingException("Buffer empty. Set buffer before sending!");
 
 		int iResult;
@@ -253,6 +258,9 @@ namespace irrlicht_nonrealtimenetworking {
 		strcpy(webServiceAddress, "http://");
 		strcat(webServiceAddress, masterServerHostAddress);
 		strcat(webServiceAddress, ":8/MasterGameServer/GameWS.asmx?wsdl");
+
+		login = NULL;
+
 		/// Initialize SOAP structure
 		soap = soap_new();
 
@@ -275,11 +283,213 @@ namespace irrlicht_nonrealtimenetworking {
 	void NonRealtimeNetworkingUtilities::checkSOAP() {
 
 		/// Check if the address of WS's WSDL file was specified.
-		if (strlen(webServiceAddress) == 0 || strcmp(webServiceAddress, "") == 0)
+		if (stringEmpty(webServiceAddress))
 			throw new NonRealtimeNetworkingException("The address of the web service was not specified.");
 		/// Check if SOAP structure was initialized
 		if (soap == NULL)
 			throw new NonRealtimeNetworkingException("SOAP was not initialized.");
+
+	}
+
+	/**
+		When a player registers on the server his IP address is saved
+		and a unique ID for a given game is generated for him. That way
+		when another player registers to play the same game he can easily
+		obtain opponent's IP address and establish a connection with him.
+	*/
+	int NonRealtimeNetworkingUtilities::registerOnTheServer() {
+
+		/// Check if SOAP was initialized
+		checkSOAP();
+
+		/// Create structures needed for request and response
+		_GameWS__register* registerCall = new _GameWS__register(); 
+		_GameWS__registerResponse* registerResult = new _GameWS__registerResponse();
+
+		/// Check if the name of the game to register for was set
+		if (stringEmpty(gameName))
+			throw new NonRealtimeNetworkingException("gameName not specified!");
+
+		/// Set gameName in the request structure
+		registerCall->gameName = new std::string(this->gameName);
+
+		if (login == NULL)
+			setLogin("");
+
+		/// Set player login in request structure if such was specified
+		registerCall->login = new std::string(this->login);
+
+		/**
+			Call the web service. Pointers to request and response structures
+			are passed here. That way, if the call succeeds, response structure 
+			will contain data of interest. If something goes wrong, we throw
+			an exception together with an error message. 
+		*/
+		if (!(soap_call___GameWS__register(soap, webServiceAddress, NULL, registerCall, registerResult) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		GameWS__PlayRequestResult* result = registerResult->registerResult;
+
+		if (result->errorCode != 0) // Error occured
+			return result->errorCode;
+
+		assignPlayerAttributes(result);
+
+		return 0;
+
+	}
+
+	/**
+		Sends a request to remove player with given session ID
+		from the server.
+	*/
+	int NonRealtimeNetworkingUtilities::removePlayer() {
+
+		// Player has to exist on the server in order to remove him
+		if (sessionId < 1)
+			throw new NonRealtimeNetworkingException("Session ID was not assigned. Register on the server to obtain one.");
+
+		_GameWS__removePlayer* removePlayerRequest = new _GameWS__removePlayer();
+		_GameWS__removePlayerResponse* removePlayerResponse = new _GameWS__removePlayerResponse();
+
+		// Set session ID in the request structure
+		removePlayerRequest->sessionId = this->sessionId;
+
+		// Call the WS
+		if (!(soap_call___GameWS__removePlayer(soap, webServiceAddress, NULL, removePlayerRequest, removePlayerResponse) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		// ZERO all player attributes inside the class
+		sessionId = 0;
+		login = opponentsIP = gameName = NULL;
+		hosting = false;
+		
+		return removePlayerResponse->removePlayerResult;
+
+	}
+
+	/**
+		Obtains a list of best scores for a given game.
+		@param limit list size limit (optional)
+	*/
+	char** NonRealtimeNetworkingUtilities::getHighScores(int limit) {
+
+		if (limit < 0)
+			throw new NonRealtimeNetworkingException("Invalid limit provided!");
+
+		// Check if gameName is not empty
+		if (stringEmpty(gameName))
+			throw new NonRealtimeNetworkingException("Game name was not set.");
+
+		_GameWS__getScoreList* getScoreListRequest = new _GameWS__getScoreList();
+		_GameWS__getScoreListResponse* getScoreListResponse = new _GameWS__getScoreListResponse();
+
+		getScoreListRequest->gameName = new std::string(this->gameName);
+		getScoreListRequest->limit = limit;
+
+		if (!(soap_call___GameWS__getScoreList(soap, webServiceAddress, NULL, getScoreListRequest, getScoreListResponse) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		if (getScoreListResponse->getScoreListResult == NULL)
+			return NULL;
+
+		/// Create a temporary copy for code clarity
+		std::vector<GameWS__Score*> scoreList = getScoreListResponse->getScoreListResult->Score;
+
+		/// Convert to char**:
+
+		/// Allocate memory for char*
+		char** scores = new char*[scoreList.size()];
+
+		for (int i=0; i<scoreList.size(); i++) {
+			/// Allocate memory for each string separately
+			std::ostringstream ss;
+			ss << scoreList[i]->score;
+			std::string stringScore(ss.str());
+			std::string result = std::string(stringScore + *(scoreList[i]->playerLogin));
+			scores[i] = new char[result.size() + 1];
+			/// Copy the string
+			strcpy(scores[i], result.c_str());
+		}
+
+		/// Return the list of scores
+		return scores;
+
+	}
+
+	/**
+		Checks in on the server.
+	*/
+	int NonRealtimeNetworkingUtilities::checkIn() {
+
+		if (sessionId < 1)
+			throw new NonRealtimeNetworkingException("Session ID was not assigned. Register on the server to obtain one.");
+
+		_GameWS__checkIn* checkInRequest = new _GameWS__checkIn();
+		_GameWS__checkInResponse* checkInResponse = new _GameWS__checkInResponse();
+
+		checkInRequest->sessionId = this->sessionId;
+
+		if (!(soap_call___GameWS__checkIn(soap, webServiceAddress, NULL, checkInRequest, checkInResponse) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		return checkInResponse->checkInResult;
+
+	}
+
+	/**
+		Calls the web service to add player's score to the
+		list of best scores for the game he's playing.
+		Returns error code on failure or 0 if everytinh
+		went well.
+	*/
+	int NonRealtimeNetworkingUtilities::addPlayerScore(float score) {
+
+		// Score cannot be negative
+		if (score < 0)
+			throw new NonRealtimeNetworkingException("Invalid score provided!");
+
+		if (sessionId < 1)
+			throw new NonRealtimeNetworkingException("Session ID was not assigned. Register on the server to obtain one.");
+
+		_GameWS__addScore* addScoreRequest = new _GameWS__addScore();
+		_GameWS__addScoreResponse* addScoreResponse = new _GameWS__addScoreResponse();
+
+		addScoreRequest->sessionId = this->sessionId;
+		addScoreRequest->score = score;
+
+		if (!(soap_call___GameWS__addScore(soap, webServiceAddress, NULL, addScoreRequest, addScoreResponse) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		return addScoreResponse->addScoreResult;
+
+	}
+
+	/**
+		Converts std::string into char*
+	*/
+	char* NonRealtimeNetworkingUtilities::convertStringToCharPointer(std::string* string) {
+
+		if (string == NULL || string->size() == 0)
+			return NULL;
+
+		char* returnBuffer = new char[string->size() + 1];
+		std::copy(string->begin(), string->end(), returnBuffer);
+		returnBuffer[string->size()] = '\0';
+
+		return returnBuffer;
+
+	}
+
+	/**
+		Check if given char* points to a real string
+	*/
+	bool NonRealtimeNetworkingUtilities::stringEmpty(char* string) {
+
+		if (string == NULL || strlen(string) == 0 || strcmp(string, "") == 0)
+			return true;
+		else
+			return false;
 
 	}
 
@@ -301,16 +511,20 @@ namespace irrlicht_nonrealtimenetworking {
 
 		/// Convert std::vector<std::string> to char**
 
+		if (getGamesListResult->getGamesPlayedResult == NULL)
+			return NULL;
+
 		/// Create a temporary copy for code clarity
-		std::vector<std::string> gamesList = getGamesListResult->getGamesPlayedResult->string;
+		std::vector<GameWS__Game*> gamesList = getGamesListResult->getGamesPlayedResult->Game;
 		/// Allocate memory for char*
 		char** games = new char*[gamesList.size()];
+		gamesList[0]->name;
 
 		for (int i=0; i<gamesList.size(); i++) {
 			/// Allocate memory for each string separately
-			games[i] = new char[gamesList[i].size() + 1];
+			games[i] = new char[gamesList[i]->name->size() + 1];
 			/// Copy the string
-			strcpy(games[i], gamesList[i].c_str());
+			strcpy(games[i], gamesList[i]->name->c_str());
 		}
 
 		/// Return the list of games
@@ -319,94 +533,15 @@ namespace irrlicht_nonrealtimenetworking {
 	}
 
 	/**
-		When a player registers on the server his IP address is saved
-		and a unique ID for a given game is generated for him. That way
-		when another player registers to play the same game he can easily
-		obtain opponent's IP address and establish a connection with him.
-	*/
-	void NonRealtimeNetworkingUtilities::registerOnTheServer() {
-
-		/// Check if SOAP was initialized
-		checkSOAP();
-
-		/// Create structures needed for request and response
-		_GameWS__register* registerCall = new _GameWS__register(); 
-		_GameWS__registerResponse* registerResult = new _GameWS__registerResponse();
-
-		/// Check if the name of the game to register for was set
-		if (strlen(gameName) == 0 || strcmp(gameName, "") == 0)
-			throw new NonRealtimeNetworkingException("gameName not specified!");
-
-		/// Set gameName in the request structure
-		registerCall->gameName = new std::string(this->gameName);
-
-		/**
-			Call the web service. Pointers to request and response structures
-			are passed here. That way, if the call succeeds, response structure 
-			will contain data of interest. If something goes wrong, we throw
-			an exception together with an error message. 
-		*/
-		if (!(soap_call___GameWS__register(soap, webServiceAddress, NULL, registerCall, registerResult) == SOAP_OK))
-			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
-
-		int sessionId = registerResult->registerResult;
-
-		/// If returned sessionID is <= 0 then something went wrong!
-		if (sessionId < 1)
-			throw new NonRealtimeNetworkingException("Could not obtain session's ID from the server!");
-
-		/// Set sessionId
-		this->sessionId = sessionId;
-
-	}
-
-	/**
-		Get IP address of your opponent from the server 
-		to be able to open a client socket and play.
-	*/
-	char* NonRealtimeNetworkingUtilities::getOpponentsIpAddress() {
-		
-		/// Check if SOAP was initialized
-		checkSOAP();
-
-		/// This structure is needed to set request's parameters (name of the game and session ID)
-		_GameWS__getOpponentsIpAddress* getOpponentsIpAddressCall = new _GameWS__getOpponentsIpAddress();
-		/// This structure will hold the response
-		_GameWS__getOpponentsIpAddressResponse* getOpponentsIpAddressResult = new _GameWS__getOpponentsIpAddressResponse();
-
-		/// Make sure that we registered on the WS
-		if (strlen(gameName) == 0 || strcmp(gameName, "") == 0 || sessionId == 0)
-			throw new NonRealtimeNetworkingException("gameName or sessionId not specified.");
-
-		/// Set request parameters
-		getOpponentsIpAddressCall->gameName = new std::string(gameName);
-		getOpponentsIpAddressCall->sessionId = sessionId;
-
-		/// Call the WS
-		if (!(soap_call___GameWS__getOpponentsIpAddress(soap, webServiceAddress, NULL, getOpponentsIpAddressCall, getOpponentsIpAddressResult) == SOAP_OK))
-			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
-
-		/// Need to return char*, converting from std::string:
-		char* ipAddress = new char[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size() + 1];
-		std::copy(getOpponentsIpAddressResult->getOpponentsIpAddressResult->begin(), getOpponentsIpAddressResult->getOpponentsIpAddressResult->end(), ipAddress);
-		ipAddress[getOpponentsIpAddressResult->getOpponentsIpAddressResult->size()] = '\0';
-
-		// return the IP address
-		return ipAddress;
-
-	}
-
-	/**
-		Register on the web service to obtain unique session ID
-		for a given game. Depending on that ID a player either hosts a game
-		or joins an already hosted game to start playing.
+		Register on the web service to obtain data necessary
+		to start playing.
 		@param gameName name of the game to be played
 		@param portNo port number to open a server/client socket on
 	*/
 	int NonRealtimeNetworkingUtilities::establishConnection(char* gameName, int portNo = 0) {
 		
 		// Check if gameName is not empty
-		if (strlen(gameName) == 0 || strcmp(gameName, "") == 0)
+		if (stringEmpty(gameName))
 			throw new NonRealtimeNetworkingException("Establish connection: gameName cannot be empty!");
 
 		/// Check if SOAP was initialized
@@ -420,19 +555,107 @@ namespace irrlicht_nonrealtimenetworking {
 		setGameName(gameName);
 
 		/// Register player on the server to obtain session's ID
-		registerOnTheServer();
+		int error = registerOnTheServer();
 
-		/**
-			Open server/client socket depending on
-			session's ID which was generated by the web service.
-		*/
-		if ((sessionId % 2) == 1) // Odd ID - hosting the game (server socket)
+		if (error < 0)
+			return error;
+
+		playGame();
+
+		return 0;
+
+	}
+
+	/**
+		Opens a socket using data obtained from the server.
+	*/
+	void NonRealtimeNetworkingUtilities::playGame() {
+
+		// Session ID needs to be assigned before calling this function
+		if (sessionId < 1)
+			throw new NonRealtimeNetworkingException("Session ID was not assigned. Register on the server to obtain one.");
+
+		if (hosting == true) // Host game
 			hostGame(portNumber);
-		else // Even ID - joining the game (client socket)
-			joinGame(getOpponentsIpAddress(), portNumber);
+		else // Join the opponent
+			joinGame(opponentsIP, portNumber);
 
-		/// Return session's ID
-		return sessionId;
+	}
+
+	/**
+		Called when a player wants to play again. Session
+		ID needs to be assigned before calling this function.
+	*/
+	int NonRealtimeNetworkingUtilities::playAgain() {
+
+		// Session ID not assigned, need to register first
+		if (sessionId < 1)
+			throw new NonRealtimeNetworkingException("Session ID was not assigned. Register on the server to obtain one.");
+
+		// Request structure
+		_GameWS__play* playAgainCall = new _GameWS__play(); 
+		// Response structure
+		_GameWS__playResponse* playAgainResult = new _GameWS__playResponse();
+
+		// Put session ID in the request structure
+		playAgainCall->sessionId = this->sessionId;
+
+		// Call the web service
+		if (!(soap_call___GameWS__play(soap, webServiceAddress, NULL, playAgainCall, playAgainResult) == SOAP_OK))
+			throw new NonRealtimeNetworkingException("SOAP error occured: " + soap->errnum);
+
+		GameWS__PlayRequestResult* playRequestResult = playAgainResult->playResult;
+
+		// Error occured, terminate function
+		if (playRequestResult->errorCode != 0)
+			return playRequestResult->errorCode;
+
+		// Process the response
+		assignPlayerAttributes(playRequestResult);
+
+		// Return no error
+		return 0;
+	}
+
+	
+	/**
+		Process data obtained from the web service.
+	*/
+	void NonRealtimeNetworkingUtilities::assignPlayerAttributes(GameWS__PlayRequestResult* requestResult) {
+
+		hosting = requestResult->hosting;
+		sessionId = requestResult->sessionId;
+		opponentsIP = convertStringToCharPointer(requestResult->opponentsIP);
+		login = convertStringToCharPointer(requestResult->login);
+		checkInInterval = requestResult->checkInInterval;
+
+	}
+
+	/**
+		Returns error message in a form understandable by humans.
+	*/
+	char* NonRealtimeNetworkingUtilities::getErrorMessage(int errorCode) {
+
+		switch(errorCode) {
+			case NO_SUCH_PLAYER:
+				return "Player with given session ID was not registered on the server.";
+				break;
+			case NO_SUCH_GAME:
+				return "No such game was registered on the server.";
+				break;
+			case GAME_NAME_EMPTY:
+				return "Name of the game was not provided.";
+				break;
+			case LOGIN_TAKEN:
+				return "Player with such login already exists. Please choose a different login.";
+				break;
+			case SCORE_TOO_SMALL:
+				return "The list of high scores for this game is full and your score is too small. Try harder the next time.";
+				break;
+			default:
+				return "ERROR_CODE_NOT_KNOWN!";
+				break;
+		}
 
 	}
 
