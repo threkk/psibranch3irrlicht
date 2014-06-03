@@ -1402,10 +1402,13 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="..\..\include\IQualityTexture.h" />
     <ClInclude Include="..\..\include\TempEffect.h">
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\IQualityTexture.h">
+      <Filter>include\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ISwitcher.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2403,10 +2406,13 @@
     <ClCompile Include="ParticleParser.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
-    <ClCompile Include="CQualityTexture.cpp" />
     <ClCompile Include="TempEffect.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
+    <ClCompile Include="CQualityTexture.cpp">
+      <Filter>Irrlicht\video</Filter>
+    </ClCompile>
+    <ClCompile Include="CSwitcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Irrlicht.rc" />
