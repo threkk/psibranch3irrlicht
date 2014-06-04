@@ -2,6 +2,9 @@
 
 #include "ai\Transition.h"
 
+/**
+ * Checks if a boolean is false
+ */
 class __declspec(dllexport) OnBooleanFalseTransition: public Transition
 {
 public:

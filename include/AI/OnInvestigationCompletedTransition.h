@@ -5,6 +5,11 @@
 #include "ISceneManager.h"
 #include "MessageClient.h"
 
+/**
+ * Checks the transition is completed by checking if the owner was on
+ * the position for some time
+ * The position will be set by receiving a message
+ */
 class __declspec(dllexport) OnInvestigationCompletedTransition: public Transition, public MessageClient
 {
 public:

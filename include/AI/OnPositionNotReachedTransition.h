@@ -3,6 +3,9 @@
 #include "ai\Transition.h"
 #include "AI\Detectable.h"
 
+/**
+ * Checks if the owner has reached the position. True if not!
+ */
 class __declspec(dllexport) OnPositionNotReachedTransition: public Transition
 {
 public:

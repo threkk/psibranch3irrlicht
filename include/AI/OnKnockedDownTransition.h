@@ -2,6 +2,9 @@
 
 #include "ai\Transition.h"
 
+/**
+ * Checks if the health is below or equal to zero
+ */
 class __declspec(dllexport) OnKnockedDownTransition: public Transition
 {
 private:

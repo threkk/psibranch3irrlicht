@@ -16,12 +16,6 @@ class StateMachine;
  * By activating an different state it will automatically call the exit() method of the current state
  * and the enter() method of the new state. After that each the execute() method will be called each update.
  * To change a state add your transitions to the action() method.
- * 
- * Subsumption architecture:
- * By using the subsumption architecture you will have a priority list of different states.
- * The first executable() state will be the "active" state and supresses all action()-methods of other states.
- * Because each update the requirements of other states can be fulfilled, it will never call any enter() or exit() methods.
- * The subsumption architecture is fast but not as flexible as the finite state machine.
  *
  * It is possible to combine both patterns if wanted.
  * 

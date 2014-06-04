@@ -6,6 +6,9 @@
 #include "MessageClient.h"
 #include <functional>
 
+/**
+ * Checks if there was a message for the topic
+ */
 class __declspec(dllexport) OnMessageTransition: public Transition, public MessageClient
 {
 public:

@@ -5,6 +5,9 @@
 #include "ISceneManager.h"
 #include "IPathfinding.h"
 
+/**
+ * Checks if the owner can see the target
+ */
 class __declspec(dllexport) OnTargetSpottedTransition: public Transition
 {
 public:

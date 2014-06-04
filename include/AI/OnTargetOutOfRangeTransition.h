@@ -4,6 +4,9 @@
 #include "AI\Detectable.h"
 #include "ISceneManager.h"
 
+/**
+ * Checks if the target is out of range
+ */
 class __declspec(dllexport) OnTargetOutOfRangeTransition: public Transition
 {
 public:

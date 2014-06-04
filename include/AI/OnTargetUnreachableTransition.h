@@ -4,6 +4,9 @@
 #include "AI\Detectable.h"
 #include "IPathfinding.h"
 
+/**
+ * Checks if the position of the target is not reachable
+ */
 class __declspec(dllexport) OnTargetUnreachableTransition: public Transition
 {
 public:
