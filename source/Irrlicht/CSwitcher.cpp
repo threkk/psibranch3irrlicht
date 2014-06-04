@@ -5,6 +5,7 @@
 SwitchTrigger::SwitchTrigger(scene::ISceneNode* referenceNode)
 {
 	this->node = referenceNode;
+	//! Almost random value. I haven't found any reason to make it bigger or smaller.
 	triggeringDistance = 1000;
 }
 
@@ -76,7 +77,6 @@ Switcher::Switcher(SwitchTrigger* trg)
 
 Switcher::~Switcher()
 {
-	//TODO Delete element from the vector
 	delete trigger;
 }
 
@@ -85,7 +85,7 @@ TextureSwitcher::TextureSwitcher(SwitchTrigger* trigger, scene::ISceneNode* dst)
 {
 	this->node = dst;
 	this->texture = NULL;
-	this->textureLayer = NULL;
+	this->textureLayer = 0;
 }
 
 TextureSwitcher::~TextureSwitcher()
@@ -109,11 +109,11 @@ void TextureSwitcher::setTexture(u32 textureLayer, ITexture* texture)
 
 void TextureSwitcher::update()
 {
-	//if(this->texture != NULL && this->textureLayer != NULL) 
-	//{
+	if(this->texture != NULL) 
+	{
 		this->node->setMaterialTexture(textureLayer,texture);
 
-	//}
+	}
 }
 
 // Scene Switcher
@@ -126,7 +126,6 @@ SceneSwitcher::SceneSwitcher(SwitchTrigger* trigger, scene::ISceneSeamlessLoader
 SceneSwitcher::~SceneSwitcher()
 {
 	// We do not want to delete the sceneManager.
-	// if(this->smgr) delete smgr;
 }
 
 void SceneSwitcher::setScene(int sceneIndex)

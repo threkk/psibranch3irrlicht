@@ -43,7 +43,6 @@ private:
     //! Vector with all the switchers attached to the node.
 	std::vector <class Switcher *> switchers;
 public:
-    // TODO: Change default distance and set it less or equal.
     // ! Triggering distance. Fired when less or equal. Set as public on purpose.
 	double triggeringDistance;
     /**
