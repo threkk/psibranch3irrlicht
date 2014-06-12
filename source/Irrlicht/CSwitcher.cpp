@@ -1,19 +1,22 @@
 #include "ISwitcher.h"
 
-// SwitchTrigger
-
+//! SwitchTrigger
+//! Applys the observer pattern.
 SwitchTrigger::SwitchTrigger(scene::ISceneNode* referenceNode)
 {
 	this->node = referenceNode;
-	triggeringDistance = 0;
+	//! Almost random value. I haven't found any reason to make it bigger or smaller.
+	triggeringDistance = 1000;
 }
 
+//! Destructor.
 SwitchTrigger::~SwitchTrigger()
 {
 	if(this->node) delete this->node;
 	this->switchers.clear();
 }
 
+//! Attach function.
 void SwitchTrigger::attach(Switcher* swt)
 {
 	this->switchers.push_back(swt);
@@ -25,23 +28,20 @@ void SwitchTrigger::notify()
 	{
 		if(this->switchers[i]->active)
 		{
+            //! Due to the nature of the switcher, as you want to change the things
+            //! just one time, it is desactivated after being fired.
 			this->switchers[i]->active = false;
 			this->switchers[i]->update();
 		}
 	}
 }
 
+//! Checks if the nodes are close one to the other.
 bool SwitchTrigger::isClose(scene::ISceneNode* other)
 {
-	/*
-	if(	((node->getPosition().X - (node->getBoundingBox().MaxEdge.X)) < (other->getPosition().X + (other->getBoundingBox().MaxEdge.X)) && (node->getPosition().X + (node->getBoundingBox().MaxEdge.X)) > (other->getPosition().X - (other->getBoundingBox().MaxEdge.X ))) &&
-		((node->getPosition().Y + (node->getBoundingBox().MaxEdge.Y)) > (other->getPosition().Y - (other->getBoundingBox().MaxEdge.Y)) && (node->getPosition().Y - (node->getBoundingBox().MaxEdge.Y)) < (other->getPosition().Y + (other->getBoundingBox().MaxEdge.Y ))) &&
-		((node->getPosition().Z + (node->getBoundingBox().MaxEdge.Z)) > (other->getPosition().Z - (other->getBoundingBox().MaxEdge.Z)) && (node->getPosition().Z - (node->getBoundingBox().MaxEdge.Z)) < (other->getPosition().Z + (other->getBoundingBox().MaxEdge.Z ))))
-	*/
-
 	f32 distance = node->getPosition().getDistanceFrom(other->getPosition());
 	distance = abs(distance);
-	if(distance < triggeringDistance)
+	if(distance <= triggeringDistance)
 	{
 		this->notify();
 		return true;
@@ -51,15 +51,12 @@ bool SwitchTrigger::isClose(scene::ISceneNode* other)
 	}
 }
 
+//! Checks if the node is close to the position.
 bool SwitchTrigger::isClose(core::vector3df position)
 {
-	/*if(	((node->getPosition().X - node->getBoundingBox().MaxEdge.X) < position.X) && (node->getPosition().X + node->getBoundingBox().MaxEdge.X) > position.X &&
-		((node->getPosition().Y + node->getBoundingBox().MaxEdge.Y) > position.Y) && (node->getPosition().Y - node->getBoundingBox().MaxEdge.Y) < position.Y &&
-		((node->getPosition().Z + node->getBoundingBox().MaxEdge.Z) > position.Z) && (node->getPosition().Z - node->getBoundingBox().MaxEdge.Z) < position.Z )
-	*/
 	f32 distance = node->getPosition().getDistanceFrom(position);
 	distance = abs(distance);
-	if(distance < triggeringDistance)
+	if(distance <= triggeringDistance)
 	{
 		this->notify();
 		return true;
@@ -69,27 +66,26 @@ bool SwitchTrigger::isClose(core::vector3df position)
 	}
 }
 
-// Switcher
-
+//! Switcher
 Switcher::Switcher(SwitchTrigger* trg)
 {
 	this->active = true;
 	this->trigger = trg;
+    //! It adds itself during the creation of the object.
 	this->trigger->attach(this);
 }
 
 Switcher::~Switcher()
 {
-	//TODO Delete element from the vector
 	delete trigger;
 }
 
-// Texture Switcher
+//! Texture Switcher
 TextureSwitcher::TextureSwitcher(SwitchTrigger* trigger, scene::ISceneNode* dst) : Switcher(trigger)
 {
 	this->node = dst;
 	this->texture = NULL;
-	this->textureLayer = NULL;
+	this->textureLayer = 0;
 }
 
 TextureSwitcher::~TextureSwitcher()
@@ -113,11 +109,11 @@ void TextureSwitcher::setTexture(u32 textureLayer, ITexture* texture)
 
 void TextureSwitcher::update()
 {
-	//if(this->texture != NULL && this->textureLayer != NULL) 
-	//{
+	if(this->texture != NULL) 
+	{
 		this->node->setMaterialTexture(textureLayer,texture);
 
-	//}
+	}
 }
 
 // Scene Switcher
@@ -130,7 +126,6 @@ SceneSwitcher::SceneSwitcher(SwitchTrigger* trigger, scene::ISceneSeamlessLoader
 SceneSwitcher::~SceneSwitcher()
 {
 	// We do not want to delete the sceneManager.
-	// if(this->smgr) delete smgr;
 }
 
 void SceneSwitcher::setScene(int sceneIndex)

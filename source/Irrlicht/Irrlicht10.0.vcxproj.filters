@@ -1408,7 +1408,9 @@
     <ClInclude Include="..\..\include\IQualityTexture.h">
       <Filter>include\video</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ISwitcher.h" />
+    <ClInclude Include="..\..\include\ISwitcher.h">
+      <Filter>include\video</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\changes.txt">
@@ -2412,7 +2414,9 @@
     <ClCompile Include="CQualityTexture.cpp">
       <Filter>Irrlicht\video</Filter>
     </ClCompile>
-    <ClCompile Include="CSwitcher.cpp" />
+    <ClCompile Include="CSwitcher.cpp">
+      <Filter>Irrlicht\video</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Irrlicht.rc" />
