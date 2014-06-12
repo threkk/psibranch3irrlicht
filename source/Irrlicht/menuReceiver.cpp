@@ -17,10 +17,12 @@ void menuReceiver::init(IGUIEnvironment* guienv, int width, int height)
 }
 
 //this function initializes the custom buttons they have a fixed height and width for the size of each buttons
-void menuReceiver::init_custom(IGUIEnvironment* guienv, int width, int height, int amount_buttons, const wchar_t *name[], const wchar_t *sub_name[])
+void menuReceiver::init_custom(IGUIEnvironment* guienv, int width, int height, int amount_buttons, const wchar_t *name[], const wchar_t *sub_name[]) //, makeButton makebutton)
 {
 	for(int i = 0; i < amount_buttons; i++)
 	{
+		//rect<s32> button = (this->*makebutton)(width, height, i);
+		
 		custom menu = (custom) i;
 		guienv->addButton(rect<s32>((width / 3), (height/ 35) * ((i * 5) + 1), (width / 3) * 2, (height/ 35) * ((i * 5) + 5)), 
 			0, 
@@ -31,7 +33,7 @@ void menuReceiver::init_custom(IGUIEnvironment* guienv, int width, int height, i
 }
 
 //Implementation of the menuSwitchCases.
-bool menuReceiver::menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv, JOIN_GAME join_game, HOST_GAME host_game, JOIN_GAME_SECOND join_game_second, END_GAME end_game)
+bool menuReceiver::menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv, JOIN_GAME join_game, HOST_GAME host_game, JOIN_GAME_SECOND join_game_second, END_GAME end_game, PASS_TURN pass_turn, SURRENDER surrender)
 {
 
 //this is an if statement that checks is the event is a GUI event type and then it will check what the ID is and select it from the switch case
@@ -86,6 +88,25 @@ bool menuReceiver::menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv,
 
 						return true;
 
+						case GUI_ID_PASS_TURN:
+
+						guienv->clear();	
+						/*
+							pass the turn
+						*/
+						(this->*pass_turn)();
+
+						return true;
+
+						case GUI_ID_SURRENDER:
+
+						guienv->clear();	
+						/*
+							surrender the game
+						*/
+						(this->*surrender)();
+
+						return true;
 					default:
 						break;
 					}
