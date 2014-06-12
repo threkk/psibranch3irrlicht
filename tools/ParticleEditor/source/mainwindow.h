@@ -3,8 +3,9 @@
 
 #include <QMainWindow>
 #include "XML.h"
+#include <ParticleModel.h>
 
-class ParticleModel;
+class IrrDisplay;
 
 namespace Ui {
 class MainWindow;
@@ -18,7 +19,8 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void setParticleModel (ParticleModel* model);
+    void setParticleModel (ParticleModel model);
+	void setIrrDisplay (IrrDisplay* irrDisplay);
     ~MainWindow();
 
 private slots:
@@ -30,6 +32,8 @@ private slots:
 
     // On click of the save xml menu item
     void on_actionSave_XML_triggered();
+
+	void on_actionOpen_XML_triggered();
 
     void setButtonColor (QPushButton* button, QColor color);
 
@@ -67,6 +71,106 @@ private slots:
 
     void on_pushButton_OpenTex_clicked();
 
+	void on_lineEdit_Center_X_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Y_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Center_X_2_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Y_2_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Z_2_textChanged(const QString &arg1);
+
+	void on_lineEdit_Center_X_3_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Y_3_textChanged(const QString &arg1);
+
+    void on_lineEdit_Center_Z_3_textChanged(const QString &arg1);
+
+	void on_lineEdit_RingThickness_textChanged(const QString &arg1);
+
+	void on_lineEdit_Radius_textChanged(const QString &arg1);
+
+	void on_lineEdit_Radius_2_textChanged(const QString &arg1);
+
+	void on_lineEdit_CylinderLength_textChanged(const QString &arg1);
+
+	void on_checkBox_OutlineOnly_clicked(const bool &arg1);
+
+	void on_lineEdit_StopEmittingAfter_textChanged(const QString &arg1);
+
+	void on_lineEdit_RemoveAffectAfter_textChanged(const QString &arg1);
+
+	void on_checkBox_Attract_Affector_clicked(const bool &arg1);
+
+	void on_lineEdit_Attract_Point_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Attract_Point_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Attract_Point_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Speed_textChanged(const QString &arg1);
+
+	void on_checkBox_Attract_clicked(const bool &arg1);
+
+	void on_checkBox_AffectX_clicked(const bool &arg1);
+
+	void on_checkBox_AffectY_clicked(const bool &arg1);
+
+	void on_checkBox_AffectZ_clicked(const bool &arg1);
+
+	void on_checkBox_Fade_out_clicked(const bool &arg1);
+
+	void on_pushButton_Target_Color_clicked();
+
+	void on_lineEdit_Fade_Out_Time_textChanged(const QString &arg1);
+
+	void on_checkBox_Gravity_clicked(const bool &arg1);
+
+	void on_lineEdit_Gravity_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Gravity_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Gravity_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Time_force_lost_textChanged(const QString &arg1);
+
+	void on_checkBox_Rotate_clicked(const bool &arg1);
+
+	void on_lineEdit_Speed_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Speed_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Speed_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Pivot_Point_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Pivot_Point_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Pivot_Point_Z_textChanged(const QString &arg1);
+
+	void on_checkBox_Scale_clicked(const bool &arg1);
+
+	void on_lineEdit_Scale_to_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Scale_to_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Normal_X_textChanged(const QString &arg1);
+
+	void on_lineEdit_Normal_Y_textChanged(const QString &arg1);
+
+	void on_lineEdit_Normal_Z_textChanged(const QString &arg1);
+
+	void on_lineEdit_Aabbox_Width_textChanged(const QString &arg1);
+
+	void on_lineEdit_Aabbox_Height_textChanged(const QString &arg1);
+
+	void on_lineEdit_Aabbox_Depth_textChanged(const QString &arg1);
+
+	void on_comboBox_MaterialType_currentIndexChanged(int index);
+
     /** End events of changes in the gui **/
 
 private:
@@ -75,9 +179,11 @@ private:
     Ui::MainWindow *ui;
 
     // The particle model
-    ParticleModel* model;
+    ParticleModel model;
 
     XML xml;
+
+	IrrDisplay* irrDisplay;
 
 };
 

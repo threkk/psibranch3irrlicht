@@ -12,15 +12,37 @@ ParticleModel::ParticleModel()
 	direction = core::vector3df(0.0f, 0.1f, 0.0f);
 	minPPS = 50;
 	maxPPS = 200;
-	minStartColor = video::SColor(0,0,0,255);
-	maxStartColor = video::SColor(0,255,255,255);
+	minStartColor = video::SColor(255,0,0,255);
+	maxStartColor = video::SColor(255,255,255,255);
 	lifeTimeMin = 50;
 	lifeTimeMax = 75;
 	maxAngleDegrees = 0;
 	minStartSize = core::dimension2df(4.0f, 4.0f);
 	maxStartSize = core ::dimension2df(8.0f, 8.0f);
 	position = core::vector3df(0,0,0);
+	ringThickness = 1;
+	radius = 5;
+	center = core::vector3df(0,0,0);
+	lengthCylinder = 5;
+	outlineOnly = false;
+	stopEmitting = 0;
+	removeParticleAfter = 0;
+	this->addAffectorType(ParticleModel::AffectorTypes::NOPE);
+	point = core::vector3df(0,0,0);
+	gravity = core::vector3df(0,-0.02999999933f,0);
+	rotationSpeed = core::vector3df(5,5,5);
+	pivotPoint = core::vector3df(0,0,0);
+	speed = 1;
+	attract = true;
+	affectX = true;
+	affectY = true;
+	affectZ = true;
+	targetColor = video::SColor(0,0,0,0);
+	timeNeededToFadeOut = 1000;
+	timeForceLost = 1000;
+	scaleTo = core::dimension2df(1,1);
 	pathNameTexture;
+	materialType = MaterialTypes::ADD;
 }
 
 ////////////////////////// SETTERS ///////////////////////////////////
@@ -144,15 +166,25 @@ void ParticleModel::setOutLineOnly(bool outlineOnly)
 	this->outlineOnly = outlineOnly;
 }
 
+void ParticleModel::setMaterialType(MaterialTypes materialType)
+{
+	this->materialType = materialType;
+}
+
+void ParticleModel::setRemoveParticleAfter(u32 removeParticleAfter)
+{
+	this->removeParticleAfter = removeParticleAfter;
+}
+
+void ParticleModel::setStopEmitting(u32 stopEmitting)
+{
+	this->stopEmitting = stopEmitting;
+}
+
 ////////////////////////// AFFECTOR SETTERS ///////////////////////////////////
 void ParticleModel::setAffectors(core::list<AffectorTypes> affectors)
 {
 	this->affectorTypes = affectors;
-}
-
-void ParticleModel::addAffectorType(AffectorTypes affectorType)
-{
-	this->affectorTypes.push_back(affectorType);
 }
 
 void ParticleModel::setAttractionAffectorPoint(core::vector3df point)
@@ -218,6 +250,26 @@ void ParticleModel::setRotationAffectorPivotPoint(core::vector3df pivotPoint)
 void ParticleModel::setScaleAffectorScaleTo(core::dimension2df scaleTo)
 {
 	this->scaleTo = scaleTo;
+}
+
+// This function lets you add affectorTypes to the affector List
+void ParticleModel::addAffectorType(AffectorTypes affectorType)
+{
+	this->affectorTypes.push_back(affectorType);
+}
+
+// This function removes an affectorType from the affector list but only if it has the one you want to erase.
+void ParticleModel::removeAffectorType(AffectorTypes affectorType)
+{
+	for(auto affector = affectorTypes.begin(); affector != affectorTypes.end(); ++affector)
+	{
+		if((*affector) == affectorType)
+		{
+			core::list<AffectorTypes>::Iterator current = affector;
+			affector--;
+			affectorTypes.erase(current);
+		}
+	}
 }
 
 ////////////////////////// GETTERS ///////////////////////////////////
@@ -341,6 +393,20 @@ bool ParticleModel::getOutLineOnly()
 	return this->outlineOnly;
 }
 
+u32 ParticleModel::getStopEmitting()
+{
+	return this->stopEmitting;
+}
+
+u32 ParticleModel::getRemoveParticleAfter()
+{
+	return this->removeParticleAfter;
+}
+
+ParticleModel::MaterialTypes ParticleModel::getMaterialType()
+{
+	return this->materialType;
+}
 ////////////////////////// AFFECTOR GETTERS ///////////////////////////////////
 core::list<ParticleModel::AffectorTypes>* ParticleModel::getAffectors()
 {
@@ -455,10 +521,20 @@ void ParticleModel::print(void)
 	std::cout << "Max start size: ";
 	printDimension(this->getMaxStartSize());
 
-	// std::cout << "Texture " << this->getPathNameTexture().c_str() << std::endl;
-
 	std::cout << "Position: ";
 	printVector(this->getPosition());
+}
+
+bool ParticleModel::hasAffector(AffectorTypes affectorType)
+{
+	for(auto affector = this->getAffectors()->begin(); affector != this->getAffectors()->end(); ++affector)
+	{
+		if((*affector) == affectorType)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 ParticleModel::~ParticleModel(void)

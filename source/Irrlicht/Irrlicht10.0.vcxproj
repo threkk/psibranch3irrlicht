@@ -904,6 +904,7 @@
     <ClInclude Include="..\..\include\position2d.h" />
     <ClInclude Include="..\..\include\quaternion.h" />
     <ClInclude Include="..\..\include\rect.h" />
+    <ClInclude Include="..\..\include\TempEffect.h" />
     <ClInclude Include="..\..\include\triangle3d.h" />
     <ClInclude Include="..\..\include\vector2d.h" />
     <ClInclude Include="..\..\include\vector3d.h" />
@@ -1459,6 +1460,7 @@
     <ClCompile Include="ParticleManager.cpp" />
     <ClCompile Include="ParticleModel.cpp" />
     <ClCompile Include="ParticleParser.cpp" />
+    <ClCompile Include="TempEffect.cpp" />
     <ClCompile Include="zlib\adler32.c" />
     <ClCompile Include="zlib\compress.c" />
     <ClCompile Include="zlib\crc32.c" />

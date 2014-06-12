@@ -5,6 +5,7 @@ ParticleManager::ParticleManager(video::IVideoDriver* videoDriver, IrrlichtDevic
 	driver = videoDriver;
 	device = irrDevice;
 	smgr = sManager;
+	tempEffects = core::list<TempEffect*>();
 }
 
 IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel* model, core::vector3df position, core::stringc pathName, IAnimatedMesh* animatedMesh, IMesh* mesh)
@@ -13,10 +14,26 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	particleNode->setScale(core::vector3df(0.5f, 0.5f,0.5f));
 	particleNode->setMaterialFlag(video::EMF_LIGHTING, false);
 	particleNode->setMaterialFlag(video::EMF_ZWRITE_ENABLE, false);
-	particleNode->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
+
+	// Set the right matarial type for the particle node
+	if (model->getMaterialType() == ParticleModel::MaterialTypes::ADD)
+	{
+		particleNode->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
+	}
+	else if (model->getMaterialType() == ParticleModel::MaterialTypes::SOLID)
+	{
+		particleNode->setMaterialType(video::EMT_ONETEXTURE_BLEND);
+		particleNode->getMaterial(0).MaterialTypeParam = video::pack_textureBlendFunc (video::EBF_SRC_ALPHA, video::EBF_ONE_MINUS_SRC_ALPHA,
+			video::EMFN_MODULATE_1X, video::EAS_TEXTURE | video::EAS_VERTEX_COLOR);
+	}
+
+	// Set the particle texture
 	particleNode->setMaterialTexture(0, driver->getTexture(pathName));
+
+	// Set the node at the given position
 	particleNode->setPosition(position);
 
+	// Spawn an emitter based on the given type
 	switch(model->getEmitterType())
 	{
 	case(model->BOX):
@@ -25,14 +42,8 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	case(model->POINT):
 		createPointEmittingParticle(model,particleNode);
 		break;
-	case(model->ANIMATED_MESH):
-		createAnimatedMeshEmittingParticle(model,particleNode,animatedMesh);
-		break;
 	case(model->CYLINDER):
 		createCylinderEmittingParticle(model,particleNode);
-		break;
-	case(model->MESH):
-		createMeshEmittingParticle(model,particleNode,mesh);
 		break;
 	case(model->RING):
 		createRingEmittingParticle(model,particleNode);
@@ -43,19 +54,27 @@ IParticleSystemSceneNode* ParticleManager::spawnDataModelParticle(ParticleModel*
 	case(model->NONE):
 		break;
 	}
+
+	// If the model has a value of stopEmitting or removeParticleAfter
+	// then make a temporary particle effect and push it to the list tempEffects.
+	if (model->getStopEmitting() > 0 || model->getRemoveParticleAfter() > 0)
+	{
+		TempEffect* temp = new TempEffect(particleNode, device->getTimer()->getTime(),
+			model->getStopEmitting(), model->getRemoveParticleAfter());
+		tempEffects.push_back(temp);
+	}
+
 	return particleNode;
 }
 
 IParticleSystemSceneNode* ParticleManager::spawnXMLParticle(const char* filename, vector3df position,IAnimatedMesh* animatedMesh, IMesh* mesh)
 {
-	IParticleSystemSceneNode* particleNode = smgr->addParticleSystemSceneNode(false);
-
 	// Parse the xml file to a particle model
 	ParticleParser parser = ParticleParser();
 	ParticleModel model = parser.parse(filename);
 
 	// Spawn the particle model
-	this->spawnDataModelParticle(&model, position, model.getPathNameTexture().c_str());
+	IParticleSystemSceneNode* particleNode = this->spawnDataModelParticle(&model, position, model.getPathNameTexture().c_str());
 
 	// Return the particle node
 	return particleNode;
@@ -172,6 +191,30 @@ void ParticleManager::checkForAffectors(ParticleModel* particleModel,IParticleSy
 			affector->drop();
 		}
 	}
+}
+
+void ParticleManager::update()
+{
+	for(auto tempEffect = tempEffects.begin(); tempEffect != tempEffects.end(); ++tempEffect)
+	{
+		if ((*tempEffect)->isOver(device->getTimer()->getTime()))
+		{
+			if (tempEffect ==  tempEffects.begin()) {
+				tempEffects.erase(tempEffect);
+				tempEffect = tempEffects.begin();
+				break;
+			} else {
+				core::list<TempEffect*>::Iterator current = tempEffect;
+				tempEffect--;
+				tempEffects.erase(current);
+			}
+		}
+	}
+}
+
+void ParticleManager::clearTempEffects()
+{
+	tempEffects.clear();
 }
 
 ParticleManager::~ParticleManager(void)

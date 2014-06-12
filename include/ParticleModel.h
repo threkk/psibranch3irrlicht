@@ -30,9 +30,7 @@ public:
 		NONE = 0,
 		BOX,
 		POINT,
-		ANIMATED_MESH,
 		CYLINDER,
-		MESH,
 		RING,
 		SPHERE
 	};
@@ -50,6 +48,19 @@ public:
 		GRAVITY,
 		ROTATE,
 		SCALE
+	};
+
+	/**
+	 * Material types, for now we have two material types
+	 * ADD: this add the particle colors on top of eachother, 
+	 *		more particles makes it look more bright
+	 * SOLID: when using solid the particles are normal images
+	 *		which get spawned
+	 */
+	enum MaterialTypes
+	{
+		ADD = 0,
+		SOLID
 	};
 
 	/**
@@ -79,12 +90,14 @@ public:
 	void setUseNormalDirection(bool useNormalDirection);
 	void setEveryMeshVertex(bool everMeshVertex);
 	void setOutLineOnly(bool outlineOnly);
+	void setStopEmitting(u32 stopEmitting);
+	void setRemoveParticleAfter(u32 removeParticleAfter);
+	void setMaterialType(MaterialTypes materialType);
 
 	/**
 	 * Setters for setting all the properties that are used for the particle affectors
 	 */
 	void setAffectors(core::list<AffectorTypes> affectors);
-	void addAffectorType(AffectorTypes affectorType);
 	void setAttractionAffectorPoint(core::vector3df point);
 	void setAttractionAffectorSpeed(f32 speed);
 	void setAttractionAffectorAttract(bool attract);
@@ -98,6 +111,13 @@ public:
 	void setRotationAffectorSpeed(core::vector3df rotationSpeed);
 	void setRotationAffectorPivotPoint(core::vector3df pivotPoint);
 	void setScaleAffectorScaleTo(core::dimension2df scaleTo);
+
+	/**
+	* Functions to add and remove affectorTypes from the affectors list so it is possible
+	* to have more than one affectorType at once or have none at all.
+	*/
+	void addAffectorType(AffectorTypes affectorType);
+	void removeAffectorType(AffectorTypes affectorType);
 
 	/**
 	 * Getters from all the properties for the emitters
@@ -126,6 +146,9 @@ public:
 	bool getUseNormalDirection();
 	bool getEveryMeshVertex();
 	bool getOutLineOnly();
+	u32 getStopEmitting();
+	u32 getRemoveParticleAfter();
+	MaterialTypes getMaterialType();
 
 	/**
 	 * Getters from all the properties for the affectors
@@ -147,6 +170,8 @@ public:
 
 	void print(void);
 
+	bool hasAffector(AffectorTypes affectorType);
+
 	/**
 	 * Deconstructor
 	 */
@@ -161,12 +186,13 @@ private:
 	core::aabbox3df aabbox;
 	core::vector3df position,direction,center,normal;
 	s32 maxAngleDegrees, mbNumber;
-	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS;
+	u32 lifeTimeMax,lifeTimeMin, maxPPS, minPPS, stopEmitting, removeParticleAfter;
 	f32 normalDirectionModifier, radius, lengthCylinder, ringThickness;
 	core::stringc pathNameTexture;
 	video::SColor minStartColor, maxStartColor;
 	core::dimension2df minStartSize, maxStartSize;
 	bool useNormalDirection, everyMeshVertex, outlineOnly;
+	MaterialTypes materialType;
 
 	/**
 	 * The variables that are used for the particle affector

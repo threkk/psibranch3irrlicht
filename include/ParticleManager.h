@@ -5,6 +5,7 @@
 #include "IrrCompileConfig.h"
 #include "ParticleModel.h"
 #include "ParticleParser.h"
+#include "TempEffect.h"
 
 using namespace irr;
 using namespace scene;
@@ -54,6 +55,15 @@ public:
 	*/
 	IParticleSystemSceneNode* spawnXMLParticle(const char* filename, vector3df position, IAnimatedMesh* animatedMesh = nullptr, IMesh* mesh = nullptr);
 
+	/* Checks all the Temporary effects in the list tempEffects if
+	they should stop emit or should be deleted. He always checks the size of the List first,
+	because the value may not be lower then 1. If the tempEffect is deleted from the list
+	he set the value tempEffect to -1 and continue with checking the next tempEffect. */
+	void update(void);
+
+	// Force to delete the Temporary Effects in the list tempEffects
+	void clearTempEffects();
+
 	/**
 	*The deconstructor
 	*/
@@ -87,6 +97,9 @@ private:
 	*an Affector is an external force acting on the particle like fadeout
 	*/
 	void checkForAffectors(ParticleModel* particleModel,IParticleSystemSceneNode* particleNode);
+	
+	// List to store the Temporary Effects
+	core::list<TempEffect*> tempEffects;
 };
 
 #endif

@@ -1402,6 +1402,9 @@
       <Filter>include\ParticleEditor</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\include\TempEffect.h">
+      <Filter>include\ParticleEditor</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\IQualityTexture.h">
       <Filter>include\video</Filter>
     </ClInclude>
@@ -2401,6 +2404,9 @@
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
     <ClCompile Include="ParticleParser.cpp">
+      <Filter>Irrlicht\ParticleEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="TempEffect.cpp">
       <Filter>Irrlicht\ParticleEditor</Filter>
     </ClCompile>
     <ClCompile Include="CQualityTexture.cpp">
