@@ -90,7 +90,7 @@ bool menuReceiver::menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv,
 
 						case GUI_ID_PASS_TURN:
 
-						guienv->clear();	
+							
 						/*
 							pass the turn
 						*/
@@ -100,7 +100,7 @@ bool menuReceiver::menuSwitchCases(const SEvent& event, IGUIEnvironment* guienv,
 
 						case GUI_ID_SURRENDER:
 
-						guienv->clear();	
+							
 						/*
 							surrender the game
 						*/
